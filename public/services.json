@@ -1,0 +1,245 @@
+{
+    "categories": [
+        {
+            "category": "Software Development",
+            "subCategory": null,
+            "links": [
+                "Top Software Development Companies",
+                "Top Software Development Companies for Startups",
+                "Top Software Development Companies in the USA",
+                "Top Software Development Companies in Canada",
+                "Top Software Development Companies in Germany",
+                "Top Software Development Companies in the UK",
+                "Top Software Development Companies in India",
+                "Top Software Development Companies in Australia",
+                "Top Software Development Companies in Poland",
+                "Top Software Development Companies in Ukraine",
+                "Top Software Development Companies in Latin America",
+                "Top Enterprise Software Development Companies",
+                "Top Custom Software Development Companies",
+                "Top SaaS Development Companies",
+                "Top MVP Development Companies",
+                "Top Offshore Software Development Companies",
+                "Top Nearshore Software Development Companies",
+                "Top Python and Django Developers",
+                "Top .NET Developers",
+                "Top Java Developers",
+                "Top Unity Developers",
+                "Top C++ Developers",
+                "Top Go (Golang) Developers",
+                "Top Rust Developers",
+                "Top Scala Developers",
+                "Top Kotlin Developers",
+                "Top Swift Developers"
+            ]
+        },
+        {
+            "category": "IT Services",
+            "subCategory": null,
+            "links": [
+                "Top IT Services Companies",
+                "Top IT Services Companies in the USA",
+                "Top Cloud Consulting Companies",
+                "Top Managed IT Service Providers",
+                "Top Cybersecurity Companies",
+                "Top DevOps Consulting Companies",
+                "Top Chatbot Development Companies",
+                "Top IT Staff Augmentation Companies",
+                "Top IT Outsourcing Companies",
+                "Top Digital Transformation Consulting Companies",
+                "Top AWS Consulting Partners",
+                "Top Azure Consulting Companies",
+                "Top Google Cloud Partners",
+                "Top Salesforce Consulting Partners",
+                "Top ServiceNow Partners",
+                "Top Data Migration Companies",
+                "Top Legacy System Modernization Companies"
+            ]
+        },
+        {
+            "category": "IoT Development",
+            "subCategory": null,
+            "links": [
+                "Top IoT Development Companies",
+                "Top Industrial IoT Companies",
+                "Top Smart Home Technology Companies",
+                "Top Wearable Technology Developers",
+                "Top IoT Security Companies",
+                "Top IoT Platform Developers"
+            ]
+        },
+        {
+            "category": "Web Development",
+            "subCategory": null,
+            "links": [
+                "Top Web Development Companies",
+                "Top Web Development Companies in the USA",
+                "Top Web Development Companies in the UK",
+                "Top Web Development Companies in Canada",
+                "Top Full Stack Development Companies",
+                "Top Frontend Development Companies",
+                "Top Backend Development Companies",
+                "Top Ruby on Rails Companies",
+                "Top Node.js Development Companies",
+                "Top PHP Developers",
+                "Top AngularJS Developers",
+                "Top React.js Developers",
+                "Top Vue.js Developers",
+                "Top WordPress Developers",
+                "Top Drupal Developers",
+                "Top Laravel Developers",
+                "Top Django Developers",
+                "Top Express.js Developers",
+                "Top Next.js Developers",
+                "Top Progressive Web App (PWA) Developers",
+                "Top Jamstack Development Companies",
+                "Top Headless CMS Developers"
+            ]
+        },
+        {
+            "category": "eCommerce Development",
+            "subCategory": null,
+            "links": [
+                "Top eCommerce Development Companies",
+                "Top Shopify Developers",
+                "Top Magento Developers",
+                "Top BigCommerce Developers",
+                "Top WooCommerce Developers",
+                "Top Salesforce Commerce Cloud Developers",
+                "Top Adobe Commerce Developers",
+                "Top Custom eCommerce Solutions",
+                "Top B2B eCommerce Developers",
+                "Top Marketplace Development Companies",
+                "Top Subscription eCommerce Platforms",
+                "Top Headless Commerce Developers"
+            ]
+        },
+        {
+            "category": "QA and Software Testing",
+            "subCategory": null,
+            "links": [
+                "Top QA and Software Testing Companies",
+                "Top Test Automation Companies",
+                "Top Manual Testing Companies",
+                "Top Performance Testing Companies",
+                "Top Security Testing Companies",
+                "Top Mobile App Testing Companies",
+                "Top API Testing Companies",
+                "Top Selenium Testing Companies",
+                "Top Load Testing Companies",
+                "Top Penetration Testing Companies"
+            ]
+        },
+        {
+            "category": "Blockchain Development",
+            "subCategory": null,
+            "links": [
+                "Top Blockchain Development Companies",
+                "Top Blockchain Development Companies in the USA",
+                "Top Smart Contract Developers",
+                "Top Ethereum Developers",
+                "Top Solidity Developers",
+                "Top NFT Development Companies",
+                "Top DeFi Development Companies",
+                "Top Web3 Development Companies",
+                "Top Cryptocurrency Development Companies",
+                "Top Crypto Wallet Developers",
+                "Top Crypto Exchange Developers",
+                "Top Hyperledger Developers",
+                "Top Private Blockchain Developers"
+            ]
+        },
+        {
+            "category": "Mobile Development",
+            "subCategory": null,
+            "links": [
+                "Top Mobile App Development Companies",
+                "Top Mobile App Development Companies in the USA",
+                "Top iOS App Development Companies",
+                "Top Android App Development Companies",
+                "Top Cross Platform App Developers",
+                "Top React Native Developers",
+                "Top Flutter Developers",
+                "Top Xamarin Developers",
+                "Top Ionic Developers",
+                "Top Native App Developers",
+                "Top Enterprise Mobile App Developers",
+                "Top Mobile Game Developers",
+                "Top Mobile Commerce App Developers"
+            ]
+        },
+        {
+            "category": "Design",
+            "subCategory": null,
+            "links": [
+                "Top Web Design Companies",
+                "Top Web Design Companies in the USA",
+                "Top Graphic Design Companies",
+                "Top UI/UX Design Companies",
+                "Top Product Design Companies",
+                "Top Mobile App Design Companies",
+                "Top Branding Agencies",
+                "Top Logo Design Companies",
+                "Top Motion Graphics Companies",
+                "Top 3D Design Companies",
+                "Top Illustration Services",
+                "Top User Research Companies",
+                "Top Design System Companies"
+            ]
+        },
+        {
+            "category": "AI and ML Development",
+            "subCategory": null,
+            "links": [
+                "Top Artificial Intelligence Companies",
+                "Top Big Data Analytics Companies",
+                "Top Machine Learning Companies",
+                "Top Robotics Companies",
+                "Top Deep Learning Companies",
+                "Top Computer Vision Companies",
+                "Top Natural Language Processing Companies",
+                "Top AI Consulting Companies",
+                "Top Chatbot and Conversational AI Companies",
+                "Top Predictive Analytics Companies",
+                "Top Data Science Consulting Companies",
+                "Top AI Model Development Companies",
+                "Top Generative AI Companies",
+                "Top LLM Development Companies",
+                "Top MLOps Companies"
+            ]
+        },
+        {
+            "category": "VR and AR Companies",
+            "subCategory": null,
+            "links": [
+                "Top VR and AR Companies",
+                "Top Virtual Reality Developers",
+                "Top Augmented Reality Developers",
+                "Top Mixed Reality Companies",
+                "Top Metaverse Development Companies",
+                "Top VR Training Solutions",
+                "Top AR Mobile App Developers",
+                "Top 360 Video Production Companies"
+            ]
+        },
+        {
+            "category": "Game Development",
+            "subCategory": null,
+            "links": [
+                "Top Game Development Companies",
+                "Top Mobile Game Developers",
+                "Top Unity Game Developers",
+                "Top Unreal Engine Developers",
+                "Top PC Game Developers",
+                "Top Console Game Developers",
+                "Top Indie Game Studios",
+                "Top Casual Game Developers",
+                "Top Hyper-Casual Game Developers",
+                "Top Multiplayer Game Developers",
+                "Top Game Art Studios",
+                "Top Game Animation Studios",
+                "Top Game Testing Companies"
+            ]
+        }
+    ]
+}
