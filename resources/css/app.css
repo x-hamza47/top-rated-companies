@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@font-face {
+    font-family: "ClashDisplay";
+    src: url("../font/ClashDisplay/ClashDisplay-Variable.ttf");
+}
+
+@theme {
+    --font-sans: "ClashDisplay", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+* {
+    transition: 0.3s all;
+    /* cursor: none; */
+}
+
+.mouse,
+.mouse-trail {
+    transition: 0s;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.section {
+    overflow: auto; /* scrolling still works */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge Legacy */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Edge */
+}
+
+.glass-btn {
+    box-shadow: inset 2px 2px 4px 0px #ffffff4f, 2px 2px 4px black;
+}
+
+/* .background {
+    background: linear-gradient(white, white, #ccff6d);
+} */
+
+ .button-wrapper button {
+    cursor: pointer;
+ }
+.answer.open {
+    max-height: 500px; /* fallback for large content */
+}
+.answer:not(.open) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
