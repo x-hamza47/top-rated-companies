@@ -1,17 +1,25 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@font-face {
+
+/* @font-face {
     font-family: "ClashDisplay";
     src: url("../font/ClashDisplay/ClashDisplay-Variable.ttf");
-}
+} */
+
+
 
 @theme {
-    --font-sans: "ClashDisplay", ui-sans-serif, system-ui, sans-serif,
+    /* --font-sans: "ClashDisplay", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji"; */
+    --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
@@ -56,3 +64,92 @@ body::-webkit-scrollbar {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
+
+/* .navbar { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); } */
+/* .navbar a { text-decoration: none; color: #333; padding: 0.5rem 1rem; display: block; } */
+/* .navbar a:hover { color: #1d4ed8; } */
+
+
+/* Base */
+.mega-menu {
+    position: absolute;
+    top: 110%;
+    right: 1%;
+    /* width: 100%; */
+    background: #fff;
+    box-shadow: 0 7px 12px rgba(0,0,0,0.2);
+    z-index: 40;
+    display: none;
+    @apply py-5 rounded-md ;
+}
+.mega-menu.flex { display: flex; }
+
+.mega-menu ul { list-style: none; }
+.mega-menu ul li a { display: block;  color: #333; text-decoration: none; }
+.mega-menu ul li a:hover { color: #1d4ed8; }
+
+/* Mobile */
+@media (max-width: 1024px) {
+    .mega-menu {
+        position: relative;
+        top: 0;
+        box-shadow: none;
+        display: none;
+    }
+}
+
+.desktop-menu a,.mobile-menu a{
+   @apply text-lime-900 hover:text-lime-600 lg:text-lg font-bold text-nowrap text-base;
+}
+.mobile-menu a{
+    @apply py-2 ;
+}
+.mega-menu .mega-menu-list{
+    @apply max-w-[300px] w-fit min-w-[200px] border-r border-r-gray-700/20;
+}
+.mega-menu .mega-menu-list li:first-child{
+    @apply px-4 xl:px-7 my-2 w-full;
+}
+.mega-menu .mega-menu-list li:first-child p{
+    @apply text-lime-900 text-xl ;
+}
+
+.mega-menu .mega-menu-list li:not(:first-child){
+    @apply text-lg font-medium hover:bg-lime-600/35 w-full px-4 py-3 border-l-12 border-l-transparent hover:border-l-lime-700;
+
+    /* @screen lg {
+        @apply px-4; 
+    } */
+
+    & a{
+        @apply hover:text-current;
+    }
+}
+
+/* Mobile submenu styling - Clutch.co style */
+#mobile-submenu {
+    min-height: 100vh;
+}
+
+#submenu-content ul {
+    @apply space-y-1;
+}
+
+#submenu-content a {
+    @apply block py-3 px-4 text-gray-700 hover:bg-lime-50 hover:text-lime-700 text-base font-medium rounded;
+}
+
+/* Arrow styling */
+.mobile-category span {
+    @apply text-2xl font-bold text-lime-700 transition-transform;
+}
+
+.mobile-category:hover span {
+    @apply translate-x-1;
+}
+
+/* Prevent body scroll only when menu is open (optional smooth feel) */
+/* body.menu-open {
+    overflow: hidden;
+} */
+
