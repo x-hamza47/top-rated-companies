@@ -1,4 +1,4 @@
-<header class="w-full border-b-2 border-lime-700 fixed z-50 bg-white">
+{{-- <header class="w-full border-b-2 border-lime-700 fixed z-50 bg-white">
     <div class="max-w-[1920px] mx-auto flex items-center justify-between h-20 px-4 md:px-10">
      
         <div class="w-20 h-20 shrink-0 mr-7">
@@ -79,4 +79,212 @@
         menu.classList.add('translate-x-full');
     });
 </script>
+
+@endpush --}}
+
+<header class="w-full border-b-2 border-lime-700 fixed z-50 bg-white">
+
+    <nav class="navbar relative">
+        <div class="flex justify-between items-center px-10 py-1 ">
+            <a class="w-20 h-20 ">
+                <img class="w-full h-full object-contain shrink-0" src="{{ asset('images/logo.png') }}" alt="Logo">
+            </a>
+            <button id="mobile-menu-btn" class="lg:hidden text-xl">☰</button>
+            <div class="gap-3 hidden lg:flex lg:items-center ">
+                <div class="desktop-menu flex gap-6 relative">
+                    <a href="#" class="category-link" data-target="development">Development</a>
+                    <a href="#" class="category-link" data-target="it_services">IT Services</a>
+                    <a href="#" class="category-link" data-target="marketing">Marketing</a>
+                    <a href="#" class="category-link" data-target="design">Design</a>
+                    <a href="#" class="category-link">Business Services</a>
+                    <a href="#" class="category-link">Pricing & Packages</a>
+                    <a href="#" class="category-link">Resources</a>
+                </div>
+
+                <div class="hidden xl:flex gap-2">
+                    {{-- <button
+                        class="bg-lime-700 text-white px-4 py-2 rounded-md hover:bg-lime-600 transition">Category</button> --}}
+                    <button
+                        class="border border-lime-700 text-lime-700 px-4 py-2 rounded-md hover:bg-lime-700 hover:text-white transition">Submit
+                        Your Company</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="mobile-menu" class="lg:hidden hidden flex-col px-6 pb-4 bg-white border-t-2 border-lime-700">
+            <div id="mobile-main-menu">
+                <a href="#"
+                    class="mobile-category py-3 flex justify-between items-center text-lime-900 font-bold text-base hover:text-lime-600"
+                    data-target="development">
+                    Development <span>›</span>
+                </a>
+                <a href="#"
+                    class="mobile-category py-3 flex justify-between items-center text-lime-900 font-bold text-base hover:text-lime-600"
+                    data-target="it_services">
+                    IT Services <span>›</span>
+                </a>
+                <a href="#"
+                    class="mobile-category py-3 flex justify-between items-center text-lime-900 font-bold text-base hover:text-lime-600"
+                    data-target="marketing">
+                    Marketing <span>›</span>
+                </a>
+                <a href="#"
+                    class="mobile-category py-3 flex justify-between items-center text-lime-900 font-bold text-base hover:text-lime-600"
+                    data-target="design">
+                    Design <span>›</span>
+                </a>
+                <a href="#" class="py-3 block text-lime-900 font-bold text-base hover:text-lime-600">Business
+                    Services</a>
+                <a href="#" class="py-3 block text-lime-900 font-bold text-base hover:text-lime-600">Pricing &
+                    Packages</a>
+                <a href="#" class="py-3 block text-lime-900 font-bold text-base hover:text-lime-600">Resources</a>
+            </div>
+
+            {{-- Submenu Back Button + Content --}}
+            <div id="mobile-submenu" class="hidden flex-col">
+                <button id="back-to-main-menu" class="py-4 text-left font-bold text-lime-700 flex items-center gap-2">
+                    ← Back to Menu
+                </button>
+                <div id="submenu-content" class="max-h-[calc(100vh-180px)]  overflow-y-auto"></div>
+            </div>
+        </div>
+
+
+        {{-- Mega Menus --}}
+        <div class="max-w-[1000px]">
+            @include('shared.partials.mega-menus')
+        </div>
+
+    </nav>
+
+</header>
+
+
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const mainMenu = document.getElementById("mobile-main-menu");
+            const submenu = document.getElementById("mobile-submenu");
+            const submenuContent = document.getElementById("submenu-content");
+            const backBtn = document.getElementById("back-to-main-menu");
+
+            mobileMenuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+                document.body.classList.toggle("menu-open");
+            });
+
+            document.querySelectorAll(".mobile-category").forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const target = link.dataset.target;
+
+                    const desktopMegaMenu = document.getElementById(target + "-menu");
+                    if (desktopMegaMenu) {
+                        submenuContent.innerHTML = desktopMegaMenu.innerHTML;
+                    } else {
+                        submenuContent.innerHTML =
+                            "<p class='p-6 text-gray-500'>No items available</p>";
+                    }
+
+                    mainMenu.classList.add("hidden");
+                    submenu.classList.remove("hidden");
+                });
+            });
+
+            backBtn.addEventListener("click", () => {
+                submenu.classList.add("hidden");
+                mainMenu.classList.remove("hidden");
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!e.target.closest("nav") && !mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.add("hidden");
+                    document.body.classList.remove("menu-open");
+                }
+            });
+
+            const categories = document.querySelectorAll(".category-link");
+            const megaMenus = document.querySelectorAll(".mega-menu");
+
+            categories.forEach(cat => {
+                cat.addEventListener("click", () => {
+                    const targetId = cat.dataset.target;
+                    if (targetId) {
+                        megaMenus.forEach(menu => {
+                            if (menu.id === targetId + "-menu") {
+                                menu.classList.remove("hidden");
+                                menu.classList.add("flex");
+                            } else {
+                                menu.classList.add("hidden");
+                                menu.classList.remove("flex");
+                            }
+                        });
+                    }
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!e.target.closest(".category-link") && !e.target.closest(".mega-menu")) {
+                    megaMenus.forEach(menu => {
+                        menu.classList.remove("flex");
+                        menu.classList.add("hidden");
+                    });
+                }
+            });
+            window.addEventListener("resize", () => {
+                megaMenus.forEach(menu => {
+                    menu.classList.remove("flex");
+                    menu.classList.add("hidden");
+                });
+                 submenu.classList.add("hidden");
+                mainMenu.classList.remove("hidden");
+                
+   
+            });
+        });
+    </script>
 @endpush
+
+
+{{-- @push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mobileMenuBtn = document.querySelector("#mobile-menu-btn");
+            const mobileMenu = document.querySelector("#mobile-menu");
+            const categories = document.querySelectorAll(".category-link");
+            const megaMenus = document.querySelectorAll(".mega-menu");
+
+            mobileMenuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            categories.forEach(cat => {
+                cat.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const targetId = cat.dataset.target;
+                    megaMenus.forEach(menu => {
+                        if (menu.id === targetId) {
+                            menu.classList.toggle("flex");
+                            menu.classList.toggle("hidden");
+                        } else {
+                            menu.classList.remove("flex");
+                            menu.classList.add("hidden");
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!e.target.closest(".category-link") && !e.target.closest(".mega-menu")) {
+                    megaMenus.forEach(menu => {
+                        menu.classList.remove("flex");
+                        menu.classList.add("hidden");
+                    });
+                }
+            });
+        });
+    </script>
+@endpush --}}

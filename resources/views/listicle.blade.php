@@ -3,32 +3,50 @@
 @section('content')
     {{-- ! Hero Content --}}
     <div
-        class="section max-[840px]:flex-col max-w-[1920px] w-full flex justify-between gap-4 mt-20 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4">
+        class="section max-[840px]:flex-col max-w-[1920px] w-full flex justify-between gap-4 mt-32 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4">
         <div class="sub-section ">
-            <h1 class="sm:text-3xl md:text-4xl text-3xl font-bold w-full">
-                Top <span class="text-lime-600"> Development </span> Companies
+            <h1 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full max-w-3xl">
+                Top <span class="text-lime-600"> {{ $serviceModel->service }}  </span> Companies
             </h1>
             <p class="company-read tracking-wide mt-3 font-medium sm:text-base text-sm line-clamp-3 lg:line-clamp-5 lg:max-w-7/12 w-full">A high-performing website is the backbone of your digital
-                presence.
-                From custom
-                platforms and CMS integrations to e-commerce stores and web apps, the right development partner turns ideas
-                into A high-performing website is the backbone of your digital presence. From custom
-                platforms and CMS integrations to e-commerce stores and web apps, the right development partner turns ideas
-                into
+               {{ $serviceModel->about }}
             </p>
         </div>
         <div class="sub-section">
             <h3 class="sm:text-4xl text-2xl  text-lime-600 font-semibold text-nowrap">
-                2651+ Companies
+              {{ $companies->total() }}+ Companies
             </h3>
         </div>
+    </div>
+      <div class="section flex justify-between flex-wrap gap-4">
+
+        @foreach ($relatedServices as $company)
+            @if ($company->service != $serviceModel->service)
+                <a href="{{ route('service', [
+                    'category' => strtolower(str_replace(' & ', '-', $company->category->category)),
+                    'service' => collect(explode('/', str_replace(' ', '-', $company->service)))->map(fn($w) => strtolower($w))->implode('-'),
+                ]) }}"
+                    class="flex gap-2 text-(--secondary) font-bold">
+                    {{ $company->service }}
+                    <svg width="22" height="22" viewBox="0 0 48 48" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 34L34 14M34 14H14M34 14V34" class="stroke-(--secondary)" stroke-width="5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            @else
+            @endif
+        @endforeach
     </div>
 
     {{-- ! Hero Section Quick Links --}}
     <div
-        class="section w-full max-w-[1920px] flex flex-wrap gap-x-10 gap-y-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-lime-800 font-semibold text-sm sm:text-base">
+        class="section w-full max-w-[1920px] flex flex-wrap gap-x-7 gap-y-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-lime-800 font-semibold text-sm sm:text-base">
+        @foreach ($relatedServices as $company)
+            
+        @endforeach
         {{-- * Link 1 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition">
+        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Mobile App Development
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
@@ -36,7 +54,7 @@
             </svg>
         </a>
         {{-- * Link 2 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition">
+        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Software Development
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
@@ -44,7 +62,7 @@
             </svg>
         </a>
         {{-- * Link 2 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition">
+        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Web Development
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
@@ -52,7 +70,7 @@
             </svg>
         </a>
         {{-- * Link 3 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition">
+        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             AR/VR
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
@@ -60,7 +78,7 @@
             </svg>
         </a>
         {{-- * Link 4 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition">
+        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Artificial Intelligence
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
@@ -68,7 +86,7 @@
             </svg>
         </a>
         {{-- * Link 5 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition">
+        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Blockchain
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
