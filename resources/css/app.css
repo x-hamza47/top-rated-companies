@@ -22,6 +22,8 @@
     --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+
+    --color-primary: 'text-lime-500'; 
 }
 * {
     transition: 0.3s all;
