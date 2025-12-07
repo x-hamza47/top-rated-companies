@@ -20,12 +20,9 @@
     </div>
       <div class="section flex justify-between flex-wrap gap-4">
 
-        @foreach ($relatedServices as $company)
-            @if ($company->service != $serviceModel->service)
-                <a href="{{ route('service', [
-                    'category' => strtolower(str_replace(' & ', '-', $company->category->category)),
-                    'service' => collect(explode('/', str_replace(' ', '-', $company->service)))->map(fn($w) => strtolower($w))->implode('-'),
-                ]) }}"
+        {{-- @foreach ($relatedServices as $company)
+            @if ($company->service != $serviceModel->service) --}}
+                <a href="#"
                     class="flex gap-2 text-(--secondary) font-bold">
                     {{ $company->service }}
                     <svg width="22" height="22" viewBox="0 0 48 48" fill="none"
@@ -34,17 +31,14 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </a>
-            @else
+            {{-- @else
             @endif
-        @endforeach
+        @endforeach --}}
     </div>
 
     {{-- ! Hero Section Quick Links --}}
     <div
         class="section w-full max-w-[1920px] flex flex-wrap gap-x-7 gap-y-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-lime-800 font-semibold text-sm sm:text-base">
-        @foreach ($relatedServices as $company)
-            
-        @endforeach
         {{-- * Link 1 --}}
         <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Mobile App Development
