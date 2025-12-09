@@ -82,11 +82,11 @@
 
 @endpush --}}
 
-<header class="w-full border-b-2 border-lime-700 fixed z-50 bg-white">
+<header class="w-full border-b-2 border-lime-700 fixed z-9999 bg-white">
 
     <nav class="navbar relative">
-        <div class="flex justify-between items-center px-10 py-1 ">
-            <a class="w-20 h-20 ">
+        <div class="flex justify-between items-center md:px-10 px-7 py-1 ">
+            <a class="md:w-18 md:h-18 w-15 h-15 ">
                 <img class="w-full h-full object-contain shrink-0" src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
             <button id="mobile-menu-btn" class="lg:hidden text-xl">☰</button>
