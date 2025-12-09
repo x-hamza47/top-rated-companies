@@ -1,8 +1,65 @@
 @import "tailwindcss";
 
-.section{
-    @apply w-full max-w-[1920px];
+.section:nth-of-type(1),.ready-section {
+    background: linear-gradient(45deg, #0b0f2a, #034b41, #055724);
 }
-.section:nth-of-type(1){
-        background: linear-gradient(45deg,#0b0f2a,#034b41,#055724);
+.card-wrapper .card {
+    @apply max-w-[400px] min-w-[295px];
+}
+.card-links ul * {
+    transition: all 0.2s ease;
+}
+/* .works-wrapper .card{
+    @apply max-w-64 min-w-64;
+} */
+
+.works .swiper {
+    @apply md:px-5 md:py-10 py-5 px-2;
+    display: flex;
+    justify-content: center;
+}
+.works .swiper .swiper-wrapper {
+    @apply md:px-5 py-0 px-2;
+
+    .card {
+        display: flex;
+        height: auto;
+    }
+}
+
+.works .swiper .swiper-pagination {
+    left: 50%;
+    bottom: -10px;
+    color: var(--primary);
+
+    .swiper-pagination-bullet {
+        background: var(--primary);
+        width: 20px;
+        border-radius: 8px;
+    }
+}
+.works .swiper :where(.swiper-button-prev, .swiper-button-next) {
+    color: white;
+    /* padding: 10px; */
+    background: var(--primary);
+    border-radius: 5px;
+
+    @apply sm:p-3 p-2 sm:w-10 sm:h-10 w-8 h-8;
+}
+
+.insights .swiper {
+    @apply md:px-5 md:py-12 py-5 px-2;
+    display: flex;
+    justify-content: center;
+
+    .swiper-pagination {
+        color: var(--primary);
+         bottom: -1px;
+
+        .swiper-pagination-bullet {
+            background: var(--primary);
+            width: 20px;
+            border-radius: 8px;
+        }
+    }
 }

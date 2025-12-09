@@ -1,6 +1,6 @@
-<div class="section md:px-10 sm:px-6 px-3 md:py-12  md:pt-32 pt-25  flex items-center text-white flex-wrap gap-y-6 lg:flex-row flex-col">
+<div class="section md:pt-32  pt-25 pb-20 flex items-center flex-wrap gap-y-6 lg:flex-row flex-col text-white">
     <div class="flex flex-col items-center lg:items-start gap-4 lg:text-start text-center flex-1 ">
-        <h1 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl max-w-[900px] font-bold ">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-[900px] font-bold ">
             Where <span class="text-lime-700">Businesses</span>
             Meet Their Ideal Development
             <span class="text-lime-700">Partners</span>
@@ -100,7 +100,8 @@
             </span>
         </div>
     </div>
+    {{-- ! Hero Image --}}
     <div class="flex-2/5 min-w-[200px] max-w-[500px] ">
-        <img src="{{ asset('images/illustration.png') }}" alt="Team Meeting illustration" class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)]">
+        <img src="{{ asset('images/illustration.png') }}" alt="Team Meeting illustration" class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)] hover:drop-shadow-transparent hover:scale-[0.99]">
     </div>
 </div>
