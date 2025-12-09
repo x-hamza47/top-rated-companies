@@ -7,7 +7,7 @@
             available, helping both sides make confident and informed decisions.
         </p>
     </div>
-    <div class="swiper works-wrapper w-full ">
+    <div class="swiper works-wrapper works-swipper w-full ">
     <div class="swiper-wrapper ">
         {{-- Card 1 --}}
         <div class="swiper-slide card relative flex-col gap-2   bg-white items-center text-center px-3 py-4 rounded-md">
@@ -61,8 +61,8 @@
     </div>
 
    
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next main-next"></div>
+    <div class="swiper-button-prev main-prev"></div>
 
     <div class="swiper-pagination absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-4"></div>
 </div>
