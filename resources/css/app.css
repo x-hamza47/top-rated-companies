@@ -22,14 +22,23 @@
     --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
-
-    --color-primary: 'text-lime-500'; 
+}
+:root{
+    /* 700 */
+    --primary:#497d00; 
+    --light-primary:oklch(64.8% 0.2 131.684);
+    --secondary:oklch(40.5% 0.101 131.063); 
+    --dark-secondary:oklch(27.4% 0.072 132.109); 
 }
 * {
     transition: 0.3s all;
     /* cursor: none; */
 }
-
+@layer components {
+    .section {
+        @apply w-full max-w-[1920px] md:px-10 sm:px-6 px-3 md:py-12 py-10 ;
+    }
+}
 
 .mouse,
 .mouse-trail {

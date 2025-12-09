@@ -1,6 +1,10 @@
 @extends('shared.main')
 {{-- Info: Css File --}}
-@push('styles') @vite("resources/css/home.css") @endpush
+@push('styles')
+    @vite('resources/css/home.css')
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+@endpush
 
 @section('content')
     {{-- ! Hero Section --}}
@@ -14,32 +18,77 @@
 
     {{-- ! Insight Section --}}
     @include('home.insights')
-    
+
     {{-- ! Ready Section --}}
-    <div
-        class="section w-full max-w-[1920px] items-center bg-lime-700 flex gap-4 p-[50px] max-[720px]:p-5 max-[720px]:flex-col">
-        <img class="w-[150px] h-[150px] object-cover rounded-md"
-            src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/40-Brand-Logos-for-Creative-and-Cool-Companies/orange-electronics-company-by-ions-brandcrowd.png"
-            alt="">
-        <div class="flex flex-col max-[720px]:items-center">
-            <h1 class="text-6xl text-white w-fit text-center font-bold">Ready to start?</h1>
-            <h1 class="text-4xl text-white w-fit text-center font-bold">Create your company profile for free</h1>
-            <button
-                class="flex justify-center gap-2 items-center w-fit bg-lime-900 p-3 text-center font-semibold text-white rounded-md">
-                Watch Top Companies
-                <svg width="22" height="22" viewBox="0 0 48 48" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 34L34 14M34 14H14M34 14V34" class="stroke-white" stroke-width="5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </button>
+    <div class="section ready-section w-full">
+        <div class="flex flex-col items-center gap-5">
+            <h2 class="text-2xl md:text-4xl  text-white text-center font-semibold">Ready to find your next tech partner?Or list your
+                company to grow?</h2>
+            <div class="flex gap-2">
+                <button
+                    class="font-semibold text-white bg-(--primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--light-primary)">
+                    Hire a Company
+                </button>
+                <button
+                    class="font-semibold text-white border-2 border-white  rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-white hover:text-lime-800">
+                    List your Company
+                </button>
+            </div>
         </div>
     </div>
     {{-- ! Faq Section --}}
     @include('home.faqs')
-    {{-- <div class="w-full mb-[13000px] text-white"></div> --}}
 @endsection
 @push('scripts')
     {{-- <script src="{{ asset('assets/js/services.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="{{ asset('assets/js/accordian.js') }}"></script>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            slidesPerView: 1,
+            spaceBetween: 40,
+            loop: false,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        var insightsSwiper = new Swiper(".insights-swiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            pagination: {
+                el: ".insights-swiper .swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                1024: {
+                    slidesPerView: 2,
+                },
+                1400: {
+                    slidesPerView: 2,
+                }
+            }
+        });
+    </script>
 @endpush
