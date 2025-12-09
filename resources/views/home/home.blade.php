@@ -41,11 +41,12 @@
 @endsection
 @push('scripts')
     {{-- <script src="{{ asset('assets/js/services.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/faqs.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <script src="{{ asset('assets/js/accordian.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/accordian.js') }}"></script> --}}
 
     <script>
-        const swiper = new Swiper('.swiper', {
+        const workSwiper = new Swiper('.works-swipper', {
             slidesPerView: 1,
             spaceBetween: 40,
             loop: false,
@@ -54,8 +55,8 @@
                 clickable: true,
             },
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                nextEl: '.main-next',
+                prevEl: '.main-prev',
             },
             breakpoints: {
                 640: {
