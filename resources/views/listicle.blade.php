@@ -6,35 +6,19 @@
         class="section max-[840px]:flex-col max-w-[1920px] w-full flex justify-between gap-4 mt-32 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4">
         <div class="sub-section ">
             <h1 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full max-w-3xl">
-                Top <span class="text-lime-600"> {{ $serviceModel->service }}  </span> Companies
+                Top <span class="text-lime-600"> Web Dev </span> Companies
             </h1>
             <p class="company-read tracking-wide mt-3 font-medium sm:text-base text-sm line-clamp-3 lg:line-clamp-5 lg:max-w-7/12 w-full">A high-performing website is the backbone of your digital
-               {{ $serviceModel->about }}
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit corporis ut dolorem adipisci facilis itaque obcaecati nihil perspiciatis necessitatibus voluptas repellat dolore nulla, ex unde doloribus quam, nam libero sint.
             </p>
         </div>
         <div class="sub-section">
             <h3 class="sm:text-4xl text-2xl  text-lime-600 font-semibold text-nowrap">
-              {{ $companies->total() }}+ Companies
+             2561+ Companies
             </h3>
         </div>
     </div>
-      <div class="section flex justify-between flex-wrap gap-4">
 
-        {{-- @foreach ($relatedServices as $company)
-            @if ($company->service != $serviceModel->service) --}}
-                <a href="#"
-                    class="flex gap-2 text-(--secondary) font-bold">
-                    {{ $company->service }}
-                    <svg width="22" height="22" viewBox="0 0 48 48" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 34L34 14M34 14H14M34 14V34" class="stroke-(--secondary)" stroke-width="5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </a>
-            {{-- @else
-            @endif
-        @endforeach --}}
-    </div>
 
     {{-- ! Hero Section Quick Links --}}
     <div

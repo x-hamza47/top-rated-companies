@@ -12,15 +12,18 @@
         </p>
     </div>
     {{-- Info: Cards --}}
-    <div class="card-wrapper flex flex-wrap items-center justify-center my-4 gap-x-20 gap-y-10 [&>div]:hover:border-lime-700">
+    <div
+        class="card-wrapper  my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 justify-items-center items-center relative">
         {{-- !Card 1 --}}
         <div
-            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  px-5 py-4  gap-2 shadow-2xl">
-            <div class="card-title flex items-center gap-2 w-80">
+            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">
+            <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
+                    class="fa-solid fa-xmark  text-gray-500"></i></button>
+            <div class="card-title flex items-center gap-2 ">
                 <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                     <i class="fa-solid fa-code text-white text-3xl"></i>
                 </span>
-                <h3 class="text-2xl font-bold text-(--secondary)">Development</h3>
+                <h3 class="text-2xl font-bold text-(--secondary) text-center">Development</h3>
             </div>
             <div class="card-links mt-4 flex flex-col text-gray-600 font-bold gap-1">
                 <ul
@@ -35,14 +38,16 @@
 
             </div>
             <a href=""
-                class="bg-(--secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold">
+                class="bg-(--secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold ">
                 View More
             </a>
         </div>
         {{-- !Card 2 --}}
         <div
-            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  px-5 py-4  gap-2 shadow-2xl">
-            <div class="card-title flex items-center gap-2 w-80">
+            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">
+            <button class="close-btn absolute top-2 right-2 text-xl font-bold sm:hidden hidden"><i
+                    class="fa-solid fa-xmark text-gray-500"></i></button>
+            <div class="card-title flex items-center gap-2 ">
                 <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                     <i class="fa-solid fa-palette text-white text-3xl"></i>
                 </span>
@@ -67,8 +72,10 @@
         </div>
         {{-- !Card 3 --}}
         <div
-            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  px-5 py-4  gap-2 shadow-2xl">
-            <div class="card-title flex items-center gap-2 w-80">
+            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  sm:px-5 sm:py-4 px-3 py-2  gap-2 shadow-2xl w-full h-full">
+            <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
+                    class="fa-solid fa-xmark text-gray-500"></i></button>
+            <div class="card-title flex items-center gap-2 ">
                 <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                     <i class="fa-solid fa-chart-line text-white text-3xl"></i>
                 </span>
@@ -93,8 +100,10 @@
         </div>
         {{-- !Card 4 --}}
         <div
-            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  px-5 py-4 gap-2 shadow-2xl">
-            <div class="card-title flex items-center gap-2 w-80">
+            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">
+            <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
+                    class="fa-solid fa-xmark text-gray-500"></i></button>
+            <div class="card-title flex items-center gap-2 ">
                 <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                     <i class="fa-solid fa-bullhorn text-white text-3xl"></i>
                 </span>
@@ -119,12 +128,14 @@
         </div>
         {{-- !Card 5 --}}
         <div
-            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  px-5 py-4  gap-2 shadow-2xl">
-            <div class="card-title flex items-center gap-2 w-80">
+            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  sm:px-5 sm:py-4 px-3 py-2  gap-2 shadow-2xl w-full h-full">
+            <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
+                    class="fa-solid fa-xmark text-gray-500"></i></button>
+            <div class="card-title flex items-center gap-2 ">
                 <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                     <i class="fa-solid fa-briefcase text-white text-3xl"></i>
                 </span>
-                <h3 class="text-2xl font-bold text-(--secondary) ">Business Services</h3>
+                <h3 class="text-2xl font-bold text-(--secondary) text-center ">Business</h3>
             </div>
             <div class="card-links mt-4 flex flex-col text-gray-600 font-bold gap-1">
                 <ul
@@ -145,8 +156,10 @@
         </div>
         {{-- !Card 6 --}}
         <div
-            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  px-5 py-4  gap-2 shadow-2xl">
-            <div class="card-title flex items-center gap-2 w-80">
+            class="card relative rounded-md border-2 border-gray-500/40 flex flex-col  sm:px-5 sm:py-4 px-3 py-2 h-full gap-2 shadow-2xl w-full">
+            <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
+                    class="fa-solid fa-xmark text-gray-500"></i></button>
+            <div class="card-title flex items-center gap-2">
                 <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                     <i class="fa-solid fa-server text-white text-3xl"></i>
                 </span>
@@ -171,3 +184,39 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script>
+        const cards = document.querySelectorAll(".mobile-cards .card");
+
+
+        cards.forEach(card => {
+            const closeBtn = card.querySelector(".close-btn");
+            card.addEventListener("click", () => {
+                if (window.innerWidth < 769) {
+
+                    if (card.classList.contains("active")) return;
+                    cards.forEach(c => c.classList.remove("active"));
+                    card.classList.toggle("active");
+
+                    // e.stopPropagation();
+                }
+
+                closeBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    card.classList.remove("active");
+                });
+
+            })
+        });
+
+        document.addEventListener("click", (e) => {
+            const activeCard = document.querySelector(".mobile-cards .card.active");
+            if (!activeCard) return;
+
+            if (!e.target.closest(".card")) {
+                activeCard.classList.remove("active");
+            }
+        });
+    </script>
+@endpush

@@ -92,4 +92,6 @@
             }
         });
     </script>
+
+    @stack('script')
 @endpush

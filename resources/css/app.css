@@ -48,7 +48,7 @@
 }
 
 .section {
-    overflow: auto; /* scrolling still works */
+     /* scrolling still works */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge Legacy */
 }
