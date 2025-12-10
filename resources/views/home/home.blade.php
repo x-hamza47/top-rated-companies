@@ -11,7 +11,8 @@
     @include('home.hero')
 
     {{-- ! Services Section --}}
-    @include('home.services')
+  
+    @include('home.services', ['categories', $categories])
 
     {{-- ! How it works --}}
     @include('home.works')
