@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Development",
+        "icon": "fa-code",
+        "subcategories": [
+            "Mobile App Development",
+            "Software Development",
+            "Web Development",
+            "AR/VR",
+            "Artificial Intelligence",
+            "Blockchain"
+        ]
+    },
+    {
+        "name": "Designing",
+        "icon": "fa-palette",
+        "subcategories": [
+            "Web Design",
+            "User Experience Design",
+            "Logo Design",
+            "Graphic Design",
+            "Design",
+            "Digital Design"
+        ]
+    },
+    {
+        "name": "Marketing",
+        "icon": "fa-chart-line",
+        "subcategories": [
+            "Digital Marketing",
+            "SEO",
+            "Social Media Marketing",
+            "Mobile Marketing",
+            "Content Marketing",
+            "Search Marketing"
+        ]
+    },
+    {
+        "name": "Advertising",
+        "icon": "fa-bullhorn",
+        "subcategories": [
+            "Advertising",
+            "Branding",
+            "Creative",
+            "Video Production",
+            "Public Relations",
+            "Media Planning & Buying"
+        ]
+    },
+    {
+        "name": "Business",
+        "icon": "fa-briefcase",
+        "subcategories": [
+            "Call Centers",
+            "BPO",
+            "Accounting",
+            "Commercial Real Estate",
+            "HR Services",
+            "Consulting"
+        ]
+    },
+    {
+        "name": "IT Services",
+        "icon": "fa-server",
+        "subcategories": [
+            "IT Services",
+            "Cybersecurity",
+            "Data Analytics",
+            "Managed IT Services",
+            "Cloud Consulting",
+            "Staff Augmentation"
+        ]
+    }
+]
