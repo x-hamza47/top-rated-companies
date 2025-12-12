@@ -1,4 +1,4 @@
-<div class="section flex flex-col">
+<div class="section flex flex-col overflow-x-hidden">
     {{-- Header --}}
     <div class="text-center mb-2">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Browse <span class="text-(--primary)">Services</span></h2>
@@ -14,11 +14,11 @@
     {{-- Info: Cards --}}
     <div
         class="card-wrapper  my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 justify-items-center items-center relative">
-        @foreach ($categories as $category)
+        @forelse ($categories as $category)
             <div
                 class="card relative rounded-md border-2 border-gray-500/40 flex flex-col sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">
                 <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
-                        class="fa-solid fa-xmark  text-gray-500"></i></button>
+                        class="fa-solid fa-xmark text-gray-500"></i></button>
                 <div class="card-title flex items-center gap-2 ">
                     <span class="bg-(--primary) px-1 py-1.5 rounded-md flex items-center justify-center">
                         <i class="fa-solid {{ $category->icon }} text-white text-3xl"></i>
@@ -28,9 +28,11 @@
                 <div class="card-links mt-4 flex flex-col text-gray-600 font-bold gap-1">
                     <ul
                         class="[&>li]:list-disc [&>li]:list-inside  [&>li]:mb-2 [&>li]:hover:text-(--light-primary) [&>li>*]:hover:text-(--light-primary)">
-                        @foreach ($category->subCategories as $sub)
+                        @forelse  ($category->services as $sub)
                             <li><a href="{{ route('services.companies', $sub->slug) }}">{{ $sub->name }}</a></li>
-                        @endforeach
+                        @empty
+                            <li>No services available</li>
+                        @endforelse
                     </ul>
 
                 </div>
@@ -39,7 +41,9 @@
                     View More
                 </a>
             </div>
-        @endforeach
+        @empty
+            <p class="text-center text-gray-500 font-semibold">No categories found.</p>
+        @endforelse
     </div>
 </div>
 
@@ -49,7 +53,7 @@
 
         cards.forEach(card => {
             const closeBtn = card.querySelector(".close-btn");
-            card.addEventListener("click", () => {
+            card.addEventListener("click", e => {
                 if (window.innerWidth < 769) {
 
                     if (card.classList.contains("active")) return;

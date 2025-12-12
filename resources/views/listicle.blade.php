@@ -6,15 +6,20 @@
         class="section max-[840px]:flex-col max-w-[1920px] w-full flex justify-between gap-4 mt-32 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4">
         <div class="sub-section ">
             <h1 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full max-w-3xl">
-                Top <span class="text-lime-600"> Web Dev </span> Companies
+                Top <span class="text-lime-600"> {{ $service->name }} </span> Companies
             </h1>
-            <p class="company-read tracking-wide mt-3 font-medium sm:text-base text-sm line-clamp-3 lg:line-clamp-5 lg:max-w-7/12 w-full">A high-performing website is the backbone of your digital
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit corporis ut dolorem adipisci facilis itaque obcaecati nihil perspiciatis necessitatibus voluptas repellat dolore nulla, ex unde doloribus quam, nam libero sint.
-            </p>
+            <p
+                class="company-read tracking-wide mt-3 font-medium sm:text-base text-sm line-clamp-3 lg:line-clamp-5 lg:max-w-7/12 w-full">
+                {{ $service->description ?? 'Explore top companies providing ' . $service->name . ' services.' }}</p>
+
+            {{-- <pre> {{ print_r($companies->toArray(), true)  }}</pre> --}}
+
+            {{-- {{ $companies->average_rating }} --}}
         </div>
         <div class="sub-section">
-            <h3 class="sm:text-4xl text-2xl  text-lime-600 font-semibold text-nowrap">
-             2561+ Companies
+            <h3 class="sm:text-4xl text-2xl  text-lime-600 font-semibold text-nowrap"
+                data-target="{{ $service->companies->count() }}" id="companyCount">
+                0+ Companies
             </h3>
         </div>
     </div>
@@ -23,60 +28,36 @@
     {{-- ! Hero Section Quick Links --}}
     <div
         class="section w-full max-w-[1920px] flex flex-wrap gap-x-7 gap-y-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-lime-800 font-semibold text-sm sm:text-base">
-        {{-- * Link 1 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
-            Mobile App Development
-            <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-        {{-- * Link 2 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
+        @forelse ($relatedServices as $relService)
+            <a href="{{ route('services.companies', $relService->slug) }}"
+                class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
+                {{ $relService->name }}
+                <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        @empty
+            <p class="text-gray-400 italic">No related services found.</p>
+        @endforelse
+
+        {{-- <a href="#"
+            class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
             Software Development
             <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg>
-        </a>
-        {{-- * Link 2 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
-            Web Development
-            <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-        {{-- * Link 3 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
-            AR/VR
-            <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-        {{-- * Link 4 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
-            Artificial Intelligence
-            <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
-        {{-- * Link 5 --}}
-        <a href="#" class="flex gap-2 hover:text-lime-500 transition border border-lime-800 px-4 py-2 rounded-full hover:border-lime-500">
-            Blockchain
-            <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 34L34 14M34 14H14M34 14V34" stroke="currentColor" stroke-width="5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-        </a>
+        </a> --}}
+
     </div>
 
     {{-- ! Quick Search Buttons --}}
-    <div class="section w-full max-w-[1920px] flex flex-wrap gap-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-white my-3 text-sm">
+    <div
+        class="section w-full max-w-[1920px] flex flex-wrap gap-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-white my-3 text-sm">
         <div class="input-wrapper flex items-center gap-2 outline-2 outline-lime-600 p-2 rounded-md">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 24 24">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"
+                viewBox="0 0 24 24">
                 <path class="fill-lime-600"
                     d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm1.476 14.955c.988-.405 1.757-1.211 2.116-2.216l2.408-6.739-6.672 2.387c-1.006.36-1.811 1.131-2.216 2.119l-3.065 7.494 7.429-3.045zm-.122-4.286c.551.551.551 1.446 0 1.996-.551.551-1.445.551-1.996 0-.551-.55-.551-1.445 0-1.996.551-.551 1.445-.551 1.996 0z" />
             </svg>
@@ -112,8 +93,7 @@
             </button>
         </div>
         <div class="button-wrapper">
-            <button
-                class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
+            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
                     <path fill="white"
                         d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7 14h-8v-9h2v7h6v2z" />
@@ -126,8 +106,7 @@
             </button>
         </div>
         <div class="button-wrapper">
-            <button
-                class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
+            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
                     <path fill="white"
                         d="M13 2h2v2h1v19h1v-15l6 3v12h1v1h-24v-1h1v-11h7v11h1v-19h1v-2h2v-2h1v2zm8 21v-2h-2v2h2zm-15 0v-2h-3v2h3zm8 0v-2h-3v2h3zm-2-4v-13h-1v13h1zm9 0v-1h-2v1h2zm-18 0v-2h-1v2h1zm4 0v-2h-1v2h1zm-2 0v-2h-1v2h1zm9 0v-13h-1v13h1zm7-2v-1h-2v1h2zm-18-1v-2h-1v2h1zm2 0v-2h-1v2h1zm2 0v-2h-1v2h1zm14-1v-1h-2v1h2zm0-2.139v-1h-2v1h2z" />
@@ -140,10 +119,10 @@
             </button>
         </div>
         <div class="button-wrapper">
-            <button
-                class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
+            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
-                    <path d="M22.906 2.841c1.104-2.412-7.833-2.841-10.907-2.841-2.934 0-12.01.429-10.906 2.841.508 1.11 8.907 12.916 8.907 12.916v5.246l4 2.997v-8.243s8.398-11.806 8.906-12.916zm-10.901-.902c4.243 0 8.144.575 8.144 1.226s-3.9 1.18-8.144 1.18-8.042-.528-8.042-1.18 3.799-1.226 8.042-1.226z"/>
+                    <path
+                        d="M22.906 2.841c1.104-2.412-7.833-2.841-10.907-2.841-2.934 0-12.01.429-10.906 2.841.508 1.11 8.907 12.916 8.907 12.916v5.246l4 2.997v-8.243s8.398-11.806 8.906-12.916zm-10.901-.902c4.243 0 8.144.575 8.144 1.226s-3.9 1.18-8.144 1.18-8.042-.528-8.042-1.18 3.799-1.226 8.042-1.226z" />
                 </svg>
                 Filters
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24">
@@ -156,11 +135,11 @@
     {{-- ! Section Of Agencies --}}
     <div class="section w-full max-w-[1920px] flex flex-col flex-wrap gap-5 md:p-10 lg:p-12 p-4 sm:p-7">
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold ">
-            List of the Best <span class="text-lime-600"> Development </span> Agencies
+            List of the Best <span class="text-lime-600"> {{ $service->name }} </span> Agencies
         </h2>
         {{-- ?? List Of Agencies --}}
         <div class="company-wrapper flex flex-col gap-4">
-            @for ($i = 0; $i < 10; $i++)
+            @forelse ($companies as $company)
                 <div
                     class="company outline-2 outline-gray-500/55 bg-lime-600/15 rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative">
                     <button class="text-lime-900 font-semibold px-3 py-2  cursor-pointer absolute top-1 right-0">
@@ -171,62 +150,24 @@
                     </button>
                     <div class="company-intro max-[840px]:flex-col flex justify-between gap-2 ">
                         <div class="flex md:items-center gap-2 ">
-                            <img src="https://s3.us-east-1.amazonaws.com/cdn.designcrowd.com/blog/120-cool-logos-for-a-fresh-new-look/gaming-battle-soldier-sword-by-amcstudio-brandcrowd.png"
-                                alt="" class="md:w-[85px] md:h-[85px] w-12 h-12 object-cover rounded-md">
+                            <img src="{{ $company->logo }}" alt="{{ $company->name }}"
+                                class="md:w-[85px] md:h-[85px] w-12 h-12 object-cover rounded-md bg-lime-900 p-1">
                             <div class="name flex flex-col ml-1">
                                 <div class="flex sm:gap-2 gap-1  flex-wrap flex-col sm:flex-row">
-                                    <h4 class="lg:text-4xl text-2xl font-semibold uppercase ">Inoxoft</h4>
-                                    <span class="flex gap-2 items-center flex-wrap">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor" class="fill-lime-800"
-                                                d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
-                                        </svg>
-                                        <h5 class="text-xs sm:text-sm font-bold text-lime-800">Premier Verified</h5>
-                                    </span>
+                                    <h4 class="lg:text-4xl text-2xl font-semibold uppercase ">{{ $company->name }}</h4>
+                                    @if ($company->verified)
+                                        <span class="flex gap-2 items-center flex-wrap">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor" class="fill-lime-800"
+                                                    d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.959 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591z" />
+                                            </svg>
+                                            <h5 class="text-xs sm:text-sm font-bold text-lime-800">Premier Verified</h5>
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="flex gap-2 items-center  text-green-900 mt-1">
-                                    <h4 class=" font-semibold text-base sm:text-xl">4.5</h4>
-                                    <div class="star-wrapper flex gap-1">
-                                        {{-- ? Stars --}}
-                                        <svg clip-rule="evenodd" class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill-rule="evenodd"
-                                            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z"
-                                                fill-rule="nonzero" fill="currentColor" />
-                                        </svg>
-                                        <svg clip-rule="evenodd" class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill-rule="evenodd"
-                                            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z"
-                                                fill-rule="nonzero" fill="currentColor" />
-                                        </svg>
-                                        <svg clip-rule="evenodd" class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill-rule="evenodd"
-                                            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z"
-                                                fill-rule="nonzero" fill="currentColor" />
-                                        </svg>
-                                        <svg clip-rule="evenodd" class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill-rule="evenodd"
-                                            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z"
-                                                fill-rule="nonzero" fill="currentColor" />
-                                        </svg>
-                                        <svg clip-rule="evenodd" class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill-rule="evenodd"
-                                            stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m11.322 2.923c.126-.259.39-.423.678-.423.289 0 .552.164.678.423.974 1.998 2.65 5.44 2.65 5.44s3.811.524 6.022.829c.403.055.65.396.65.747 0 .19-.072.383-.231.536-1.61 1.538-4.382 4.191-4.382 4.191s.677 3.767 1.069 5.952c.083.462-.275.882-.742.882-.122 0-.244-.029-.355-.089-1.968-1.048-5.359-2.851-5.359-2.851s-3.391 1.803-5.359 2.851c-.111.06-.234.089-.356.089-.465 0-.825-.421-.741-.882.393-2.185 1.07-5.952 1.07-5.952s-2.773-2.653-4.382-4.191c-.16-.153-.232-.346-.232-.535 0-.352.249-.694.651-.748 2.211-.305 6.021-.829 6.021-.829s1.677-3.442 2.65-5.44z"
-                                                fill-rule="nonzero" fill="" class="fill-gray-400" />
-                                        </svg>
-                                        <p class="text-xs sm:text-sm text-nowrap font-medium sm:ml-1 h-full">73 Reviews</p>
-                                    </div>
-                                </div>
+                                {{-- hack: Ratings Component --}}
+                                <x-star-rating :rating="$company->reviews_avg_rating" :reviews="$company->reviews_count" />
                             </div>
                         </div>
                         <div
@@ -255,7 +196,7 @@
                                         <path
                                             d="M14.101 24l-14.101-14.105v-9.895h9.855l14.145 14.101c-3.3 3.299-6.6 6.599-9.899 9.899zm-4.659-23h-8.442v8.481l13.101 13.105 8.484-8.484c-4.381-4.368-8.762-8.735-13.143-13.102zm-1.702 3.204c.975.976.975 2.56 0 3.536-.976.975-2.56.975-3.536 0-.976-.976-.976-2.56 0-3.536s2.56-.976 3.536 0zm-.708.707c.586.586.586 1.536 0 2.121-.585.586-1.535.586-2.121 0-.585-.585-.585-1.535 0-2.121.586-.585 1.536-.585 2.121 0z" />
                                     </svg>
-                                    <p class="text-nowrap text-sm">25,000+</p>
+                                    <p class="text-nowrap text-sm">{{ $company->details->min_project_size }}+</p>
                                 </span>
                                 <span class="flex items-center gap-2 ">
                                     <svg class="w-5 h-5 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -263,7 +204,8 @@
                                         <path
                                             d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 11h6v1h-7v-9h1v8z" />
                                     </svg>
-                                    <p class="text-nowrap ">$25 - $49 / hr</p>
+                                    <p class="text-nowrap ">${{ intval($company->details->hourly_rate_min) }} -
+                                        ${{ intval($company->details->hourly_rate_max) }} / hr</p>
                                 </span>
                             </div>
                             <div class="flex md:flex-col justify-evenly gap-7">
@@ -273,7 +215,8 @@
                                         <path
                                             d="M10.119 16.064c2.293-.53 4.427-.994 3.394-2.946-3.147-5.941-.835-9.118 2.488-9.118 3.388 0 5.643 3.299 2.488 9.119-1.065 1.964 1.149 2.427 3.393 2.946 1.985.458 2.118 1.428 2.118 3.107l-.003.828h-1.329c0-2.089.083-2.367-1.226-2.669-1.901-.438-3.695-.852-4.351-2.304-.239-.53-.395-1.402.226-2.543 1.372-2.532 1.719-4.726.949-6.017-.902-1.517-3.617-1.509-4.512-.022-.768 1.273-.426 3.479.936 6.05.607 1.146.447 2.016.206 2.543-.66 1.445-2.472 1.863-4.39 2.305-1.252.29-1.172.588-1.172 2.657h-1.331c0-2.196-.176-3.406 2.116-3.936zm-10.117 3.936h1.329c0-1.918-.186-1.385 1.824-1.973 1.014-.295 1.91-.723 2.316-1.612.212-.463.355-1.22-.162-2.197-.952-1.798-1.219-3.374-.712-4.215.547-.909 2.27-.908 2.819.015.935 1.567-.793 3.982-1.02 4.982h1.396c.44-1 1.206-2.208 1.206-3.9 0-2.01-1.312-3.1-2.998-3.1-2.493 0-4.227 2.383-1.866 6.839.774 1.464-.826 1.812-2.545 2.209-1.49.345-1.589 1.072-1.589 2.334l.002.618z" />
                                     </svg>
-                                    <p class="text-nowrap">50 - 249</p>
+                                    <p class="text-nowrap">{{ intval($company->details->employees_min) }} -
+                                        {{ intval($company->details->employees_max) }}</p>
                                 </span>
                                 <span class="flex items-center gap-2 ">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -281,39 +224,40 @@
                                         <path
                                             d="M12 10c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2m0-5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3m-7 2.602c0-3.517 3.271-6.602 7-6.602s7 3.085 7 6.602c0 3.455-2.563 7.543-7 14.527-4.489-7.073-7-11.072-7-14.527m7-7.602c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602" />
                                     </svg>
-                                    <p class="">Newwark, DE sdf dfs fsdf </p>
+                                    <p class="">{{ $company->details->locations }}</p>
                                 </span>
                             </div>
                         </div>
                         {{-- ! Column 2 --}}
-                        <div class="flex flex-col gap-4 text-sm">
+                        <div class="flex flex-col gap-4 text-sm flex-1 min-w-2xs">
                             <div class="flex flex-col gap-2 w-full">
                                 <small class="uppercase text-gray-500 font-semibold">Services Provided</small>
                                 {{-- * Bar --}}
-                                <div class="w-full h-2 md:h-3 rounded-lg overflow-hidden flex">
-                                    <div class="bg-lime-600" style="width:40%"></div>
-                                    <div class="bg-purple-500" style="width:40%"></div>
-                                    <div class="bg-blue-400" style="width:15%"></div>
-                                    <div class="bg-pink-400" style="width:5%"></div>
+                                <div class="w-full h-2 md:h-3 rounded-lg overflow-hidden flex ">
+                                    @php
+                                        $colors = [
+                                            'bg-lime-600',
+                                            'bg-purple-500',
+                                            'bg-blue-400',
+                                            'bg-pink-400',
+                                            'bg-yellow-400',
+                                            'bg-indigo-500',
+                                        ];
+                                    @endphp
+                                    @foreach ($company->services as $index => $service)
+                                        <div class="{{ $colors[$index % count($colors)] }}"
+                                            style="width: {{ $service->pivot->expertise_percentage }}%"></div>
+                                    @endforeach
                                 </div>
 
                                 <div class="flex flex-col gap-2 mt-2 text-gray-700">
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-4 h-4 rounded bg-lime-600"></span>
-                                        <strong class="sm:text-nowrap">40% Web Development</strong>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-4 h-4 rounded bg-purple-500"></span>
-                                        <strong class="sm:text-nowrap">40% Custom Software Development</strong>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-4 h-4 rounded bg-blue-400"></span>
-                                        <strong class="sm:text-nowrap">15% E-Commerce Development</strong>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-4 h-4 rounded bg-pink-400"></span>
-                                        <strong class="sm:text-nowrap">5% AI Development</strong>
-                                    </div>
+                                    @foreach ($company->services as $index => $service)
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-4 h-4 rounded {{ $colors[$index % count($colors)] }}"></span>
+                                            <strong class="sm:text-nowrap">{{ $service->pivot->expertise_percentage }}%
+                                                {{ $service->name }}</strong>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -423,7 +367,14 @@
                         </div>
                     </div>
                 </div>
-            @endfor
+            @empty
+                 <p>No companies found.</p>
+            @endforelse
+ {{-- Pagination Links --}}
+    <div class="mt-4">
+        {{ $companies->links() }}
+    </div>
+
         </div>
 
     </div>
@@ -511,5 +462,29 @@
 
             window.addEventListener('load', () => updateGroupHeight(group));
         });
+
+
+
+        // ! Counter Animation
+        const element = document.getElementById('companyCount');
+        const target = +element.getAttribute('data-target');
+        const duration = 3000;
+        let start = null;
+
+        function easeOutQuad(t) {
+            return t * (2 - t);
+        }
+
+        function animateCount(timestamp) {
+            if (!start) start = timestamp;
+            const progress = (timestamp - start) / duration;
+            const easedProgress = easeOutQuad(Math.min(progress, 1));
+            element.innerText = Math.ceil(easedProgress * target) + '+ Companies';
+            if (progress < 1) {
+                requestAnimationFrame(animateCount);
+            }
+        }
+
+        requestAnimationFrame(animateCount);
     </script>
 @endpush

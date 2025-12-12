@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Service;
 use App\Models\Category;
-use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -26,10 +26,11 @@ class CategoryAndServiceSeeder extends Seeder
             ]);
 
             foreach($cat['subcategories'] as $sub){
-                SubCategory::create([
+                Service::create([
                     'category_id' => $category->id,
-                    'name' => $sub,
-                    'slug' => Str::slug($sub),
+                    'name' => $sub['name'],
+                    'slug' => Str::slug($sub['name']),
+                    'description' => $sub['desc'],
                 ]);
             }
         }

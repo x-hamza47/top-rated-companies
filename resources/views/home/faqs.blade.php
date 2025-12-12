@@ -1,4 +1,4 @@
-<div class="section w-full max-w-[1920px] flex flex-col gap-4 p-[50px] max-[720px]:p-5">
+<div class="section  flex flex-col gap-4 ">
     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center">
         Frequently asked <span class="text-(--primary)">Questions</span>
     </h2>
