@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('logo')->nullable();
             $table->boolean('verified')->default(false);
+            $table->string('slug')->unique();
             $table->string('name')->unique();
             $table->text('about')->nullable();
             $table->string('tagline')->nullable();

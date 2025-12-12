@@ -10,6 +10,7 @@ class Company extends Model
         'logo',
         'verified',
         'name',
+        'slug',
         'about',
         'tagline',
         'category_id',

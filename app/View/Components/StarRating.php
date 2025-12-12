@@ -11,7 +11,7 @@ class StarRating extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $rating = 0,  public $reviews = 0)
+    public function __construct(public $rating = 0,  public $reviews = 0, public $color = 'green', public $textColor = 'text-green-900')
     {
         
     }
