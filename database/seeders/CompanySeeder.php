@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CompanySeeder extends Seeder
 {
@@ -33,6 +34,7 @@ class CompanySeeder extends Seeder
                 'logo'       => 'https://picsum.photos/360/360?random=' . rand(1, 99999),
                 'name'       => $uniqueCompanyNames[$i],
                 'about'      => $faker->paragraph(10),
+                'slug'       => Str::slug($uniqueCompanyNames[$i]),
                 'tagline'    => $faker->sentence,
                 'verified'   => $faker->boolean(30),
                 'created_at' => now(),

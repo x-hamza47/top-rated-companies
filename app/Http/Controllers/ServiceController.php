@@ -16,7 +16,7 @@ class ServiceController extends Controller
         $companies = $service->companies()
             ->with([
             'services', 
-            'details:id,company_id,min_project_size,hourly_rate_min,hourly_rate_max,employees_min,employees_max,locations'
+            'details:id,company_id,min_project_size,hourly_rate_min,hourly_rate_max,employees_min,employees_max,locations,website'
             ])
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')->paginate(10);
@@ -28,7 +28,7 @@ class ServiceController extends Controller
             ->take(7)
             ->get();
 
-        return view('listicle', compact('service', 'companies', 'relatedServices'));
+        return view('listicle.listicle', compact('service', 'companies', 'relatedServices'));
         // return view('plan', compact('service', 'companies', 'relatedServices'));
     }
 }
