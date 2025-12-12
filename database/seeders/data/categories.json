@@ -3,72 +3,180 @@
         "name": "Development",
         "icon": "fa-code",
         "subcategories": [
-            "Mobile App Development",
-            "Software Development",
-            "Web Development",
-            "AR/VR",
-            "Artificial Intelligence",
-            "Blockchain"
+            {
+                "name": "Mobile App Development",
+                "desc": "Mobile App Development involves creating applications for iOS and Android platforms. It focuses on delivering seamless user experiences with high performance and reliability. Developers use frameworks like Flutter, React Native, or native SDKs to bring ideas to life. Apps are built to meet both business goals and user engagement requirements."
+            },
+            {
+                "name": "Software Development",
+                "desc": "Software Development is the process of designing and building custom software solutions for businesses and individuals. It includes desktop, web, and enterprise applications with emphasis on scalability, security, and maintainability. Modern programming languages and frameworks are leveraged to solve real-world problems. The goal is to create efficient and reliable software tailored to specific needs."
+            },
+            {
+                "name": "Web Development",
+                "desc": "Web Development covers the creation of websites and web applications, ensuring responsive design and smooth functionality. It focuses on performance, SEO, and user experience to attract and retain users. Technologies like HTML, CSS, JavaScript, and modern frameworks are extensively used. Developers ensure cross-browser compatibility and maintainability for long-term success."
+            },
+            {
+                "name": "AR/VR",
+                "desc": "AR/VR development involves creating immersive augmented and virtual reality experiences for users. It enhances engagement in gaming, training, marketing, and education. Developers work with 3D modeling, interactive design, and specialized frameworks to deliver realistic experiences. The main goal is to make digital interactions as intuitive and captivating as possible."
+            },
+            {
+                "name": "Artificial Intelligence",
+                "desc": "Artificial Intelligence focuses on building systems that simulate human intelligence and decision-making. It includes machine learning, natural language processing, and computer vision applications. AI solutions aim to automate tasks, analyze data, and provide actionable insights. Developers design models that are efficient, accurate, and adaptable to changing needs."
+            },
+            {
+                "name": "Blockchain",
+                "desc": "Blockchain development deals with creating decentralized applications and secure digital transactions. It ensures transparency, immutability, and trust in data storage and transfer. Developers work with smart contracts, cryptocurrencies, and distributed ledger technology. The goal is to build robust systems for finance, supply chain, and other industries."
+            }
         ]
     },
     {
         "name": "Designing",
         "icon": "fa-palette",
         "subcategories": [
-            "Web Design",
-            "User Experience Design",
-            "Logo Design",
-            "Graphic Design",
-            "Design",
-            "Digital Design"
+            {
+                "name": "Web Design",
+                "desc": "Web Design focuses on the visual aesthetics and usability of websites. It combines layout planning, color theory, typography, and imagery to create attractive and intuitive interfaces. Designers ensure the site is responsive across all devices and aligns with the brand identity. The ultimate aim is to provide visitors with a memorable and frictionless browsing experience."
+            },
+            {
+                "name": "User Experience Design",
+                "desc": "User Experience (UX) Design is centered on understanding user behavior and crafting seamless interactions with products or services. It involves user research, wireframing, prototyping, and usability testing to eliminate pain points. UX designers aim to make complex processes feel simple and enjoyable. A great UX increases customer satisfaction, retention, and conversion rates."
+            },
+            {
+                "name": "Logo Design",
+                "desc": "Logo Design is the art of creating a unique visual symbol that represents a brand’s identity and values. It requires a deep understanding of the company’s mission, target audience, and market positioning. A successful logo is simple, memorable, versatile, and timeless. It works effectively across various mediums, from business cards to billboards."
+            },
+            {
+                "name": "Graphic Design",
+                "desc": "Graphic Design encompasses the creation of visual content for both digital and print media, including posters, banners, brochures, social media graphics, and packaging. Designers use typography, imagery, and color to communicate messages effectively. The work balances creativity with strategic objectives to influence audience perception and drive engagement."
+            },
+            {
+                "name": "Design",
+                "desc": "General Design services cover a wide range of creative needs that don’t fit into a single niche, such as illustration, motion graphics, infographics, and brand collateral. Designers collaborate closely with clients to translate ideas into compelling visuals. The focus is on originality, aesthetic appeal, and alignment with business goals across multiple platforms."
+            },
+            {
+                "name": "Digital Design",
+                "desc": "Digital Design involves creating visuals specifically for screens—websites, apps, social media, advertisements, and presentations. It requires mastery of tools like Adobe Creative Suite, Figma, and Sketch, along with knowledge of UI trends and platform guidelines. The final output must be pixel-perfect, optimized for performance, and engaging in a fast-scrolling digital environment."
+            }
         ]
     },
     {
         "name": "Marketing",
         "icon": "fa-chart-line",
         "subcategories": [
-            "Digital Marketing",
-            "SEO",
-            "Social Media Marketing",
-            "Mobile Marketing",
-            "Content Marketing",
-            "Search Marketing"
+            {
+                "name": "Digital Marketing",
+                "desc": "Digital Marketing uses online channels such as search engines, social media, email, and websites to promote brands and connect with potential customers. It integrates SEO, PPC, content marketing, and analytics to drive traffic and conversions. Campaigns are data-driven, highly targeted, and continuously optimized for maximum ROI in a competitive digital landscape."
+            },
+            {
+                "name": "SEO",
+                "desc": "Search Engine Optimization (SEO) is the practice of increasing a website’s visibility on search engines like Google through organic (non-paid) methods. It involves keyword research, on-page optimization, technical improvements, link building, and content strategy. Effective SEO leads to higher rankings, increased traffic, and sustainable long-term growth without ongoing ad spend."
+            },
+            {
+                "name": "Social Media Marketing",
+                "desc": "Social Media Marketing leverages platforms like Instagram, Facebook, LinkedIn, TikTok, and X to build brand awareness and foster community engagement. It includes organic posting, paid advertising, influencer collaborations, and community management. Success depends on creating shareable content that resonates with the target audience and encourages interaction."
+            },
+            {
+                "name": "Mobile Marketing",
+                "desc": "Mobile Marketing targets users on smartphones and tablets through SMS, push notifications, in-app ads, and mobile-optimized websites or campaigns. With the majority of internet traffic now mobile, strategies focus on fast-loading experiences and location-based targeting. It aims to reach consumers instantly and personally wherever they are."
+            },
+            {
+                "name": "Content Marketing",
+                "desc": "Content Marketing focuses on creating and distributing valuable, relevant, and consistent content—blogs, videos, ebooks, infographics—to attract and retain a clearly defined audience. Instead of direct selling, it builds trust and authority over time. The ultimate goal is to drive profitable customer action through thought leadership and helpful resources."
+            },
+            {
+                "name": "Search Marketing",
+                "desc": "Search Marketing encompasses both SEO and paid search (SEM/PPC) to dominate search engine results pages. It combines organic growth tactics with targeted ad campaigns (Google Ads, Bing Ads) to capture high-intent traffic. Specialists manage bids, keywords, ad copy, and landing pages to maximize visibility and conversions efficiently."
+            }
         ]
     },
     {
         "name": "Advertising",
         "icon": "fa-bullhorn",
         "subcategories": [
-            "Advertising",
-            "Branding",
-            "Creative",
-            "Video Production",
-            "Public Relations",
-            "Media Planning & Buying"
+            {
+                "name": "Advertising",
+                "desc": "Advertising services cover the planning, creation, and execution of paid promotional campaigns across TV, radio, print, outdoor, and digital channels. Agencies develop creative concepts, produce assets, negotiate media placements, and measure campaign performance. The objective is to increase brand visibility and drive immediate consumer action."
+            },
+            {
+                "name": "Branding",
+                "desc": "Branding is the strategic process of shaping a company’s identity through naming, logo, tone of voice, messaging, and visual style. Strong branding creates emotional connections, differentiates from competitors, and builds long-term loyalty. It ensures consistency across every customer touchpoint, from packaging to customer service."
+            },
+            {
+                "name": "Creative",
+                "desc": "Creative services focus on ideation and production of original advertising materials—copywriting, art direction, photography, video, and graphic assets. Creative teams translate marketing objectives into compelling stories that capture attention and inspire action. High-impact creative work is essential for campaigns that stand out in a crowded market."
+            },
+            {
+                "name": "Video Production",
+                "desc": "Video Production includes scripting, filming, editing, animation, and post-production for commercials, explainer videos, social media content, and corporate films. Professional video conveys emotion and information far more effectively than text or static images. It is a powerful tool for storytelling and converting viewers across platforms."
+            },
+            {
+                "name": "Public Relations",
+                "desc": "Public Relations (PR) manages a brand’s reputation through earned media coverage, press releases, crisis communication, and influencer outreach. PR professionals build relationships with journalists and shape public perception positively. Unlike advertising, PR focuses on credibility and third-party endorsement to enhance trust and authority."
+            },
+            {
+                "name": "Media Planning & Buying",
+                "desc": "Media Planning & Buying involves researching audiences, selecting the most effective channels (TV, radio, digital, OOH), negotiating rates, and placing ads for optimal reach and frequency. Experts balance budget, timing, and targeting to achieve campaign KPIs. Data-driven planning ensures every advertising dollar delivers measurable impact."
+            }
         ]
     },
     {
         "name": "Business",
         "icon": "fa-briefcase",
         "subcategories": [
-            "Call Centers",
-            "BPO",
-            "Accounting",
-            "Commercial Real Estate",
-            "HR Services",
-            "Consulting"
+            {
+                "name": "Call Centers",
+                "desc": "Call Center services provide inbound and outbound customer support, sales, technical helpdesk, and telemarketing operations. Trained agents handle high volumes of calls with professionalism and efficiency, often 24/7. Modern call centers integrate omnichannel communication (voice, chat, email) and use CRM systems to improve customer satisfaction and retention."
+            },
+            {
+                "name": "BPO",
+                "desc": "Business Process Outsourcing (BPO) involves delegating non-core business functions—customer service, payroll, data entry, HR, finance & accounting—to specialized third-party providers. BPO helps companies reduce costs, increase efficiency, and focus on core competencies while maintaining quality standards through SLAs and rigorous monitoring."
+            },
+            {
+                "name": "Accounting",
+                "desc": "Accounting services include bookkeeping, tax preparation, auditing, financial reporting, payroll processing, and advisory. Certified professionals ensure compliance with local regulations and provide accurate financial insights for decision-making. Outsourcing accounting reduces errors, saves time, and often proves more cost-effective than maintaining an in-house team."
+            },
+            {
+                "name": "Commercial Real Estate",
+                "desc": "Commercial Real Estate services cover leasing, buying, selling, and managing office, retail, industrial, and warehouse properties. Agents and consultants offer market analysis, negotiation expertise, property valuation, and portfolio strategy. They help businesses secure spaces that support growth and operational efficiency in prime locations."
+            },
+            {
+                "name": "HR Services",
+                "desc": "Human Resources services include recruitment, payroll management, employee benefits administration, compliance, training, and performance management. HR partners act as an extension of your team, ensuring legal compliance and fostering a positive workplace culture. Outsourcing HR reduces administrative burden and mitigates employment-related risks."
+            },
+            {
+                "name": "Consulting",
+                "desc": "Business Consulting provides expert advice in strategy, operations, finance, marketing, IT, and organizational transformation. Consultants analyze challenges, identify opportunities, and deliver actionable roadmaps tailored to the client’s goals. Their outside perspective and industry experience accelerate growth and improve overall performance."
+            }
         ]
     },
     {
         "name": "IT Services",
         "icon": "fa-server",
         "subcategories": [
-            "IT Services",
-            "Cybersecurity",
-            "Data Analytics",
-            "Managed IT Services",
-            "Cloud Consulting",
-            "Staff Augmentation"
+            {
+                "name": "IT Services",
+                "desc": "General IT Services encompass helpdesk support, network management, hardware/software maintenance, system administration, and infrastructure monitoring. Providers ensure smooth daily operations, rapid issue resolution, and minimal downtime. Businesses rely on these services to keep technology running efficiently without building large internal IT teams."
+            },
+            {
+                "name": "Cybersecurity",
+                "desc": "Cybersecurity services protect organizations from data breaches, ransomware, phishing, and other threats through risk assessments, firewall management, endpoint protection, penetration testing, and incident response. Experts implement layered defenses and employee training programs to safeguard sensitive information and maintain regulatory compliance in an evolving threat landscape."
+            },
+            {
+                "name": "Data Analytics",
+                "desc": "Data Analytics transforms raw data into actionable insights using tools like Power BI, Tableau, Python, and SQL. Services include dashboard creation, predictive modeling, customer segmentation, and performance reporting. Companies leverage analytics to optimize operations, understand customer behavior, and make evidence-based strategic decisions."
+            },
+            {
+                "name": "Managed IT Services",
+                "desc": "Managed IT Services offer proactive, subscription-based support that includes monitoring, maintenance, backups, updates, and unlimited helpdesk access. MSPs act as a full outsourced IT department, ensuring systems are secure, up-to-date, and scalable. This model provides predictable costs and frees internal resources for core business activities."
+            },
+            {
+                "name": "Cloud Consulting",
+                "desc": "Cloud Consulting helps organizations migrate to, optimize, and manage cloud platforms (AWS, Azure, Google Cloud). Experts design secure, cost-effective architectures, implement DevOps practices, and ensure compliance. Proper cloud strategy improves scalability, reduces infrastructure costs, and accelerates digital transformation initiatives."
+            },
+            {
+                "name": "Staff Augmentation",
+                "desc": "Staff Augmentation provides skilled IT professionals—developers, engineers, analysts—on a temporary or project basis to fill talent gaps quickly. Companies scale teams without long-term hiring commitments while maintaining full control over projects. It’s ideal for meeting deadlines, accessing niche expertise, or handling peak workloads efficiently."
+            }
         ]
     }
 ]

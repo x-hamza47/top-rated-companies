@@ -5,7 +5,9 @@
         <h1 class="text-4xl font-bold text-center w-full">
             Grow Your Business on <span class="text-(--accent)"> 10Firms! </span>
         </h1>
+
         <p class="text-center w-full max-w-[700px]">More than $2 billion in global service projects flow through Clutch every
+            <pre class="max-w-[600px]"> {{ print_r($companies)  }}</pre>
             year. Get listed today to gain
             visibility with 12+ million buyers searching for their next business partner.</p>
         <div class="flex gap-2 justify-between w-full max-w-[700px]">

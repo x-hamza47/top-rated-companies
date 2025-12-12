@@ -2,16 +2,14 @@
 {{-- Info: Css File --}}
 @push('styles')
     @vite('resources/css/home.css')
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 @endpush
 
 @section('content')
     {{-- ! Hero Section --}}
-    @include('home.hero')
+    @include('home.hero', ['services' => $categories->pluck('services')->flatten()])
 
     {{-- ! Services Section --}}
-  
     @include('home.services', ['categories', $categories])
 
     {{-- ! How it works --}}

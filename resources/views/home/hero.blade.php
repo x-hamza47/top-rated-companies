@@ -5,7 +5,8 @@
             Meet Their Ideal Development
             <span class="text-lime-700">Partners</span>
         </h1>
-        <p class="w-full md:leading-6 leading-5 max-w-[900px] font-semibold text-gray-300 md:text-base text-sm">At topratedcompanies, we cut through market
+        <p class="w-full md:leading-6 leading-5 max-w-[900px] font-semibold text-gray-300 md:text-base text-sm">At
+            topratedcompanies, we cut through market
             noise
             and simplify
             your
@@ -13,7 +14,8 @@
             credible, experienced, and dependable companies.
             Explore comprehensive profiles and choose your next partner with clarity and confidence.
         </p>
-        <p class=" w-full max-w-[900px] font-semibold text-gray-300 md:text-base text-sm">Explore comprehensive profiles and choose your next
+        <p class=" w-full max-w-[900px] font-semibold text-gray-300 md:text-base text-sm">Explore comprehensive profiles
+            and choose your next
             partner
             with
             clarity and confidence.
@@ -26,15 +28,18 @@
                     <input type="text" placeholder="Service you need"
                         class="peer w-full h-full outline-none text-gray-700 placeholder-gray-500 md:text-sm text-xs">
                     <i class="fa-solid fa-chevron-down  text-gray-400 text-[10px] sm:text-base"></i>
-
                     <div
                         class="absolute top-full left-0 right-0 mt-1.5 py-2 bg-white border border-gray-500/30 rounded-md overflow-hidden opacity-0 invisible transition-all duration-200 peer-focus:opacity-100 peer-focus:visible z-40 shadow text-start max-h-[200px] overflow-y-auto w-full">
-                        <h5 class="text-xs pb-2 text-gray-800/80 sm:px-4 px-2">Services</h5>
-                        <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2 text-nowrap">Web Development
-                        </p>
-                        <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">IT service</p>
-                        <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">Iran</p>
-                      
+                        <h5 class="text-xs pb-2 text-gray-900/80 sm:px-4 px-2">Services <small class="text-lime-600 float-right">{{ $services->count()}}+</small></h5>
+                        @forelse ($services as $service)
+                            <p class="text-sm text-gray-600 py-2 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2 not-last:border-b-2 border-b-gray-500/20">
+                                {{ $service->name }}
+                            </p>
+                        @empty
+                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2 text-nowrap">
+                                No service found.
+                            </p>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -49,9 +54,12 @@
                         <div
                             class="absolute top-full left-0 right-0 mt-1.5 py-2 bg-white border border-gray-500/30 rounded-md overflow-hidden opacity-0 invisible transition-all duration-200 peer-focus:opacity-100 peer-focus:visible z-40 shadow text-start max-h-[200px] overflow-y-auto w-full">
                             <h5 class="text-xs pb-2 text-gray-800/80 sm:px-4 px-2">Search Result</h5>
-                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">India</p>
-                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">Indonesia</p>
-                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">Iran</p>
+                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">India
+                            </p>
+                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">
+                                Indonesia</p>
+                            <p class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2">Iran
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -63,45 +71,46 @@
             </button>
         </div>
         <div class="flex gap-2 md:justify-start justify-center flex-wrap">
-            <span
+            <a href="{{ route('services.companies', ['serviceSlug' => 'graphic-design']) }}"
                 class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-1 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
                 <i class="fa-solid fa-palette  "></i>
                 <small>Graphic Designs</small>
-            </span>
-            <span
+            </a>
+            <a href="{{ route('services.companies', ['serviceSlug' => 'web-development']) }}"
                 class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
 
                 <i class="fa-solid fa-code  "></i>
                 <small>Web Development</small>
 
-            </span>
-            <span
+            </a>
+            <a href="{{ route('services.companies', ['serviceSlug' => 'seo']) }}"
                 class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
 
 
                 <i class="fa-solid fa-chart-line  "></i>
                 <small>SEO</small>
 
-            </span>
-            <span
+            </a>
+            <a href="{{ route('services.companies', ['serviceSlug' => 'video-production']) }}"
                 class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
 
 
                 <i class="fa-solid fa-film  "></i>
                 <small>Video Editing</small>
-            </span>
-            <span
+            </a>
+            <a href="{{ route('services.companies', ['serviceSlug' => 'web-design']) }}"
                 class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
 
 
                 <i class="fa-solid fa-paintbrush  "></i>
                 <small>Website Designing</small>
 
-            </span>
+            </a>
         </div>
     </div>
     {{-- ! Hero Image --}}
     <div class="flex-2/5 min-w-[200px] max-w-[500px] ">
-        <img src="{{ asset('images/illustration.png') }}" alt="Team Meeting illustration" class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)] hover:drop-shadow-transparent hover:scale-[0.99]">
+        <img src="{{ asset('images/illustration.png') }}" alt="Team Meeting illustration"
+            class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)] hover:drop-shadow-transparent hover:scale-[0.99]">
     </div>
 </div>

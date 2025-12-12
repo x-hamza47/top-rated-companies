@@ -8,8 +8,8 @@ class Category extends Model
 {
     protected $fillable = ['name', 'slug', 'icon'];
 
-    public function subCategories()
+    public function services()
     {
-        return $this->hasMany(SubCategory::class);
+        return $this->hasMany(Service::class);
     }
 }
