@@ -11,3 +11,8 @@
 .btn-white{
     @apply  text-white bg-(--primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--light-primary) flex items-center justify-center;
 }
+
+
+.apexcharts-legend.apx-legend-position-right{
+    justify-content: center !important;
+}
