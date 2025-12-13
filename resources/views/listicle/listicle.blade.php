@@ -85,7 +85,7 @@
                                     <path
                                         d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 11h6v1h-7v-9h1v8z" />
                                 </svg>
-                                <p class="text-nowrap ">${{ intval($company->details->hourly_rate_min) }}-${{ intval($company->details->hourly_rate_max) }}/hr</p>
+                                <p class="text-nowrap ">{{ $company->details->hourly_rate }}</p>
                             </span>
                             {{-- </div> --}}
                             {{-- <div class="flex md:flex-col justify-evenly gap-7"> --}}

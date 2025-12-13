@@ -18,6 +18,7 @@ class ProfileController extends Controller
 
         $reviews = $company->reviews()->paginate(5);
 
-        return view('profile.index', compact('company'));
+        return view('profile.index', compact('company','reviews'));
     }
+    
 }

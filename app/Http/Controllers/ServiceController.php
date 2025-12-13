@@ -29,6 +29,6 @@ class ServiceController extends Controller
             ->get();
 
         return view('listicle.listicle', compact('service', 'companies', 'relatedServices'));
-        // return view('plan', compact('service', 'companies', 'relatedServices'));
+
     }
 }
