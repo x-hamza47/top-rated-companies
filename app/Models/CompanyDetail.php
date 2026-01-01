@@ -22,8 +22,8 @@ class CompanyDetail extends Model
     ];
 
     protected $casts = [
-        'social_links' => 'array',
         'languages' => 'array',
+        'social_links' => 'array',
     ];
 
     public function company()
@@ -37,7 +37,7 @@ class CompanyDetail extends Model
         return Attribute::make(
             get: fn() =>
             '$' . intval($this->hourly_rate_min)
-                . '- $' .intval($this->hourly_rate_max) . '/hr'
+                . '-$' .intval($this->hourly_rate_max) . '/hr'
         );
     }
     protected function employees(): Attribute

@@ -159,6 +159,28 @@ body::-webkit-scrollbar {
     @apply translate-x-1;
 }
 
+
+.nav-link {
+    @apply transition text-nowrap hover:bg-lime-800 hover:text-white px-3 py-1 rounded-full;
+
+}
+.nav-link.active,.mobile-drop.active {
+    @apply  bg-lime-800 text-white ;
+}
+
+.dropdown-link {
+    @apply block hover:text-lime-700 transition cursor-pointer text-nowrap;
+    @apply font-medium hover:bg-lime-600/35 w-full px-4 py-3 border-l-10 border-l-transparent hover:border-l-lime-700;
+}
+
+.btn-primary {
+    @apply bg-lime-700 text-white px-4 py-2 rounded-md hover:bg-lime-600 transition;
+}
+
+.btn-outline {
+    @apply border border-lime-700 text-lime-700 px-4 py-2 rounded-md hover:bg-lime-700 hover:text-white transition;
+}
+
 /* Prevent body scroll only when menu is open (optional smooth feel) */
 /* body.menu-open {
     overflow: hidden;

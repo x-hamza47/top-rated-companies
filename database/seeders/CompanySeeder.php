@@ -13,24 +13,37 @@ class CompanySeeder extends Seeder
     {
         $faker = Factory::create();
 
-        // Fetch once (optimization)
         $allServiceIds = DB::table('services')->pluck('id')->toArray();
 
-        // Pre-generate all company names to avoid duplicates
         $uniqueCompanyNames = [];
         while (count($uniqueCompanyNames) < 200) {
             $uniqueCompanyNames[] = $faker->unique()->company;
         }
 
-        // We need these later for reviewers
         $createdCompanyIds = [];
 
         for ($i = 0; $i < 200; $i++) {
 
-            // -----------------------------------
-            // * Create Company
-            // -----------------------------------
+            // -------------------------------
+            // * Create User first
+            // -------------------------------
+            $userId = DB::table('users')->insertGetId([
+                'firstName' => $faker->firstName,
+                'lastName'  => $faker->lastName,
+                'phone'  => $faker->phoneNumber,
+                'email' => strtolower(Str::slug($uniqueCompanyNames[$i])) . "@example.com",
+                'password' => bcrypt('password1234'), 
+                'role' => 'company',
+                'profile_image' => 'https://i.pravatar.cc/150?img=' . rand(1, 70),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            // -------------------------------
+            // * Create Company linked to User
+            // -------------------------------
             $companyId = DB::table('companies')->insertGetId([
+                'user_id'    => $userId,
                 'logo'       => 'https://picsum.photos/360/360?random=' . rand(1, 99999),
                 'name'       => $uniqueCompanyNames[$i],
                 'about'      => $faker->paragraph(10),
@@ -43,12 +56,18 @@ class CompanySeeder extends Seeder
 
             $createdCompanyIds[] = $companyId;
 
-            // -----------------------------------
-            // * Insert Details
-            // -----------------------------------
+            // -------------------------------
+            // * Company Details
+            // -------------------------------
+            $socialLinks = [
+                ['platform' => 'linkedin',  'value' => $faker->url],
+                ['platform' => 'facebook',  'value' => $faker->url],
+                ['platform' => 'instagram', 'value' => $faker->url],
+            ];
+
             DB::table('company_details')->insert([
                 'company_id'       => $companyId,
-                'min_project_size' => '$' . $faker->numberBetween(1000, 10000),
+                'min_project_size' => round($faker->numberBetween(1000, 10000), -3),
                 'hourly_rate_min'  => $faker->numberBetween(10, 50),
                 'hourly_rate_max'  => $faker->numberBetween(60, 150),
                 'employees_min'    => $faker->numberBetween(1, 10),
@@ -56,46 +75,29 @@ class CompanySeeder extends Seeder
                 'locations'        => $faker->city,
                 'founded'          => $faker->year,
                 'languages'        => json_encode(
-                    $faker->randomElements(
-                        ['English', 'Arabic', 'French', 'Chinese', 'Spanish'],
-                        rand(1, 3)
-                    )
+                    $faker->randomElements(['English', 'Arabic', 'French', 'Chinese', 'Spanish'], rand(1, 3))
                 ),
                 'website'      => $faker->url,
-                'social_links' => json_encode([
-                    'linkedin'  => $faker->url,
-                    'facebook'  => $faker->url,
-                    'instagram' => $faker->url,
-                ]),
+                'social_links'     => json_encode($socialLinks),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
-            // -----------------------------------
-            // * Attach 4–7 Services With Perfect Percentages
-            // -----------------------------------
+            // -------------------------------
+            // * Attach Services
+            // -------------------------------
             $serviceCount = rand(4, 6);
             $selectedServices = $faker->randomElements($allServiceIds, $serviceCount);
 
-            // Create random weights
             $weights = [];
-            for ($w = 0; $w < $serviceCount; $w++) {
-                $weights[] = rand(10, 100);
-            }
+            for ($w = 0; $w < $serviceCount; $w++) $weights[] = rand(10, 100);
 
-            // Convert weights → percentages (sum always 100)
             $totalWeight = array_sum($weights);
             $percentageList = [];
-
-            foreach ($weights as $weight) {
-                $percentageList[] = round(($weight / $totalWeight) * 100);
-            }
-
-            // Fix rounding diff
+            foreach ($weights as $weight) $percentageList[] = round(($weight / $totalWeight) * 100);
             $diff = 100 - array_sum($percentageList);
             $percentageList[0] += $diff;
 
-            // Insert pivot
             foreach ($selectedServices as $index => $serviceId) {
                 DB::table('company_services')->insert([
                     'company_id'          => $companyId,
@@ -107,45 +109,30 @@ class CompanySeeder extends Seeder
             }
         }
 
-        // -----------------------------------
-        // * Add Reviews AFTER all companies exist
-        // -----------------------------------
-
+        // -------------------------------
+        // * Add Reviews
+        // -------------------------------
         foreach ($createdCompanyIds as $companyId) {
-
-            // Reviewers = all except itself
             $reviewers = array_diff($createdCompanyIds, [$companyId]);
-
-            // Each company gets 10–20 reviews
             $reviewCount = rand(10, 20);
-
-            // Fetch services of this company (so reviews match services)
-            $servicesOfCompany = DB::table('company_services')
-                ->where('company_id', $companyId)
-                ->pluck('service_id')
-                ->toArray();
+            $servicesOfCompany = DB::table('company_services')->where('company_id', $companyId)->pluck('service_id')->toArray();
 
             for ($r = 0; $r < $reviewCount; $r++) {
-
                 DB::table('reviews')->insert([
                     'company_id'     => $companyId,
                     'service_id'     => $faker->randomElement($servicesOfCompany),
-
                     'reviewer_id'    => $faker->randomElement($reviewers),
                     'reviewer_type'  => 'App\\Models\\Company',
-
                     'review'          => $faker->paragraph,
                     'project_title'   => $faker->sentence,
                     'project_size'    => "$" . $faker->numberBetween(2000, 50000),
                     'project_duration' => $faker->numberBetween(1, 12) . " months",
                     'project_summary' => $faker->paragraph(5),
-
                     'rating'          => rand(1, 5),
                     'quality'         => rand(1, 5),
                     'schedule'        => rand(1, 5),
                     'cost'            => rand(1, 5),
                     'willing_to_refer' => rand(1, 5),
-
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

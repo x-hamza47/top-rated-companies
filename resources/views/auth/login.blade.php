@@ -1,32 +1,66 @@
 @extends('shared.main')
+@push('styles')
+    @vite('resources/css/auth.css')
+@endpush
+
 @section('content')
     <div
-        class="section w-full max-w-[1920px] flex flex-col items-center justify-center gap-4 p-[50px] mt-20 max-[720px]:p-5">
-        <h1 class="text-3xl font-bold text-white">TRC <span class="text-lime-400"> Login</span></h1>
-        <div class="bg-lime-400/10 p-10 rounded-md outline-1 outline-lime-400/30 max-w-[500px] w-full flex flex-col">
-            <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-4">
+        class="section w-full flex  items-center justify-center gap-4 mt-20 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
+
+        <div class="flex flex-col bg-white px-8 py-7 w-2/5 rounded-md">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl  lg:text-5xl  text-gray-800 font-bold text-center">
+                TRC <span class="text-lime-700">Login</span>
+            </h1>
+            <p class="my-4 text-gray-600 text-sm sm:text-base text-center">
+                Login to manage your account, track activities, and get things done easily.
+            </p>
+            <form action="{{ route('auth.login') }}" method="POST" class="flex flex-col gap-4">
                 @csrf
-                <div>
-                    <input type="text" placeholder="Username" name="username"
-                        class="bg-lime-400/10 text-lime-400 placeholder:text-lime-400/30 outline-1 outline-lime-400 p-2 rounded-md w-full">
-                </div>
-                <div class="relative">
-                    <input type="password" placeholder="Password" name="password"
-                        class="password bg-lime-400/10 text-lime-400 placeholder:text-lime-400/30 outline-1 outline-lime-400 p-2 rounded-md w-full">
-                    <div class="show-hide absolute right-2 top-1/2 -translate-y-1/2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path class="fill-lime-400"
-                                d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z" />
-                        </svg>
+                <div class="flex flex-col gap-6 mb-3">
+
+                    <div class="inp-field w-full h-11 relative @error('email') mb-2 @enderror">
+                        <input type="text" placeholder="Email Address" name="email"
+                            class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-4 pr-9 py-2 @error('email') invalid-input @enderror"
+                            value="{{ old('email') }}">
+                        <i class="fa-solid fa-envelope absolute right-3 top-1/2 text-gray-400"></i>
+                        @error('email')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="relative inp-field w-full h-11 @error('email') mb-2 @enderror">
+                        <input type="password" placeholder="Password" name="password"
+                            class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-4 pr-9 py-2 @error('password') invalid-input @enderror">
+                        <i class="fa-solid fa-eye text-lg text-gray-400 cursor-pointer show-icon"></i>
+                        @error('password')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
                     </div>
                 </div>
-                <div>
-                    <button type="submit" class="w-full bg-lime-400 rounded-md p-2 font-bold text-lime-900">Login</button>
+                <div class="remember-forgot flex justify-between">
+                    <label><input type="checkbox" name="" id="" class="accent-(--secondary)"> Remember
+                        me</label>
+                    <a href="#" class="hover:underline font-normal text-blue-500">Forgot password?</a>
+                </div>
+
+                <button type="submit"
+                    class="bg-(--secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold ">Login</button>
+
+                <div class="register-link text-center">
+                    <p>Don't have an account?<a href="{{ route('register.show') }}"
+                            class="text-(--secondary) hover:text-(--primary) font-medium">
+                            Create One</a></p>
                 </div>
             </form>
         </div>
     </div>
-    @push('scripts')
-        <script src="{{ asset('assets/js/password.js') }}"></script>
-    @endpush
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/js/password.js') }}"></script>
+@endpush

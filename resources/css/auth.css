@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+.inp-field input:focus ~ i{
+    @apply text-(--primary);
+}
+.inp-field input ~ .show-icon{
+    @apply absolute top-1/2 right-2 ;
+}
+.inp-field input ~ i{
+    @apply -translate-y-1/2 ;
+}
+
+
+.inp-field .error{
+    @apply flex items-center gap-1 text-red-700 text-sm mt-0.5;
+
+    .error-text{
+        @apply  text-red-700;
+    }
+}
+.invalid-input{
+    @apply border-red-700;
+}
+
+.role-card input[type='radio']{
+        appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    @apply appearance-none outline-2 outline-gray-500 checked:outline-(--primary) rounded-full accent-(--primary) w-4 h-4 checked:bg-white checked:border-(--primary) border-5 border-transparent shadow shadow-red-800;
+}
