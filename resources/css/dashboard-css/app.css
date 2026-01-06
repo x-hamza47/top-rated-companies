@@ -1090,14 +1090,19 @@ dropdown-toggle {
     white-space: nowrap;
     text-indent: -20px;
     border: 0;
+    color: #2600ff;
 }
 
 .inp-field input:not(:read-only):focus ~ i:not(.fa-brands) {
     @apply text-(--primary);
 }
 .inp-field input {
-    @apply transition ease-in hover:not-focus:not-read-only:border-(--color-border);
+    @apply transition ease-in hover:not-focus:not-read-only:border-(--color-border) text-sm;
 }
 .inp-field input ~ .show-icon{
     @apply absolute top-1/2 right-2 -translate-y-1/2 ;
+}
+
+option {
+    background: var(--color-surface);
 }

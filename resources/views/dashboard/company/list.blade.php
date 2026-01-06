@@ -16,7 +16,7 @@
         {{-- <pre> {{ print_r($companies->toArray(), true) }}</pre> --}}
         <div class="dashboard-table-header">
             <h3 class="dashboard-table-title">Companies & Details</h3>
-            <a href="#" class="btn btn-secondary">Add New</a>
+            {{-- <a href="#" class="btn btn-secondary">Add New</a> --}}
         </div>
         <table class="dashboard-table">
             <thead>
@@ -35,11 +35,12 @@
                         <td class="w-max">
                             <div class="table-title-cell max-w-max">
                                 <div class="col-icon">
-                                    <img src="{{ $company->logo }}" alt="" class="w-full h-full rounded-full">
+                                    <img src="{{ $company?->logo ? (!Str::startsWith($company->logo, 'http') ? asset('storage/' . $company->logo) : $company->logo) : asset('images/dummy.jpg') }}" alt="" class="w-full h-full rounded-full">
                                 </div>
                                 <div class="col-info relative">
                                     <div class="col-title-text"><a href="#"
-                                            class="sm:text-wrap text-nowrap">{{ $company->name }}</a></div>
+                                            class="sm:text-wrap text-nowrap">{{ $company->name }}</a>
+                                    </div>
                                     <div class="col-meta-text peer">{{ Str::limit($company->tagline, 20) }} •
                                         {{ $company->services_count }} service{{ $company->services_count > 1 ? 's' : '' }}
                                     </div>
@@ -69,7 +70,7 @@
                                 <i class="fas fa-edit "></i>
                             </a>
 
-                            <form action="#" method="POST" class="inline">
+                            <form action="{{ route('companies.destroy', $company->id) }}" method="POST" class="delete-company-form inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="p-2 rounded-md text-base btn-danger transition" title="Delete">
@@ -77,7 +78,7 @@
                                 </button>
                             </form>
                         </td>
-                    </tr>
+                    </tr> 
 
 
                 @empty
@@ -93,3 +94,28 @@
         {{ $companies->onEachSide(2)->links() }}
     </div>
 @endsection
+
+@push('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.querySelectorAll('.delete-company-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This company will be deleted permanently!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
+    
+@endpush

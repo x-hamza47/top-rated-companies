@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,7 +54,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'email' => $request->email,
@@ -61,6 +62,17 @@ class AuthController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($request->role === "company") {
+            Company::create([
+                'user_id' => $user->id,
+                'name' => null,
+                'slug' => null,
+                'tagline' => null,
+                'about' => null,
+                'logo' => null,
+            ]);
+        }
 
         return redirect()->route('login');
     }

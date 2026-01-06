@@ -5,12 +5,12 @@
     {{-- * Sidebar --}}
     @include('dashboard.partials.sidebar')
     {{-- ! Main --}}
-    <main class="dashboard-main">
+    <main class="dashboard-main ">
         @include('dashboard.partials.mainHeader')
 
         {{-- ! Content --}}
-        <div class="dashboard-content">
-            <div class="dashboard-view">
+        <div class="dashboard-content relative">
+            <div class="dashboard-view ">
                 @include('badgeAlert')
                 @yield('content')
             </div>

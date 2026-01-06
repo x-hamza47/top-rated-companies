@@ -16,19 +16,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = $user = Auth::guard('admin')->check()
-            ? Auth::guard('admin')->user()
-            : Auth::guard('web')->user();
+        $user = Auth::user();
         return view('dashboard.profile.profile', compact('user'));
     }
 
     public function update(Request $request)
     {
-        $user = $user = Auth::guard('admin')->check()
-            ? Auth::guard('admin')->user()
-            : Auth::guard('web')->user();
+        $user = Auth::user();
 
-        $userId = $user->id;
 
         $request->validate(
             [
@@ -38,18 +33,15 @@ class UserController extends Controller
                 'email' => 'required|email|unique:users,email,' . $user->id,
             ],
         );
-        $table = Auth::guard('admin')->check() ? 'admins' : 'users';
 
-        DB::table($table)
-            ->where('id', $userId)
-            ->update([
-                'firstName' => $request->firstName,
-                'lastName'  => $request->lastName,
-                'phone'     => $request->phone,
-                'email'     => $request->email,
-                'updated_at' => now(),
-            ]);
-        return redirect()->back()->with('success', 'Profile updated successfully!');
+        $user->update([
+            'firstName' => $request->firstName,
+            'lastName'  => $request->lastName,
+            'phone'     => $request->phone,
+            'email'     => $request->email,
+        ]);
+
+        return back()->with('success', 'Profile updated successfully!');
     }
 
     public function uploadProfile(Request $request)
@@ -65,8 +57,8 @@ class UserController extends Controller
                 'image.max' => 'The image size must not exceed 4 MB.',
             ]
         );
-        /** @var \App\Models\User|\App\Models\Admin $user */
-        $user = Auth::guard('admin')->check() ? Auth::guard('admin')->user() : Auth::guard('web')->user();
+        // /** @var \App\Models\User|\App\Models\Admin $user */
+        $user = Auth::user();
 
         if (!$user) {
             return back()->with('error', 'User not authenticated');
@@ -104,8 +96,8 @@ class UserController extends Controller
     public function changePassword(Request $request)
     {
 
-        /** @var \App\Models\User|\App\Models\Admin $user */
-        $user = Auth::guard('web')->user() ?? Auth::guard('admin')->user();
+        /** @var \App\Models\User */
+        $user = Auth::user();
 
         if (!$user) {
             abort(403, 'Unauthorized');

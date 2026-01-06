@@ -142,7 +142,7 @@
                         </div>
                         {{-- ! Column 3 --}}
                         <div class="text-sm ">
-                            <p class="break-word lg:line-clamp-6 md:line-clamp-5 line-clamp-4">{{ $company->about }}</p>
+                            <p class="break-word lg:line-clamp-6 md:line-clamp-5 line-clamp-4">{!! $company->about !!}</p>
                             <span class="text-blue-500 font-medium inline">See all 26 Projects <i
                                     class="fa-solid fa-chevron-right"></i></span>
                         </div>

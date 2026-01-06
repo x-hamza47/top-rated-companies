@@ -1,7 +1,7 @@
   <div class="section flex lg:flex-row flex-col gap-3">
         <div class="sub-section flex-1 ">
             <h2 class="test text-2xl sm:text-3xl font-bold mb-2">{{ $company->tagline }}</h2>
-            <p class="line-clamp-5 mb-2">{{ $company->about }}</p>
+            <p class="line-clamp-5 mb-2">{!! $company->about !!}</p>
             <div
                 class="bg-lime-900/20 grid rounded-md overflow-hidden md:grid-cols-3 grid-cols-2 mt-4 divide-x divide-y divide-lime-900/30 md:[&>span:nth-of-type(3n)]:border-r-0 ">
                 <span class="md:px-5 md:py-3 px-2 py-2">

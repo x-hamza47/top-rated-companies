@@ -60,11 +60,11 @@ class CompanySeeder extends Seeder
             // * Company Details
             // -------------------------------
             $socialLinks = [
-                ['platform' => 'linkedin',  'value' => $faker->url],
-                ['platform' => 'facebook',  'value' => $faker->url],
-                ['platform' => 'instagram', 'value' => $faker->url],
+                'linkedin'  => $faker->url,
+                'facebook'  => $faker->url,
+                'instagram' => $faker->url,
+                'twitter'   => $faker->url, 
             ];
-
             DB::table('company_details')->insert([
                 'company_id'       => $companyId,
                 'min_project_size' => round($faker->numberBetween(1000, 10000), -3),

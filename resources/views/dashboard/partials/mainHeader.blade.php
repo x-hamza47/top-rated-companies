@@ -23,7 +23,7 @@
         </button>
         <div class="notification-button">
             <i class="fa-regular fa-bell"></i>
-            <div class="notification-badge">3</div>
+            {{-- <div class="notification-badge">3</div> --}}
         </div>
 
         <!-- User Profile -->

@@ -5,7 +5,7 @@
             <img class="w-full h-full object-contain" src="{{ asset('images/logo.png') }}" alt="Logo">
         </div>
 
-        <nav class="hidden xl:flex items-center gap-6 text-gray-700 font-medium flex-1"> 
+        <nav class="hidden xl:flex items-center gap-6 text-gray-700 font-medium flex-1">
             <div class="relative group menu-item">
                 <button class="nav-link">Development</button>
                 <div
@@ -17,11 +17,9 @@
                         <li><a class="dropdown-link"
                                 href="{{ route('services.companies', 'software-development') }}">Software
                                 Development</a></li>
-                        <li><a class="dropdown-link"
-                                href="{{ route('services.companies', 'web-development') }}">Web
+                        <li><a class="dropdown-link" href="{{ route('services.companies', 'web-development') }}">Web
                                 Development</a></li>
-                        <li><a class="dropdown-link"
-                                href="{{ route('services.companies', 'ar-vr') }}">AR/VR</a>
+                        <li><a class="dropdown-link" href="{{ route('services.companies', 'ar-vr') }}">AR/VR</a>
                         </li>
                         <li><a class="dropdown-link"
                                 href="{{ route('services.companies', 'artificial-intelligence') }}">Artificial
@@ -37,24 +35,22 @@
                 <div
                     class="dropdown hidden opacity-0 translate-y-4 transition-all duration-300 absolute left-0 top-full bg-white shadow-xl rounded-lg w-64">
                     <ul class="space-y-3">
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies',  'it-services') }}">IT
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'it-services') }}">IT
                                 Services</a></li>
                         <li><a class="dropdown-link"
-                                href="{{ route('services.companies',  'cybersecurity') }}">Cybersecurity</a>
+                                href="{{ route('services.companies', 'cybersecurity') }}">Cybersecurity</a>
                         </li>
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies',  'data-analytics') }}">Data
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'data-analytics') }}">Data
                                 Analytics</a></li>
                         <li> <a class="dropdown-link"
-                                href="{{ route('services.companies',  'managed-it-services') }}">Managed
+                                href="{{ route('services.companies', 'managed-it-services') }}">Managed
                                 IT
                                 Services</a></li>
                         <li> <a class="dropdown-link"
-                                href="{{ route('services.companies',  'cloud-consulting') }}">Cloud
+                                href="{{ route('services.companies', 'cloud-consulting') }}">Cloud
                                 Consulting</a></li>
                         <li> <a class="dropdown-link"
-                                href="{{ route('services.companies',  'staff-augmentation') }}">Staff
+                                href="{{ route('services.companies', 'staff-augmentation') }}">Staff
                                 Augmentation</a></li>
                     </ul>
                 </div>
@@ -67,8 +63,7 @@
                         <li> <a class="dropdown-link"
                                 href="{{ route('services.companies', 'digital-marketing') }}">Digital
                                 Marketing</a></li>
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies', 'seo') }}">SEO</a>
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'seo') }}">SEO</a>
                         </li>
                         <li> <a class="dropdown-link"
                                 href="{{ route('services.companies', 'social-media-marketing') }}">Social
@@ -90,20 +85,17 @@
                 <div
                     class="dropdown hidden opacity-0 translate-y-4 transition-all duration-300 absolute left-0 top-full bg-white  shadow-xl rounded-lg w-64">
                     <ul class="space-y-3">
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies', 'web-design') }}">Web
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'web-design') }}">Web
                                 Design</a></li>
                         <li> <a class="dropdown-link"
                                 href="{{ route('services.companies', 'user-experience-design') }}">User
                                 Experience Design</a></li>
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies', 'logo-design') }}">Logo
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'logo-design') }}">Logo
                                 Design</a></li>
                         <li> <a class="dropdown-link"
                                 href="{{ route('services.companies', 'graphic-design') }}">Graphic
                                 Design</a></li>
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies', 'design') }}">Design</a>
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'design') }}">Design</a>
                         </li>
                         <li> <a class="dropdown-link"
                                 href="{{ route('services.companies', 'digital-design') }}">Digital
@@ -116,23 +108,20 @@
                 <div
                     class="dropdown hidden opacity-0 translate-y-4 transition-all duration-300 absolute left-0 top-full bg-white  shadow-xl rounded-lg w-64">
                     <ul class="space-y-3">
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies','call-centers') }}">Call
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'call-centers') }}">Call
                                 Centers</a></li>
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies','bpo') }}">BPO</a>
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'bpo') }}">BPO</a>
                         </li>
                         <li> <a class="dropdown-link"
-                                href="{{ route('services.companies','accounting') }}">Accounting</a>
+                                href="{{ route('services.companies', 'accounting') }}">Accounting</a>
                         </li>
                         <li> <a class="dropdown-link"
-                                href="{{ route('services.companies','commercial-real-estate') }}">Commercial
+                                href="{{ route('services.companies', 'commercial-real-estate') }}">Commercial
                                 Real Estate</a></li>
-                        <li> <a class="dropdown-link"
-                                href="{{ route('services.companies','hr-services') }}">HR
+                        <li> <a class="dropdown-link" href="{{ route('services.companies', 'hr-services') }}">HR
                                 Services</a></li>
                         <li> <a class="dropdown-link"
-                                href="{{ route('services.companies','consulting') }}">Consulting</a>
+                                href="{{ route('services.companies', 'consulting') }}">Consulting</a>
                         </li>
                     </ul>
                 </div>
@@ -140,12 +129,19 @@
             <a href="{{ url('/plans') }}" class="nav-link">Pricing & Packages</a>
             <a href="#" class="nav-link">Resources</a>
         </nav>
+        @auth
+            <div class="hidden xl:flex gap-2">
+                <a class="btn-primary" href="{{ route('dashboard.index') }}">Dashboard</a>
+            </div>
+        @endauth
 
-        <div class="hidden xl:flex gap-2">
-            <a class="btn-primary" href="{{ route('login') }}">Sign In</a>
-            <button class="btn-outline">Submit Your Company</button>
-        </div>
+        @guest
+            <div class="hidden xl:flex gap-2">
+                <a class="btn-primary" href="{{ route('login') }}">Sign In</a>
+                <a class="btn-outline" href="{{ route('register.show') }}">Register</a>
+            </div>
 
+        @endguest
         <div class="block xl:hidden">
             <button id="mobile-menu-btn" class="text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
@@ -185,22 +181,22 @@
                 <ul
                     class="mobile-submenu max-h-0 overflow-hidden transition-all duration-300 flex flex-col pl-4 space-y-2  text-gray-500">
                     <li class="my-2"><a class="mobile-link"
-                            href="{{ route('services.companies',  'mobile-app-development') }}">Mobile
+                            href="{{ route('services.companies', 'mobile-app-development') }}">Mobile
                             App Development</a></li>
                     <li class="my-2"><a class="mobile-link"
-                            href="{{ route('services.companies',  'software-development') }}">Software
+                            href="{{ route('services.companies', 'software-development') }}">Software
                             Development</a></li>
                     <li class="my-2"><a class="mobile-link"
-                            href="{{ route('services.companies',  'web-development') }}">Web
+                            href="{{ route('services.companies', 'web-development') }}">Web
                             Development</a></li>
                     <li class="my-2"><a class="mobile-link"
-                            href="{{ route('services.companies',  'ar-vr') }}">AR/VR</a>
+                            href="{{ route('services.companies', 'ar-vr') }}">AR/VR</a>
                     </li>
                     <li class="my-2"><a class="mobile-link"
-                            href="{{ route('services.companies',  'artificial-intelligence') }}">Artificial
+                            href="{{ route('services.companies', 'artificial-intelligence') }}">Artificial
                             Intelligence</a></li>
                     <li class="my-2"><a class="mobile-link"
-                            href="{{ route('services.companies',  'blockchain') }}">Blockchain</a>
+                            href="{{ route('services.companies', 'blockchain') }}">Blockchain</a>
                     </li>
                 </ul>
             </div>
@@ -313,23 +309,23 @@
                 <ul
                     class="mobile-submenu max-h-0 overflow-hidden transition-all duration-300 flex flex-col pl-4  text-gray-500">
                     <li class="my-2"> <a class="mobile-link"
-                                href="{{ route('services.companies',  'call-centers') }}">Call
-                                Centers</a></li>
-                        <li class="my-2"> <a class="mobile-link"
-                                href="{{ route('services.companies',  'bpo') }}">BPO</a>
-                        </li>
-                        <li class="my-2"> <a class="mobile-link"
-                                href="{{ route('services.companies',  'accounting') }}">Accounting</a>
-                        </li>
-                        <li class="my-2"> <a class="mobile-link"
-                                href="{{ route('services.companies',  'commercial-real-estate') }}">Commercial
-                                Real Estate</a></li>
-                        <li class="my-2"> <a class="mobile-link"
-                                href="{{ route('services.companies',  'hr-services') }}">HR
-                                Services</a></li>
-                        <li class="my-2"> <a class="mobile-link"
-                                href="{{ route('services.companies',  'consulting') }}">Consulting</a>
-                        </li>
+                            href="{{ route('services.companies', 'call-centers') }}">Call
+                            Centers</a></li>
+                    <li class="my-2"> <a class="mobile-link"
+                            href="{{ route('services.companies', 'bpo') }}">BPO</a>
+                    </li>
+                    <li class="my-2"> <a class="mobile-link"
+                            href="{{ route('services.companies', 'accounting') }}">Accounting</a>
+                    </li>
+                    <li class="my-2"> <a class="mobile-link"
+                            href="{{ route('services.companies', 'commercial-real-estate') }}">Commercial
+                            Real Estate</a></li>
+                    <li class="my-2"> <a class="mobile-link"
+                            href="{{ route('services.companies', 'hr-services') }}">HR
+                            Services</a></li>
+                    <li class="my-2"> <a class="mobile-link"
+                            href="{{ route('services.companies', 'consulting') }}">Consulting</a>
+                    </li>
                 </ul>
             </div>
 
@@ -337,10 +333,17 @@
             <a class="mobile-link py-2 px-3 rounded hover:bg-lime-50">Resources</a>
         </nav>
 
-        <div class="flex flex-col gap-3 px-6 mt-4 mb-10">
-            <button class="btn-primary">Category</button>
-            <button class="btn-outline">Submit Your Company</button>
-        </div>
+        @auth
+            <div class="flex flex-col gap-3 px-6 mt-4 mb-10">
+                <a class="btn-primary" href="{{ route('dashboard.index') }}">Dashboard</a>
+            </div>
+        @endauth
+        @guest
+            <div class="flex justify-center items-center gap-3 px-6 mt-4 mb-10">
+                <a class="btn-primary" href="{{ route('login') }}">Sign In</a>
+                <a class="btn-outline" href="{{ route('register.show') }}">Register</a>
+            </div>
+        @endguest
     </div>
 </header>
 
@@ -398,7 +401,7 @@
                         const otherSub = other.querySelector(".mobile-submenu");
                         const otherArrow = other.querySelector("span");
                         const otherBtn = other.querySelector(".mobile-drop");
-                        
+
                         otherSub.style.maxHeight = null;
                         otherArrow.classList.remove("rotate-180");
                         otherBtn.classList.remove("active");

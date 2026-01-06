@@ -2,22 +2,41 @@
 @section('title', 'Company')
 
 @php
-    $colors = ['#84cc16', '#a78bfa', '#60a5fa', '#f472b6', '#facc15', '#6366f1', '#f87171', '#34d399'];
+    $colors = [
+        'text-red-500',
+        'text-blue-500',
+        'text-green-500',
+        'text-yellow-500',
+        'text-purple-500',
+        'text-pink-500',
+        'text-indigo-500',
+        'text-teal-500',
+        'text-orange-500',
+        'text-cyan-500',
+        'text-emerald-500',
+        'text-rose-500',
+        'text-sky-500',
+        'text-violet-500',
+        'text-lime-500',
+        'text-amber-500',
+        'text-fuchsia-500',
+        'text-stone-500',
+    ];
 @endphp
 @section('content')
-    <div class="dashboard-form-container">
-        {{-- <pre> {{ print_r($company->toArray(), true) }}</pre> --}}
+    <div class="dashboard-form-container pb-20">
         <div class="dashboard-form-header bg-(--color-background)">
             <h3 class="dashboard-form-title">Edit Company Details</h3>
             <a href="{{ route('companies.index') }}" class="btn btn-secondary">Go Back</a>
         </div>
-
-        <form action="#" class="flex items-start px-6 py-4 gap-4 bg-(--color-background)">
+        <form action="{{ route('companies.updateLogo', $company->id) }}"
+            class="flex items-start px-6 py-4 gap-4 bg-(--color-background)" enctype="multipart/form-data" method="POST">
             @csrf
             {{-- ! Logo  --}}
             <div>
                 <div class="image profile-wrapper">
-                    <img src="{{ $company->logo }}" id="preview" class="profile-image" alt="Profile" />
+                    <img src="{{ $company?->logo ? (!Str::startsWith($company->logo, 'http') ? asset('storage/' . $company->logo) : $company->logo) : asset('images/dummy.jpg') }}"
+                        id="preview" class="profile-image" alt="Profile" />
                     <label for="fileInput" class="edit-icon" title="Upload Pic">
                         <i class="fa-solid fa-pencil"></i>
                     </label>
@@ -29,8 +48,9 @@
                 class="btn btn-primary cursor-pointer text-white  text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold">Update
                 Logo</button>
         </form>
-        <form class="flex flex-col gap-10" action="" method="post">
+        <form class="flex flex-col gap-10" action="{{ route('companies.update', $company->id) }}" method="post">
             @csrf
+            @method('PUT')
             {{-- ! Step 1 --}}
             @include('dashboard.company.partials.step1')
             {{-- ? Step 1 End --}}
@@ -38,51 +58,54 @@
             @include('dashboard.company.partials.step2')
             {{-- ? Step 2 End --}}
             {{-- ! Step 3 --}}
-            <div class="step-3 sm:px-6 sm:py-6 px-3 py-3 bg-(--color-background) rounded-2xl">
-                <h2 class="sm:text-3xl text-2xl font-semibold ">Company Services </h2>
+            <div class="step-3 sm:px-6 sm:py-6 px-3 py-5 bg-(--color-background) rounded-2xl">
+                <h2 class="sm:text-3xl text-2xl font-semibold">Company Services </h2>
                 <div class="mt-5 text-center">
                     Total Expertise: <span id="total-expertise" class="text-(--color-primary) font-bold">0</span>
                 </div>
-                <div class="flex flex-wrap justify-center gap-10 my-5">
+                @error('services')
+                    <div class="bg-red-500 text-white px-4 py-3 rounded-md mb-4 flex items-start gap-2 fixed top-20 right-3.5">
+                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                        <p class="text-sm">{{ $message }}</p>
+
+                    </div>
+                @enderror
+
+                <div class="flex flex-wrap justify-center gap-4 my-5" id="serviceTags">
                     @foreach ($company->services as $index => $service)
-                        <div
-                            class="service-card bg-(--color-surface) max-w-96 flex-1 flex flex-col items-center gap-5 sm:px-5 sm:pt-4 pb-10 px-2 pt-3 rounded-2xl sm:min-w-72 min-w-64">
-                            <div class="flex justify-between items-center w-full">
-                                <h4 class="service-name font-semibold text-xl">{{ $service->name }}</h4>
-                                <button type="button"
-                                    class="remove-service text-(--color-error) text-xs bg-(--color-error-100) w-8 h-8 rounded-full flex items-center justify-center font-bold cursor-pointer"><i
-                                        class="fa-solid fa-x"></i></button>
-                            </div>
-                            <div class="service-box w-max relative">
-                                <input type="text" value="{{ $service->pivot->expertise_percentage ?? 0 }}"
-                                    class="dial top-1/2 left-1/2 -translate-1/2 z-50"
-                                    data-color="{{ $colors[$index % count($colors)] }}">
-                            </div>
+                        <div class="service-tag sm:px-4 sm:py-2 px-2 py-1 bg-(--color-surface) rounded-xl cursor-pointer flex items-center justify-center outline outline-transparent hover:outline-(--color-primary) hover:scale-[1.01] transition "
+                            data-id="{{ $service->id }}" data-name="{{ $service->name }}"
+                            data-percent="{{ $service->pivot->expertise_percentage ?? 0 }}">
+                            {{ $service->name }} — <span
+                                class="tag-percent ml-1 {{ $colors[$index % count($colors)] }}">{{ $service->pivot->expertise_percentage ?? 0 }}%</span>
+                            <button type="button"
+                                class="remove-service text-(--color-error) text-[8px] sm:text-xs bg-(--color-error-100) hover:bg-(--color-error) hover:text-(--color-text) active:text-(--color-text) transition sm:w-8 sm:h-8 w-5 h-5 rounded-full flex items-center justify-center font-bold cursor-pointer ml-4">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+
+                            <input type="hidden" name="services[{{ $service->id }}]"
+                                value="{{ $service->pivot->expertise_percentage }}" class="service-input">
                         </div>
                     @endforeach
-
                 </div>
-                <div class="text-center mt-6">
+                <div class="text-center mt-6 px-5">
                     <button type="button" id="addServiceBtn"
                         class="bg-(--color-primary) text-white px-5 py-2 rounded-lg font-semibold hover:bg-(--color-secondary)">
                         + Add Service
                     </button>
                 </div>
+                
+                {{-- ! Submit Button --}}
+                <div class="sm:px-6 sm:py-6 px-3 py-3 border-t mt-6">
+                    <button type="submit"
+                        class="bg-(--color-secondary) cursor-pointer px-5 text-white text-center rounded-md py-2 hover:bg-(--color-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block">Save
+                        Changes</button>
+                    <a href="">Cancel</a>
+                </div>
             </div>
-            <select id="serviceSelect" class="hidden">
-                @foreach ($allServices as $service)
-                    <option value="{{ $service->id }}">{{ $service->name }}</option>
-                @endforeach
-            </select>
-
+            {{-- ! Service Selector --}}
+            @include('dashboard.company.partials.serviceSelector')
             {{-- ? Step 3 End --}}
-
-            {{-- <button type="submit"
-                class="bg-(--color-secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--color-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block">Sign
-                Up</button> --}}
-
-
-
         </form>
     </div>
 @endsection
@@ -97,281 +120,17 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
     <script src="{{ asset('dashboard-assets/js/summernote.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
-    <script>
-        // REMOVE SERVICE
-        $(document).on("click", ".remove-service", function() {
-            $(this).closest(".service-card").remove();
-            updateTotal();
-        });
-
-
-        // ADD SERVICE POPUP
-        $("#addServiceBtn").on("click", function() {
-            // Max 15 services check
-            if ($(".step-3 .service-card").length >= 15) {
-                alert("You can add a maximum of 15 services");
-                return;
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('dashboard-assets/js/company-details.js') }}"></script>
+    @php
+        $oldLanguages = old('languages', $company->details->languages ?? []);
+        if (is_string($oldLanguages)) {
+            $decoded = json_decode($oldLanguages, true);
+            if (is_array($decoded)) {
+                $oldLanguages = array_map(fn($tag) => $tag['value'], $decoded);
             }
-
-            let options = "";
-
-            $("#serviceSelect option").each(function() {
-                let id = $(this).val();
-                let name = $(this).text();
-
-                // skip already added
-                if ($(".dial[data-id='" + id + "']").length === 0) {
-                    options += `<option value="${id}" class="bg-(--color-surface)">${name}</option>`;
-                }
-            });
-
-            if (options === "") {
-                alert("All services already added");
-                return;
-            }
-
-            let popup = `
-            <div id="selectPopup"
-                style="position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;z-index:9999;" class="px-2">
-                <div style="background:var(--color-surface);padding:20px;border-radius:10px;"
-                class="rounded-xl w-[500px] min-w-72">
-                    <h3 class="mb-3 text-xl font-bold">Select Service</h3>
-                    <select id="popupService" class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--color-primary) outline-none placeholder:text-gray-400  px-5 py-3">
-                        ${options}
-                    </select>
-
-                    <div class="flex justify-end gap-3 mt-4">
-                        <button id="cancelPopup" class="px-3 py-1 bg-(--color-muted-100) hover:bg-red-400/40 text-white rounded">Cancel</button>
-                        <button id="confirmAdd" class="px-3 py-1 bg-(--color-primary) text-white rounded">Add</button>
-                    </div>
-                </div>
-            </div>
-            `;
-
-            $("body").append(popup);
-        });
-
-
-        // CLOSE POPUP
-        $(document).on("click", "#cancelPopup", function() {
-            $("#selectPopup").remove();
-        });
-
-
-        // CONFIRM ADD
-        $(document).on("click", "#confirmAdd", function() {
-            let id = $("#popupService").val();
-            let name = $("#popupService option:selected").text();
-
-            $("#selectPopup").remove();
-
-            // Create HTML
-            let html = `
-                <div class="service-card bg-(--color-surface) max-w-96 flex-1 flex flex-col items-center gap-5 sm:px-5 sm:py-4 px-2 py-3 rounded-2xl sm:min-w-72 min-w-64">
-                    <div class="flex justify-between items-center w-full mb-3">
-                        <h4 class="service-name font-semibold text-xl">${name}</h4>
-                        <button type="button" class="remove-service text-(--color-error) text-xs bg-(--color-error-100) w-8 h-8 rounded-full flex items-center justify-center font-bold cursor-pointer"><i
-                                class="fa-solid fa-x"></i></button>
-                    </div>
-                    <div class="service-box w-max relative">
-                        <input type="text" value="0" class="dial top-1/2 left-1/2 -translate-1/2 z-50"
-                            data-color="#${Math.floor(Math.random()*16777215).toString(16)}" data-id="${id}">
-                    </div>
-                </div>
-                `;
-
-            $(".step-3 .flex.flex-wrap").append(html);
-
-            // Initialize knob for new input (reuse your knob init function)
-            initKnob($(".dial").last());
-
-            updateTotal();
-        });
-
-        function initKnob($input) {
-            let color = $input.data('color') || '#007bff';
-            let $container = $input.closest(".service-box");
-
-            $input.on('input', function() {
-                let typedVal = parseInt($input.val()) || 0;
-
-                // Sum of other dials
-                let othersTotal = 0;
-                $(".dial").not($input).each(function() {
-                    othersTotal += parseInt($(this).val()) || 0;
-                });
-
-                let maxAllowed = 100 - othersTotal;
-                if (typedVal > maxAllowed) typedVal = maxAllowed;
-                if (typedVal < 0) typedVal = 0;
-
-                $input.val(typedVal).trigger('change');
-                updateTotal();
-            });
-
-            $input.knob({
-                fgColor: color,
-                width: 120,
-                height: 120,
-                thickness: 0.25,
-                min: 0,
-                max: 100,
-                step: 1,
-                change: function(newVal) {
-                    let othersTotal = 0;
-                    $(".dial").not($input).each(function() {
-                        othersTotal += parseInt($(this).val()) || 0;
-                    });
-
-                    let maxAllowed = 100 - othersTotal;
-                    if (newVal > maxAllowed) {
-                        setTimeout(() => {
-                            $input.val(maxAllowed).trigger('change');
-                        }, 0);
-                    }
-
-                    updateTotal();
-                },
-                release: function() {
-                    updateTotal();
-                },
-                draw: function() {
-                    updateTotal();
-                }
-            });
-
-            $container.off('wheel').on('wheel', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-
-                let currentVal = parseInt($input.val()) || 0;
-                let delta = e.originalEvent.deltaY < 0 ? 1 : -1;
-
-                let othersTotal = 0;
-                $(".dial").not($input).each(function() {
-                    othersTotal += parseInt($(this).val()) || 0;
-                });
-
-                let maxAllowed = 100 - othersTotal;
-                let newVal = currentVal + delta;
-
-                if (newVal < 0) newVal = 0;
-                if (newVal > maxAllowed) newVal = maxAllowed;
-
-                $input.val(newVal).trigger('change');
-                updateTotal();
-            });
-
-            $input.off('wheel mousewheel DOMMouseScroll');
         }
-
-        $("form").on("submit", function(e) {
-            if (totalExpertise > 100) {
-                alert("Total cannot exceed 100%");
-                e.preventDefault();
-            }
-        });
-    </script>
-    <script>
-        let totalExpertise;
-
-        function updateTotal() {
-            totalExpertise = 0;
-            $(".dial").each(function() {
-                totalExpertise += parseInt($(this).val()) || 0;
-            });
-            $("#total-expertise").text(totalExpertise + "%");
-        }
-
-
-        $(".dial").each(function() {
-            let $input = $(this);
-            let color = $(this).data('color') || '#007bff';
-            let $container = $input.closest(".service-box");
-
-            $input.on('input', function() {
-
-                let typedVal = parseInt($input.val()) || 0;
-
-                // Sum of all other dials
-                let othersTotal = 0;
-                $(".dial").not($input).each(function() {
-                    othersTotal += parseInt($(this).val()) || 0;
-                });
-
-                // Max allowed for this dial
-                let maxAllowed = 100 - othersTotal;
-
-                // Clamp
-                if (typedVal > maxAllowed) typedVal = maxAllowed;
-                if (typedVal < 0) typedVal = 0;
-
-                // Set back to knob + update UI
-                $input.val(typedVal).trigger('change');
-                updateTotal();
-            });
-            $input.knob({
-                fgColor: color,
-                width: 120,
-                height: 120,
-                thickness: 0.25,
-                min: 0,
-                max: 100,
-                // angleArc: 270, 
-                // angleOffset: -135,
-                step: 1,
-                change: function(newVal) {
-
-                    let othersTotal = 0;
-                    $(".dial").not($input).each(function() {
-                        othersTotal += parseInt($(this).val()) || 0;
-                    });
-
-                    let maxAllowed = 100 - othersTotal;
-
-                    if (newVal > maxAllowed) {
-                        setTimeout(() => {
-                            $input.val(maxAllowed).trigger('change');
-                        }, 0);
-                    }
-
-                    updateTotal();
-                },
-                release: function() {
-                    updateTotal();
-                },
-                draw: function() {
-                    updateTotal();
-                }
-            });
-            $container.off('wheel').on('wheel', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-
-                let currentVal = parseInt($input.val()) || 0;
-                let delta = e.originalEvent.deltaY < 0 ? 1 : -1;
-
-                let othersTotal = 0;
-                $(".dial").not($input).each(function() {
-                    othersTotal += parseInt($(this).val()) || 0;
-                });
-
-                let maxAllowed = 100 - othersTotal;
-                let newVal = currentVal + delta;
-
-                if (newVal < 0) newVal = 0;
-                if (newVal > maxAllowed) newVal = maxAllowed;
-
-                $input.val(newVal).trigger('change');
-                updateTotal();
-            });
-            $input.off('wheel mousewheel DOMMouseScroll');
-
-        });
-        updateTotal();
-    </script>
+    @endphp
     <script>
         const input = document.querySelector('#languages');
 
@@ -388,6 +147,8 @@
                         enabled: 1
                     }
                 });
+                let oldLanguages = @json($oldLanguages);
+                tagify.addTags(oldLanguages);
             })
             .catch(err => console.error("Failed to load languages JSON:", err));
 

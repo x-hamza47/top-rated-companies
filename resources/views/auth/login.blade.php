@@ -7,7 +7,7 @@
     <div
         class="section w-full flex  items-center justify-center gap-4 mt-20 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
 
-        <div class="flex flex-col bg-white px-8 py-7 w-2/5 rounded-md">
+        <div class="flex flex-col bg-white px-8 py-7 rounded-md">
             <h1 class="text-2xl sm:text-3xl md:text-4xl  lg:text-5xl  text-gray-800 font-bold text-center">
                 TRC <span class="text-lime-700">Login</span>
             </h1>

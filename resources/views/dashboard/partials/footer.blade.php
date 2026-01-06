@@ -1,4 +1,5 @@
 </body>
+
 <script>
 
     document.querySelectorAll('.alert').forEach(function(alert) {

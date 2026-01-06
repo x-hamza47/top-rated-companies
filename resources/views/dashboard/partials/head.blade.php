@@ -12,6 +12,7 @@
     <link rel="manifest" href="{{ asset('/images/site.webmanifest') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style.css') }}" /> --}}
     @vite(['resources/css/dashboard-css/app.css', 'resources/js/app.js'])
+     <meta name="theme-color" content="#497d00">
     <title>Top Rated Companies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="

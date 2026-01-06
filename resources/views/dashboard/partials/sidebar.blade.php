@@ -27,6 +27,12 @@
                     <span class="nav-label">Company</span>
                 </a>
             </li>
+            <li class="nav-item {{ isActive('insights.*') }}">
+                <a href="{{ route('insights.index') }}" class="nav-link">
+                    <i class="fa-solid fa-lightbulb nav-icon"></i>
+                    <span class="nav-label">Insights</span>
+                </a>
+            </li>
         </ul>
 
         {{-- Info: Secondary Links --}}

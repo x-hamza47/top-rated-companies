@@ -36,7 +36,22 @@
     display: none;
 }
 
-.dial {
+#knobInput {
     margin: 0 !important;
     outline: none;
+}
+.accordion-content {
+    display: none;
+}
+
+.category-accordion.active .accordion-content {
+    display: block;
+}
+
+.accordion-icon {
+    transition: transform 0.3s;
+}
+
+.category-accordion.active .accordion-icon {
+    transform: rotate(45deg);
 }

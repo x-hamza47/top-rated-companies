@@ -289,7 +289,7 @@
         <h2 class="text-2xl font-semibold">Connect with {{ $company->name }} on Social</h2>
         <div class="flex gap-2">
             @foreach ($company->details->social_links as $platform => $url)
-            <a href="" target="_blank" class="btn btn-secondary flex gap-2 items-center">
+            <a href="{{ $url }}" target="_blank" class="btn btn-secondary flex gap-2 items-center">
                 <i class="fa fa-{{ $platform }}"></i>
                 {{ ucfirst($platform) }}
             </a>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\CompanyController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\InsightsController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -35,14 +36,21 @@ Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
 Route::post('/register',[AuthController::class, 'register'])->name('auth.register');
 
 // Info: Dashboard Routes
-Route::prefix('dashboard')->middleware(['auth:web,admin'])->group(function(){
+Route::prefix('dashboard')->middleware(['auth'])->group(function(){
     Route::get("/", [DashboardController::class, 'index'])->name('dashboard.index');
 
     // ? Companies Crud Routes
     Route::get("/companies", [CompanyController::class, 'index'])->name('companies.index');
-    Route::get("/companies/edit/{company}", [CompanyController::class, 'edit'])->name('companies.edit')->whereNumber('id');
-    Route::post("/companies/delete/{id}", [CompanyController::class, 'destroy'])->name('companies.destroy')->whereNumber('id');
-    Route::put('/companies/update/{company}', [CompanyController::class, 'update'])->name("companies.update");
+    
+    Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store');
+    Route::post('/companies/logo/{company}', [CompanyController::class, 'uploadLogo'])->name('companies.updateLogo');
+    Route::get('/companies/edit/{company}', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::put('/companies/update/{id?}', [CompanyController::class, 'updateOrCreate'])->name('companies.update');
+    Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])
+        ->name('companies.destroy')->middleware('can:admin');
+
+    // ? Insight Routes
+    Route::resource('/insights', InsightsController::class);
 
     // ? Profile Routes
     Route::get("/user-profile", [UserController::class, 'index'])->name('user.index');
@@ -58,12 +66,6 @@ Route::get('/getSlug', function(Request $request){
     $slug = '';
     if (!empty($request->name)) {
         $slug = Str::slug($request->name);
-        $count = \App\Models\Company::where("slug", "LIKE", "$slug%")->count();
-
-        if ($count > 0) {
-            $slug .= '-'. ($count + 1);
-        }
-
         return response()->json([
             'status' => true,
             'slug' => $slug,

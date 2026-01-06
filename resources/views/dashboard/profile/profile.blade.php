@@ -30,12 +30,14 @@
                     <input type="file" id="fileInput" accept="image/*" name="image" />
                 </div>
 
-                <button
-                    class="btn btn-primary cursor-pointer text-white  text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold">Upload
-                    Profile</button>
-                @error('image')
-                    <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                @enderror
+                <div class="flex flex-col gap-2">
+                    <button
+                        class="btn btn-primary cursor-pointer text-white  text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold w-max">Upload
+                        Profile</button>
+                    @error('image')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
             </form>
             <form class="flex flex-col gap-2 mt-4" action="{{ route('user.profile.update') }}" method="POST">
                 @csrf
@@ -117,7 +119,8 @@
                 <div class="flex gap-2.5 flex-wrap">
 
                     <button type="submit"
-                        class="bg-(--color-secondary) cursor-pointer text-white w-max px-6 text-center rounded-md py-2 hover:bg-(--color-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block text-nowrap" id="user-submit">Save
+                        class="bg-(--color-secondary) cursor-pointer text-white w-max px-6 text-center rounded-md py-2 hover:bg-(--color-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block text-nowrap"
+                        id="user-submit">Save
                         Changes</button>
                     <a
                         class="outline flex items-center justify-center outline-(--color-muted) cursor-pointer text-gray-400 w-max text-wrap px-6 text-center rounded-md py-1 hover:bg-(--color-muted-100) font-semibold peer-has-not-checked:hidden peer-has-checked:block">Cancel</a>
@@ -159,7 +162,7 @@
             if ($form.length) {
                 const $inputs = $form.find('input[name]');
 
-      
+
                 $inputs.each(function() {
                     const $input = $(this);
                     if (!$input.data('original')) {
@@ -174,13 +177,13 @@
                         const $input = $(this);
                         if ($input.val() !== $input.data('original')) {
                             changed = true;
-                            return false; 
+                            return false;
                         }
                     });
 
                     if (!changed) {
                         e.preventDefault();
-                        
+
                         alert('No changes detected.');
                     }
                 });
