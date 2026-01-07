@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Dashboard\CompanyController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\InsightsController;
@@ -17,6 +18,8 @@ Route::get('/',[HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
 Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/packages-plan', [ProfileController::class, 'packages'])->name('profile.plan');
+Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 //? Ajax Route
@@ -39,9 +42,15 @@ Route::post('/register',[AuthController::class, 'register'])->name('auth.registe
 Route::prefix('dashboard')->middleware(['auth'])->group(function(){
     Route::get("/", [DashboardController::class, 'index'])->name('dashboard.index');
 
+    // ? Contact Routes
+    Route::get('/messages', [ContactController::class, 'index'])->name('contact.index');
+    Route::get('/message/{contact}', [ContactController::class, 'show'])->name('contact.show');
+    Route::delete('/message/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
+    Route::patch('contact/{contact}/mark-read', [ContactController::class, 'markRead'])->name('contact.markRead');
+    Route::patch('/contact/{contact}/resolve', [App\Http\Controllers\ContactController::class, 'resolve'])->name('contact.resolve');
+
     // ? Companies Crud Routes
     Route::get("/companies", [CompanyController::class, 'index'])->name('companies.index');
-    
     Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store');
     Route::post('/companies/logo/{company}', [CompanyController::class, 'uploadLogo'])->name('companies.updateLogo');
     Route::get('/companies/edit/{company}', [CompanyController::class, 'edit'])->name('companies.edit');

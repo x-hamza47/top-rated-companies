@@ -21,20 +21,38 @@
         <button class="mobile-search-btn btn" id="mobileSearchBtn">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
+        @php
+            if (Auth::user()->role === 'admin') {
+                $unreadCount = Auth::user()->unreadNotifications->where('type', 'contact-message')->count();
+                $link = route('contact.index');
+            }
+            // else {
+
+            //     $unreadCount = Auth::user()->inquiries()->where('status', 'pending')->count();
+            //     $link = route('company.inquiries.index');
+            // }
+        @endphp
         <div class="notification-button">
-            <i class="fa-regular fa-bell"></i>
-            {{-- <div class="notification-badge">3</div> --}}
+            <a href="{{ $link }}" class="notification-button cursor-pointer">
+                <i class="fa-regular fa-bell"></i>
+                @if ($unreadCount > 0)
+                    <span
+                        class="notification-badge">
+                        {{ $unreadCount }}
+                    </span>
+                @endif
+            </a>
         </div>
 
         <!-- User Profile -->
         <div class="user-menu dropdown">
             <div class="user-menu-trigger dropdown-toggle">
                 <div class="user-avatar-small">
-                    <img src="{{ auth()->user()->profile_image 
-            ? (Str::startsWith(auth()->user()->profile_image, 'http') 
-                ? auth()->user()->profile_image 
-                : asset('storage/' . auth()->user()->profile_image)) 
-            : asset('images/dummy.jpg') }}"
+                    <img src="{{ auth()->user()->profile_image
+                        ? (Str::startsWith(auth()->user()->profile_image, 'http')
+                            ? auth()->user()->profile_image
+                            : asset('storage/' . auth()->user()->profile_image))
+                        : asset('images/dummy.jpg') }}"
                         alt="User Avatar" />
                 </div>
             </div>
@@ -43,7 +61,8 @@
                     <i class="fa-solid fa-user icon"></i>
                     <div class="flex flex-col">
                         <span>Profile</span>
-                        <small class="text-(--color-muted)">Hamza Aamir</small>
+                        <small class="text-(--color-muted)">{{ auth()->user()->firstName }}
+                            {{ auth()->user()->lastName }}</small>
                     </div>
                 </a>
                 <!-- Theme Toggle inside dropdown -->
