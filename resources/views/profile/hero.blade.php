@@ -60,7 +60,7 @@
                     <a target="_blank" href="website " class="btn-white flex-1  text-nowrap ">
                         Visit Website
                     </a>
-                    <a target="_blank" href="" class="btn-outlined flex-1 text-nowrap ">
+                    <a href="javascript:void(0)" id="openInquiryModal" class="btn-outlined flex-1 text-nowrap ">
                         Contact
                     </a>
                     <a target="_blank" href="" class="btn-outlined flex-1 text-nowrap ">
@@ -78,4 +78,126 @@
             : (this.classList.replace('fa-solid', 'fa-regular'));"></i>
             <p class="hidden md:block">Add to shortlist</p>
         </button>
+    </div>
+
+    <!-- Inquiry Modal -->
+    <div id="inquiryModal" class="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center px-3 hidden z-50">
+        <div
+            class="bg-white rounded-md w-full max-w-3xl sm:px-8 py-8 px-4 mx-auto lg:px-12 mt-20 lg:w-3/5 overflow-auto max-h-[90vh]">
+            <div class="w-full">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl text-gray-800 font-bold text-center">
+                    Contact <span class="text-lime-700">{{ $company->name }}</span>
+                </h1>
+                <p class="my-4 text-gray-600 text-sm sm:text-base text-center">
+                    Send your inquiry to this company and they will get back to you soon.
+                </p>
+
+                <form action="{{ route('inquiries.store') }}" method="POST" class="flex flex-col">
+                    @csrf
+                    <input type="hidden" name="company_id" value="{{ $company->id }}">
+
+                    <div class="grid sm:grid-cols-2 gap-4 my-5 transition-all duration-500 ease-in-out">
+
+                        <!-- Name -->
+                        <div>
+                            <div class="inp-field w-full">
+                                <label class="block mb-2 text-sm text-gray-600">Name</label>
+                                <span class="relative h-11">
+                                    <input type="text" name="name" placeholder="John Doe"
+                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('name') invalid-input @enderror"
+                                        value="{{ old('name', auth()->check() ? auth()->user()->firstName . ' ' . auth()->user()->lastName : '') }}">
+                                    <i
+                                        class="fa-solid fa-user absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                </span>
+                                @error('name')
+                                    <span class="error">
+                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                        <p class="error-text">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <div class="inp-field w-full">
+                                <label class="block mb-2 text-sm text-gray-600">Email</label>
+                                <span class="relative h-11">
+                                    <input type="email" name="email" placeholder="example@example.com"
+                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('email') invalid-input @enderror"
+                                        value="{{ old('email', auth()->check() ? auth()->user()->email : '') }}">
+                                    <i
+                                        class="fa-solid fa-envelope absolute left-3 top-1/2 -translate-y-1/2  text-gray-400"></i>
+                                </span>
+                                @error('email')
+                                    <span class="error">
+                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                        <p class="error-text">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Subject -->
+                        <div>
+                            <div class="inp-field w-full">
+                                <label class="block mb-2 text-sm text-gray-600">Subject</label>
+                                <span class="relative h-11">
+                                    <input type="text" name="subject" placeholder="Subject"
+                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('subject') invalid-input @enderror"
+                                        value="{{ old('subject') }}">
+                                    <i
+                                        class="fa-solid fa-tag absolute left-3 top-1/2 -translate-y-1/2  text-gray-400"></i>
+                                </span>
+                                @error('subject')
+                                    <span class="error">
+                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                        <p class="error-text">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inp-field w-full">
+                                <label class="block mb-2 text-sm text-gray-600">Phone</label>
+                                <span class="relative h-11">
+                                    <input type="tel" name="phone" placeholder="+92 300 1234567"
+                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('phone') invalid-input @enderror"
+                                        value="{{ old('phone', auth()->check() ? auth()->user()->phone : '') }}">
+                                    <i
+                                        class="fa-solid fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                </span>
+                                @error('phone')
+                                    <span class="error">
+                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                        <p class="error-text">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="sm:col-span-2">
+                            <div class="inp-field w-full">
+                                <label class="block mb-2 text-sm text-gray-600">Message</label>
+                                <textarea name="message" rows="5" placeholder="Write your message..."
+                                    class="rounded-md w-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 p-3 @error('message') invalid-input @enderror">{{ old('message') }}</textarea>
+                                @error('message')
+                                    <span class="error">
+                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                        <p class="error-text">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="flex justify-end gap-2">
+                        <button type="button" id="closeInquiryModal" class="btn-outlined">Cancel</button>
+                        <button type="submit" class="btn-white">Send Inquiry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>

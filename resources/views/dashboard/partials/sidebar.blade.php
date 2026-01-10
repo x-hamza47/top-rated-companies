@@ -1,5 +1,6 @@
 @php
-    function isActive($routeName) {
+    function isActive($routeName)
+    {
         return request()->routeIs($routeName) ? 'active' : '';
     }
 @endphp
@@ -22,10 +23,19 @@
                 </a>
             </li>
             <li class="nav-item {{ isActive('companies.*') }}">
-                <a href="{{ route('companies.index') }}" class="nav-link">
-                    <i class="fa-solid fa-building nav-icon"></i>
-                    <span class="nav-label">Company</span>
-                </a>
+                @can('admin')
+                    <a href="{{ route('companies.index') }}" class="nav-link">
+                        <i class="fa-solid fa-building nav-icon"></i>
+                        <span class="nav-label">Company</span>
+                    </a>
+                @endcan
+                @can('company')
+                    <a href="{{ route('companies.edit', auth()->user()->company) }}"
+                        class="nav-link">
+                        <i class="fa-solid fa-building nav-icon"></i>
+                        <span class="nav-label">My Company</span>
+                    </a>
+                @endcan
             </li>
             <li class="nav-item {{ isActive('insights.*') }}">
                 <a href="{{ route('insights.index') }}" class="nav-link">
@@ -39,12 +49,22 @@
                     <span class="nav-label">Package</span>
                 </a>
             </li>
-            <li class="nav-item {{ isActive('contact.*') }}">
-                <a href="{{ route('contact.index') }}" class="nav-link">
-                    <i class="fa-solid fa-envelope nav-icon"></i>
-                    <span class="nav-label">Messages</span>
-                </a>
-            </li>
+            @can('admin')
+                <li class="nav-item {{ isActive('contact.*') }}">
+                    <a href="{{ route('contact.index') }}" class="nav-link">
+                        <i class="fa-solid fa-envelope nav-icon"></i>
+                        <span class="nav-label">Messages</span>
+                    </a>
+                </li>
+            @endcan
+            @can('company')
+                <li class="nav-item {{ isActive('company.inquiries.*') }}">
+                    <a href="{{ route('company.inquiries.index') }}" class="nav-link">
+                        <i class="fa-solid fa-envelope nav-icon"></i>
+                        <span class="nav-label">Messages</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
 
         {{-- Info: Secondary Links --}}

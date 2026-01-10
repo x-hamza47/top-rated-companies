@@ -107,6 +107,27 @@ class CompanySeeder extends Seeder
                     'updated_at'          => now(),
                 ]);
             }
+
+            // -------------------------------
+            // * Add Inquiries for Company
+            // -------------------------------
+            $inquiryCount = rand(5, 15); // number of inquiries per company
+
+            for ($q = 0; $q < $inquiryCount; $q++) {
+                DB::table('inquiries')->insert([
+                    'company_id' => $companyId,
+                    'name'       => $faker->name,
+                    'email'      => $faker->safeEmail,
+                    'phone'      => $faker->phoneNumber,
+                    'subject'    => $faker->sentence(4),
+                    'message'    => $faker->paragraph(3),
+                    'status'  => $faker->randomElement(['pending', 'resolved']),
+                    'read_at' => $faker->boolean(30) ? now() : null,
+                    'ip_address' => $faker->ipv4,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
         }
 
         // -------------------------------

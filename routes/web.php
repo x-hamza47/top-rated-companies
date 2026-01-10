@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\Auth\Admin\AdminAuthController;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Dashboard\CompanyController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\InsightsController;
 use App\Http\Controllers\Dashboard\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Http\Controllers\Dashboard\CompanyController;
+use App\Http\Controllers\Dashboard\InsightsController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Auth\Admin\AdminAuthController;
+use App\Http\Middleware\CompanyOwner;
 
 Route::get('/',[HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
@@ -20,6 +22,7 @@ Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name(
 Route::get('/packages-plan', [ProfileController::class, 'packages'])->name('profile.plan');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
 
 
 //? Ajax Route
@@ -43,17 +46,27 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function(){
     Route::get("/", [DashboardController::class, 'index'])->name('dashboard.index');
 
     // ? Contact Routes
+    Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
     Route::get('/messages', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/message/{contact}', [ContactController::class, 'show'])->name('contact.show');
     Route::delete('/message/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
     Route::patch('contact/{contact}/mark-read', [ContactController::class, 'markRead'])->name('contact.markRead');
-    Route::patch('/contact/{contact}/resolve', [App\Http\Controllers\ContactController::class, 'resolve'])->name('contact.resolve');
+    Route::patch('/contact/{contact}/resolve', [ContactController::class, 'resolve'])->name('contact.resolve');
+
+    // ?Inquiries
+
+    Route::get('/company/inquiries', [InquiryController::class, 'index'])->name('company.inquiries.index')->can('company');
+    Route::get('/company/inquiries/{inquiry}', [InquiryController::class, 'show'])->name('company.inquiries.show')->can('company');
+    Route::patch('/company/inquiries/{inquiry}/read', [InquiryController::class, 'markRead'])->name('company.inquiries.markRead')->can('company');
+    Route::delete('/company/inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('company.inquiries.destroy')->can('company');
+    Route::patch('/company/inquiries/{inquiry}/resolve', [InquiryController::class, 'markResolved'])
+        ->name('company.inquiries.update');
 
     // ? Companies Crud Routes
     Route::get("/companies", [CompanyController::class, 'index'])->name('companies.index');
     Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store');
     Route::post('/companies/logo/{company}', [CompanyController::class, 'uploadLogo'])->name('companies.updateLogo');
-    Route::get('/companies/edit/{company}', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::get('/companies/edit/{company}', [CompanyController::class, 'edit'])->name('companies.edit')->middleware(CompanyOwner::class);
     Route::put('/companies/update/{id?}', [CompanyController::class, 'updateOrCreate'])->name('companies.update');
     Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])
         ->name('companies.destroy')->middleware('can:admin');

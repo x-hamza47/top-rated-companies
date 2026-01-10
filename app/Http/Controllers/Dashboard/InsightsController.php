@@ -16,7 +16,20 @@ class InsightsController extends Controller
      */
     public function index()
     {
-        $insights = Insight::with(['service:id,name', 'user:id,firstName,lastName,email,profile_image'])->latest()->paginate(10);
+        $user = Auth::user();
+
+        // Start the query with eager loading
+        $query = Insight::with(['service:id,name', 'user:id,firstName,lastName,email,profile_image'])
+            ->latest();
+
+
+        if ($user->role !== 'admin') {
+            $query->where('user_id', $user->id);
+        }
+
+        // Paginate the results
+        $insights = $query->paginate(10);
+
         return view('dashboard.insights.list', compact('insights'));
     }
 

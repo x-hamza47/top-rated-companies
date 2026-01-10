@@ -26,11 +26,11 @@
                 $unreadCount = Auth::user()->unreadNotifications->where('type', 'contact-message')->count();
                 $link = route('contact.index');
             }
-            // else {
+            else {
 
-            //     $unreadCount = Auth::user()->inquiries()->where('status', 'pending')->count();
-            //     $link = route('company.inquiries.index');
-            // }
+               $unreadCount = Auth::user()->inquiries()->where('status', 'pending')->count();
+                $link = route('company.inquiries.index');
+            }
         @endphp
         <div class="notification-button">
             <a href="{{ $link }}" class="notification-button cursor-pointer">

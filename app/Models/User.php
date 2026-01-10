@@ -50,6 +50,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function inquiries()
+    {
+        return $this->hasMany(Inquiry::class, 'company_id');
+    }
+
     public function company()
     {
         return $this->hasOne(Company::class);

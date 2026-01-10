@@ -13,7 +13,9 @@
                 <tr>
                     <th>Title</th>
                     <th>Service</th>
-                    <th>Author</th>
+                    @can('admin')
+                        <th>Author</th>
+                    @endcan
                     <th>Description</th>
                     <th>Published</th>
                     <th class="text-center!">Action</th>
@@ -38,22 +40,23 @@
                                 {{ $insight->service?->name ?? 'N/A' }}
                             </span>
                         </td>
-                        {{-- Author --}}
-                        <td>
-                            <div class="flex items-center gap-2">
-                                <div class="col-icon">
-                                    <img src="{{ $insight->user->profile_image ? (!Str::startsWith($insight->user->profile_image, 'http') ? asset('storage/' . $insight->user->profile_image) : $insight->user->profile_image) : asset('images/dummy.jpg') }}"
-                                        alt="" class="w-full h-full rounded-full">
+                        @can('admin')
+                            <td>
+                                <div class="flex items-center gap-2">
+                                    <div class="col-icon">
+                                        <img src="{{ $insight->user->profile_image ? (!Str::startsWith($insight->user->profile_image, 'http') ? asset('storage/' . $insight->user->profile_image) : $insight->user->profile_image) : asset('images/dummy.jpg') }}"
+                                            alt="" class="w-full h-full rounded-full">
+                                    </div>
+                                    <span class="flex flex-col">
+                                        {{ $insight->user->firstName }}{{ $insight->user->lastName }}
+
+                                        <a class="text-xs text-blue-500 text-nowrap"
+                                            href="mailto:{{ $insight->user->email }}">{{ Str::limit($insight->user->email, 25) }}</a>
+
+                                    </span>
                                 </div>
-                                <span class="flex flex-col">
-                                    {{ $insight->user->firstName }}{{ $insight->user->lastName }}
-
-                                    <a class="text-xs text-blue-500 text-nowrap"
-                                        href="mailto:{{ $insight->user->email }}">{{ Str::limit($insight->user->email, 25) }}</a>
-
-                                </span>
-                            </div>
-                        </td>
+                            </td>
+                        @endcan
                         <td>
                             {{ Str::limit($insight->description, 40) }}
                         </td>
@@ -102,24 +105,23 @@
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    document.querySelectorAll('.delete-insight-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "This insight will be deleted permanently!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+        document.querySelectorAll('.delete-insight-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This insight will be deleted permanently!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
-    });
-</script>
-    
+    </script>
 @endpush

@@ -12,7 +12,7 @@
                     <li><a href="#" class="hover:underline transition">Home</a></li>
                     <li><a href="#" class="hover:underline transition">Best Sellers</a></li>
                     <li><a href="#" class="hover:underline transition">Offers & Deals</a></li>
-                    <li><a href="{{ route('contact.index') }}" class="hover:underline transition">Contact Us</a></li>
+                    <li><a href="{{ route('contact.showForm') }}" class="hover:underline transition">Contact Us</a></li>
                     <li><a href="#" class="hover:underline transition">FAQs</a></li>
                 </ul>
             </div>
