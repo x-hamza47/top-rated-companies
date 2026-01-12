@@ -18,7 +18,7 @@ use App\Http\Middleware\CompanyOwner;
 
 Route::get('/',[HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
-Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
 Route::get('/packages-plan', [ProfileController::class, 'packages'])->name('profile.plan');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
