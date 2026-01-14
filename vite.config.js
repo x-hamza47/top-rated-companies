@@ -7,12 +7,16 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/css/app.css",
-                "resources/js/app.js",
                 "resources/css/home.css",
                 "resources/css/auth.css",
                 "resources/css/listicle.css",
                 "resources/css/dashboard-css/app.css",
                 "resources/css/dashboard-css/form.css",
+                
+                // Info: JS Files
+                "resources/js/app.js",
+                "resources/js/home.js",
+                "resources/js/faqs.js",
             ],
             refresh: true,
         }),

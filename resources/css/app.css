@@ -161,7 +161,7 @@ body::-webkit-scrollbar {
 
 
 .nav-link {
-    @apply transition text-nowrap hover:bg-lime-800 hover:text-white px-3 py-1 rounded-full;
+    @apply transition font-bold text-nowrap hover:bg-lime-800 hover:text-white px-3 py-1 rounded-full;
 
 }
 .nav-link.active,.mobile-drop.active {

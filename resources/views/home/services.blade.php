@@ -13,7 +13,7 @@
     </div>
     {{-- Info: Cards --}}
     <div
-        class="card-wrapper  my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 justify-items-center items-center relative">
+        class="card-wrapper my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 justify-items-center items-center relative">
         @forelse ($navCategories as $category)
             <div
                 class="card relative rounded-md border-2 border-gray-500/40 flex flex-col sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">
@@ -44,36 +44,3 @@
     </div>
 </div>
 
-@push('script')
-    <script>
-        const cards = document.querySelectorAll(".mobile-cards .card");
-
-        cards.forEach(card => {
-            const closeBtn = card.querySelector(".close-btn");
-            card.addEventListener("click", e => {
-                if (window.innerWidth < 769) {
-
-                    if (card.classList.contains("active")) return;
-                    cards.forEach(c => c.classList.remove("active"));
-                    card.classList.toggle("active");
-
-                    e.stopPropagation();
-                }
-
-                closeBtn.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    card.classList.remove("active");
-                });
-
-            })
-        });
-        document.addEventListener("click", (e) => {
-            const activeCard = document.querySelector(".mobile-cards .card.active");
-            if (!activeCard) return;
-
-            if (!e.target.closest(".card")) {
-                activeCard.classList.remove("active");
-            }
-        });
-    </script>
-@endpush

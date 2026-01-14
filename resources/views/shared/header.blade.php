@@ -5,7 +5,7 @@
             <img class="w-full h-full object-contain" src="{{ asset('images/logo.png') }}" alt="Logo">
         </div>
 
-        <nav class="hidden xl:flex items-center gap-6 text-gray-700 font-medium flex-1">
+        <nav class="hidden xl:flex items-center gap-2 text-gray-700 font-medium flex-1">
             @foreach ($navCategories as $category)
                 <div class="relative group menu-item">
                     <button class="nav-link">{{ $category->name }}</button>
@@ -33,9 +33,9 @@
         @endauth
 
         @guest
-            <div class="hidden xl:flex gap-2">
-                <a class="btn-primary" href="{{ route('login') }}">Sign In</a>
-                <a class="btn-outline" href="{{ route('register.show') }}">Register</a>
+            <div class="hidden xl:flex gap-2 font-semibold">
+                <a class="btn-primary flex items-center gap-2 " href="{{ route('login') }}"><i class="fa-solid fa-circle-user text-xl text-white"></i> Sign In</a>
+                <a class="btn-outline" href="{{ route('register.show') }}">Join</a>
             </div>
         @endguest
 
@@ -69,7 +69,7 @@
             @foreach ($navCategories as $category)
                 <div class="mobile-menu-item">
                     <button
-                        class="mobile-drop w-full text-left flex justify-between items-center py-2 px-3 rounded hover:bg-lime-50">
+                        class="mobile-drop w-full text-left font-bold flex justify-between items-center py-2 px-3 rounded hover:bg-lime-50">
                         {{ $category->name }} <span class="transform transition-transform"><svg
                                 class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor"
                                 stroke-width="2" viewBox="0 0 24 24">
@@ -106,93 +106,3 @@
         @endguest
     </div>
 </header>
-
-@push('scripts')
-    <script>
-        const menuItems = document.querySelectorAll(".menu-item");
-
-        menuItems.forEach(item => {
-            const btn = item.querySelector(".nav-link");
-            const dropdown = item.querySelector(".dropdown");
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                menuItems.forEach(other => {
-                    const otherDropdown = other.querySelector(".dropdown");
-                    const otherBtn = other.querySelector(".nav-link");
-                    if (otherDropdown !== dropdown) {
-                        otherDropdown.classList.add("hidden");
-                        otherDropdown.classList.remove("opacity-100", "translate-y-0");
-                        otherBtn.classList.remove("active");
-                    }
-                });
-
-
-                const isOpen = !dropdown.classList.contains("hidden");
-                dropdown.classList.toggle("hidden");
-                dropdown.classList.toggle("opacity-100");
-                dropdown.classList.toggle("translate-y-0");
-                btn.classList.toggle("active", !isOpen);
-            });
-        });
-
-        const mobileBtn = document.getElementById("mobile-menu-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const mobileClose = document.getElementById("mobile-menu-close");
-
-        mobileBtn.addEventListener("click", () => {
-            mobileMenu.classList.remove("translate-x-full");
-        });
-
-        mobileClose.addEventListener("click", () => {
-            mobileMenu.classList.add("translate-x-full");
-        });
-
-
-        const mobileItems = document.querySelectorAll(".mobile-menu-item");
-        mobileItems.forEach(item => {
-            const btn = item.querySelector(".mobile-drop");
-            const submenu = item.querySelector(".mobile-submenu");
-            const arrow = btn.querySelector("span");
-
-            btn.addEventListener("click", () => {
-
-                mobileItems.forEach(other => {
-                    if (other !== item) {
-                        const otherSub = other.querySelector(".mobile-submenu");
-                        const otherArrow = other.querySelector("span");
-                        const otherBtn = other.querySelector(".mobile-drop");
-
-                        otherSub.style.maxHeight = null;
-                        otherArrow.classList.remove("rotate-180");
-                        otherBtn.classList.remove("active");
-                    }
-                });
-
-
-                if (submenu.style.maxHeight && submenu.style.maxHeight !== "0px") {
-                    submenu.style.maxHeight = null;
-                    arrow.classList.remove("rotate-180");
-                    btn.classList.remove("active");
-                } else {
-                    submenu.style.maxHeight = submenu.scrollHeight + "px";
-                    arrow.classList.add("rotate-180");
-                    btn.classList.add("active");
-                }
-            });
-        });
-
-        document.addEventListener("click", (e) => {
-            const isClickInside = [...menuItems].some(item => item.contains(e.target));
-            if (!isClickInside) {
-                menuItems.forEach(item => {
-                    const dropdown = item.querySelector(".dropdown");
-                    const btn = item.querySelector(".nav-link");
-                    dropdown.classList.add("hidden");
-                    dropdown.classList.remove("opacity-100", "translate-y-0");
-                    btn.classList.remove("active");
-                });
-            }
-        });
-    </script>
-@endpush
-

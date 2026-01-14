@@ -20,26 +20,13 @@
 
 <body class="flex flex-col items-center">
     @include('shared.header')
-    @yield('content')
+        @yield('content')
     @include('shared.footer')
-    <div class="background w-screen fixed -z-1 top-0 left-0 h-screen"></div>
 </body>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @stack('scripts')
-<script>
-    document.querySelectorAll('.alert').forEach(function(alert) {
-        setTimeout(() => {
-            alert.classList.add('opacity-0', 'transition', 'duration-500');
-            setTimeout(() => alert.remove(), 1500);
-        }, 4000);
-    });
-    document.querySelectorAll('.close-alert').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            const alert = btn.closest('.alert');
-            alert.classList.add('opacity-0', 'transition', 'duration-500');
-            setTimeout(() => alert.remove(), 500);
-        });
-    });
-</script>
+{{-- ! Page Js --}}
 
 </html>

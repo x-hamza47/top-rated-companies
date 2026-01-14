@@ -21,7 +21,8 @@
     {{-- ! Ready Section --}}
     <div class="section ready-section w-full">
         <div class="flex flex-col items-center gap-5">
-            <h2 class="text-2xl md:text-4xl  text-white text-center font-semibold">Ready to find your next tech partner?Or list your
+            <h2 class="text-2xl md:text-4xl  text-white text-center font-semibold">Ready to find your next tech partner?Or
+                list your
                 company to grow?</h2>
             <div class="flex gap-2">
                 <button
@@ -39,58 +40,9 @@
     @include('home.faqs')
 @endsection
 @push('scripts')
-    {{-- <script src="{{ asset('assets/js/services.js') }}"></script> --}}
-    <script src="{{ asset('assets/js/faqs.js') }}"></script>
+    @vite(['resources/js/home.js', 'resources/js/faqs.js'])
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    {{-- <script src="{{ asset('assets/js/accordian.js') }}"></script> --}}
 
-    <script>
-        const workSwiper = new Swiper('.works-swipper', {
-            slidesPerView: 1,
-            spaceBetween: 40,
-            loop: false,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.main-next',
-                prevEl: '.main-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            },
-        });
+ 
 
-        var insightsSwiper = new Swiper(".insights-swiper", {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-            },
-            pagination: {
-                el: ".insights-swiper .swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 1,
-                },
-                1024: {
-                    slidesPerView: 2,
-                },
-                1400: {
-                    slidesPerView: 2,
-                }
-            }
-        });
-    </script>
-
-    @stack('script')
 @endpush
