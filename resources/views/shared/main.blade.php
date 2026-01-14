@@ -12,7 +12,7 @@
     <link rel="manifest" href="{{ asset('/images/site.webmanifest') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>TRC - Top Rated Companies</title>
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,25 +21,19 @@
 
 <body class="flex flex-col items-center">
     @include('shared.header')
-
     @yield('content')
     @include('shared.footer')
     <div class="background w-screen fixed -z-1 top-0 left-0 h-screen"></div>
-    {{-- <div class="mouse p-3 rounded-full bg-lime-500 fixed z-100"></div>
-    <div class="mouse-trail p-1 rounded-full bg-lime-950 fixed z-100"></div> --}}
 </body>
 
 @stack('scripts')
 <script>
-
     document.querySelectorAll('.alert').forEach(function(alert) {
         setTimeout(() => {
             alert.classList.add('opacity-0', 'transition', 'duration-500');
             setTimeout(() => alert.remove(), 1500);
         }, 4000);
     });
-
-    // Manual close
     document.querySelectorAll('.close-alert').forEach(function(btn) {
         btn.addEventListener('click', function() {
             const alert = btn.closest('.alert');
@@ -48,4 +42,5 @@
         });
     });
 </script>
+
 </html>
