@@ -14,11 +14,13 @@ use App\Http\Controllers\Dashboard\CompanyController;
 use App\Http\Controllers\Dashboard\InsightsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Auth\Admin\AdminAuthController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\CompanyOwner;
 
 Route::get('/',[HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
 Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
+Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
 Route::get('/packages-plan', [ProfileController::class, 'packages'])->name('profile.plan');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

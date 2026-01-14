@@ -84,7 +84,7 @@
 
         </div>
     </div>
-
+<a href="{{ route('review.form', $company->slug) }}" class="btn-outline cursor-pointer">Submit Review</a>
     <div id="review" class="section flex flex-col gap-5">
         @foreach ($reviews as $review)
             <div
@@ -213,9 +213,12 @@
                                     {{ $review->service->category->name }} </p>
                             </span>
                             <span class="flex gap-2 items-center">
-                                <img class="w-10 h-10 aspect-square object-cover rounded-full"
-                                    src="{{ $review->reviewer->logo }}" alt="">
-                                <small>{{ $review->reviewer->name }} </small>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white text-sm font-semibold">
+                                    {{ strtoupper(substr($review->reviewer_name, 0, 1)) }}
+                                </div>
+
+                                <small>{{ $review->reviewer_name }}</small>
                             </span>
                             <span class="flex gap-2 items-center">
                                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"

@@ -9,18 +9,38 @@ class Review extends Model
     protected $fillable = [
         'company_id',
         'service_id',
-        'reviewer_id',
-        'reviewer_type',
+        'reviewer_name',
+        'reviewer_email',
+        'reviewer_location',
+        'reviewer_company',
+        'reviewer_company_bio',
+        'reviewer_designation',
+        'reviewer_employees',
         'review',
+        'summary',
+        'rating',
+        'quality',
+        'ai',
+        'schedule',
+        'cost',
+        'willing_to_refer',
         'project_title',
         'project_size',
         'project_duration',
         'project_summary',
-        'rating',
-        'quality',
-        'schedule',
-        'cost',
-        'willing_to_refer'
+        'source',
+        'reference',
+        'status',
+    ];
+
+
+    protected $casts = [
+        'rating' => 'integer',
+        'quality' => 'integer',
+        'ai' => 'integer',
+        'schedule' => 'integer',
+        'cost' => 'integer',
+        'willing_to_refer' => 'integer',
     ];
 
     public function company()
@@ -28,12 +48,8 @@ class Review extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function reviewer()
+    public function service()
     {
-        return $this->morphTo();
-    }
-
-    public function service(){
         return $this->belongsTo(Service::class);
     }
 }

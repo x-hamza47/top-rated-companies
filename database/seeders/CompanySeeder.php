@@ -32,7 +32,7 @@ class CompanySeeder extends Seeder
                 'lastName'  => $faker->lastName,
                 'phone'  => $faker->phoneNumber,
                 'email' => strtolower(Str::slug($uniqueCompanyNames[$i])) . "@example.com",
-                'password' => bcrypt('password1234'), 
+                'password' => bcrypt('password1234'),
                 'role' => 'company',
                 'profile_image' => 'https://i.pravatar.cc/150?img=' . rand(1, 70),
                 'created_at' => now(),
@@ -63,7 +63,7 @@ class CompanySeeder extends Seeder
                 'linkedin'  => $faker->url,
                 'facebook'  => $faker->url,
                 'instagram' => $faker->url,
-                'twitter'   => $faker->url, 
+                'twitter'   => $faker->url,
             ];
             DB::table('company_details')->insert([
                 'company_id'       => $companyId,
@@ -134,26 +134,59 @@ class CompanySeeder extends Seeder
         // * Add Reviews
         // -------------------------------
         foreach ($createdCompanyIds as $companyId) {
-            $reviewers = array_diff($createdCompanyIds, [$companyId]);
+
             $reviewCount = rand(10, 20);
-            $servicesOfCompany = DB::table('company_services')->where('company_id', $companyId)->pluck('service_id')->toArray();
+
+            $servicesOfCompany = DB::table('company_services')
+                ->where('company_id', $companyId)
+                ->pluck('service_id')
+                ->toArray();
+
+            // Skip if company has no services
+            if (empty($servicesOfCompany)) {
+                continue;
+            }
 
             for ($r = 0; $r < $reviewCount; $r++) {
+
                 DB::table('reviews')->insert([
-                    'company_id'     => $companyId,
-                    'service_id'     => $faker->randomElement($servicesOfCompany),
-                    'reviewer_id'    => $faker->randomElement($reviewers),
-                    'reviewer_type'  => 'App\\Models\\Company',
-                    'review'          => $faker->paragraph,
-                    'project_title'   => $faker->sentence,
-                    'project_size'    => "$" . $faker->numberBetween(2000, 50000),
-                    'project_duration' => $faker->numberBetween(1, 12) . " months",
-                    'project_summary' => $faker->paragraph(5),
-                    'rating'          => rand(1, 5),
-                    'quality'         => rand(1, 5),
-                    'schedule'        => rand(1, 5),
-                    'cost'            => rand(1, 5),
-                    'willing_to_refer' => rand(1, 5),
+                    // Relations
+                    'company_id' => $companyId,
+
+                    'service_id' => $faker->randomElement($servicesOfCompany),
+
+                    // Reviewer details (fake client)
+                    'reviewer_name' => $faker->name,
+                    'reviewer_email' => $faker->safeEmail,
+                    'reviewer_location' => $faker->city . ', ' . $faker->country,
+                    'reviewer_company' => $faker->company,
+                    'reviewer_company_bio' => $faker->paragraph,
+                    'reviewer_designation' => $faker->jobTitle,
+                    'reviewer_employees' => $faker->numberBetween(20, 500),
+
+                    // Review content
+                    'review' => $faker->realText(100),
+                    'summary' => $faker->sentence,
+
+                    // Ratings (1–5)
+                    'rating' => rand(3, 5),
+                    'quality' => rand(3, 5),
+                    'ai' => rand(3, 5),
+                    'schedule' => rand(3, 5),
+                    'cost' => rand(3, 5),
+                    'willing_to_refer' => rand(3, 5),
+
+                    // Project details
+                    'project_title' => $faker->sentence,
+                    'project_size' => '$' . $faker->numberBetween(2000, 50000),
+                    'project_duration' => $faker->numberBetween(1, 12) . ' months',
+                    'project_summary' => $faker->paragraph(3),
+
+                    // Analytics
+                    'source' => $faker->randomElement(['10firms', 'Google Search', 'Others']),
+                    'reference' => $faker->url,
+                    'status' => $faker->randomElement(['unlisted', 'verified']),
+
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

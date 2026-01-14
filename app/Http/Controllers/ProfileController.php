@@ -9,16 +9,19 @@ class ProfileController extends Controller
 {
     public function index($companySlug)
     {
-        $company = Company::with(
-            ['details', 'services']
-        )->where('slug', $companySlug)
+        $company = Company::with(['details', 'services'])
+            ->where('slug', $companySlug)
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')
             ->firstOrFail();
 
-        $reviews = $company->reviews()->with('service.category', 'reviewer')->paginate(5);
+        $reviews = $company->reviews()
+            ->with('service.category') 
+            ->where('status', 'verified') 
+            ->latest()
+            ->paginate(5);
 
-        return view('profile.index', compact('company','reviews'));
+        return view('profile.index', compact('company', 'reviews'));
     }
 
     public function projectSizes(Company $company, Request $request)
