@@ -7,10 +7,10 @@
 
 @section('content')
     {{-- ! Hero Section --}}
-    @include('home.hero', ['services' => $categories->pluck('services')->flatten()])
+    @include('home.hero', ['services' => $navCategories->pluck('services')->flatten()])
 
     {{-- ! Services Section --}}
-    @include('home.services', ['categories', $categories])
+    @include('home.services', ['categories', $navCategories])
 
     {{-- ! How it works --}}
     @include('home.works')

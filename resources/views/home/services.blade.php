@@ -1,5 +1,5 @@
 <div class="section flex flex-col overflow-x-hidden">
-    {{-- Header --}}
+    {{-- ! Header --}}
     <div class="text-center mb-2">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">Browse <span class="text-(--primary)">Services</span></h2>
         <p class=" w-11/12 text-sm md:text-base font-semibold mt-3 mx-auto">Unfold a broad range of professional services
@@ -14,7 +14,7 @@
     {{-- Info: Cards --}}
     <div
         class="card-wrapper  my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 justify-items-center items-center relative">
-        @forelse ($categories as $category)
+        @forelse ($navCategories as $category)
             <div
                 class="card relative rounded-md border-2 border-gray-500/40 flex flex-col sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">
                 <button class="close-btn absolute top-2 right-2 text-xl font-bold hidden"><i
@@ -36,10 +36,7 @@
                     </ul>
 
                 </div>
-                <a href=""
-                    class="bg-(--secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold ">
-                    View More
-                </a>
+    
             </div>
         @empty
             <p class="text-center text-gray-500 font-semibold">No categories found.</p>

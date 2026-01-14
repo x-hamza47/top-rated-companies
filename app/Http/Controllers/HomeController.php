@@ -12,7 +12,7 @@ class HomeController extends Controller
             $q->where('status', 1)->select('id', 'category_id', 'name', 'slug');;
         }])->where('status', 1)->get();
 
-        return view('home.home', compact('categories'));
+        return view('home.home');
     }
 
 }
