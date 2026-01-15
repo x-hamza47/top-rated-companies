@@ -3,6 +3,8 @@
     @vite('resources/css/listicle.css')
 @endpush
 
+@section('title', $service->name)
+
 @section('content')
 {{-- ! Hero Content --}}
 @include('listicle.hero')

@@ -1,5 +1,3 @@
-  {{-- <div
-        class="section max-[840px]:flex-col max-w-[1920px] w-full flex justify-between gap-4 mt-32 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4"> --}}
   <div class="section md:pt-32 pt-25 pb-20 flex flex-col justify-between text-white gap-y-5">
       <div class="flex flex-col lg:flex-row items-center lg:items-start gap-y-4">
           <div class="flex flex-col items-center lg:items-start gap-4 lg:text-start text-center flex-1">
