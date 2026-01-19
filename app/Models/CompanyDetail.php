@@ -10,10 +10,9 @@ class CompanyDetail extends Model
     protected $fillable = [
         'company_id',
         'min_project_size',
-        'hourly_rate_min',
-        'hourly_rate_max',
-        'employees_min',
-        'employees_max',
+        'hourly_rate',      
+        'employees_range',  
+        'is_freelancer',     
         'locations',
         'founded',
         'languages',
@@ -24,6 +23,7 @@ class CompanyDetail extends Model
     protected $casts = [
         'languages' => 'array',
         'social_links' => 'array',
+        'is_freelancer' => 'boolean',
     ];
 
     public function company()
@@ -32,18 +32,13 @@ class CompanyDetail extends Model
     }
 
     // Hack: Accessor
-    protected function hourlyRate(): Attribute
-    {
-        return Attribute::make(
-            get: fn() =>
-            '$' . intval($this->hourly_rate_min)
-                . '-$' .intval($this->hourly_rate_max) . '/hr'
-        );
-    }
+
     protected function employees(): Attribute
     {
         return Attribute::make(
-            get: fn() => "{$this->employees_min}-{$this->employees_max}"
+            get: fn() => $this->is_freelancer
+                ? 'Freelancer'
+                : ($this->employees_range ?? null)
         );
     }
     protected function yearsInBusiness(): Attribute

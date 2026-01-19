@@ -59,19 +59,43 @@ class CompanySeeder extends Seeder
             // -------------------------------
             // * Company Details
             // -------------------------------
+
+            $hourlyRanges = [
+                '<25',
+                '20-50',
+                '50-99',
+                '100-149',
+                '150-199',
+                '200-300',
+                '300+'
+            ];
+
+            $employeeRanges = [
+                '2-9',
+                '10-49',
+                '50-249',
+                '250-999',
+                '1000-9999',
+                '10000+'
+            ];
+
             $socialLinks = [
                 'linkedin'  => $faker->url,
                 'facebook'  => $faker->url,
                 'instagram' => $faker->url,
                 'twitter'   => $faker->url,
             ];
+            $isFreelancer = $faker->boolean(20); 
+            
             DB::table('company_details')->insert([
                 'company_id'       => $companyId,
                 'min_project_size' => round($faker->numberBetween(1000, 10000), -3),
-                'hourly_rate_min'  => $faker->numberBetween(10, 50),
-                'hourly_rate_max'  => $faker->numberBetween(60, 150),
-                'employees_min'    => $faker->numberBetween(1, 10),
-                'employees_max'    => $faker->numberBetween(20, 500),
+
+                'hourly_rate'      => $faker->randomElement($hourlyRanges),
+
+                'employees_range'  => $isFreelancer ? null : $faker->randomElement($employeeRanges),
+                'is_freelancer'    => $isFreelancer,
+
                 'locations'        => $faker->city,
                 'founded'          => $faker->year,
                 'languages'        => json_encode(

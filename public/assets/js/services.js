@@ -1,6 +1,6 @@
 // Load JSON file
 async function loadCategories() {
-    const res = await fetch("/services.json"); // Laravel public folder
+    const res = await fetch("/services.json"); 
     if (!res.ok) {
         console.error("Failed to load JSON:", res.statusText);
         return { categories: [] };

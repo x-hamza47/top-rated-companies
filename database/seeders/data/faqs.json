@@ -1,0 +1,938 @@
+{
+    "mobile-app-development": [
+        {
+            "question": "How long does it take to build a custom mobile app?",
+            "answer": "A standard MVP usually takes 3-4 months, while complex apps can take 6 months or more."
+        },
+        {
+            "question": "Do you develop for both iOS and Android?",
+            "answer": "Yes, we specialize in both native (Swift/Kotlin) and cross-platform (Flutter/React Native) solutions."
+        },
+        {
+            "question": "Will you help with App Store and Play Store submissions?",
+            "answer": "Absolutely. We handle the entire deployment process, including metadata setup and compliance checks."
+        },
+        {
+            "question": "Can you provide post-launch maintenance?",
+            "answer": "Yes, we offer ongoing support packages for bug fixes, OS updates, and feature enhancements."
+        },
+        {
+            "question": "Do you sign Non-Disclosure Agreements (NDAs)?",
+            "answer": "Security and confidentiality are priorities; we sign NDAs before any project details are shared."
+        },
+        {
+            "question": "Can you integrate third-party APIs into the app?",
+            "answer": "Yes, we have extensive experience integrating payment gateways, social media, and CRM tools."
+        }
+    ],
+    "software-development": [
+        {
+            "question": "What software development methodologies do you use?",
+            "answer": "We primarily use Agile and Scrum to ensure transparency and iterative progress."
+        },
+        {
+            "question": "Can you integrate with existing legacy systems?",
+            "answer": "Yes, our team specializes in building APIs and middleware to connect new software with older systems."
+        },
+        {
+            "question": "Who owns the source code after the project is finished?",
+            "answer": "Once the final payment is made, you own 100% of the intellectual property and source code."
+        },
+        {
+            "question": "How do you ensure software quality?",
+            "answer": "We use a combination of automated testing, manual QA, and continuous integration (CI/CD) pipelines."
+        },
+        {
+            "question": "Do you provide technical documentation?",
+            "answer": "Yes, we provide comprehensive documentation for code architecture, API endpoints, and user manuals."
+        },
+        {
+            "question": "What technologies do you specialize in?",
+            "answer": "Our stack includes .NET, Java, Python, Node.js, and various modern database architectures."
+        }
+    ],
+    "web-development": [
+        {
+            "question": "Will my website be mobile-responsive?",
+            "answer": "Yes, every website we build is optimized for mobile, tablet, and desktop screens."
+        },
+        {
+            "question": "Do you build custom websites or use templates?",
+            "answer": "We specialize in custom-coded solutions but can work with CMS platforms like WordPress or Shopify depending on your needs."
+        },
+        {
+            "question": "How do you handle website security?",
+            "answer": "We implement SSL certificates, secure hosting, data encryption, and regular security patches."
+        },
+        {
+            "question": "Can you help with SEO during development?",
+            "answer": "Yes, we follow SEO best practices including clean code, fast loading speeds, and proper meta-tagging."
+        },
+        {
+            "question": "What is your typical web development process?",
+            "answer": "It involves discovery, wireframing, UI/UX design, development, testing, and finally, launch."
+        },
+        {
+            "question": "Can you migrate my old website to a new platform?",
+            "answer": "Yes, we handle data migration, URL redirects, and content porting to ensure a smooth transition."
+        }
+    ],
+    "arvr": [
+        {
+            "question": "What hardware do you develop for?",
+            "answer": "We develop for Meta Quest, Apple Vision Pro, HTC Vive, and mobile AR platforms like ARKit and ARCore."
+        },
+        {
+            "question": "What is the difference between AR and VR for business?",
+            "answer": "AR overlays digital info on the real world (useful for training), while VR creates a fully immersive environment."
+        },
+        {
+            "question": "Can AR/VR be used for employee training?",
+            "answer": "Yes, it is highly effective for high-risk training, remote assembly, and complex simulations."
+        },
+        {
+            "question": "Do users need special equipment to use your AR solutions?",
+            "answer": "Many of our AR solutions work directly through a smartphone or tablet browser (WebAR)."
+        },
+        {
+            "question": "How do you measure ROI in AR/VR projects?",
+            "answer": "Through metrics like reduced training time, decreased error rates, and increased user engagement."
+        },
+        {
+            "question": "Is VR suitable for virtual retail stores?",
+            "answer": "Yes, we create immersive 3D showrooms where customers can interact with products virtually."
+        }
+    ],
+    "artificial-intelligence": [
+        {
+            "question": "How can AI help my business automate tasks?",
+            "answer": "AI can automate customer support via chatbots, streamline data entry, and optimize supply chain logistics."
+        },
+        {
+            "question": "Is my company data used to train public AI models?",
+            "answer": "No, we implement private instances and secure data pipelines to ensure your proprietary info stays private."
+        },
+        {
+            "question": "How long does an AI implementation take?",
+            "answer": "Small pilot projects take 4-8 weeks, while full-scale enterprise AI deployments can take 6+ months."
+        },
+        {
+            "question": "Do I need a huge dataset to start with AI?",
+            "answer": "Not necessarily; we can use transfer learning or synthetic data to build effective models with limited information."
+        },
+        {
+            "question": "What is Natural Language Processing (NLP)?",
+            "answer": "NLP is a branch of AI that helps machines understand, interpret, and respond to human language."
+        },
+        {
+            "question": "Can AI predict customer churn?",
+            "answer": "Yes, by analyzing historical data, AI can identify patterns that suggest a customer is likely to leave."
+        }
+    ],
+    "blockchain": [
+        {
+            "question": "What industries benefit most from blockchain?",
+            "answer": "Finance, supply chain, healthcare, and real estate benefit most from its transparency and security."
+        },
+        {
+            "question": "Do you develop Smart Contracts?",
+            "answer": "Yes, we develop and audit secure smart contracts on Ethereum, Solana, and Hyperledger."
+        },
+        {
+            "question": "Is blockchain only for cryptocurrency?",
+            "answer": "No, it is used for secure voting, identity management, and tracking goods through a supply chain."
+        },
+        {
+            "question": "How long does it take to build a dApp?",
+            "answer": "A decentralized application typically takes 3 to 6 months depending on functionality."
+        },
+        {
+            "question": "What is a private blockchain?",
+            "answer": "It is a permissioned network used by enterprises to keep data private while utilizing blockchain security features."
+        },
+        {
+            "question": "Do you provide blockchain security audits?",
+            "answer": "Yes, we perform rigorous security testing to identify vulnerabilities in code before deployment."
+        }
+    ],
+    "web-design": [
+        {
+            "question": "Do you provide mockups before coding?",
+            "answer": "Yes, we provide high-fidelity Figma or Adobe XD prototypes before any development starts."
+        },
+        {
+            "question": "Will I be able to update images and text myself?",
+            "answer": "Yes, we design with the end-user in mind, ensuring ease of content management."
+        },
+        {
+            "question": "How long does the design phase take?",
+            "answer": "Typically 2 to 4 weeks depending on the number of unique page templates needed."
+        },
+        {
+            "question": "Do you follow accessibility guidelines?",
+            "answer": "Yes, we design to WCAG standards to ensure your site is usable by everyone, including people with disabilities."
+        },
+        {
+            "question": "What is 'Mobile First' design?",
+            "answer": "It is a strategy where we design for the smallest screen first to ensure a perfect mobile experience."
+        },
+        {
+            "question": "Can you redesign my existing website?",
+            "answer": "Yes, we can perform a UI/UX audit and refresh your brand's digital presence."
+        }
+    ],
+    "user-experience-design": [
+        {
+            "question": "What is the difference between UI and UX?",
+            "answer": "UI is how the app looks; UX is how the user feels and interacts with it."
+        },
+        {
+            "question": "Do you perform user testing?",
+            "answer": "Yes, we conduct user interviews and usability testing to validate our design decisions."
+        },
+        {
+            "question": "What is a 'user journey map'?",
+            "answer": "It is a visual representation of every interaction a customer has with your product."
+        },
+        {
+            "question": "How does UX impact conversion rates?",
+            "answer": "Good UX removes friction, making it easier for users to complete a purchase or sign up."
+        },
+        {
+            "question": "Do you create wireframes?",
+            "answer": "Yes, we start with low-fidelity wireframes to focus on structure before adding visual elements."
+        },
+        {
+            "question": "Can you improve the UX of an existing product?",
+            "answer": "Yes, we identify 'pain points' in your current app and redesign them for better flow."
+        }
+    ],
+    "logo-design": [
+        {
+            "question": "How many logo concepts do I get?",
+            "answer": "Our standard package includes 3 to 5 unique initial concepts to choose from."
+        },
+        {
+            "question": "Do I own the copyright to the logo?",
+            "answer": "Yes, upon project completion and final payment, you own the full rights to the design."
+        },
+        {
+            "question": "What file formats will I receive?",
+            "answer": "You will receive vector files (AI, EPS), high-res PNGs, and social media-ready formats."
+        },
+        {
+            "question": "Can I request revisions?",
+            "answer": "Yes, our packages include a set number of revision rounds to ensure you are 100% satisfied."
+        },
+        {
+            "question": "Do you provide a brand style guide with the logo?",
+            "answer": "Yes, we provide guidelines on colors, typography, and logo usage."
+        },
+        {
+            "question": "How long does it take to design a logo?",
+            "answer": "The process usually takes 1 to 2 weeks from initial brief to final files."
+        }
+    ],
+    "graphic-design": [
+        {
+            "question": "What types of marketing materials do you design?",
+            "answer": "We design brochures, business cards, social media posts, banners, and more."
+        },
+        {
+            "question": "Can you design for print and digital?",
+            "answer": "Yes, we handle CMYK setups for print and RGB layouts for digital use."
+        },
+        {
+            "question": "How do you charge for graphic design?",
+            "answer": "We offer both project-based pricing and monthly retainers for ongoing needs."
+        },
+        {
+            "question": "Do you provide the source files?",
+            "answer": "Yes, we provide the original Adobe Creative Cloud files upon request."
+        },
+        {
+            "question": "Can you work within my existing brand guidelines?",
+            "answer": "Absolutely. we ensure all new designs are consistent with your current brand identity."
+        },
+        {
+            "question": "What is the typical turnaround time?",
+            "answer": "Most small design tasks are completed within 48 to 72 hours."
+        }
+    ],
+    "design": [
+        {
+            "question": "What industries do you design for?",
+            "answer": "We have experience across tech, healthcare, retail, fashion, and professional services."
+        },
+        {
+            "question": "Do you offer creative consulting?",
+            "answer": "Yes, we help businesses define their visual strategy and creative direction."
+        },
+        {
+            "question": "How do you start a new design project?",
+            "answer": "We begin with a discovery session to understand your goals, audience, and preferences."
+        },
+        {
+            "question": "Can you handle large-scale design projects?",
+            "answer": "Yes, we have a team capable of managing comprehensive brand overhauls and large campaigns."
+        },
+        {
+            "question": "Do you stay updated on design trends?",
+            "answer": "Our team constantly researches modern trends to ensure your brand looks contemporary."
+        },
+        {
+            "question": "What if I don't like the first draft?",
+            "answer": "We use your feedback to refine the design until it aligns perfectly with your vision."
+        }
+    ],
+    "digital-design": [
+        {
+            "question": "What is digital design?",
+            "answer": "It is design created specifically for screens, including apps, websites, and digital ads."
+        },
+        {
+            "question": "Do you design social media templates?",
+            "answer": "Yes, we create editable templates in Canva or Figma for your internal team to use."
+        },
+        {
+            "question": "What is the difference between graphic design and digital design?",
+            "answer": "Digital design focuses on interaction, screen resolution, and user experience."
+        },
+        {
+            "question": "Do you design email newsletters?",
+            "answer": "Yes, we design responsive email templates for platforms like Mailchimp and Klaviyo."
+        },
+        {
+            "question": "Can you create animated digital assets?",
+            "answer": "Yes, we produce motion graphics and animated banners for digital marketing."
+        },
+        {
+            "question": "How do you ensure designs look good on all screens?",
+            "answer": "We use responsive design principles and test across various device resolutions."
+        }
+    ],
+    "digital-marketing": [
+        {
+            "question": "What is the main goal of digital marketing?",
+            "answer": "To increase brand awareness, drive traffic, and generate leads through online channels."
+        },
+        {
+            "question": "How do you track the success of a campaign?",
+            "answer": "We use tools like Google Analytics, Heatmaps, and CRM tracking to measure ROI."
+        },
+        {
+            "question": "Do I need a big budget to start?",
+            "answer": "We can scale campaigns based on your budget, focusing on the highest-impact channels first."
+        },
+        {
+            "question": "What is PPC advertising?",
+            "answer": "Pay-Per-Click is a model where you pay only when a user clicks on your digital ad."
+        },
+        {
+            "question": "How often will I get reports?",
+            "answer": "We provide detailed monthly reports and have weekly check-in calls with our clients."
+        },
+        {
+            "question": "Do you manage social media accounts?",
+            "answer": "Yes, we offer full-service community management and content scheduling."
+        }
+    ],
+    "seo": [
+        {
+            "question": "How long does SEO take to work?",
+            "answer": "SEO is a long-term strategy; significant results usually appear within 3 to 6 months."
+        },
+        {
+            "question": "Do you guarantee a #1 ranking on Google?",
+            "answer": "No reputable agency can guarantee #1, but we guarantee improved visibility and traffic."
+        },
+        {
+            "question": "What is 'On-Page SEO'?",
+            "answer": "It involves optimizing elements on your website like titles, headers, and content keywords."
+        },
+        {
+            "question": "What is 'Off-Page SEO'?",
+            "answer": "It focuses on building your site's authority through backlinks and social signals."
+        },
+        {
+            "question": "Do you provide keyword research?",
+            "answer": "Yes, we identify the terms your customers are searching for and target those specifically."
+        },
+        {
+            "question": "Is technical SEO included?",
+            "answer": "Yes, we optimize site speed, mobile-friendliness, and site architecture for search engines."
+        }
+    ],
+    "social-media-marketing": [
+        {
+            "question": "Which platforms should my business be on?",
+            "answer": "We recommend platforms based on where your target audience spends their time."
+        },
+        {
+            "question": "Do you handle influencer marketing?",
+            "answer": "Yes, we identify and manage relationships with influencers in your niche."
+        },
+        {
+            "question": "How often should I post?",
+            "answer": "Consistency is key; we usually recommend 3-5 times per week depending on the platform."
+        },
+        {
+            "question": "Can you run paid social ads?",
+            "answer": "Yes, we manage ad spend on Facebook, Instagram, LinkedIn, and TikTok."
+        },
+        {
+            "question": "Do you create the content or do I?",
+            "answer": "We can handle everything from strategy and copywriting to photography and design."
+        },
+        {
+            "question": "How do you handle negative comments?",
+            "answer": "We have a pre-approved crisis management plan to handle interactions professionally."
+        }
+    ],
+    "mobile-marketing": [
+        {
+            "question": "What is SMS marketing?",
+            "answer": "It involves sending promotional or transactional messages directly to customers' phones via text."
+        },
+        {
+            "question": "What is App Store Optimization (ASO)?",
+            "answer": "ASO is like SEO but for mobile apps, helping your app rank higher in store search results."
+        },
+        {
+            "question": "Do you run mobile-only ad campaigns?",
+            "answer": "Yes, we target users specifically on mobile devices through social and search ads."
+        },
+        {
+            "question": "What are Push Notifications?",
+            "answer": "They are clickable messages sent by an app to a user's mobile device to drive engagement."
+        },
+        {
+            "question": "Is mobile marketing effective for local businesses?",
+            "answer": "Yes, location-based targeting allows you to reach customers when they are near your store."
+        },
+        {
+            "question": "How do you track mobile conversions?",
+            "answer": "We use mobile attribution tools to track users from an ad click to an app install or purchase."
+        }
+    ],
+    "content-marketing": [
+        {
+            "question": "Why is content marketing important?",
+            "answer": "It builds trust with your audience and establishes your brand as an industry authority."
+        },
+        {
+            "question": "What types of content do you produce?",
+            "answer": "We create blog posts, whitepapers, case studies, infographics, and videos."
+        },
+        {
+            "question": "Do you write for SEO?",
+            "answer": "Yes, all our content is optimized for specific keywords to drive organic traffic."
+        },
+        {
+            "question": "How do you come up with content ideas?",
+            "answer": "We perform competitor analysis and use search data to see what your audience is asking."
+        },
+        {
+            "question": "Can you manage our company blog?",
+            "answer": "Yes, we offer full blog management including research, writing, and posting."
+        },
+        {
+            "question": "How do you measure content success?",
+            "answer": "We track page views, time spent on page, social shares, and lead conversions."
+        }
+    ],
+    "search-marketing": [
+        {
+            "question": "What is the difference between SEO and SEM?",
+            "answer": "SEO is organic (free) traffic, while SEM involves paid ads (PPC) on search engines."
+        },
+        {
+            "question": "Do you manage Google Ads?",
+            "answer": "Yes, we are certified Google Partners and manage complex search campaigns."
+        },
+        {
+            "question": "What is 'Remarketing'?",
+            "answer": "Remarketing shows ads to people who have already visited your website to bring them back."
+        },
+        {
+            "question": "How do you choose keywords for ads?",
+            "answer": "We look for high-intent keywords that are most likely to lead to a sale or signup."
+        },
+        {
+            "question": "Do you write the ad copy?",
+            "answer": "Yes, we write compelling ad copy and create multiple variations for A/B testing."
+        },
+        {
+            "question": "How do you optimize ad spend?",
+            "answer": "We continuously monitor performance and shift budget toward the highest-performing keywords."
+        }
+    ],
+    "advertising": [
+        {
+            "question": "Do you handle traditional and digital advertising?",
+            "answer": "Yes, we manage both online ads and traditional placements like billboards and magazines."
+        },
+        {
+            "question": "What is programmatic advertising?",
+            "answer": "It is the automated buying of digital ad space in real-time to reach specific audiences."
+        },
+        {
+            "question": "How do you define a target audience?",
+            "answer": "We use demographic data, interests, and online behavior to build precise customer profiles."
+        },
+        {
+            "question": "What is a creative brief?",
+            "answer": "It is a document that outlines the goals, message, and target of an advertising campaign."
+        },
+        {
+            "question": "Do you handle ad production?",
+            "answer": "Yes, we produce all the assets needed, from video commercials to display banners."
+        },
+        {
+            "question": "How do you track offline ad performance?",
+            "answer": "We use unique QR codes, dedicated phone numbers, or custom landing pages."
+        }
+    ],
+    "branding": [
+        {
+            "question": "What is included in a branding package?",
+            "answer": "It includes logo design, color palettes, typography, and a brand voice guide."
+        },
+        {
+            "question": "Can you help rename my company?",
+            "answer": "Yes, we provide naming services including availability checks and linguistic analysis."
+        },
+        {
+            "question": "How do you develop a brand's 'voice'?",
+            "answer": "We analyze your values and target audience to determine how your brand should sound."
+        },
+        {
+            "question": "Why is brand consistency important?",
+            "answer": "Consistency builds recognition and trust, making your brand more memorable to consumers."
+        },
+        {
+            "question": "Do you perform brand audits?",
+            "answer": "Yes, we evaluate your current brand to see where it aligns with your goals and where it fails."
+        },
+        {
+            "question": "How long does a full rebranding take?",
+            "answer": "A comprehensive rebranding project usually takes between 8 and 12 weeks."
+        }
+    ],
+    "creative": [
+        {
+            "question": "What falls under 'Creative' services?",
+            "answer": "This includes copywriting, art direction, concept development, and multimedia design."
+        },
+        {
+            "question": "How do you brainstorm campaign ideas?",
+            "answer": "We use collaborative workshops and market research to develop unique concepts."
+        },
+        {
+            "question": "Can you provide creative direction for our internal team?",
+            "answer": "Yes, we can act as an external Creative Director to guide your staff."
+        },
+        {
+            "question": "Do you handle photoshoot art direction?",
+            "answer": "Yes, we manage the visual style, lighting, and composition for professional shoots."
+        },
+        {
+            "question": "What is storytelling in marketing?",
+            "answer": "It is using narrative to connect your brand's values with your customer's emotions."
+        },
+        {
+            "question": "Can you create high-end presentation decks?",
+            "answer": "Yes, we design professional decks for investor pitches and corporate meetings."
+        }
+    ],
+    "video-production": [
+        {
+            "question": "What types of videos do you produce?",
+            "answer": "We produce corporate films, product explainers, social media ads, and testimonials."
+        },
+        {
+            "question": "Do you handle scriptwriting?",
+            "answer": "Yes, our team writes professional scripts and storyboards for every project."
+        },
+        {
+            "question": "Do you provide voiceover and music?",
+            "answer": "Yes, we handle all post-production including professional VO, music, and sound effects."
+        },
+        {
+            "question": "Can you film at our location?",
+            "answer": "Yes, we have mobile crews that can film on-site or in our professional studio."
+        },
+        {
+            "question": "How long does it take to produce a 60-second video?",
+            "answer": "Typically 2 to 4 weeks from pre-production to final edit."
+        },
+        {
+            "question": "Do you offer drone videography?",
+            "answer": "Yes, we have licensed drone operators for high-quality aerial footage."
+        }
+    ],
+    "public-relations": [
+        {
+            "question": "What is the goal of PR?",
+            "answer": "The goal is to manage your reputation and gain 'earned' media coverage in the press."
+        },
+        {
+            "question": "Do you write and distribute press releases?",
+            "answer": "Yes, we write professional releases and send them to relevant media outlets."
+        },
+        {
+            "question": "How do you handle crisis communication?",
+            "answer": "We develop immediate response strategies to protect your brand during negative events."
+        },
+        {
+            "question": "Can you get us featured in major publications?",
+            "answer": "We leverage our media relationships to pitch stories to top-tier journalists."
+        },
+        {
+            "question": "Do you handle event PR?",
+            "answer": "Yes, we manage media attendance and coverage for product launches and events."
+        },
+        {
+            "question": "How is PR different from advertising?",
+            "answer": "Advertising is paid media; PR is earned media through relationships and storytelling."
+        }
+    ],
+    "media-planning-buying": [
+        {
+            "question": "What is media planning?",
+            "answer": "It is the process of deciding which media platforms to use and when to run ads for maximum impact."
+        },
+        {
+            "question": "How do you negotiate ad rates?",
+            "answer": "We use our agency buying power to get the best possible rates for our clients."
+        },
+        {
+            "question": "What is 'reach' vs 'frequency'?",
+            "answer": "Reach is how many people see the ad; frequency is how many times each person sees it."
+        },
+        {
+            "question": "Do you manage traditional TV and Radio buys?",
+            "answer": "Yes, we handle placements across broadcast, cable, and streaming services."
+        },
+        {
+            "question": "How do you choose which websites to place ads on?",
+            "answer": "We analyze where your target audience spends their time and use data to find high-value sites."
+        },
+        {
+            "question": "What is a 'Media Mix'?",
+            "answer": "It is the combination of different channels (social, TV, search) used in a single campaign."
+        }
+    ],
+    "call-centers": [
+        {
+            "question": "Do you offer 24/7 call support?",
+            "answer": "Yes, we provide round-the-clock inbound and outbound call center services."
+        },
+        {
+            "question": "In what languages do you provide support?",
+            "answer": "We offer multilingual support, including English, Spanish, French, and Mandarin."
+        },
+        {
+            "question": "Can you handle technical support calls?",
+            "answer": "Yes, we train our agents specifically on your product or service technicalities."
+        },
+        {
+            "question": "How do you ensure quality control?",
+            "answer": "We use call recording, live monitoring, and regular performance reviews."
+        },
+        {
+            "question": "What is your typical wait time (ASA)?",
+            "answer": "We aim for an Average Speed of Answer under 30 seconds for all clients."
+        },
+        {
+            "question": "Can you integrate with our CRM?",
+            "answer": "Yes, our systems integrate with Salesforce, HubSpot, Zendesk, and more."
+        }
+    ],
+    "bpo": [
+        {
+            "question": "What is BPO?",
+            "answer": "Business Process Outsourcing involves contracting non-core tasks to an external service provider."
+        },
+        {
+            "question": "What back-office tasks can you handle?",
+            "answer": "We handle data entry, document processing, claims management, and more."
+        },
+        {
+            "question": "Is my data secure with BPO?",
+            "answer": "Yes, we are ISO 27001 certified and follow strict data protection protocols."
+        },
+        {
+            "question": "How can BPO save me money?",
+            "answer": "It reduces overhead costs like office space, equipment, and full-time benefits."
+        },
+        {
+            "question": "Can you scale the team as we grow?",
+            "answer": "Yes, BPO allows you to easily scale up or down based on seasonal demand."
+        },
+        {
+            "question": "Do you provide real-time reporting?",
+            "answer": "Yes, you get access to a dashboard to monitor productivity and KPIs."
+        }
+    ],
+    "accounting": [
+        {
+            "question": "Do you handle small business bookkeeping?",
+            "answer": "Yes, we manage daily transactions, reconciliations, and financial statements."
+        },
+        {
+            "question": "Can you help with tax preparation?",
+            "answer": "Yes, we provide year-end tax planning and filing for corporations and individuals."
+        },
+        {
+            "question": "Do you work with cloud accounting software?",
+            "answer": "We are experts in QuickBooks Online, Xero, FreshBooks, and Sage."
+        },
+        {
+            "question": "Can you manage our payroll?",
+            "answer": "Yes, we handle employee payments, tax withholdings, and compliance."
+        },
+        {
+            "question": "What is a financial audit?",
+            "answer": "It is a formal examination of your accounts to ensure accuracy and compliance."
+        },
+        {
+            "question": "Do you offer CFO advisory services?",
+            "answer": "Yes, we provide high-level financial strategy and cash flow forecasting."
+        }
+    ],
+    "commercial-real-estate": [
+        {
+            "question": "Do you help with office space leasing?",
+            "answer": "Yes, we represent both tenants and landlords in commercial lease negotiations."
+        },
+        {
+            "question": "Can you help me find investment properties?",
+            "answer": "Yes, we identify high-yield commercial assets including retail, industrial, and multi-family."
+        },
+        {
+            "question": "Do you provide property management?",
+            "answer": "Yes, we handle maintenance, tenant relations, and rent collection."
+        },
+        {
+            "question": "What is a 'Cap Rate'?",
+            "answer": "The Capitalization Rate is used to estimate the investor's potential return on a property."
+        },
+        {
+            "question": "Can you assist with zoning and land use?",
+            "answer": "Yes, we work with local authorities to navigate zoning laws and development permits."
+        },
+        {
+            "question": "Do you provide market valuation reports?",
+            "answer": "Yes, we offer detailed appraisals and market analysis for commercial assets."
+        }
+    ],
+    "hr-services": [
+        {
+            "question": "What is included in HR outsourcing?",
+            "answer": "We handle recruitment, payroll, compliance, and employee relations."
+        },
+        {
+            "question": "Can you help us write an employee handbook?",
+            "answer": "Yes, we create custom handbooks that comply with current labor laws."
+        },
+        {
+            "question": "Do you handle conflict resolution?",
+            "answer": "Yes, our HR specialists act as neutral third parties to resolve workplace disputes."
+        },
+        {
+            "question": "Can you assist with recruitment?",
+            "answer": "Yes, we manage the entire process from job posting to final interviews."
+        },
+        {
+            "question": "What is HR compliance?",
+            "answer": "Ensuring your business follows local, state, and federal employment laws."
+        },
+        {
+            "question": "Do you offer employee training programs?",
+            "answer": "Yes, we provide training in DEI, sexual harassment prevention, and leadership."
+        }
+    ],
+    "consulting": [
+        {
+            "question": "What types of business consulting do you offer?",
+            "answer": "We offer strategy, operations, financial, and management consulting."
+        },
+        {
+            "question": "How do you charge for consulting?",
+            "answer": "We offer hourly rates, project-based fees, or monthly retainer options."
+        },
+        {
+            "question": "Can you help my business scale?",
+            "answer": "Yes, we identify bottlenecks and create a roadmap for sustainable growth."
+        },
+        {
+            "question": "Do you perform market research?",
+            "answer": "Yes, we provide in-depth analysis of your industry, competitors, and customers."
+        },
+        {
+            "question": "What is a SWOT analysis?",
+            "answer": "It is a study of your business's Strengths, Weaknesses, Opportunities, and Threats."
+        },
+        {
+            "question": "How long does a typical consulting engagement last?",
+            "answer": "It varies from a 1-day workshop to a multi-year partnership."
+        }
+    ],
+    "it-services": [
+        {
+            "question": "What is included in managed IT services?",
+            "answer": "It includes network monitoring, help desk support, and data backups."
+        },
+        {
+            "question": "Do you provide hardware setup?",
+            "answer": "Yes, we install and configure servers, workstations, and networking equipment."
+        },
+        {
+            "question": "Can you manage our company's email system?",
+            "answer": "Yes, we specialize in Microsoft 365 and Google Workspace management."
+        },
+        {
+            "question": "Do you offer remote IT support?",
+            "answer": "Yes, most issues can be resolved instantly via our secure remote access tools."
+        },
+        {
+            "question": "What is a disaster recovery plan?",
+            "answer": "It is a strategy to restore your IT systems quickly after a fire, flood, or cyberattack."
+        },
+        {
+            "question": "Can you help with office WiFi optimization?",
+            "answer": "Yes, we perform site surveys to ensure 100% WiFi coverage and speed."
+        }
+    ],
+    "cybersecurity": [
+        {
+            "question": "What is a penetration test?",
+            "answer": "It is a simulated cyberattack to find vulnerabilities before real hackers do."
+        },
+        {
+            "question": "Do you offer employee security training?",
+            "answer": "Yes, we train staff to recognize phishing emails and social engineering."
+        },
+        {
+            "question": "How do you protect against ransomware?",
+            "answer": "Through a mix of endpoint protection, immutable backups, and network segmentation."
+        },
+        {
+            "question": "Can you help with GDPR compliance?",
+            "answer": "Yes, we ensure your data handling meets international privacy standards."
+        },
+        {
+            "question": "What is Multi-Factor Authentication (MFA)?",
+            "answer": "It is a security system that requires two forms of ID to access an account."
+        },
+        {
+            "question": "Do you provide 24/7 monitoring?",
+            "answer": "Yes, our Security Operations Center (SOC) monitors your network day and night."
+        }
+    ],
+    "data-analytics": [
+        {
+            "question": "What is Big Data?",
+            "answer": "It refers to extremely large data sets analyzed to reveal patterns and trends."
+        },
+        {
+            "question": "Can you help us visualize our data?",
+            "answer": "Yes, we create custom dashboards using Power BI, Tableau, or Google Looker."
+        },
+        {
+            "question": "What is predictive analytics?",
+            "answer": "Using historical data to make informed predictions about future events."
+        },
+        {
+            "question": "Do you provide data cleaning services?",
+            "answer": "Yes, we organize and format 'messy' data so it can be accurately analyzed."
+        },
+        {
+            "question": "How can data analytics improve my sales?",
+            "answer": "By identifying which products are popular and which marketing channels convert best."
+        },
+        {
+            "question": "Is my data safe during analysis?",
+            "answer": "Yes, we use anonymized data sets and encrypted environments for all analysis."
+        }
+    ],
+    "managed-it-services": [
+        {
+            "question": "What is the benefit of Managed IT over an in-house team?",
+            "answer": "It provides 24/7 coverage and access to a wider range of experts at a lower cost."
+        },
+        {
+            "question": "Do you offer unlimited support?",
+            "answer": "Yes, our flat-rate monthly plans typically include unlimited remote support."
+        },
+        {
+            "question": "How do you handle software updates?",
+            "answer": "We schedule updates after-hours to ensure zero downtime for your business."
+        },
+        {
+            "question": "Can you manage our cloud infrastructure?",
+            "answer": "Yes, we manage AWS, Azure, and Google Cloud environments."
+        },
+        {
+            "question": "What is your response time for emergencies?",
+            "answer": "We guarantee a response within 15 to 30 minutes for critical system failures."
+        },
+        {
+            "question": "Do you provide IT strategy (vCIO)?",
+            "answer": "Yes, we help you plan your technology budget and roadmap for the next 3-5 years."
+        }
+    ],
+    "cloud-consulting": [
+        {
+            "question": "Which cloud provider is best for me?",
+            "answer": "We evaluate AWS, Azure, and Google Cloud based on your specific workload and budget."
+        },
+        {
+            "question": "What is a 'Cloud Migration'?",
+            "answer": "The process of moving your data and applications from local servers to the cloud."
+        },
+        {
+            "question": "Can the cloud save my business money?",
+            "answer": "Yes, by eliminating the need for expensive hardware maintenance and electricity."
+        },
+        {
+            "question": "What is a Hybrid Cloud?",
+            "answer": "A mix of private and public cloud services that allows for data sharing between them."
+        },
+        {
+            "question": "How secure is the cloud?",
+            "answer": "Cloud providers spend billions on security; it is often more secure than on-premise servers."
+        },
+        {
+            "question": "Do you offer cloud cost optimization?",
+            "answer": "Yes, we review your usage to ensure you aren't paying for resources you don't need."
+        }
+    ],
+    "staff-augmentation": [
+        {
+            "question": "What is staff augmentation?",
+            "answer": "It is hiring external experts to temporarily join your existing team for a project."
+        },
+        {
+            "question": "How fast can you provide a specialist?",
+            "answer": "We can typically place a qualified expert within 5 to 10 business days."
+        },
+        {
+            "question": "Do I manage the augmented staff?",
+            "answer": "Yes, they work directly under your management, just like your full-time employees."
+        },
+        {
+            "question": "What skills can I hire for?",
+            "answer": "We provide developers, designers, project managers, and QA testers."
+        },
+        {
+            "question": "What is the minimum contract length?",
+            "answer": "We offer flexible terms, usually starting at 1 to 3 months."
+        },
+        {
+            "question": "Can I eventually hire the augmented staff member permanently?",
+            "answer": "Yes, we offer 'contract-to-hire' options if you find a perfect fit."
+        }
+    ]
+}

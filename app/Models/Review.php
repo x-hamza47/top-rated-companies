@@ -52,4 +52,9 @@ class Review extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+    public function faqs()
+    {
+        return $this->morphMany(Faq::class, 'faqable');
+    }
 }

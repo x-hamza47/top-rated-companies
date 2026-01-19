@@ -1,83 +1,160 @@
-{{-- 
-    <div
-        class="filter-section w-full max-w-[1920px] flex flex-wrap gap-2 md:px-10 md:py-4 lg:px-12 lg:py-6 sm:px-7 sm:py-5 p-4 text-white my-3 text-sm"> --}}
+<form method="GET" action="{{ route('services.companies', ['serviceSlug' => $service->slug]) }}">
+    <div class="filter-section flex flex-wrap gap-2 text-white">
 
-    <div
-        class="filter-section flex flex-wrap gap-2 text-white">
-        <div class="input-wrapper flex items-center gap-2 outline-2 outline-lime-600 p-2 rounded-md">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"
+        {{-- LOCATION  --}}
+        <div class="input-wrapper focus-within:border-lime-600 flex text-sm items-center gap-2 border border-gray-800/30 p-2 rounded-full">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"
                 viewBox="0 0 24 24">
-                <path class="fill-lime-600"
+                <path class="fill-gray-600/50"
                     d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm1.476 14.955c.988-.405 1.757-1.211 2.116-2.216l2.408-6.739-6.672 2.387c-1.006.36-1.811 1.131-2.216 2.119l-3.065 7.494 7.429-3.045zm-.122-4.286c.551.551.551 1.446 0 1.996-.551.551-1.445.551-1.996 0-.551-.55-.551-1.445 0-1.996.551-.551 1.445-.551 1.996 0z" />
             </svg>
-
-            <input type="text" placeholder="Location"
-                class="placeholder:text-gray-400 text-gray-950 outline-0 border-0 outline-lime-400">
+            <input type="text" name="location" placeholder="Location" value="{{ request('location') }}"
+                class="placeholder:text-gray-400 text-gray-800 focus outline-0 border-0 ">
         </div>
-        <div class="button-wrapper">
-            <button
-                class="bg-lime-800 rounded-md flex justify-between items-center gap-2 px-2 py-3 hover:bg-lime-600 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
-                    <path fill="white"
-                        d="M24 13.616v-3.232l-2.869-1.02c-.198-.687-.472-1.342-.811-1.955l1.308-2.751-2.285-2.285-2.751 1.307c-.613-.339-1.269-.613-1.955-.811l-1.021-2.869h-3.232l-1.021 2.869c-.686.198-1.342.471-1.955.811l-2.751-1.308-2.285 2.285 1.308 2.752c-.339.613-.614 1.268-.811 1.955l-2.869 1.02v3.232l2.869 1.02c.197.687.472 1.342.811 1.955l-1.308 2.751 2.285 2.286 2.751-1.308c.613.339 1.269.613 1.955.811l1.021 2.869h3.232l1.021-2.869c.687-.198 1.342-.472 1.955-.811l2.751 1.308 2.285-2.286-1.308-2.751c.339-.613.613-1.268.811-1.955l2.869-1.02zm-12 2.384c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z" />
-                </svg>
-                Services
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24">
-                    <path fill="white" d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                </svg>
 
+       {{-- SERVICES   --}}
+        <div class="relative filter-item">
+            <button type="button" class="filter-btn">Services
+              <i class="fa-solid fa-chevron-down text-xs ml-1 text-gray-800/70"></i>
             </button>
-        </div>
-        <div class="button-wrapper">
-            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
-                    <path fill="white"
-                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 16.947v1.053h-1v-.998c-1.035-.018-2.106-.265-3-.727l.455-1.644c.956.371 2.229.765 3.225.54 1.149-.26 1.384-1.442.114-2.011-.931-.434-3.778-.805-3.778-3.243 0-1.363 1.039-2.583 2.984-2.85v-1.067h1v1.018c.724.019 1.536.145 2.442.42l-.362 1.647c-.768-.27-1.617-.515-2.443-.465-1.489.087-1.62 1.376-.581 1.916 1.712.805 3.944 1.402 3.944 3.547.002 1.718-1.343 2.632-3 2.864z" />
-                </svg>
-                Budget
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24">
-                    <path fill="white" d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                </svg>
 
-            </button>
+            <div
+                class="filter-dropdown hidden absolute top-full left-0 mt-2 bg-white text-gray-600 rounded-md shadow-lg py-2 z-50">
+                <div class="px-3">
+                    <input type="text" placeholder="Search services"
+                        class="service-search px-3 py-1 focus:border-lime-700 outline-none w-full border border-gray-500/50 rounded mb-2 ">
+                </div>
+                <div class="max-h-60 overflow-y-auto py-1 [&>label]:px-3 ">
+                    @foreach ($navCategories as $category)
+                        @foreach ($category->services as $service)
+                            <label
+                                class="flex gap-x-5 mb-1 service-option text-nowrap hover:bg-lime-600/20 cursor-pointer mt-2"
+                                data-label="{{ $service->name }}">
+                                <input type="checkbox" name="services[]" value="{{ $service->name }}"
+                                    class="filter-checkbox accent-lime-600"
+                                    {{ in_array($service->name, request()->get('services', [])) ? 'checked' : '' }}>
+                                <span>{{ $service->name }}</span>
+                                {{-- <span class="text-gray-500">({{ $service->count ?? 0 }})</span> --}}
+                            </label>
+                        @endforeach
+                    @endforeach
+                </div>
+            </div>
         </div>
-        <div class="button-wrapper">
-            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
-                    <path fill="white"
-                        d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7 14h-8v-9h2v7h6v2z" />
-                </svg>
-                Hourly Rates
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24">
-                    <path fill="white" d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                </svg>
 
+         {{-- BUDGET  --}}
+        <div class="relative filter-item">
+            <button type="button" class="filter-btn">Budget
+                <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
             </button>
+            <div
+                class="filter-dropdown hidden absolute top-full left-0 mt-2 w-48 bg-white  rounded-md shadow-lg p-2 z-50 text-gray-600">
+                @php
+                    $budgets = ['50k' => 'Under $50k', '100k' => '$50k - $100k', '100k+' => '$100k+'];
+                @endphp
+                @foreach ($budgets as $val => $label)
+                    <label class="flex justify-between items-center mb-1">
+                        <input type="radio" name="budget" value="{{ $val }}" class="filter-radio ml-2"
+                            {{ request('budget') == $val ? 'checked' : '' }}>
+                        <span>{{ $label }}</span>
+                    </label>
+                @endforeach
+            </div>
         </div>
-        <div class="button-wrapper">
-            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
-                    <path fill="white"
-                        d="M13 2h2v2h1v19h1v-15l6 3v12h1v1h-24v-1h1v-11h7v11h1v-19h1v-2h2v-2h1v2zm8 21v-2h-2v2h2zm-15 0v-2h-3v2h3zm8 0v-2h-3v2h3zm-2-4v-13h-1v13h1zm9 0v-1h-2v1h2zm-18 0v-2h-1v2h1zm4 0v-2h-1v2h1zm-2 0v-2h-1v2h1zm9 0v-13h-1v13h1zm7-2v-1h-2v1h2zm-18-1v-2h-1v2h1zm2 0v-2h-1v2h1zm2 0v-2h-1v2h1zm14-1v-1h-2v1h2zm0-2.139v-1h-2v1h2z" />
-                </svg>
-                Industry
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24">
-                    <path fill="white" d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                </svg>
 
+      {{-- HOURLY RATES --}}
+        <div class="relative filter-item">
+            <button type="button" class="filter-btn">Hourly Rates
+              <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
             </button>
+            <div
+                class="filter-dropdown hidden absolute top-full left-0 mt-2 w-36 font-semibold bg-white text-gray-600 rounded-md shadow-lg text-sm py-2 z-50">
+                @php
+                    $hourlies = [ '<25' => '< $25', '20-50' => '$20 - $50', '50-99' => '$50 - $99', '100-149' => '$100 - $149', '150-199' => '$150 - $199', '200-300' => '$200 - $300', '300' => '$300'];
+                @endphp
+                @foreach ($hourlies as $val => $label)
+                    <label class="flex justify-between items-center mb-1 px-4 py-1 cursor-pointer">
+                        <input type="radio" name="hourly" value="{{ $val }}" class="filter-radio ml-2 text-gray-600"
+                            {{ request('hourly') == $val ? 'checked' : '' }}>
+                        <span>{{ $label }}</span>
+                    </label>
+                @endforeach
+            </div>
         </div>
-        <div class="button-wrapper">
-            <button class="bg-lime-800 rounded-md flex justify-between items-center gap-2 p-3 hover:bg-lime-600 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
-                    <path
-                        d="M22.906 2.841c1.104-2.412-7.833-2.841-10.907-2.841-2.934 0-12.01.429-10.906 2.841.508 1.11 8.907 12.916 8.907 12.916v5.246l4 2.997v-8.243s8.398-11.806 8.906-12.916zm-10.901-.902c4.243 0 8.144.575 8.144 1.226s-3.9 1.18-8.144 1.18-8.042-.528-8.042-1.18 3.799-1.226 8.042-1.226z" />
-                </svg>
-                Filters
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24">
-                    <path fill="white" d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-                </svg>
+{{-- 
+        <div class="relative filter-item">
+            <button type="button" class="filter-btn">Industry
+              <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+            </button>
+            <div
+                class="filter-dropdown hidden absolute top-full left-0 mt-2 w-56 bg-white text-black rounded-md shadow-lg p-2 z-50">
+                @php $industries = ['IT', 'Finance', 'Design']; @endphp
+                @foreach ($industries as $industry)
+                    <label class="flex justify-between items-center mb-1 industry-option"
+                        data-label="{{ $industry }}">
+                        <span>{{ $industry }}</span>
+                        <input type="checkbox" name="industries[]" value="{{ $industry }}"
+                            class="filter-checkbox ml-2"
+                            {{ in_array($industry, request()->get('industries', [])) ? 'checked' : '' }}>
+                    </label>
+                @endforeach
+            </div>
+        </div> --}}
 
-            </button>
-        </div>
+        <button type="submit" class="bg-lime-800 text-sm px-4 py-2 rounded-md hover:bg-lime-600 text-white">Apply
+            Filters</button>
     </div>
+
+    {{-- SELECTED FILTERS CHIPS  --}}
+    <div id="selected-filters" class="inline-flex flex-wrap gap-2 mt-4">
+        @php
+            $allChips = [];
+            if (request()->get('services')) {
+                $allChips = array_merge(
+                    $allChips,
+                    array_map(
+                        fn($v) => ['name' => 'services', 'value' => $v, 'label' => $v],
+                        request()->get('services'),
+                    ),
+                );
+            }
+            if (request()->get('budget')) {
+                $allChips[] = ['name' => 'budget', 'value' => request('budget'), 'label' => request('budget')];
+            }
+            if (request()->get('hourly')) {
+                $allChips[] = ['name' => 'hourly', 'value' => request('hourly'), 'label' => request('hourly')];
+            }
+            if (request()->get('industries')) {
+                $allChips = array_merge(
+                    $allChips,
+                    array_map(
+                        fn($v) => ['name' => 'industries', 'value' => $v, 'label' => $v],
+                        request()->get('industries'),
+                    ),
+                );
+            }
+        @endphp
+
+        @foreach ($allChips as $index => $chip)
+            <span
+                class="filter-chip text-lime-700 text-xs font-bold border-2 border-lime-800 px-3 py-1 rounded-md flex items-center gap-2 @if ($index >= 5) hidden extra-chip @endif">
+                {{ $chip['label'] }}
+                <span class="remove-chip cursor-pointer text-lime-700 font-bold" data-name="{{ $chip['name'] }}"
+                    data-value="{{ $chip['value'] }}">&times;</span>
+            </span>
+        @endforeach
+
+        @if (count($allChips) > 5)
+            <span id="toggle-chips" class="cursor-pointer text-lime-500 ml-2">+{{ count($allChips) - 5 }} more</span>
+        @endif
+    </div>
+
+    @if (request()->filled('services') ||
+            request()->filled('budget') ||
+            request()->filled('hourly') ||
+            request()->filled('industries') ||
+            request()->filled('location'))
+        <a href="{{ url()->current() }}"
+            class="text-lime-900 text-sm underline mx-2 inline">Clear All</a>
+    @endif
+</form>

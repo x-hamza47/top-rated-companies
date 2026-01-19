@@ -16,7 +16,7 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @stack('styles')
-    <style>
+    {{-- <style>
         body.loading {
             overflow: hidden;
         }
@@ -229,7 +229,7 @@
                 transform: translate(100%, 100%);
             }
         }
-    </style>
+    </style> --}}
 </head>
 
 <body class="flex flex-col items-center">
@@ -237,7 +237,7 @@
     @include('shared.header')
     @yield('content')
     @include('shared.footer')
-    <div id="loader">
+    {{-- <div id="loader">
 
         <!-- From Uiverse.io by Nawsome -->
         <div class="boxes">
@@ -266,18 +266,18 @@
                 <div></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </body>
 
 
-<script>
+{{-- <script>
 document.body.classList.add("loading");
 
 window.addEventListener("load", function() {
     document.getElementById("loader").style.display = "none";
     document.body.classList.remove("loading");
 });
-</script>
+</script> --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @stack('scripts')
 {{-- ! Page Js --}}

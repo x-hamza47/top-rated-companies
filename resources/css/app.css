@@ -40,6 +40,10 @@
     }
 }
 
+.ready-section {
+    background: linear-gradient(45deg, #0b0f2a, #034b41, #055724);
+}
+
 .mouse,
 .mouse-trail {
     transition: 0s;

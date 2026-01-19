@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->string('min_project_size')->nullable();
-            $table->decimal('hourly_rate_min', 8, 2)->nullable();
-            $table->decimal('hourly_rate_max', 8, 2)->nullable();
-            $table->integer('employees_min')->nullable();
-            $table->integer('employees_max')->nullable();
+            $table->string('hourly_rate')->nullable();
+            $table->string('employees_range')->nullable();
+            $table->boolean('is_freelancer')->default(false);
             $table->string('locations')->nullable();
             $table->year('founded')->nullable();
             $table->json('languages')->nullable();
