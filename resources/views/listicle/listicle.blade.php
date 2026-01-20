@@ -65,11 +65,12 @@
 
                     </div>
                     {{-- Info: Company Details --}}
+                    {{-- <div
+                        class=""> --}}
+                    {{-- ! Column 1 --}}
                     <div
-                        class="company-detail grid lg:grid-cols-[.28fr_.5fr_1fr] grid-cols-1 gap-x-7 gap-y-7  mt-5 text-sm md:text-base md:px-0">
-                        {{-- ! Column 1 --}}
-                        <div class="grid lg:grid-cols-1 grid-cols-2 gap-y-5 gap-x-3 ">
-                            {{-- <div class="flex md:flex-col justify-evenly gap-7"> --}}
+                        class="company-detail grid lg:grid-cols-[.28fr_.5fr_1fr] grid-cols-1 gap-x-7 gap-y-7 text-sm md:text-base md:px-0 mt-5">
+                        <div class="flex flex-col gap-4 text-sm flex-1 lg:ml-5">
                             <span class="flex items-center gap-2">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                     fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
@@ -79,31 +80,20 @@
                                 <p class="text-nowrap text-sm">{{ $company->details->min_project_size }}+</p>
                             </span>
                             <span class="flex items-center gap-2 ">
-                                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                {{-- <i class="fa-regular fa-clock text-xl"></i> --}}
+                                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd"
+                                    clip-rule="evenodd">
                                     <path
                                         d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 11h6v1h-7v-9h1v8z" />
                                 </svg>
-                                <p class="text-nowrap ">{{ $company->details->hourly_rate }}</p>
+                                <p class="text-nowrap ">${{ str_replace('-', ' - $', $company->details->hourly_rate) }}
+                                    / hr</p>
                             </span>
-                            {{-- </div> --}}
-                            {{-- <div class="flex md:flex-col justify-evenly gap-7"> --}}
-                            {{-- <span class="flex items-center gap-2">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
-                                    <path
-                                        d="M10.119 16.064c2.293-.53 4.427-.994 3.394-2.946-3.147-5.941-.835-9.118 2.488-9.118 3.388 0 5.643 3.299 2.488 9.119-1.065 1.964 1.149 2.427 3.393 2.946 1.985.458 2.118 1.428 2.118 3.107l-.003.828h-1.329c0-2.089.083-2.367-1.226-2.669-1.901-.438-3.695-.852-4.351-2.304-.239-.53-.395-1.402.226-2.543 1.372-2.532 1.719-4.726.949-6.017-.902-1.517-3.617-1.509-4.512-.022-.768 1.273-.426 3.479.936 6.05.607 1.146.447 2.016.206 2.543-.66 1.445-2.472 1.863-4.39 2.305-1.252.29-1.172.588-1.172 2.657h-1.331c0-2.196-.176-3.406 2.116-3.936zm-10.117 3.936h1.329c0-1.918-.186-1.385 1.824-1.973 1.014-.295 1.91-.723 2.316-1.612.212-.463.355-1.22-.162-2.197-.952-1.798-1.219-3.374-.712-4.215.547-.909 2.27-.908 2.819.015.935 1.567-.793 3.982-1.02 4.982h1.396c.44-1 1.206-2.208 1.206-3.9 0-2.01-1.312-3.1-2.998-3.1-2.493 0-4.227 2.383-1.866 6.839.774 1.464-.826 1.812-2.545 2.209-1.49.345-1.589 1.072-1.589 2.334l.002.618z" />
-                                </svg>
-                                <p class="text-nowrap">
-                                    {{ $company->details->employees }}
-                                </p>
-                            </span> --}}
+
                             <span class="flex items-center gap-2">
                                 @if ($company->details->is_freelancer)
-                                    <!-- Freelancer icon -->
                                     <i class="fas fa-user-tie text-gray-700"></i>
                                 @else
-                                    <!-- Company / employees icon -->
                                     <i class="fas fa-users text-gray-700"></i>
                                 @endif
 
@@ -119,7 +109,6 @@
                                 </svg>
                                 <p class="">{{ $company->details->locations }}</p>
                             </span>
-                            {{-- </div> --}}
                         </div>
                         {{-- ! Column 2 --}}
                         <div class="flex flex-col gap-4 text-sm flex-1 lg:ml-5">
@@ -159,11 +148,11 @@
                                         <div class="relative inline-block">
                                             <span
                                                 class="text-blue-500 cursor-pointer peer">+{{ $totalServices - $showLimit }}
-                                               {{ Str::plural("service", $remainingServices->count()) }}</span>
+                                                {{ Str::plural('service', $remainingServices->count()) }}</span>
 
 
                                             <div
-                                                class="absolute left-0 bottom-5 mt-1 w-max bg-white border border-gray-300 rounded shadow-lg p-2 pointer-events-none opacity-0 peer-hover:opacity-100 z-10">
+                                                class="absolute left-0 bottom-5 mt-1 bg-white border border-gray-300 rounded shadow-lg p-2 pointer-events-none opacity-0 peer-hover:opacity-100 peer-active:opacity-100 z-10">
                                                 <span class="text-gray-700 text-sm">
                                                     @foreach ($remainingServices as $index => $service)
                                                         {{ $service->name }}@if (!$loop->last)
@@ -179,11 +168,12 @@
                         </div>
                         {{-- ! Column 3 --}}
                         <div class="text-sm ">
-                            <p class="break-word lg:line-clamp-6 md:line-clamp-5 line-clamp-4">{!! $company->about !!}</p>
-
+                            <p class="break-word lg:line-clamp-6 md:line-clamp-5 line-clamp-3">{!! $company->about !!}
+                            </p>
                         </div>
                     </div>
 
+                    {{-- </div> --}}
                 </div>
                 @empty
                     <p>No companies found.</p>

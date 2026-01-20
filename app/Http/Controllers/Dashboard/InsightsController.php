@@ -117,4 +117,21 @@ class InsightsController extends Controller
 
         return redirect()->route('insights.index')->with('success', 'Insight deleted successfully.');
     }
+
+
+    public function showInsights(){
+
+        $insights = Insight::with('service')->latest()->paginate(15);
+
+        return view('insights.insights', compact('insights'));
+    }
+
+    public function showInsight($slug){
+
+        $insight = Insight::with(['user.company', 'service'])
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+        return view('insights.viewInsight', compact('insight'));
+    }
 }

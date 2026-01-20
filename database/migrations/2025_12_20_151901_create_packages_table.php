@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
-            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
-            $table->string('name');
-            $table->decimal('price', 10, 2); 
-            $table->text('description')->nullable();
-            $table->json('features')->nullable(); 
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
+            $table->enum('type', ['small', 'medium', 'large']); 
+            $table->decimal('price', 12, 2);
+            $table->enum('price_type', ['total', 'monthly'])->default('total');
             $table->timestamps();
         });
     }

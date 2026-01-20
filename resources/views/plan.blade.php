@@ -3,7 +3,7 @@
 @push('styles')
     @vite('resources/css/listicle.css')
 @endpush
-
+@section('title', 'Packages')
 @section('content')
     <div class="section md:pt-32 pt-25 pb-20 flex flex-col justify-between text-white gap-y-5 relative">
         {{-- <pre> {{ print_r($company->toArray(), true)  }}</pre> --}}
@@ -56,12 +56,7 @@
         <p class='text-base/7 text-zinc-500  text-center mt-4'>Choose a plan that supports your business growth
             and
             digital goals.</p>
-        {{-- <div class='mt-6 flex bg-zinc-100 p-1.5 rounded-full'>
-            <button id="monthlyBtn" onclick="togglePricing(false)"
-                class='px-4 py-2 rounded-full text-xs cursor-pointer transition text-gray-600'>Monthly</button>
-            <button id="annuallyBtn" onclick="togglePricing(true)"
-                class='px-4 py-2 rounded-full text-xs cursor-pointer transition bg-lime-800 hover:bg-lime-900 text-white'>Annually</button>
-        </div> --}}
+   
         <div class="flex space-x-2 bg-white p-1 border border-gray-500/50 rounded-full text-sm">
             <div class="flex items-center">
                 <input type="radio" name="options" id="html" class="hidden peer" checked>
@@ -201,7 +196,7 @@
 @endsection
 
 
-@push('scripts')
+{{-- @push('scripts')
     <script>
         let isAnnual = true;
 
@@ -244,4 +239,4 @@
             }
         }
     </script>
-@endpush
+@endpush --}}

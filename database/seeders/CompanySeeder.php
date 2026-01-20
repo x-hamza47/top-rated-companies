@@ -132,6 +132,39 @@ class CompanySeeder extends Seeder
                 ]);
             }
 
+
+            // Get services the company actually provides
+            $companyServices = DB::table('company_services')
+                ->where('company_id', $companyId)
+                ->pluck('service_id')
+                ->toArray();
+
+            // Shuffle services so packages are random
+            shuffle($companyServices);
+
+            $totalPackagesAllowed = 5;
+            $packagesCreated = 0;
+
+            foreach ($companyServices as $serviceId) {
+                if ($packagesCreated >= $totalPackagesAllowed) break;
+
+                $typeOptions = ['small', 'medium', 'large'];
+                $type = $faker->randomElement($typeOptions);
+                // Create one package per service
+                DB::table('packages')->insert([
+                    'company_id' => $companyId,
+                    'service_id' => $serviceId,
+                    'type'       => $type, // or you can keep enum small/medium/large
+                    'price'      => rand(1000, 20000),
+                    'price_type' => rand(0, 1) ? 'total' : 'monthly',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                $packagesCreated++;
+            }
+
+
             // -------------------------------
             // * Add Inquiries for Company
             // -------------------------------

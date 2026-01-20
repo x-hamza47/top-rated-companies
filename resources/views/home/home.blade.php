@@ -40,7 +40,9 @@
     @include('home.faqs')
 @endsection
 @push('scripts')
-    @vite(['resources/js/home.js', 'resources/js/faqs.js'])
+
+<script src="{{ asset('assets/js/faqs.js') }}"></script>
+    @vite(['resources/js/home.js'])
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
  

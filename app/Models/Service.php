@@ -28,6 +28,11 @@ class Service extends Model
         return $this->hasMany(Package::class);
     }
 
+    public function insights()
+    {
+        return $this->hasMany(Insight::class);
+    }
+
     public function faqs()
     {
         return $this->morphMany(Faq::class, 'faqable');

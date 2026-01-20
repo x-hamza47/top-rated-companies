@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Package extends Model
 {
-    protected $casts = [
-        'features' => 'array', 
-    ];
 
+    use HasFactory;
+
+    protected $fillable = [
+        'company_id',
+        'service_id',
+        'type',
+        'price',
+        'price_type',
+    ];
     public function company()
     {
         return $this->belongsTo(Company::class);
@@ -18,5 +25,9 @@ class Package extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+    public function features()
+    {
+        return $this->hasMany(PackageFeature::class);
     }
 }

@@ -21,10 +21,13 @@ Route::get('/',[HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
 Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
 Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
-Route::get('/packages-plan', [ProfileController::class, 'packages'])->name('profile.plan');
+Route::get('/packages-plan', [ProfileController::class, 'packages'])->name('packages.plan');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
+Route::get('insights', [InsightsController::class, 'showInsights'])->name('insights.list');
+Route::get('insight/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
+
 
 
 //? Ajax Route
