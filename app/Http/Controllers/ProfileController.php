@@ -16,8 +16,8 @@ class ProfileController extends Controller
             ->firstOrFail();
 
         $reviews = $company->reviews()
-            ->with('service.category') 
-            ->where('status', 'verified') 
+            ->with('service.category')
+            ->where('status', 'verified')
             ->latest()
             ->paginate(5);
 
@@ -49,12 +49,24 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function packages(){
-        $company = Company::with(
-            ['services']
-        )->where('id', 2)->withCount('reviews')
-            ->withAvg('reviews', 'rating')->firstOrFail();
+    public function packages($companySlug)
+    {
+        // $company = Company::with([
+        //     'services' => function ($q) {
+        //         $q->whereHas('packages');
+        //     },
+        //     'packages.features' 
+        // ])
+        // ->where('slug', $companySlug)
+        // ->withCount('reviews')
+        // ->withAvg('reviews', 'rating')
+        // ->firstOrFail();
+
+        $company = Company::with('packages.features')
+        ->where('slug', $companySlug)
+        ->firstOrFail();
+    dd($company);
+
         return view('plan', compact('company'));
     }
 }
-

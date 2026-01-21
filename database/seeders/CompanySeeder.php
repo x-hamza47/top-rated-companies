@@ -132,7 +132,6 @@ class CompanySeeder extends Seeder
                 ]);
             }
 
-
             // Get services the company actually provides
             $companyServices = DB::table('company_services')
                 ->where('company_id', $companyId)
@@ -150,25 +149,78 @@ class CompanySeeder extends Seeder
 
                 $typeOptions = ['small', 'medium', 'large'];
                 $type = $faker->randomElement($typeOptions);
+
                 // Create one package per service
-                DB::table('packages')->insert([
+                $packageId = DB::table('packages')->insertGetId([
                     'company_id' => $companyId,
                     'service_id' => $serviceId,
-                    'type'       => $type, // or you can keep enum small/medium/large
+                    'type'       => $type,
                     'price'      => rand(1000, 20000),
                     'price_type' => rand(0, 1) ? 'total' : 'monthly',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
 
+                // --- Add features for this package ---
+                $featuresList = [
+                    [
+                        'feature' => 'Size of the project',
+                        'type'    => 'text',
+                        'values'  => ['3 months for 5 FTE team', '6+ months for 5 FTE team', '12+ months for 5 FTE team']
+                    ],
+                    [
+                        'feature' => 'Discovery goals identification and discovery phase schedule preparation',
+                        'type'    => 'checkbox',
+                        'values'  => [false, true, true]
+                    ],
+                    [
+                        'feature' => 'Domain or industry research and competitor analysis',
+                        'type'    => 'checkbox',
+                        'values'  => [false, true, true]
+                    ],
+                    [
+                        'feature' => 'Product vision definition',
+                        'type'    => 'checkbox',
+                        'values'  => [true, true, true]
+                    ],
+                    [
+                        'feature' => 'Stakeholder interviews or surveys (per team involved)',
+                        'type'    => 'text',
+                        'values'  => ['up to 24 hours', 'up to 48 hours', 'up to 72 hours']
+                    ],
+                    [
+                        'feature' => 'User research, empathy mapping and persona creation (per team involved)',
+                        'type'    => 'text',
+                        'values'  => ['Feature Not Included', 'up to 16 hours', 'up to 24 hours']
+                    ],
+                ];
+
+                foreach ($featuresList as $feature) {
+                    $index = match ($type) {
+                        'small'  => 0,
+                        'medium' => 1,
+                        'large'  => 2,
+                        default  => 0,
+                    };
+
+                    DB::table('package_features')->insert([
+                        'package_id' => $packageId,
+                        'feature'    => $feature['feature'],
+                        'type'       => $feature['type'],
+                        'value'      => $feature['type'] === 'text' ? $feature['values'][$index] : null,
+                        'included'   => $feature['type'] === 'checkbox' ? $feature['values'][$index] : null,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+
                 $packagesCreated++;
             }
-
 
             // -------------------------------
             // * Add Inquiries for Company
             // -------------------------------
-            $inquiryCount = rand(5, 15); // number of inquiries per company
+            $inquiryCount = rand(5, 15); 
 
             for ($q = 0; $q < $inquiryCount; $q++) {
                 DB::table('inquiries')->insert([

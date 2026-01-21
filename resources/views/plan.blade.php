@@ -6,7 +6,7 @@
 @section('title', 'Packages')
 @section('content')
     <div class="section md:pt-32 pt-25 pb-20 flex flex-col justify-between text-white gap-y-5 relative">
-        {{-- <pre> {{ print_r($company->toArray(), true)  }}</pre> --}}
+        <pre> {{ print_r($company->toArray(), true)  }}</pre>
         <div class="flex items-center gap-x-5 gap-y-6 flex-col md:flex-row">
             <div class="w-40 h-40">
                 <img src="{{ $company->logo }}" alt="{{ $company->name }}" class="w-full h-full object-cover rounded-md">
@@ -56,28 +56,19 @@
         <p class='text-base/7 text-zinc-500  text-center mt-4'>Choose a plan that supports your business growth
             and
             digital goals.</p>
-   
-        <div class="flex space-x-2 bg-white p-1 border border-gray-500/50 rounded-full text-sm">
-            <div class="flex items-center">
-                <input type="radio" name="options" id="html" class="hidden peer" checked>
-                <label for="html"
-                    class="cursor-pointer rounded-full py-2 px-9 text-gray-500 transition-colors duration-200 peer-checked:bg-lime-900 peer-checked:text-white">Software Development</label>
-            </div>
-            <div class="flex items-center">
-                <input type="radio" name="options" id="css" class="hidden peer">
-                <label for="css"
-                    class="cursor-pointer rounded-full py-2 px-9 text-gray-500 transition-colors duration-200 peer-checked:bg-lime-900 peer-checked:text-white">Graphic Designing</label>
-            </div>
-            <div class="flex items-center">
-                <input type="radio" name="options" id="react" class="hidden peer">
-                <label for="react"
-                    class="cursor-pointer rounded-full py-2 px-9 text-gray-500 transition-colors duration-200 peer-checked:bg-lime-900 peer-checked:text-white">Web Development</label>
-            </div>
-            <div class="flex items-center">
-                <input type="radio" name="options" id="cyber" class="hidden peer">
-                <label for="cyber"
-                    class="cursor-pointer rounded-full py-2 px-9 text-gray-500 transition-colors duration-200 peer-checked:bg-lime-900 peer-checked:text-white">Cyber Security</label>
-            </div>
+        <div class="w-4/5 mt-6">
+            <select id="serviceSelect" class="w-full border border-gray-400 rounded-lg px-4 py-3 text-gray-700">
+
+                <option value="">Select a service</option>
+
+                @foreach ($company->services as $service)
+                    @if ($service->package)
+                        <option value="{{ $service->package->id }}">
+                            {{ $service->name }}
+                        </option>
+                    @endif
+                @endforeach
+            </select>
         </div>
         <div class='mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5'>
 

@@ -35,8 +35,8 @@
                         </span>
                     </div>
 
-                    <span class="flex items-center flex-wrap gap-2">
-                        {{-- @foreach ($company->networks->take(5) as $network) --}}
+                    {{-- <span class="flex items-center flex-wrap gap-2">
+     
                         <div class="flex flex-wrap justify-center -space-x-3">
                             <img class="size-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200"
@@ -48,13 +48,12 @@
                                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
                                 alt="userImage3" />
                         </div>
-                        {{-- @endforeach --}}
                         <a href="#">
                             <small>
                                 567+ Network Connections
                             </small>
                         </a>
-                    </span>
+                    </span> --}}
                 </div>
                 <div class="flex gap-2 w-full text-base font-semibold flex-wrap justify-center md:justify-start">
                     <a target="_blank" href="website " class="btn-white flex-1  text-nowrap ">
@@ -63,8 +62,8 @@
                     <a href="javascript:void(0)" id="openInquiryModal" class="btn-outlined flex-1 text-nowrap ">
                         Contact
                     </a>
-                    <a target="_blank" href="" class="btn-outlined flex-1 text-nowrap ">
-                        +Join their Network
+                    <a target="_blank" href="{{ route('profile.packages', $company->slug) }}" class="btn-outlined flex-1 text-nowrap ">
+                        View Packages
                     </a>
                 </div>
             </div>

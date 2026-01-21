@@ -20,20 +20,15 @@ class ServiceController extends Controller
                 'details:id,company_id,min_project_size,hourly_rate,employees_range,is_freelancer,locations,website'
             ])
             ->withCount('reviews')
-            ->withAvg('reviews', 'rating');
+            ->withAvg('reviews', 'rating')
+            ->orderByDesc('verified');
 
-        // ------------------------
-        // Filter by location
-        // ------------------------
         if ($request->filled('location')) {
             $companiesQuery->whereHas('details', function ($q) use ($request) {
                 $q->where('locations', 'LIKE', '%' . trim($request->location) . '%');
             });
         }
 
-        // ------------------------
-        // Filter by budget
-        // ------------------------
         if ($request->filled('budget')) {
             $companiesQuery->whereHas('details', function ($q) use ($request) {
                 switch ($request->budget) {
@@ -50,39 +45,25 @@ class ServiceController extends Controller
             });
         }
 
-        // ------------------------
-        // Filter by hourly rate
-        // ------------------------
         if ($request->filled('hourly')) {
             $companiesQuery->whereHas('details', function ($q) use ($request) {
                 $q->where('hourly_rate', $request->hourly);
             });
         }
 
-        // ------------------------
-        // Filter by industries
-        // ------------------------
         if ($request->filled('industries')) {
             $companiesQuery->whereIn('industry', $request->industries);
         }
 
-        // ------------------------
-        // Filter by services
-        // ------------------------
         if ($request->filled('services')) {
             $companiesQuery->whereHas('services', function ($q) use ($request) {
                 $q->whereIn('name', $request->services);
             });
         }
 
-        // ------------------------
-        // Pagination
-        // ------------------------
         $companies = $companiesQuery->paginate(10)->withQueryString();
 
-        // ------------------------
-        // Related services
-        // ------------------------
+
         $relatedServices = $service->category
             ->services()
             ->where('id', '!=', $service->id)
@@ -91,4 +72,6 @@ class ServiceController extends Controller
 
         return view('listicle.listicle', compact('service', 'companies', 'relatedServices', 'serviceFaqs'));
     }
+
+    
 }

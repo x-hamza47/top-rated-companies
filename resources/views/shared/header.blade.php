@@ -23,8 +23,8 @@
                     @endif
                 </div>
             @endforeach
-            <a href="{{ route('packages.plan') }}" class="nav-link">Pricing & Packages</a>
-            <a href="{{ route('insights.list') }}" class="nav-link">Resources</a>
+            {{-- <a href="{{ route('profile.packages') }}" class="nav-link">Packages</a> --}}
+            <a href="{{ route('insights.list') }}" class="nav-link">Insights</a>
         </nav>
         @auth
             <div class="hidden xl:flex gap-2">
