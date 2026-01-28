@@ -6,7 +6,7 @@
 @section('title', 'Packages')
 @section('content')
     <div class="section md:pt-32 pt-25 pb-20 flex flex-col justify-between text-white gap-y-5 relative">
-        <pre> {{ print_r($company->toArray(), true)  }}</pre>
+        {{-- <pre> {{ print_r($company->toArray(), true) }}</pre> --}}
         <div class="flex items-center gap-x-5 gap-y-6 flex-col md:flex-row">
             <div class="w-40 h-40">
                 <img src="{{ $company->logo }}" alt="{{ $company->name }}" class="w-full h-full object-cover rounded-md">
@@ -51,183 +51,144 @@
         </div>
     </div>
 
-    <section class='flex items-center justify-center flex-col py-10 px-4 bg-white w-full'>
-        <h1 class='font-medium text-4xl md:text-[52px] text-slate-800 text-center'>Flexible Pricing Plans</h1>
-        <p class='text-base/7 text-zinc-500  text-center mt-4'>Choose a plan that supports your business growth
-            and
-            digital goals.</p>
-        <div class="w-4/5 mt-6">
-            <select id="serviceSelect" class="w-full border border-gray-400 rounded-lg px-4 py-3 text-gray-700">
+    <section class="flex items-center justify-center flex-col py-12 px-4 md:px-6 bg-white w-full">
+        <h1 class="font-medium text-4xl md:text-5xl text-slate-800 text-center tracking-tight">
+            Service Packages
+        </h1>
+        <p class="text-lg text-zinc-600 text-center mt-4 max-w-3xl">
+            Explore the service packages offered by this company and choose the plan that best fits your business needs.
+        </p>
 
-                <option value="">Select a service</option>
+        <div class="w-full max-w-2xl mt-8">
+            <label for="serviceSelect" class="block text-sm font-medium text-slate-700 mb-2">
+                Packages we offer:
+            </label>
+            <select id="serviceSelect" data-company-id="{{ $company->id }}"
+                class="w-full border border-zinc-300 rounded-xl px-5 py-3.5 bg-white shadow-sm focus:border-lime-600 focus:ring-lime-500 transition">
+                @php
+                    $selectedServiceId = $service->packageTiers->first()?->service_id;
+                @endphp
 
-                @foreach ($company->services as $service)
-                    @if ($service->package)
-                        <option value="{{ $service->package->id }}">
-                            {{ $service->name }}
-                        </option>
-                    @endif
+                @foreach ($allServices as $s)
+                    <option value="{{ $s->id }}" {{ $s->id == $selectedServiceId ? 'selected' : '' }}>
+
+                        {{ $s->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
-        <div class='mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5'>
 
-            <div
-                class='border border-zinc-200 rounded-2xl p-6 flex flex-col items-start max-w-md transition duration-300 hover:-translate-y-1 hover:border-lime-700'>
-                <h1 class='font-medium text-3xl text-slate-800 mt-1'>Basic</h1>
-                <p class='text-sm text-zinc-500 mt-2'>For startups and small teams.</p>
-                <h1 class='font-medium text-5xl text-slate-800 mt-6'>$<span id="basicPrice">100</span></h1>
-                <button
-                    class='w-full border border-zinc-300/80 px-4 py-3 rounded-full cursor-pointer text-slate-600 text-sm mt-8 bg-lime-100 hover:bg-lime-700/70 hover:text-white'>Get
-                    Started
-                </button>
-                <div class='w-full mt-8 space-y-2.5 pb-4'>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Essential site setup support
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Access to basic UI templates
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Email support for minor updates
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Access to basic components
-                    </p>
-                </div>
-            </div>
+        <div id="loading" class="hidden mt-12 text-center text-zinc-500">
+            <svg class="animate-spin h-8 w-8 mx-auto text-lime-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                </circle>
+                <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+            </svg>
+            <p class="mt-3">Loading packages...</p>
+        </div>
 
-            <div
-                class='bg-lime-100 border border-zinc-200 rounded-2xl p-6 flex flex-col items-start max-w-md transition duration-300 hover:-translate-y-1'>
-                <h1 class='font-medium text-3xl text-slate-800 mt-1'>Pro</h1>
-                <p class='text-sm text-zinc-500 mt-2'>Perfect for growing businesses.</p>
-                <h1 class='font-medium text-5xl text-slate-800 mt-6'>$<span id="proPrice">300</span></h1>
-                <button
-                    class='bg-gray-800 hover:bg-gray-900 text-white w-full px-4 py-3 rounded-full cursor-pointer text-sm mt-8'>Get
-                    Started
-                </button>
-                <div class='w-full mt-8 space-y-2.5 pb-4'>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Custom web page design up to 5 pages
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Access to basic UI templates
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Email support for minor updates
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Access to basic components
-                    </p>
-                </div>
-            </div>
-
-            <div
-                class='border border-zinc-200 rounded-2xl p-6 flex flex-col items-start max-w-md transition duration-300 hover:-translate-y-1'>
-                <h1 class='font-medium text-3xl text-slate-800 mt-1'>Enterprise</h1>
-                <p class='text-sm text-zinc-500 mt-2'>For scaling brands and teams.</p>
-                <h1 class='font-medium text-5xl text-slate-800 mt-6'>$<span id="enterprisePrice">500</span></h1>
-                <button
-                    class='w-full border border-zinc-300/80 px-4 py-3 rounded-full cursor-pointer text-slate-600 text-sm mt-8 bg-lime-100 hover:bg-lime-700/70 hover:text-white'>Get
-                    Started
-                </button>
-                <div class='w-full mt-8 space-y-2.5 pb-4'>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Full website redesign & development
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Advanced analytics insights
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Ongoing dedicated support
-                    </p>
-                    <p class='flex items-center gap-3 text-sm text-zinc-500'>
-                        <span class='size-3 rounded-full bg-zinc-300 flex items-center justify-center shrink-0'>
-                            <span class='size-1.5 rounded-full bg-zinc-800'></span>
-                        </span>
-                        Access to basic UI templates
-                    </p>
-                </div>
-            </div>
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl" id="packageContainer">
+            @foreach ($service->packageTiers as $package)
+                @include('shared.partials.package-card', ['package' => $package])
+            @endforeach
         </div>
     </section>
 @endsection
-
-
-{{-- @push('scripts')
+@push('scripts')
     <script>
-        let isAnnual = true;
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('serviceSelect');
+            const container = document.getElementById('packageContainer');
+            const loading = document.getElementById('loading');
+            const companyId = select.dataset.companyId;
 
-        const pricing = {
-            basic: {
-                monthly: 10,
-                annual: 100
-            },
-            pro: {
-                monthly: 30,
-                annual: 300
-            },
-            enterprise: {
-                monthly: 50,
-                annual: 500
-            }
-        };
+            let debounceTimeout;
 
-        function togglePricing(annual) {
-            isAnnual = annual;
+            const fetchPackages = async () => {
+                const serviceId = select.value;
+                if (!serviceId) return;
 
-            // Update prices
-            document.getElementById('basicPrice').textContent = isAnnual ? pricing.basic.annual : pricing.basic.monthly;
-            document.getElementById('proPrice').textContent = isAnnual ? pricing.pro.annual : pricing.pro.monthly;
-            document.getElementById('enterprisePrice').textContent = isAnnual ? pricing.enterprise.annual : pricing
-                .enterprise.monthly;
+                loading.classList.remove('hidden');
+                container.classList.add('opacity-50');
 
-            // Update button styles
-            const monthlyBtn = document.getElementById('monthlyBtn');
-            const annuallyBtn = document.getElementById('annuallyBtn');
+                try {
+                    const response = await fetch(`/company/${companyId}/service/${serviceId}/packages`, {
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
 
-            if (isAnnual) {
-                monthlyBtn.className = 'px-4 py-2 rounded-full text-xs cursor-pointer transition text-gray-600';
-                annuallyBtn.className =
-                    'px-4 py-2 rounded-full text-xs cursor-pointer transition bg-lime-800 hover:bg-lime-900 text-white';
-            } else {
-                monthlyBtn.className =
-                    'px-4 py-2 rounded-full text-xs cursor-pointer transition bg-lime-800 hover:bg-lime-900 text-white';
-                annuallyBtn.className = 'px-4 py-2 rounded-full text-xs cursor-pointer transition text-gray-600';
-            }
-        }
+                    if (!response.ok) throw new Error('Network response was not ok');
+
+                    const data = await response.json();
+
+                    container.innerHTML = '';
+
+                    if (data.packages.length === 0) {
+                        container.innerHTML = `
+                <div class="col-span-full text-center py-12 text-zinc-500">
+                    No packages available for this service yet.
+                </div>`;
+                        return;
+                    }
+
+                    data.packages.forEach(pkg => {
+                        let featuresHtml = pkg.features.map(f => `
+                <p class="flex items-start gap-3 text-sm text-zinc-600">
+                    <span class="size-5 mt-0.5 flex items-center justify-center shrink-0">
+                        ${f.type === 'checkbox' 
+                            ? (f.included 
+                                ? '<i class="fa-solid fa-check text-lime-600 text-lg"></i>' 
+                                : '<i class="fa-solid fa-xmark text-red-500 text-lg"></i>')
+                            : '<span class="size-2.5 rounded-full bg-lime-600 inline-block"></span>'}
+                    </span>
+                    <span class="${!f.included ? 'line-through text-zinc-400' : ''}">
+                        ${f.feature}
+                        ${f.type === 'text' && f.value ? `<span class="block text-xs text-zinc-400 mt-0.5">${f.value}</span>` : ''}
+                    </span>
+                </p>`).join('');
+
+                        container.innerHTML += `
+                <div class="border border-zinc-200 rounded-2xl p-7 flex flex-col bg-white shadow-sm hover:shadow-md hover:border-lime-600 transition-all duration-300">
+                    <h3 class="font-semibold text-2xl md:text-3xl text-slate-900 capitalize">${pkg.type}</h3>
+                    <p class="text-sm text-zinc-500 mt-1">${pkg.service.name}</p>
+                    
+                    <div class="mt-6 flex items-baseline">
+                        <span class="text-5xl font-bold text-slate-900">$${Number(pkg.price).toLocaleString()}</span>
+                        <span class="ml-2 text-lg text-zinc-500">/${pkg.price_type}</span>
+                    </div>
+
+                    <button class="mt-8 w-full py-3.5 px-6 border border-lime-600 text-lime-700 font-medium rounded-xl hover:bg-lime-600 hover:text-white transition duration-200">
+                        Get Started
+                    </button>
+
+                    <div class="mt-8 space-y-3">
+                        ${featuresHtml}
+                    </div>
+                </div>`;
+                    });
+                } catch (err) {
+                    console.error('Error fetching packages:', err);
+                    container.innerHTML = `
+            <div class="col-span-full text-center py-12 text-red-600">
+                Failed to load packages. Please try again.
+            </div>`;
+                } finally {
+                    loading.classList.add('hidden');
+                    container.classList.remove('opacity-50');
+                }
+            };
+
+
+            select.addEventListener('change', () => {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(() => {
+                    fetchPackages();
+                }, 2000);
+            });
+        });
     </script>
-@endpush --}}
+@endpush

@@ -19,7 +19,7 @@ class CompanyController extends Controller
     public function index()
     { // ! Companies with specific Columns
         $companies = Company::with([
-            'details:id,company_id,hourly_rate_min,hourly_rate_max,employees_min,employees_max,locations',
+            'details:id,company_id,hourly_rate,employees_range,is_freelancer,locations',
             'services:id,name'
         ])
             ->select('id', 'logo', 'verified', 'name', 'tagline', 'created_at')

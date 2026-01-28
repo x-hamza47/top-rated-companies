@@ -17,7 +17,7 @@ use App\Http\Controllers\Auth\Admin\AdminAuthController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\CompanyOwner;
 
-Route::get('/',[HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
 Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
 Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
@@ -28,13 +28,14 @@ Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.
 Route::get('insights', [InsightsController::class, 'showInsights'])->name('insights.list');
 Route::get('insight/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
 
+Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
 
 
 //? Ajax Route
 Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
 
-Route::get('/login',[AuthController::class, 'index'])->name('login');
-Route::get('/register',[AuthController::class, 'registerPage'])->name('register.show');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/register', [AuthController::class, 'registerPage'])->name('register.show');
 
 //! Admin Authentication
 Route::get('/admin-login', [AdminAuthController::class, 'index'])->name('admin.login.index');
@@ -42,12 +43,26 @@ Route::post('/admin-login', [AdminAuthController::class, 'login'])->name('admin.
 Route::get('/admin-logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 // !Others Authentication
-Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
-Route::post('/login',[AuthController::class, 'login'])->name('auth.login');
-Route::post('/register',[AuthController::class, 'register'])->name('auth.register');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login')->middleware("throttle:5,1");
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+    ->middleware('throttle:1,2')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
+    ->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->name('password.update');
+
 
 // Info: Dashboard Routes
-Route::prefix('dashboard')->middleware(['auth'])->group(function(){
+Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get("/", [DashboardController::class, 'index'])->name('dashboard.index');
 
     // ? Contact Routes
@@ -81,7 +96,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function(){
 
     // ? Profile Routes
     Route::get("/user-profile", [UserController::class, 'index'])->name('user.index');
-    Route::put("/change-password",[UserController::class, 'changePassword'])->name('user.change.password');
+    Route::put("/change-password", [UserController::class, 'changePassword'])->name('user.change.password');
     Route::post('/user-profile/image', [UserController::class, 'uploadProfile'])->name('user.profile.image.update');
     Route::put('/user-profile/update', [UserController::class, 'update'])->name('user.profile.update');
 });
@@ -89,7 +104,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function(){
 
 
 // Hack: Generate Slug
-Route::get('/getSlug', function(Request $request){
+Route::get('/getSlug', function (Request $request) {
     $slug = '';
     if (!empty($request->name)) {
         $slug = Str::slug($request->name);

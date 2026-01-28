@@ -43,9 +43,9 @@
                     </div>
                 </div>
                 <div class="remember-forgot flex justify-between">
-                    <label><input type="checkbox" name="" id="" class="accent-(--secondary)"> Remember
+                    <label><input type="checkbox" name="remember" id="" class="accent-(--secondary)"> Remember
                         me</label>
-                    <a href="#" class="hover:underline font-normal text-blue-500">Forgot password?</a>
+                    <a href="{{ route('password.request') }}" class="hover:underline font-normal text-blue-500">Forgot password?</a>
                 </div>
 
                 <button type="submit"

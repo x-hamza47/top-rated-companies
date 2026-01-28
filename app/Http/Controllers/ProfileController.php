@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -51,22 +52,63 @@ class ProfileController extends Controller
 
     public function packages($companySlug)
     {
-        // $company = Company::with([
-        //     'services' => function ($q) {
-        //         $q->whereHas('packages');
-        //     },
-        //     'packages.features' 
-        // ])
-        // ->where('slug', $companySlug)
-        // ->withCount('reviews')
-        // ->withAvg('reviews', 'rating')
-        // ->firstOrFail();
+        $company = Company::withCount('reviews')
+            ->withAvg('reviews', 'rating')
+            ->where('slug', $companySlug)
+            ->firstOrFail();
 
-        $company = Company::with('packages.features')
-        ->where('slug', $companySlug)
-        ->firstOrFail();
-    dd($company);
+        // Pick one random service that has packages
+        $service = Service::whereHas('packages', function ($q) use ($company) {
+            $q->where('company_id', $company->id);
+        })
+            ->inRandomOrder()
+            ->first();
 
-        return view('plan', compact('company'));
+        if ($service) {
+            // Fetch all tiers for this service
+            $service->packageTiers = $service->packages()
+                ->where('company_id', $company->id)
+                ->orderByRaw("FIELD(type,'small','medium','large')")
+                ->with('features')
+                ->get();
+        }
+
+        $allServices = Service::whereHas('packages', function ($q) use ($company) {
+            $q->where('company_id', $company->id);
+        })->get();
+        return view('plan', compact('company', 'service', 'allServices'));
+    }
+
+
+    public function getServicePackages(Company $company, Service $service)
+    {
+        if (!$company->services()->where('services.id', $service->id)->exists()) {
+            abort(403);
+        }
+
+        $packages = $service->packages()
+            ->where('company_id', $company->id)
+            ->with(['features', 'service'])
+            ->get();
+
+        return response()->json([
+            'packages' => $packages->map(function ($pkg) {
+                return [
+                    'id'          => $pkg->id,
+                    'type'        => $pkg->type,
+                    'price'       => $pkg->price,
+                    'price_type'  => $pkg->price_type,
+                    'service'     => ['name' => $pkg->service->name],
+                    'features'    => $pkg->features->map(function ($f) {
+                        return [
+                            'feature'   => $f->feature,
+                            'type'      => $f->type,
+                            'value'     => $f->value,
+                            'included'  => $f->included ?? true, // adjust as per your model
+                        ];
+                    })->toArray(),
+                ];
+            })->toArray(),
+        ]);
     }
 }

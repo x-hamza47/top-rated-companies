@@ -22,7 +22,7 @@ class CompanySeeder extends Seeder
 
         $createdCompanyIds = [];
 
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 100; $i++) {
 
             // -------------------------------
             // * Create User first
@@ -132,89 +132,92 @@ class CompanySeeder extends Seeder
                 ]);
             }
 
-            // Get services the company actually provides
+            // After creating company_services ...
+
             $companyServices = DB::table('company_services')
                 ->where('company_id', $companyId)
                 ->pluck('service_id')
                 ->toArray();
 
-            // Shuffle services so packages are random
             shuffle($companyServices);
 
-            $totalPackagesAllowed = 5;
-            $packagesCreated = 0;
+            $maxServicesWithPackages = 5;           // ← this gives max 15 package rows
+            $servicesWithPackages = array_slice($companyServices, 0, $maxServicesWithPackages);
 
-            foreach ($companyServices as $serviceId) {
-                if ($packagesCreated >= $totalPackagesAllowed) break;
+            $packageTypes = ['small', 'medium', 'large'];
 
-                $typeOptions = ['small', 'medium', 'large'];
-                $type = $faker->randomElement($typeOptions);
+            foreach ($servicesWithPackages as $serviceId) {
 
-                // Create one package per service
-                $packageId = DB::table('packages')->insertGetId([
-                    'company_id' => $companyId,
-                    'service_id' => $serviceId,
-                    'type'       => $type,
-                    'price'      => rand(1000, 20000),
-                    'price_type' => rand(0, 1) ? 'total' : 'monthly',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+                foreach ($packageTypes as $type) {
 
-                // --- Add features for this package ---
-                $featuresList = [
-                    [
-                        'feature' => 'Size of the project',
-                        'type'    => 'text',
-                        'values'  => ['3 months for 5 FTE team', '6+ months for 5 FTE team', '12+ months for 5 FTE team']
-                    ],
-                    [
-                        'feature' => 'Discovery goals identification and discovery phase schedule preparation',
-                        'type'    => 'checkbox',
-                        'values'  => [false, true, true]
-                    ],
-                    [
-                        'feature' => 'Domain or industry research and competitor analysis',
-                        'type'    => 'checkbox',
-                        'values'  => [false, true, true]
-                    ],
-                    [
-                        'feature' => 'Product vision definition',
-                        'type'    => 'checkbox',
-                        'values'  => [true, true, true]
-                    ],
-                    [
-                        'feature' => 'Stakeholder interviews or surveys (per team involved)',
-                        'type'    => 'text',
-                        'values'  => ['up to 24 hours', 'up to 48 hours', 'up to 72 hours']
-                    ],
-                    [
-                        'feature' => 'User research, empathy mapping and persona creation (per team involved)',
-                        'type'    => 'text',
-                        'values'  => ['Feature Not Included', 'up to 16 hours', 'up to 24 hours']
-                    ],
-                ];
+                    $basePrice = rand(800, 12000);
+                    $priceMultipliers = ['small' => 1, 'medium' => 1.6, 'large' => 2.4];
 
-                foreach ($featuresList as $feature) {
-                    $index = match ($type) {
-                        'small'  => 0,
-                        'medium' => 1,
-                        'large'  => 2,
-                        default  => 0,
-                    };
-
-                    DB::table('package_features')->insert([
-                        'package_id' => $packageId,
-                        'feature'    => $feature['feature'],
-                        'type'       => $feature['type'],
-                        'value'      => $feature['type'] === 'text' ? $feature['values'][$index] : null,
-                        'included'   => $feature['type'] === 'checkbox' ? $feature['values'][$index] : null,
-                        'created_at' => now(),
-                        'updated_at' => now(),
+                    $packageId = DB::table('packages')->insertGetId([
+                        'company_id'  => $companyId,
+                        'service_id'  => $serviceId,
+                        'type'        => $type,
+                        'price'       => round($basePrice * $priceMultipliers[$type]),
+                        'price_type'  => $faker->randomElement(['total', 'monthly']),
+                        'created_at'  => now(),
+                        'updated_at'  => now(),
                     ]);
-                }
 
-                $packagesCreated++;
+                    // Your existing features logic — tiered by type
+                    // --- Add features for this package ---
+                    $featuresList = [
+                        [
+                            'feature' => 'Size of the project',
+                            'type'    => 'text',
+                            'values'  => ['3 months for 5 FTE team', '6+ months for 5 FTE team', '12+ months for 5 FTE team']
+                        ],
+                        [
+                            'feature' => 'Discovery goals identification and discovery phase schedule preparation',
+                            'type'    => 'checkbox',
+                            'values'  => [false, true, true]
+                        ],
+                        [
+                            'feature' => 'Domain or industry research and competitor analysis',
+                            'type'    => 'checkbox',
+                            'values'  => [false, true, true]
+                        ],
+                        [
+                            'feature' => 'Product vision definition',
+                            'type'    => 'checkbox',
+                            'values'  => [true, true, true]
+                        ],
+                        [
+                            'feature' => 'Stakeholder interviews or surveys (per team involved)',
+                            'type'    => 'text',
+                            'values'  => ['up to 24 hours', 'up to 48 hours', 'up to 72 hours']
+                        ],
+                        [
+                            'feature' => 'User research, empathy mapping and persona creation (per team involved)',
+                            'type'    => 'text',
+                            'values'  => ['Feature Not Included', 'up to 16 hours', 'up to 24 hours']
+                        ],
+                    ];
+
+
+                    foreach ($featuresList as $feature) {
+                        $index = match ($type) {
+                            'small'  => 0,
+                            'medium' => 1,
+                            'large'  => 2,
+                            default  => 0,
+                        };
+
+                        DB::table('package_features')->insert([
+                            'package_id' => $packageId,
+                            'feature'    => $feature['feature'],
+                            'type'       => $feature['type'],
+                            'value'      => $feature['type'] === 'text' ? $feature['values'][$index] : null,
+                            'included'   => $feature['type'] === 'checkbox' ? $feature['values'][$index] : null,
+                            'created_at'  => now(),
+                            'updated_at'  => now(),
+                        ]);
+                    }
+                }
             }
 
             // -------------------------------
