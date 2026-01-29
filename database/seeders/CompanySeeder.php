@@ -141,7 +141,7 @@ class CompanySeeder extends Seeder
 
             shuffle($companyServices);
 
-            $maxServicesWithPackages = 5;           // ← this gives max 15 package rows
+            $maxServicesWithPackages = 5;           
             $servicesWithPackages = array_slice($companyServices, 0, $maxServicesWithPackages);
 
             $packageTypes = ['small', 'medium', 'large'];

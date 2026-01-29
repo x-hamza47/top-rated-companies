@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Middleware\CompanyOwner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ProfileController;
@@ -14,8 +17,6 @@ use App\Http\Controllers\Dashboard\CompanyController;
 use App\Http\Controllers\Dashboard\InsightsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Auth\Admin\AdminAuthController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Middleware\CompanyOwner;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
@@ -114,3 +115,4 @@ Route::get('/getSlug', function (Request $request) {
         ]);
     }
 })->name('getSlug');
+
