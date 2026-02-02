@@ -121,4 +121,14 @@ class ReviewController extends Controller
 
         return redirect()->back()->with('success', 'Review submitted successfully!');
     }
+    public function destroy(Review $review)
+    {
+        if (Gate::denies('admin') && Gate::denies('company')) {
+            abort(403);
+        }
+
+        $review->delete();
+
+        return redirect()->back()->with('success', 'Review deleted successfully.');
+    }
 }
