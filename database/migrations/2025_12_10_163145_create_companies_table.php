@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name')->unique()->nullable();
             $table->text('about')->nullable();
             $table->string('tagline')->nullable();
+            $table->boolean('is_listed')->default(false);
             $table->timestamps();
         });
     }

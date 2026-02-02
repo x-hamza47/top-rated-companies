@@ -49,6 +49,7 @@ class CompanySeeder extends Seeder
                 'about'      => $faker->paragraph(10),
                 'slug'       => Str::slug($uniqueCompanyNames[$i]),
                 'tagline'    => $faker->sentence,
+                'is_listed'  => $faker->boolean(70),
                 'verified'   => $faker->boolean(30),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -60,24 +61,10 @@ class CompanySeeder extends Seeder
             // * Company Details
             // -------------------------------
 
-            $hourlyRanges = [
-                '<25',
-                '20-50',
-                '50-99',
-                '100-149',
-                '150-199',
-                '200-300',
-                '300+'
-            ];
 
-            $employeeRanges = [
-                '2-9',
-                '10-49',
-                '50-249',
-                '250-999',
-                '1000-9999',
-                '10000+'
-            ];
+            $hourlyRanges   = config('company.hourly_rates');
+            $employeeRanges = config('company.employee_ranges');
+            $projectSizes   = config('company.project_sizes');
 
             $socialLinks = [
                 'linkedin'  => $faker->url,
@@ -85,11 +72,15 @@ class CompanySeeder extends Seeder
                 'instagram' => $faker->url,
                 'twitter'   => $faker->url,
             ];
-            $isFreelancer = $faker->boolean(20); 
-            
+
+            $isFreelancer = $faker->boolean(20);
+
+            // pick a random project size from config
+            $minProjectSize = $faker->randomElement($projectSizes);
+
             DB::table('company_details')->insert([
                 'company_id'       => $companyId,
-                'min_project_size' => round($faker->numberBetween(1000, 10000), -3),
+                'min_project_size' => $minProjectSize,
 
                 'hourly_rate'      => $faker->randomElement($hourlyRanges),
 
@@ -101,12 +92,11 @@ class CompanySeeder extends Seeder
                 'languages'        => json_encode(
                     $faker->randomElements(['English', 'Arabic', 'French', 'Chinese', 'Spanish'], rand(1, 3))
                 ),
-                'website'      => $faker->url,
+                'website'          => $faker->url,
                 'social_links'     => json_encode($socialLinks),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at'       => now(),
+                'updated_at'       => now(),
             ]);
-
             // -------------------------------
             // * Attach Services
             // -------------------------------

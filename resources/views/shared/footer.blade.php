@@ -2,9 +2,9 @@
     <div
         class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
         <div>
-            <img class="w-34 md:w-32" src="{{ asset('images/logo.png') }}" alt="logo" />
+            <img class="w-34 md:w-32" src="{{ asset('images/logo-new.png') }}" alt="logo" />
             {{-- fixme: Change the address before deploying --}}
-            <p class="max-w-[410px] mt-6">1800 Massachusetts Ave, NW Washington, DC 20036</p>
+            <p class="max-w-[410px] mt-6">B Block, 701 7th floor ,Falaknaz Tower, wireless gate Airport,Karach</p>
         </div>
         <div class="flex flex-wrap justify-between w-full md:w-[45%] gap-5">
             <div>

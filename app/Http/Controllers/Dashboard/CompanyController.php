@@ -47,36 +47,48 @@ class CompanyController extends Controller
             }
             $company = Company::findOrFail($id);
         } elseif (Gate::allows('company')) {
-            $company = $id ? Company::where('id', $id)->where('user_id', $user->id)->firstOrFail()
+            $company = $id
+                ? Company::where('id', $id)->where('user_id', $user->id)->firstOrFail()
                 : Company::firstOrCreate(['user_id' => $user->id]);
         } else {
             abort(403, 'You are not authorized.');
         }
-        // ! Company Basic Info
-        $company->update($request->only(['name', 'slug', 'tagline', 'about']));
 
-        // ! Company Details
+        // ! Company Basic Info
+        $company->update($request->only([
+            'name',
+            'slug',
+            'tagline',
+            'about'
+        ]));
+
+        // ! Company Details (FIXED BUCKETS)
         $company->details()->updateOrCreate(
             ['company_id' => $company->id],
-            $request->only([
-                'min_project_size',
-                'hourly_rate_min',
-                'hourly_rate_max',
-                'employees_min',
-                'employees_max',
-                'locations',
-                'founded',
-                'languages',
-                'website',
-                'social_links'
-            ])
+            [
+                'min_project_size' => $request->min_project_size,
+                'hourly_rate'      => $request->hourly_rate,
+                'employees_range'  => $request->is_freelancer ? null : $request->employees_range,
+                'is_freelancer'    => $request->is_freelancer ?? false,
+
+                'locations'        => $request->locations,
+                'founded'          => $request->founded,
+                'languages'        => $request->languages,
+                'website'          => $request->website,
+                'social_links'     => $request->social_links,
+            ]
         );
 
+        // ! Services Sync
         $services = $request->services ?? [];
         $syncData = [];
+
         foreach ($services as $serviceId => $expertise) {
-            $syncData[$serviceId] = ['expertise_percentage' => $expertise];
+            $syncData[$serviceId] = [
+                'expertise_percentage' => $expertise
+            ];
         }
+
         $company->services()->sync($syncData);
 
         return redirect()->back()->with('success', 'Company updated successfully.');
@@ -110,6 +122,7 @@ class CompanyController extends Controller
             return back()->with('success', 'Company logo updated successfully!');
         }
     }
+
 
     public function destroy(Company $company)
     {

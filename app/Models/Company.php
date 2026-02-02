@@ -16,6 +16,7 @@ class Company extends Model
         'slug',
         'about',
         'tagline',
+        'is_listed'
     ];
 
     public function user()

@@ -2,7 +2,7 @@
     <div class="max-w-[1920px] mx-auto flex items-center justify-between h-20 px-4 md:px-10">
 
         <div class="w-20 h-20 shrink-0 mr-7">
-            <img class="w-full h-full object-contain" src="{{ asset('images/logo.png') }}" alt="Logo">
+            <img class="w-full h-full object-contain" src="{{ asset('images/logo-new.png') }}" alt="Logo">
         </div>
 
         <nav class="hidden xl:flex items-center gap-2 text-gray-700 font-medium flex-1">
