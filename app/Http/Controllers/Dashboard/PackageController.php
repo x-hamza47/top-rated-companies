@@ -59,7 +59,7 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $company = Auth::user()->company;
-        
+
         if ($company->packages()->count() >= 5) {
             return redirect()->back()
                 ->withInput()
@@ -202,120 +202,6 @@ class PackageController extends Controller
             ->with('success', 'Package updated successfully!');
     }
 
-    // public function update(Request $request, Package $package)
-    // {
-    //     Gate::authorize('company');
-
-    //     if ($package->company_id !== Auth::user()->company->id) {
-    //         abort(403, 'You do not own this package.');
-    //     }
-
-    //     $validated = $request->validate([
-    //         'service_id'     => ['required', 'exists:services,id'],
-    //         'price_type'     => ['required', Rule::in(['total', 'monthly'])],
-    //         'description'    => ['nullable', 'string', 'max:1000'],
-
-    //         // All prices required
-    //         'small_price'    => ['required', 'numeric', 'min:0'],
-    //         'medium_price'   => ['required', 'numeric', 'min:0'],
-    //         'large_price'    => ['required', 'numeric', 'min:0'],
-
-    //         // Features: at least one required
-    //         'features'                => ['required', 'array', 'min:1'],
-    //         'features.*.feature'      => ['required', 'string', 'max:255'],
-    //         'features.*.type'         => ['required', Rule::in(['text', 'checkbox'])],
-
-    //         // Base rules (nullable) — stricter rules applied via closures below
-    //         'features.*.small_value'  => ['nullable', 'string', 'max:255'],
-    //         'features.*.medium_value' => ['nullable', 'string', 'max:255'],
-    //         'features.*.large_value'  => ['nullable', 'string', 'max:255'],
-
-    //     ], [
-    //         'features.required'       => 'You must add at least one feature.',
-    //         'features.min'            => 'At least one feature is required.',
-    //         'small_price.required'    => 'Small tier price is required.',
-    //         'medium_price.required'   => 'Medium tier price is required.',
-    //         'large_price.required'    => 'Large tier price is required.',
-    //     ]);
-
-    //     // Custom validation: require text values when type = 'text'
-    //     $request->validate([
-    //         'features.*.small_value' => [
-    //             function ($attribute, $value, $fail) use ($request) {
-    //                 $parts = explode('.', $attribute);
-    //                 $index = $parts[1];
-    //                 $type = $request->input("features.{$index}.type");
-
-    //                 if ($type === 'text' && ($value === null || trim((string) $value) === '')) {
-    //                     $fail('Small tier value is required for text-type features.');
-    //                 }
-    //             },
-    //         ],
-    //         'features.*.medium_value' => [
-    //             function ($attribute, $value, $fail) use ($request) {
-    //                 $parts = explode('.', $attribute);
-    //                 $index = $parts[1];
-    //                 $type = $request->input("features.{$index}.type");
-
-    //                 if ($type === 'text' && ($value === null || trim((string) $value) === '')) {
-    //                     $fail('Medium tier value is required for text-type features.');
-    //                 }
-    //             },
-    //         ],
-    //         'features.*.large_value' => [
-    //             function ($attribute, $value, $fail) use ($request) {
-    //                 $parts = explode('.', $attribute);
-    //                 $index = $parts[1];
-    //                 $type = $request->input("features.{$index}.type");
-
-    //                 if ($type === 'text' && ($value === null || trim((string) $value) === '')) {
-    //                     $fail('Large tier value is required for text-type features.');
-    //                 }
-    //             },
-    //         ],
-    //     ]);
-
-    //     DB::transaction(function () use ($request, $package) {
-
-    //         $package->update([
-    //             'service_id'    => $request->service_id,
-    //             'price_type'    => $request->price_type,
-    //             'description'   => $request->description ?? null,
-    //             'small_price'   => $request->small_price,
-    //             'medium_price'  => $request->medium_price,
-    //             'large_price'   => $request->large_price,
-    //         ]);
-
-    //         // Clear old features
-    //         $package->features()->delete();
-
-    //         $featuresData = [];
-
-    //         foreach ($request->features as $featureInput) {
-    //             $type = $featureInput['type'] ?? 'text';
-
-    //             $featuresData[] = [
-    //                 'feature'       => trim($featureInput['feature']),
-    //                 'type'          => $type,
-    //                 'small_value'   => $this->normalizeValue($featureInput['small_value']   ?? null, $type),
-    //                 'medium_value'  => $this->normalizeValue($featureInput['medium_value']  ?? null, $type),
-    //                 'large_value'   => $this->normalizeValue($featureInput['large_value']   ?? null, $type),
-    //                 'created_at'    => now(),
-    //                 'updated_at'    => now(),
-    //             ];
-    //         }
-
-    //         if (!empty($featuresData)) {
-    //             $package->features()->createMany($featuresData);
-    //         }
-    //     });
-
-    //     return redirect()
-    //         ->route('packages.index')
-    //         ->with('success', 'Package updated successfully.');
-    // }
-
-
     public function destroy(Package $package)
     {
         Gate::authorize('company');
@@ -324,7 +210,7 @@ class PackageController extends Controller
             abort(403, 'You do not own this package.');
         }
 
-        $package->delete(); // this performs soft delete
+        $package->delete(); 
 
         return redirect()
             ->route('packages.index')

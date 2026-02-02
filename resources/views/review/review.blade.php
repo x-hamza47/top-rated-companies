@@ -20,10 +20,12 @@
 
 <body>
     <section
-        class="section w-full flex  items-center justify-center gap-4 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
+    class="section w-full flex  items-center justify-center gap-4 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
+    @include('badgeAlert')
         <div class="flex items-center w-full max-w-4xl mx-auto lg:px-12 lg:w-3/5 ">
-            <form class="flex flex-col gap-5" action="{{ route('auth.register') }}" method="post">
+            <form class="flex flex-col gap-5" action="{{ route('reviews.store') }}" method="post">
                 @csrf
+                 <input type="hidden" name="company_slug" value="{{ $company->slug }}">
                 <div>
                     <h1 class="text-xl text-white sm:text-2xl md:text-3xl  font-bold text-center">
                         Write a Review for <span class="text-lime-700">{{ $company->name }}</span>
@@ -351,6 +353,24 @@
         </div>
     </section>
 
-</body>
 
+</body>
+<script>
+
+    document.querySelectorAll('.alert').forEach(function(alert) {
+        setTimeout(() => {
+            alert.classList.add('opacity-0', 'transition', 'duration-500');
+            setTimeout(() => alert.remove(), 1500);
+        }, 4000);
+    });
+
+    // Manual close
+    document.querySelectorAll('.close-alert').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const alert = btn.closest('.alert');
+            alert.classList.add('opacity-0', 'transition', 'duration-500');
+            setTimeout(() => alert.remove(), 500);
+        });
+    });
+</script>
 </html>

@@ -28,7 +28,7 @@
             }
             else {
 
-               $unreadCount = Auth::user()->inquiries()->where('status', 'pending')->count();
+               $unreadCount = Auth::user()->inquiries()->whereNull('read_at')->count();
                 $link = route('company.inquiries.index');
             }
         @endphp

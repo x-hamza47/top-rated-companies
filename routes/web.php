@@ -96,8 +96,12 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     // ? Insight Routes
     Route::resource('/insights', InsightsController::class);
-
+    
+    // ? Packages Routes
     Route::resource('/packages', PackageController::class);
+
+    // ? Review Routes
+    Route::resource('/reviews', ReviewController::class);
 
 
     // ? Profile Routes

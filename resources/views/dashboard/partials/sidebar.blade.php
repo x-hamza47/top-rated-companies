@@ -30,8 +30,7 @@
                     </a>
                 @endcan
                 @can('company')
-                    <a href="{{ route('companies.edit', auth()->user()->company) }}"
-                        class="nav-link">
+                    <a href="{{ route('companies.edit', auth()->user()->company) }}" class="nav-link">
                         <i class="fa-solid fa-building nav-icon"></i>
                         <span class="nav-label">My Company</span>
                     </a>
@@ -65,6 +64,14 @@
                     </a>
                 </li>
             @endcan
+            @canany(['admin', 'company'])
+                <li class="nav-item {{ isActive('reviews.*') }}">
+                    <a href="{{ route('reviews.index') }}" class="nav-link">
+                        <i class="fa-solid fa-star nav-icon"></i>
+                        <span class="nav-label">Reviews</span>
+                    </a>
+                </li>
+            @endcanany
         </ul>
 
         {{-- Info: Secondary Links --}}
