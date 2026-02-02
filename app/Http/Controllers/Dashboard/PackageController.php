@@ -58,6 +58,13 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
+        $company = Auth::user()->company;
+        
+        if ($company->packages()->count() >= 5) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['package_limit' => 'You cannot create more than 5 packages.']);
+        }
         $validated = $request->validate([
             'service_id'   =>  [
                 'required',
@@ -112,19 +119,87 @@ class PackageController extends Controller
     {
         Gate::authorize('company');
 
-        if ($package->company_id !== Auth::user()->company->id) {
-            abort(403, 'You do not own this package.');
-        }
+        $company = Auth::user()->company;
 
-        $services = Auth::user()->company->services()
-            ->select('services.id', 'services.name')
+        abort_if($package->company_id !== $company->id, 403);
+
+        $services = $company->services()
+            ->whereDoesntHave('packages', function ($q) use ($company, $package) {
+                $q->where('company_id', $company->id)
+                    ->where('id', '!=', $package->id);
+            })
             ->orderBy('services.name')
-            ->pluck('services.name', 'services.id')
-            ->toArray();
+            ->pluck('services.name', 'services.id');
 
         $package->load('features');
 
         return view('dashboard.packages.edit', compact('package', 'services'));
+    }
+
+    public function update(Request $request, Package $package)
+    {
+        Gate::authorize('company');
+
+        $company = Auth::user()->company;
+
+        abort_if($package->company_id !== $company->id, 403);
+
+        $validated = $request->validate([
+            'service_id' => [
+                'required',
+                Rule::exists('company_services', 'service_id')
+                    ->where('company_id', $company->id),
+            ],
+            'price_type'   => 'required|in:total,monthly',
+            'description'  => 'nullable|string',
+            'small_price'  => 'required|numeric|min:0',
+            'medium_price' => 'required|numeric|min:0',
+            'large_price'  => 'required|numeric|min:0',
+
+            'features'     => 'required|array|min:1',
+            'features.*.feature'      => 'required|string|max:255',
+            'features.*.type'         => 'required|in:text,checkbox',
+            'features.*.small_value'  => 'required_if:features.*.type,text|nullable|string|max:255',
+            'features.*.medium_value' => 'required_if:features.*.type,text|nullable|string|max:255',
+            'features.*.large_value'  => 'required_if:features.*.type,text|nullable|string|max:255',
+        ], [
+            'features.*.small_value.required_if'  => 'The Small Tier value field is required.',
+            'features.*.medium_value.required_if' => 'The Medium Tier value field is required.',
+            'features.*.large_value.required_if'  => 'The Large Tier value field is required.',
+        ]);
+
+        // Update package
+        $package->update([
+            'service_id'   => $validated['service_id'],
+            'price_type'   => $validated['price_type'],
+            'description'  => $validated['description'] ?? null,
+            'small_price'  => $validated['small_price'],
+            'medium_price' => $validated['medium_price'],
+            'large_price'  => $validated['large_price'],
+        ]);
+
+        // 🔥 Reset features (safe + clean)
+        $package->features()->delete();
+
+        foreach ($validated['features'] as $feature) {
+            $package->features()->create([
+                'feature'      => $feature['feature'],
+                'type'         => $feature['type'],
+                'small_value'  => $feature['type'] === 'checkbox'
+                    ? ($feature['small_value'] ?? 0)
+                    : $feature['small_value'],
+                'medium_value' => $feature['type'] === 'checkbox'
+                    ? ($feature['medium_value'] ?? 0)
+                    : $feature['medium_value'],
+                'large_value'  => $feature['type'] === 'checkbox'
+                    ? ($feature['large_value'] ?? 0)
+                    : $feature['large_value'],
+            ]);
+        }
+
+        return redirect()
+            ->route('packages.index')
+            ->with('success', 'Package updated successfully!');
     }
 
     // public function update(Request $request, Package $package)
