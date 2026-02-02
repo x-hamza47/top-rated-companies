@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('package_features', function (Blueprint $table) {
             $table->id();
             $table->foreignId('package_id')->constrained()->cascadeOnDelete();
-            $table->string('feature');
+            $table->string('feature');          
             $table->enum('type', ['text', 'checkbox'])->default('text');
-            $table->string('value')->nullable();
-            $table->boolean('included')->nullable();
+            $table->string('small_value')->nullable();  
+            $table->string('medium_value')->nullable();
+            $table->string('large_value')->nullable();
             $table->timestamps();
         });
     }

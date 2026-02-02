@@ -6,14 +6,14 @@
 @section('title', 'Packages')
 @section('content')
     <div class="section md:pt-32 pt-25 pb-20 flex flex-col justify-between text-white gap-y-5 relative">
-        {{-- <pre> {{ print_r($company->toArray(), true) }}</pre> --}}
+        {{-- <pre> {{ print_r($service->toArray(), true) }}</pre> --}}
         <div class="flex items-center gap-x-5 gap-y-6 flex-col md:flex-row">
             <div class="w-40 h-40">
                 <img src="{{ $company->logo }}" alt="{{ $company->name }}" class="w-full h-full object-cover rounded-md">
             </div>
             <div class="flex flex-col gap-3 items-center md:items-start text-center">
                 <div class="flex flex-wrap-reverse gap-2 items-center justify-center md:justify-start">
-                    <h1 class="text-3xl sm:text-3xl md:text-4xl  font-bold">{{ $company->name }}</h1>
+                    <h1 class="text-3xl sm:text-3xl md:text-4xl font-bold">{{ $company->name }}</h1>
                     @if ($company->verified)
                         <span class="flex gap-2 items-center flex-wrap bg-white md:px-3 md:py-1.5 px-2 py-1 rounded-full">
                             <svg class="md:w-5 md:h-5 w-4.5 h-4.5" viewBox="0 0 24 24" fill="none"
@@ -43,7 +43,7 @@
 
                 </div>
                 <div class="flex gap-2 w-full text-base font-semibold flex-wrap justify-center md:justify-start">
-                    <a target="_blank" href="website " class="btn-white flex-1  text-nowrap ">
+                    <a target="_blank" href="{{ $company->website }}" class="btn-white flex-1 text-nowrap">
                         View Profile
                     </a>
                 </div>
@@ -51,27 +51,19 @@
         </div>
     </div>
 
+    {{-- Packages Section --}}
     <section class="flex items-center justify-center flex-col py-12 px-4 md:px-6 bg-white w-full">
-        <h1 class="font-medium text-4xl md:text-5xl text-slate-800 text-center tracking-tight">
-            Service Packages
-        </h1>
+        <h1 class="font-medium text-4xl md:text-5xl text-slate-800 text-center tracking-tight">Service Packages</h1>
         <p class="text-lg text-zinc-600 text-center mt-4 max-w-3xl">
-            Explore the service packages offered by this company and choose the plan that best fits your business needs.
+            {{ $service->packages[0]->description }}
         </p>
 
         <div class="w-full max-w-2xl mt-8">
-            <label for="serviceSelect" class="block text-sm font-medium text-slate-700 mb-2">
-                Packages we offer:
-            </label>
+            <label for="serviceSelect" class="block text-sm font-medium text-slate-700 mb-2">Packages we offer:</label>
             <select id="serviceSelect" data-company-id="{{ $company->id }}"
                 class="w-full border border-zinc-300 rounded-xl px-5 py-3.5 bg-white shadow-sm focus:border-lime-600 focus:ring-lime-500 transition">
-                @php
-                    $selectedServiceId = $service->packageTiers->first()?->service_id;
-                @endphp
-
                 @foreach ($allServices as $s)
-                    <option value="{{ $s->id }}" {{ $s->id == $selectedServiceId ? 'selected' : '' }}>
-
+                    <option value="{{ $s->id }}" {{ $s->id === $service->id ? 'selected' : '' }}>
                         {{ $s->name }}
                     </option>
                 @endforeach
@@ -91,12 +83,15 @@
         </div>
 
         <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl" id="packageContainer">
-            @foreach ($service->packageTiers as $package)
-                @include('shared.partials.package-card', ['package' => $package])
+            @foreach ($service->packages as $package)
+                @foreach (['small', 'medium', 'large'] as $tier)
+                    @include('shared.partials.package-card', ['package' => $package, 'tier' => $tier])
+                @endforeach
             @endforeach
         </div>
     </section>
 @endsection
+
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -120,74 +115,72 @@
                             'Accept': 'application/json'
                         }
                     });
-
                     if (!response.ok) throw new Error('Network response was not ok');
 
                     const data = await response.json();
-
                     container.innerHTML = '';
 
-                    if (data.packages.length === 0) {
-                        container.innerHTML = `
-                <div class="col-span-full text-center py-12 text-zinc-500">
-                    No packages available for this service yet.
-                </div>`;
+                    if (!data.packages.length) {
+                        container.innerHTML =
+                            `<div class="col-span-full text-center py-12 text-zinc-500">No packages available for this service yet.</div>`;
                         return;
                     }
 
+                    const serviceName = select.selectedOptions[0].textContent;
+
                     data.packages.forEach(pkg => {
-                        let featuresHtml = pkg.features.map(f => `
-                <p class="flex items-start gap-3 text-sm text-zinc-600">
-                    <span class="size-5 mt-0.5 flex items-center justify-center shrink-0">
-                        ${f.type === 'checkbox' 
-                            ? (f.included 
-                                ? '<i class="fa-solid fa-check text-lime-600 text-lg"></i>' 
-                                : '<i class="fa-solid fa-xmark text-red-500 text-lg"></i>')
-                            : '<span class="size-2.5 rounded-full bg-lime-600 inline-block"></span>'}
-                    </span>
-                    <span class="${!f.included ? 'line-through text-zinc-400' : ''}">
-                        ${f.feature}
-                        ${f.type === 'text' && f.value ? `<span class="block text-xs text-zinc-400 mt-0.5">${f.value}</span>` : ''}
-                    </span>
-                </p>`).join('');
+                        ['small', 'medium', 'large'].forEach(tier => {
+                            let featuresHtml = pkg.features.map(f => `
+            <p class="flex items-start gap-3 text-sm text-zinc-500">
+                <span class="size-3 mt-1 rounded-full flex items-center justify-center shrink-0 ${f.type !== 'checkbox' ? 'bg-zinc-300' : ''}">
+                    ${f.type === 'checkbox'
+                        ? (f[tier + '_value'] && f[tier + '_value'] !== '0'
+                            ? '<i class="fa-solid fa-check text-lime-700"></i>'
+                            : '<i class="fa-solid fa-x text-red-500"></i>')
+                        : '<span class="size-1.5 rounded-full bg-lime-700 inline-block"></span>'}
+                </span>
+                <span class="${f.type === 'checkbox' && (!f[tier + '_value'] || f[tier + '_value'] === '0') ? 'line-through text-zinc-400' : ''}">
+                    ${f.feature}
+                    ${f.type === 'text' && f[tier + '_value'] ? `<span class="block text-xs text-zinc-400 mt-0.5">${f[tier + '_value']}</span>` : ''}
+                </span>
+            </p>
+        `).join('');
 
-                        container.innerHTML += `
-                <div class="border border-zinc-200 rounded-2xl p-7 flex flex-col bg-white shadow-sm hover:shadow-md hover:border-lime-600 transition-all duration-300">
-                    <h3 class="font-semibold text-2xl md:text-3xl text-slate-900 capitalize">${pkg.type}</h3>
-                    <p class="text-sm text-zinc-500 mt-1">${pkg.service.name}</p>
-                    
-                    <div class="mt-6 flex items-baseline">
-                        <span class="text-5xl font-bold text-slate-900">$${Number(pkg.price).toLocaleString()}</span>
-                        <span class="ml-2 text-lg text-zinc-500">/${pkg.price_type}</span>
-                    </div>
-
-                    <button class="mt-8 w-full py-3.5 px-6 border border-lime-600 text-lime-700 font-medium rounded-xl hover:bg-lime-600 hover:text-white transition duration-200">
-                        Get Started
-                    </button>
-
-                    <div class="mt-8 space-y-3">
-                        ${featuresHtml}
-                    </div>
-                </div>`;
+                            container.innerHTML += `
+            <div class="border border-zinc-200 rounded-2xl p-6 flex flex-col items-start max-w-md transition duration-300 hover:-translate-y-1 hover:border-lime-700 bg-white shadow-sm">
+                <h1 class="font-medium text-3xl text-slate-800 mt-1 capitalize">
+                    ${tier}
+                </h1>
+                <p class="text-sm text-zinc-500 mt-2">
+                    ${serviceName}
+                </p>
+                <h1 class="font-medium text-5xl text-slate-800 mt-6">
+                    $${Number(pkg[tier + '_price']).toLocaleString()}
+                    <span class="text-base text-zinc-500">/${pkg.price_type}</span>
+                </h1>
+                <button class="w-full border border-zinc-300/80 px-4 py-3 rounded-full cursor-pointer text-slate-600 text-sm mt-8 bg-lime-100 hover:bg-lime-700/70 hover:text-white transition duration-200">
+                    Get Started
+                </button>
+                <div class="w-full mt-8 space-y-2.5 pb-4">
+                    ${featuresHtml}
+                </div>
+            </div>
+        `;
+                        });
                     });
                 } catch (err) {
                     console.error('Error fetching packages:', err);
-                    container.innerHTML = `
-            <div class="col-span-full text-center py-12 text-red-600">
-                Failed to load packages. Please try again.
-            </div>`;
+                    container.innerHTML =
+                        `<div class="col-span-full text-center py-12 text-red-600">Failed to load packages. Please try again.</div>`;
                 } finally {
                     loading.classList.add('hidden');
                     container.classList.remove('opacity-50');
                 }
             };
 
-
             select.addEventListener('change', () => {
                 clearTimeout(debounceTimeout);
-                debounceTimeout = setTimeout(() => {
-                    fetchPackages();
-                }, 2000);
+                debounceTimeout = setTimeout(fetchPackages, 2000);
             });
         });
     </script>

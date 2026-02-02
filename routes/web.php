@@ -14,9 +14,11 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\CompanyController;
+use App\Http\Controllers\Dashboard\PackageController;
 use App\Http\Controllers\Dashboard\InsightsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Auth\Admin\AdminAuthController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
@@ -94,6 +96,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     // ? Insight Routes
     Route::resource('/insights', InsightsController::class);
+
+    Route::resource('/packages', PackageController::class);
+
 
     // ? Profile Routes
     Route::get("/user-profile", [UserController::class, 'index'])->name('user.index');

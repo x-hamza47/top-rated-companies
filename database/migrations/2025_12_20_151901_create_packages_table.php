@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->foreignId('service_id')->constrained()->cascadeOnDelete();
-            $table->enum('type', ['small', 'medium', 'large']); 
-            $table->decimal('price', 12, 2);
-            $table->enum('price_type', ['total', 'monthly'])->default('total');
+            $table->decimal('small_price', 12, 2);
+            $table->decimal('medium_price', 12, 2);
+            $table->decimal('large_price', 12, 2);
+            $table->enum('price_type', ['total', 'monthly'])->default('total'); 
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -13,9 +13,11 @@ class Package extends Model
     protected $fillable = [
         'company_id',
         'service_id',
-        'type',
-        'price',
+        'small_price',
+        'medium_price',
+        'large_price',
         'price_type',
+        'description',
     ];
     public function company()
     {

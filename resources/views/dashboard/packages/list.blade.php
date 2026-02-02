@@ -13,109 +13,151 @@
 
 @section('content')
     <div class="dashboard-table-container">
-        {{-- <pre> {{ print_r($companies->toArray(), true) }}</pre> --}}
+        {{-- <pre> {{ print_r($packages->toArray(), true) }}</pre> --}}
         <div class="dashboard-table-header">
-            <h3 class="dashboard-table-title">Companies & Details</h3>
-            {{-- <a href="#" class="btn btn-secondary">Add New</a> --}}
+            <h3 class="dashboard-table-title">
+                Packages
+
+                @can('company')
+                    <span class="text-sm text-gray-400">
+                        ({{ $packageCount }} / 5)
+                    </span>
+                @endcan
+            </h3>
+            @can('company')
+                @if ($packageCount < 5)
+                    <a href="{{ route('packages.create') }}" class="btn btn-secondary">
+                        Add Package
+                    </a>
+                @endif
+            @endcan
         </div>
         <table class="dashboard-table">
             <thead>
-                <tr>
-                    <th>Company</th>
-                    <th>Hourly Rate</th>
-                    <th>Employees</th>
-                    <th>Verified</th>
-                    <th>Location</th>
-                    <th class="text-center!">Action</th>
+                <tr class="align-middle">
+                    @can('admin')
+                        <th rowspan="2">Company</th>
+                        <th rowspan="2">Total Packages</th>
+                    @endcan
+
+
+                    @can('company')
+                        <th rowspan="2">Service</th>
+                        <th colspan="3" class="text-center! border-b">Price</th>
+                        <th rowspan="2">Type</th>
+                    @endcan
+
+
+                    <th rowspan="2" class="text-center">Action</th>
                 </tr>
+                @can('company')
+                    <tr class="[&>th]:text-center!">
+                        <th>Small</th>
+                        <th>Medium</th>
+                        <th>Large</th>
+                    </tr>
+                @endcan
             </thead>
+
             <tbody>
-                @forelse ($companies as $company)
+                @forelse ($packages as $item)
                     <tr class="text-sm">
-                        <td class="w-max">
-                            <div class="table-title-cell max-w-max">
-                                <div class="col-icon">
-                                    <img src="{{ $company?->logo ? (!Str::startsWith($company->logo, 'http') ? asset('storage/' . $company->logo) : $company->logo) : asset('images/dummy.jpg') }}" alt="" class="w-full h-full rounded-full">
-                                </div>
-                                <div class="col-info relative">
-                                    <div class="col-title-text"><a href="#"
-                                            class="sm:text-wrap text-nowrap">{{ $company->name }}</a>
-                                    </div>
-                                    <div class="col-meta-text peer">{{ Str::limit($company->tagline, 20) }} •
-                                       {{ $company->services_count }} service{{ $company->services_count > 1 ? 's' : '' }}
-                                    </div>
-                                    <div
-                                        class="absolute bottom-3.5 right-0 transform translate-y-2  mt-2  bg-(--color-background) text-white text-xs rounded-xl border border-(--color-border) px-8 py-4 transition opacity-0 peer-hover:translate-y-0 duration-200 z-50 pointer-events-none peer-hover:opacity-100 flex flex-col gap-2">
-                                        <span class="text-(--color-muted) ">Services</span>
-                                        <ul class="list-disc space-y-3 text-gray-300 w-max">
-                                            @foreach ($company->services as $index => $service)
-                                                <li>{{ $service->name }} - <b
-                                                        class="{{ $colors[$index % count($colors)] }}">{{ $service->pivot->expertise_percentage }}%</b>
-                                                </li>
-                                            @endforeach
+                        {{-- ADMIN ROW --}}
+                        @can('admin')
+                            <td class="w-max">
+                                <div class="table-title-cell max-w-max">
 
-                                        </ul>
+                                    <div class="col-info">
+                                        <div class="col-title-text"><a href="#"
+                                                class="sm:text-wrap text-nowrap">{{ $item->name }}</a>
+                                        </div>
+                                        <div class="col-meta-text "><a class="text-xs text-blue-500 text-nowrap"
+                                                href="mailto:{{ $item->user->email }}">{{ Str::limit($item->user->email, 35) }}</a>
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>${{ str_replace('-', ' - $', $company->details->hourly_rate) }}</td>
-                        <td>{{ $company->details->is_freelancer ? 'Freelancer' : $company->details->employees}}</td>
-                        <td><span
-                                class="status-badge {{ $company->verified ? 'success' : 'danger' }}">{{ $company->verified ? 'Verified' : 'Unverified' }}</span>
-                        </td>
-                        <td>{{ $company->details->locations }}</td>
-                        <td>
-                            <a href="{{ route('companies.edit', $company->id) }}" class="mr-2 bg-blue-700 hover:bg-blue-500 text-white p-2 rounded-md text-base transition" title="Edit">
-                                <i class="fas fa-edit "></i>
-                            </a>
 
-                            <form action="{{ route('companies.destroy', $company->id) }}" method="POST" class="delete-company-form inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="p-2 rounded-md text-base btn-danger transition" title="Delete">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr> 
+                            </td>
+                            <td>{{ $item->packages_count }}</td>
+                        @endcan
+
+                        {{-- COMPANY ROW --}}
+                        @can('company')
+                            <td  class="w-max">{{ $item->service->name }}</td>
+                            <td class="text-center"> <span class="status-badge success">${{ $item->small_price }}</span>  </td>
+                            <td class="text-center"> <span class="status-badge info">${{ $item->medium_price }}</span>  </td>
+                            <td class="text-center"> <span class="status-badge warning">${{ $item->large_price }}</span>  </td>
+   
 
 
+                            <td class="capitalize">{{ $item->price_type }}</td>
+                        @endcan
+
+                        {{-- ACTIONS --}}
+                        <td class="text-center">
+                            @can('admin')
+                                <a href="" {{-- <a href="{{ route('admin.company.packages', $item->id) }}" --}} class="btn btn-secondary">
+                                    View
+                                </a>
+                            @endcan
+
+                            @can('company')
+                                <a href="{{ route('packages.edit', $item->id) }}"
+                                    class="mr-2 bg-blue-700 hover:bg-blue-500 text-white p-2 rounded-md text-base transition"
+                                    title="Edit">
+                                    <i class="fas fa-edit "></i>
+                                </a>
+
+                                <form action="{{ route('packages.destroy', $item->id) }}" method="POST"
+                                    class="inline delete-package-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="p-2 rounded-md text-base btn-danger transition"
+                                        title="Delete">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            @endcan
+                        </td>
+                    </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center py-4">No companies found.</td>
+                        <td colspan="5" class="text-center py-4">
+                            No data found.
+                        </td>
                     </tr>
                 @endforelse
-
             </tbody>
         </table>
     </div>
-    <div class="mt-4">
-        {{ $companies->onEachSide(2)->links() }}
-    </div>
+    @can('admin')
+        <div class="mt-4">
+            {{ $packages->onEachSide(2)->links() }}
+        </div>
+    @endcan
 @endsection
 
 @push('scripts')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.querySelectorAll('.delete-company-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "This company will be deleted permanently!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelectorAll('.delete-package-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This package will be deleted permanently!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
-    });
-</script>
-    
+    </script>
 @endpush

@@ -132,94 +132,95 @@ class CompanySeeder extends Seeder
                 ]);
             }
 
-            // After creating company_services ...
-
+            // -------------------------------
+            // * Create Packages + Tiers + Features
+            // -------------------------------
             $companyServices = DB::table('company_services')
                 ->where('company_id', $companyId)
                 ->pluck('service_id')
                 ->toArray();
 
             shuffle($companyServices);
-
-            $maxServicesWithPackages = 5;           
+            $maxServicesWithPackages = 5;
             $servicesWithPackages = array_slice($companyServices, 0, $maxServicesWithPackages);
-
-            $packageTypes = ['small', 'medium', 'large'];
 
             foreach ($servicesWithPackages as $serviceId) {
 
-                foreach ($packageTypes as $type) {
+                // 1️⃣ Create ONE package per service with tier prices
+                $basePrice = rand(800, 12000);
+                $priceMultipliers = ['small' => 1, 'medium' => 1.6, 'large' => 2.4];
 
-                    $basePrice = rand(800, 12000);
-                    $priceMultipliers = ['small' => 1, 'medium' => 1.6, 'large' => 2.4];
+                $packageId = DB::table('packages')->insertGetId([
+                    'company_id' => $companyId,
+                    'service_id' => $serviceId,
+                    'small_price' => round($basePrice * $priceMultipliers['small']),
+                    'medium_price' => round($basePrice * $priceMultipliers['medium']),
+                    'large_price' => round($basePrice * $priceMultipliers['large']),
+                    'price_type' => $faker->randomElement(['total', 'monthly']),
+                    'description' => $faker->sentence(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
 
-                    $packageId = DB::table('packages')->insertGetId([
-                        'company_id'  => $companyId,
-                        'service_id'  => $serviceId,
-                        'type'        => $type,
-                        'price'       => round($basePrice * $priceMultipliers[$type]),
-                        'price_type'  => $faker->randomElement(['total', 'monthly']),
-                        'created_at'  => now(),
-                        'updated_at'  => now(),
+                // 2️⃣ Features — stored once, with tier columns
+                $featuresList = [
+                    [
+                        'feature' => 'Size of the project',
+                        'type' => 'text',
+                        'small_value' => '3 months for 5 FTE team',
+                        'medium_value' => '6+ months for 5 FTE team',
+                        'large_value' => '12+ months for 5 FTE team'
+                    ],
+                    [
+                        'feature' => 'Discovery goals identification and discovery phase schedule preparation',
+                        'type' => 'checkbox',
+                        'small_value' => false,
+                        'medium_value' => true,
+                        'large_value' => true
+                    ],
+                    [
+                        'feature' => 'Domain or industry research and competitor analysis',
+                        'type' => 'checkbox',
+                        'small_value' => false,
+                        'medium_value' => true,
+                        'large_value' => true
+                    ],
+                    [
+                        'feature' => 'Product vision definition',
+                        'type' => 'checkbox',
+                        'small_value' => true,
+                        'medium_value' => true,
+                        'large_value' => true
+                    ],
+                    [
+                        'feature' => 'Stakeholder interviews or surveys (per team involved)',
+                        'type' => 'text',
+                        'small_value' => 'up to 24 hours',
+                        'medium_value' => 'up to 48 hours',
+                        'large_value' => 'up to 72 hours'
+                    ],
+                    [
+                        'feature' => 'User research, empathy mapping and persona creation (per team involved)',
+                        'type' => 'text',
+                        'small_value' => 'Feature Not Included',
+                        'medium_value' => 'up to 16 hours',
+                        'large_value' => 'up to 24 hours'
+                    ],
+                ];
+
+                foreach ($featuresList as $feature) {
+                    DB::table('package_features')->insert([
+                        'package_id'   => $packageId,
+                        'feature'      => $feature['feature'],
+                        'type'         => $feature['type'],
+                        'small_value'  => $feature['small_value'],
+                        'medium_value' => $feature['medium_value'],
+                        'large_value'  => $feature['large_value'],
+                        'created_at'   => now(),
+                        'updated_at'   => now(),
                     ]);
-
-                    // Your existing features logic — tiered by type
-                    // --- Add features for this package ---
-                    $featuresList = [
-                        [
-                            'feature' => 'Size of the project',
-                            'type'    => 'text',
-                            'values'  => ['3 months for 5 FTE team', '6+ months for 5 FTE team', '12+ months for 5 FTE team']
-                        ],
-                        [
-                            'feature' => 'Discovery goals identification and discovery phase schedule preparation',
-                            'type'    => 'checkbox',
-                            'values'  => [false, true, true]
-                        ],
-                        [
-                            'feature' => 'Domain or industry research and competitor analysis',
-                            'type'    => 'checkbox',
-                            'values'  => [false, true, true]
-                        ],
-                        [
-                            'feature' => 'Product vision definition',
-                            'type'    => 'checkbox',
-                            'values'  => [true, true, true]
-                        ],
-                        [
-                            'feature' => 'Stakeholder interviews or surveys (per team involved)',
-                            'type'    => 'text',
-                            'values'  => ['up to 24 hours', 'up to 48 hours', 'up to 72 hours']
-                        ],
-                        [
-                            'feature' => 'User research, empathy mapping and persona creation (per team involved)',
-                            'type'    => 'text',
-                            'values'  => ['Feature Not Included', 'up to 16 hours', 'up to 24 hours']
-                        ],
-                    ];
-
-
-                    foreach ($featuresList as $feature) {
-                        $index = match ($type) {
-                            'small'  => 0,
-                            'medium' => 1,
-                            'large'  => 2,
-                            default  => 0,
-                        };
-
-                        DB::table('package_features')->insert([
-                            'package_id' => $packageId,
-                            'feature'    => $feature['feature'],
-                            'type'       => $feature['type'],
-                            'value'      => $feature['type'] === 'text' ? $feature['values'][$index] : null,
-                            'included'   => $feature['type'] === 'checkbox' ? $feature['values'][$index] : null,
-                            'created_at'  => now(),
-                            'updated_at'  => now(),
-                        ]);
-                    }
                 }
             }
-
             // -------------------------------
             // * Add Inquiries for Company
             // -------------------------------

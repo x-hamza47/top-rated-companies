@@ -8,14 +8,14 @@
         <h1 class="dashboard-header-title" id="dashboardTitle">@yield('title', 'Dashboard')</h1>
     </div>
     <!-- Search Container -->
-    <div class="search-container" id="searchContainer">
+    {{-- <div class="search-container" id="searchContainer">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
         <input type="search" class="search-input form-input" placeholder="Search projects, tasks, reports..."
             id="searchInput" />
         <button class="search-close btn" id="searchClose">
             <i class="fa-solid fa-x"></i>
         </button>
-    </div>
+    </div> --}}
     <div class="dashboard-header-actions">
         <!-- ! Mobile Search Button -->
         <button class="mobile-search-btn btn" id="mobileSearchBtn">

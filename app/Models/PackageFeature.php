@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PackageFeature extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'package_id',
         'feature',
         'type',
-        'value',
-        'included',
+        'small_value',
+        'medium_value',
+        'large_value',
+    ];
+    protected $casts = [
+        'type' => 'string', 
     ];
 
     public function package()

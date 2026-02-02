@@ -57,25 +57,21 @@ class ProfileController extends Controller
             ->where('slug', $companySlug)
             ->firstOrFail();
 
-        // Pick one random service that has packages
         $service = Service::whereHas('packages', function ($q) use ($company) {
             $q->where('company_id', $company->id);
-        })
-            ->inRandomOrder()
-            ->first();
+        })->inRandomOrder()->first();
 
         if ($service) {
-            // Fetch all tiers for this service
-            $service->packageTiers = $service->packages()
-                ->where('company_id', $company->id)
-                ->orderByRaw("FIELD(type,'small','medium','large')")
-                ->with('features')
-                ->get();
+            $service->load(['packages' => function ($q) use ($company) {
+                $q->where('company_id', $company->id)
+                    ->with('features');
+            }]);
         }
 
         $allServices = Service::whereHas('packages', function ($q) use ($company) {
             $q->where('company_id', $company->id);
         })->get();
+
         return view('plan', compact('company', 'service', 'allServices'));
     }
 
@@ -88,23 +84,27 @@ class ProfileController extends Controller
 
         $packages = $service->packages()
             ->where('company_id', $company->id)
-            ->with(['features', 'service'])
+            ->with('features')
             ->get();
 
         return response()->json([
             'packages' => $packages->map(function ($pkg) {
                 return [
                     'id'          => $pkg->id,
-                    'type'        => $pkg->type,
-                    'price'       => $pkg->price,
+                    'small_price' => $pkg->small_price,
+                    'medium_price' => $pkg->medium_price,
+                    'large_price' => $pkg->large_price,
                     'price_type'  => $pkg->price_type,
-                    'service'     => ['name' => $pkg->service->name],
-                    'features'    => $pkg->features->map(function ($f) {
+                    'small_description'  => $pkg->small_description,
+                    'medium_description' => $pkg->medium_description,
+                    'large_description'  => $pkg->large_description,
+                    'features' => $pkg->features->map(function ($f) {
                         return [
-                            'feature'   => $f->feature,
-                            'type'      => $f->type,
-                            'value'     => $f->value,
-                            'included'  => $f->included ?? true, // adjust as per your model
+                            'feature'     => $f->feature,
+                            'type'        => $f->type,
+                            'small_value' => $f->small_value,
+                            'medium_value' => $f->medium_value,
+                            'large_value' => $f->large_value,
                         ];
                     })->toArray(),
                 ];

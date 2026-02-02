@@ -43,8 +43,8 @@
                     <span class="nav-label">Insights</span>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a href="{{ route('insights.index') }}" class="nav-link">
+            <li class="nav-item {{ isActive('packages.*') }}">
+                <a href="{{ route('packages.index') }}" class="nav-link">
                     <i class="fa-solid fa-box nav-icon"></i>
                     <span class="nav-label">Package</span>
                 </a>
