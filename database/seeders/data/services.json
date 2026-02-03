@@ -1,0 +1,586 @@
+[
+    {
+        "name": "Designing",
+        "icon": "fa-palette",
+        "subcategories": [
+            {
+                "name": "UX/UI Design",
+                "desc": "UX/UI design creates intuitive, beautiful, and user-friendly interfaces for websites, mobile apps, software, and digital products. UX (User Experience) focuses on how easy and enjoyable the product is to use — mapping flows, solving pain points, and ensuring logical navigation. UI (User Interface) handles visuals — colors, typography, icons, layouts, and interactive elements. Together, they make products feel natural, increase user satisfaction, reduce support tickets, boost conversions, and build brand loyalty. Businesses invest in UX/UI to turn visitors into loyal customers and stand out in competitive markets."
+            },
+            {
+                "name": "Product Design",
+                "desc": "Product design shapes the entire user-facing part of a digital product — from research and strategy to wireframes, prototypes, visual design, and final UI. It balances user needs, business goals, and technical feasibility to create intuitive, valuable, and delightful experiences. Product designers map user journeys, define features, and iterate based on feedback. Businesses use product design to launch successful apps, SaaS tools, websites, or features that solve real problems, retain users, and drive growth."
+            },
+            {
+                "name": "Web Design",
+                "desc": "Web design creates the visual and interactive layer of websites — layouts, colors, typography, imagery, navigation, and responsive behavior across devices. It combines aesthetics with usability to make sites attractive, trustworthy, and easy to use. Good web design improves first impressions, boosts engagement, supports branding, and drives conversions (sales, leads, sign-ups). Businesses use web design for corporate sites, e-commerce, portfolios, landing pages, blogs, and customer portals to stand out online."
+            },
+            {
+                "name": "Brand Identity",
+                "desc": "Brand identity creates the visual and emotional foundation of a company — logo, color palette, typography, imagery style, icons, and guidelines for consistent use. It defines how a brand looks and feels across websites, packaging, ads, social media, and products. Strong brand identity builds recognition, trust, and emotional connection with customers. Businesses use it during launches, rebrands, or refreshes to stand out, communicate values, and create lasting impressions in competitive markets."
+            },
+            {
+                "name": "Design Systems",
+                "desc": "Design systems are centralized libraries of reusable components, patterns, guidelines, and code (buttons, forms, colors, typography, icons) that ensure consistency across products, websites, and apps. They speed up design and development, reduce errors, maintain brand coherence, and simplify scaling. Businesses use design systems for large websites, SaaS platforms, enterprise software, or multi-product companies to create unified experiences, save time on repetitive work, and improve collaboration between designers and developers."
+            },
+            {
+                "name": "UX Research",
+                "desc": "UX research uncovers what real users need, think, and feel through interviews, surveys, usability tests, analytics, and observation. It identifies pain points, validates ideas, and informs design decisions before building. Methods include user interviews, personas, journey mapping, A/B testing, and competitive analysis. Businesses use UX research to reduce risk, create products people actually want, improve satisfaction, increase retention, and avoid costly redesigns after launch."
+            },
+            {
+                "name": "Usability Testing",
+                "desc": "Usability testing watches real users try a product (website, app, prototype) to see where they get stuck, confused, or frustrated. It includes moderated sessions (researcher guides), unmoderated remote tests, think-aloud protocols, and task analysis. Testing uncovers navigation issues, unclear labels, slow flows, or missing features. Businesses use it to improve user satisfaction, reduce support calls, increase conversions, and launch with confidence — catching problems before they reach thousands of customers."
+            },
+            {
+                "name": "Human-Centered Design",
+                "desc": "Human-centered design puts real people at the core of every decision — starting with empathy (understanding users), defining problems, ideating solutions, prototyping, and testing with users in loops. It creates products that solve genuine needs rather than assumptions. Used for apps, services, physical products, and experiences, it improves satisfaction, adoption, and loyalty. Businesses adopt human-centered design to reduce risk, create meaningful value, and build products users love and recommend."
+            },
+            {
+                "name": "Service Design",
+                "desc": "Service design improves the entire customer journey across touchpoints — digital (app, website), physical (stores, call centers), and human interactions — to deliver seamless, satisfying experiences. It maps journeys, identifies pain points, designs front-stage (user-facing) and back-stage (internal) processes, and prototypes solutions. Businesses use service design for better customer satisfaction, loyalty, efficiency, and competitive differentiation in retail, hospitality, healthcare, finance, and public services."
+            },
+            {
+                "name": "Branding",
+                "desc": "Branding designs the complete visual and emotional identity of a business or product — logo, color palette, typography, imagery style, tone of voice, and guidelines for consistent use across all touchpoints. It creates recognition, builds trust, communicates values, and differentiates from competitors. Good branding feels authentic, memorable, and aligned with the audience. Businesses use branding during launches, rebrands, expansions, or refreshes to attract customers, foster loyalty, and command premium pricing in crowded markets."
+            },
+            {
+                "name": "Web Experience Design",
+                "desc": "Web experience design crafts the complete feel and flow of a website — how it looks, works, and makes users feel — combining visual design, interaction patterns, navigation, content layout, animations, and performance. It focuses on emotional impact, usability, speed, accessibility, and conversion goals. Businesses use web experience design to create memorable sites that engage visitors, build trust, guide actions (buy, sign up), and encourage return visits — turning casual browsers into loyal customers."
+            },
+            {
+                "name": "Content Strategy",
+                "desc": "Content strategy plans and creates the right content (text, images, videos, blogs, social posts, emails) to attract, engage, and convert the target audience. It defines goals, audience personas, messaging, tone, channels, formats, and calendars — ensuring consistency and alignment with business objectives. Businesses use content strategy to build awareness, educate customers, drive traffic, nurture leads, boost SEO, and support sales — turning content into a powerful marketing and trust-building asset."
+            },
+            {
+                "name": "Optimization",
+                "desc": "Optimization improves the performance, usability, accessibility, and conversion rate of websites, apps, or digital products. It includes speed enhancements (loading time), SEO tweaks, mobile responsiveness, visual refinements, A/B testing, accessibility fixes, and user flow improvements. Businesses use optimization to reduce bounce rates, increase sales/leads, improve search rankings, lower costs (e.g., faster sites save ad spend), and deliver better user experiences. It’s an ongoing process to keep digital assets competitive and effective."
+            },
+            {
+                "name": "Interactive Design",
+                "desc": "Interactive design creates engaging, responsive digital experiences where users actively participate — animations, hover effects, micro-interactions, scroll-triggered elements, gamified interfaces, 360° views, quizzes, sliders, and touch gestures. It makes products feel alive, guides attention, provides feedback, and boosts enjoyment. Businesses use interactive design for websites, apps, landing pages, marketing campaigns, e-commerce, and educational tools to increase time-on-site, improve conversions, and create memorable moments that get shared."
+            },
+            {
+                "name": "Creative AR/VR",
+                "desc": "Creative AR/VR designs innovative augmented and virtual reality experiences for marketing, events, art, storytelling, and brand engagement. It includes interactive filters, virtual showrooms, immersive narratives, 360° videos, and experiential installations. Creative AR/VR blends technology with emotion to surprise, delight, and connect audiences. Businesses use it for product launches, campaigns, museum exhibits, concerts, and experiential marketing — creating shareable moments that go viral and strengthen brand recall."
+            },
+            {
+                "name": "Interactive Installations",
+                "desc": "Interactive installations blend physical spaces with digital responses — sensors, projections, touch screens, motion tracking, sound, and lighting react to people’s presence or actions. They create immersive art, brand experiences, museum exhibits, retail activations, events, and public installations. Businesses use them for memorable marketing, customer engagement, education, and storytelling — turning passive spaces into dynamic, shareable moments that spark emotion and conversation."
+            },
+            {
+                "name": "3D Design",
+                "desc": "3D design creates digital three-dimensional models, scenes, characters, products, environments, or animations for visualization, marketing, games, AR/VR, film, architecture, and product development. It includes modeling, texturing, lighting, rendering, and interactivity. Businesses use 3D design for photoreal product shots, virtual prototypes, architectural renders, game assets, medical visuals, and immersive experiences — saving costs on physical prototypes and enabling remote, interactive showcases."
+            },
+            {
+                "name": "Accessibility Optimization",
+                "desc": "Accessibility optimization makes digital products (websites, apps, software) usable by everyone — including people with disabilities (visual, hearing, motor, cognitive). It includes alt text for images, keyboard navigation, screen reader compatibility, color contrast, captions, resizable text, and clear structure. Businesses use it to comply with laws (ADA, WCAG), reach wider audiences (15–20% of people have disabilities), improve SEO, enhance usability for all, and avoid legal risks — creating inclusive experiences that benefit everyone."
+            },
+            {
+                "name": "Logo Design",
+                "desc": "Logo design creates a distinctive, scalable visual symbol that captures a brand’s core identity, values, personality, and positioning. It integrates typography, shapes, color psychology, and negative space to ensure clarity, memorability, and versatility across all mediums — digital screens, print, packaging, signage, and merchandise. A strong logo builds instant recognition, fosters trust, differentiates from competitors, and serves as the anchor for the entire brand ecosystem. Professional logo design balances simplicity, originality, timelessness, and emotional resonance to support long-term brand equity."
+            },
+            {
+                "name": "Naming",
+                "desc": "Naming develops memorable, meaningful, ownable, and legally viable names for companies, products, services, or sub-brands. It involves creative brainstorming, linguistic screening (pronunciation, meaning in multiple languages), trademark and domain checks, audience perception testing, and strategic alignment with brand values. A powerful name communicates personality, builds emotional connection, supports long-term equity, and differentiates in the market. Businesses use professional naming during launches, rebrands, or product expansions to create strong, future-proof identities."
+            },
+            {
+                "name": "Brand Refresh",
+                "desc": "Brand refresh updates an existing brand identity to feel contemporary, relevant, and aligned with current audience expectations while preserving core recognition and equity. It involves subtle or significant evolution of logo, colors, typography, visual language, messaging, and application guidelines. Businesses undertake brand refresh during growth phases, market repositioning, generational shifts, mergers, or when the original identity feels dated — revitalizing perception, attracting new customers, and signaling progress without losing established trust."
+            },
+            {
+                "name": "Motion Branding",
+                "desc": "Motion branding animates static brand elements — logos, typography, icons, patterns — to create dynamic, engaging visuals for videos, social media, websites, apps, and digital campaigns. It adds personality, storytelling, and emotional impact while maintaining consistency. Businesses use motion branding to stand out in video content, enhance user interfaces, create memorable intros/outros, and increase shareability — making the brand feel modern, premium, and alive across digital platforms."
+            },
+            {
+                "name": "Typography",
+                "desc": "Typography designs and selects typefaces, font pairings, hierarchy, kerning, leading, and typographic systems to create readable, expressive, and brand-aligned text. It influences tone, legibility, visual rhythm, and emotional impact across logos, websites, packaging, ads, and print. Businesses use expert typography to enhance brand personality, improve user experience, establish clear hierarchy, and ensure consistency — turning words into powerful visual communication that feels intentional and premium."
+            },
+            {
+                "name": "Illustrations",
+                "desc": "Illustrations are custom-drawn or digital artworks that enhance storytelling, explain concepts, add personality, or create visual interest in branding, websites, marketing materials, packaging, and editorial content. Styles range from minimalist line art to detailed 3D renders. Businesses use illustrations to stand out, simplify complex ideas, evoke emotion, reinforce brand uniqueness, and engage audiences — especially in digital products, children’s brands, editorial, and creative campaigns."
+            },
+            {
+                "name": "Brand Assets",
+                "desc": "Brand assets are the complete set of reusable visual and design elements that represent a brand — logos (primary/secondary), color palettes, typography, icons, patterns, photography style, illustrations, templates, and guidelines. They ensure consistency across websites, social media, packaging, ads, presentations, and merchandise. Businesses use brand assets to streamline content creation, maintain visual coherence, empower teams, and reinforce brand recognition without redesigning from scratch every time. Brand kits are ready-to-use collections packaged for easy application."
+            },
+            {
+                "name": "Brand Storytelling",
+                "desc": "Brand storytelling crafts compelling narratives that communicate a brand’s purpose, values, journey, and personality through words, visuals, video, and experiences. Visual storytelling communicates brand narratives primarily through imagery, photography, illustration, video, infographics, motion graphics, and design composition. Both build emotional impact, simplify complex ideas, engage audiences faster, and reinforce brand personality across all channels."
+            },
+            {
+                "name": "Creative Direction",
+                "desc": "Creative direction oversees the overall vision, aesthetic, tone, and conceptual direction of a brand, campaign, or project — ensuring all creative elements align with strategy and goals. Brand positioning defines how a brand is perceived relative to competitors — clarifying unique value proposition, target market, differentiators, personality, promise, and messaging framework. Together they deliver unified, impactful, emotionally resonant results and occupy a distinct space in the market."
+            }
+        ]
+    },
+    {
+        "name": "Development",
+        "icon": "fa-code",
+        "subcategories": [
+            {
+                "name": "Blockchain Development",
+                "desc": "Blockchain development creates secure, decentralized systems using distributed ledger technology to enable trustless transactions, immutability, and transparency. It covers smart contracts, decentralized applications (dApps), private/public networks, token systems, and enterprise-grade platforms on networks like Ethereum, Solana, Polygon, and Hyperledger. The process emphasizes consensus mechanisms, cryptographic security, scalability solutions, and integration with existing infrastructure. Industries adopt blockchain for supply chain traceability, secure identity, financial services, healthcare records, and digital ownership, achieving reduced intermediaries, enhanced auditability, and new economic models."
+            },
+            {
+                "name": "Smart Contracts",
+                "desc": "Smart contracts are self-executing programs stored on blockchains that automatically enforce agreements when predefined conditions are met. Written mainly in Solidity, Rust, or Vyper, they power token standards, automated payments, lending protocols, NFTs, governance, and more. Development prioritizes security, gas efficiency, upgradeability patterns, formal verification, and thorough testing to prevent costly exploits. Smart contracts eliminate intermediaries, reduce transaction costs, increase transparency, and enable programmable finance and business logic across decentralized ecosystems."
+            },
+            {
+                "name": "Enterprise Solutions",
+                "desc": "Enterprise solutions provide robust, scalable, and compliant software tailored to the complex requirements of large organizations. These include custom ERP/CRM platforms, workflow automation, secure data integration, internal dashboards, blockchain traceability systems, and hybrid cloud architectures. Development prioritizes high availability, role-based access, audit logging, regulatory compliance (GDPR, HIPAA, SOC 2), and seamless legacy integration. Enterprise solutions help organizations streamline operations, improve decision-making, enhance security posture, and support large-scale digital transformation across departments and geographies."
+            },
+            {
+                "name": "Web3 Applications",
+                "desc": "Web3 applications are decentralized, user-sovereign digital products built on blockchain infrastructure, emphasizing ownership, transparency, and censorship resistance. They include dApps for DeFi, NFT marketplaces, DAOs, gaming, social platforms, and identity systems. Development combines frontend frameworks (React/Next.js), wallet integrations (MetaMask, WalletConnect), decentralized storage (IPFS), and smart contract backends. Web3 apps enable token economies, community governance, data portability, and permissionless access, transforming how users interact with digital services and assets."
+            },
+            {
+                "name": "Ethereum Solutions",
+                "desc": "Ethereum solutions utilize the Ethereum blockchain and its rich ecosystem to build programmable, decentralized applications. This includes smart contracts, dApps, DeFi protocols, NFT systems, DAOs, and layer-2 scaling solutions (Optimism, Arbitrum, Polygon). Development leverages Solidity, Hardhat/Foundry, Ethers.js, and tools for gas optimization, security, and user experience. Ethereum’s mature infrastructure, large developer community, DeFi liquidity, and NFT standards make it ideal for financial innovation, digital collectibles, governance, and open internet protocols with strong decentralization guarantees."
+            },
+            {
+                "name": "DeFi Platforms",
+                "desc": "DeFi platforms are decentralized financial applications that replicate traditional finance services on blockchains without intermediaries. Common implementations include lending/borrowing protocols, automated market makers (AMMs), yield optimizers, stablecoins, derivatives, insurance, and asset management tools. Development uses Solidity, audited libraries (OpenZeppelin), oracles (Chainlink), and layer-2 scaling for efficiency. DeFi emphasizes permissionless access, composability, transparency, and high yields, enabling global participation in financial markets 24/7 while introducing new risks like smart contract vulnerabilities and market volatility."
+            },
+            {
+                "name": "Web3 Infrastructure",
+                "desc": "Web3 infrastructure provides the foundational tools, APIs, nodes, indexing services, and developer platforms that power decentralized applications. This includes blockchain node providers, RPC endpoints, indexing/query layers (The Graph, Subsquid), wallet SDKs, decentralized storage (IPFS/Filecoin), oracle networks (Chainlink), and cross-chain bridges. Robust infrastructure ensures reliable uptime, fast data access, low latency, and scalability for dApps, wallets, and protocols. It enables developers to build without running their own nodes, supporting mass adoption of Web3 technologies."
+            },
+            {
+                "name": "NFT Platforms",
+                "desc": "NFT platforms enable the creation, minting, trading, and management of non-fungible tokens representing digital or real-world assets. Development includes marketplaces, launchpads, royalty enforcement, metadata storage (IPFS), lazy minting, and multi-chain support. Standards like ERC-721, ERC-1155, and extensions power unique ownership, provenance, and programmable royalties. NFT platforms serve art, collectibles, gaming, music, ticketing, and real-world asset tokenization, combining blockchain security with user-friendly interfaces to drive creator economies and digital ownership."
+            },
+            {
+                "name": "Crypto Wallets",
+                "desc": "Crypto wallets are secure applications or devices that manage private keys, sign transactions, and interact with blockchains. Development includes non-custodial mobile/web wallets, browser extensions, hardware wallet integrations, multi-chain support, and features like staking, swaps, and ENS naming. Wallets prioritize private key security, seed phrase management, transaction simulation, and user-friendly onboarding. They serve as the primary interface for DeFi, NFTs, Web3 dApps, and everyday crypto usage, balancing security, usability, and decentralization."
+            },
+            {
+                "name": "Blockchain Apps",
+                "desc": "Blockchain apps (dApps) are decentralized applications that run on blockchain networks, combining smart contracts with user-facing interfaces. They include DeFi tools, NFT marketplaces, gaming platforms, social networks, supply chain trackers, and identity solutions. Development integrates frontends (React/Next.js), wallets, decentralized storage, and oracles with secure on-chain logic. Blockchain apps offer censorship resistance, user ownership, transparency, and global accessibility without central servers, transforming industries through trustless coordination and programmable incentives."
+            },
+            {
+                "name": "Crypto Exchange Development",
+                "desc": "Crypto exchange development builds platforms for trading cryptocurrencies, supporting spot trading, futures, margin, P2P, and liquidity pools. It includes order matching engines, wallet integrations, KYC/AML compliance, real-time market data, security layers (cold/hot wallets, DDoS protection), and admin dashboards. Centralized (CEX) and decentralized (DEX) models are supported, often with multi-chain compatibility and high-performance backends. Exchanges prioritize speed, security, regulatory compliance, liquidity provision, and user trust to facilitate safe, efficient digital asset trading at scale."
+            },
+            {
+                "name": "NFT Marketplaces",
+                "desc": "NFT marketplaces are platforms for creating, buying, selling, and trading non-fungible tokens representing digital art, collectibles, music, virtual land, and real-world assets. Development includes minting tools, auction/bidding systems, royalty enforcement, metadata hosting (IPFS), wallet connections, search/filtering, and creator dashboards. Multi-chain support, lazy minting, and gas optimization improve accessibility. Marketplaces drive creator economies, digital ownership, and community engagement through secure, transparent, and user-friendly trading environments."
+            },
+            {
+                "name": "Token Development",
+                "desc": "Token development creates digital assets on blockchains, including fungible tokens (ERC-20, BEP-20) for utility/governance and non-fungible tokens (ERC-721/1155) for unique items. It involves smart contract design, tokenomics modeling (supply, distribution, vesting), security audits, and deployment across chains. Tokens power ecosystems for payments, rewards, access rights, and asset representation. Focus areas include economic sustainability, regulatory compliance, and integration with wallets/exchanges to enable seamless use in DeFi, gaming, DAOs, and real-world applications."
+            },
+            {
+                "name": "Blockchain Protocols",
+                "desc": "Blockchain protocol development builds the core layer of decentralized networks, including consensus mechanisms (PoS, PoW, DPoS), virtual machines, governance rules, and networking layers. Projects range from layer-1 chains (new blockchains) to layer-2 scaling solutions and interoperability protocols. Development requires deep cryptography, peer-to-peer networking, economic incentives, and rigorous testing. Protocols power entire ecosystems by providing security, finality, scalability, and trust assumptions for dApps, tokens, and cross-chain communication."
+            },
+            {
+                "name": "Cross-Chain Solutions",
+                "desc": "Cross-chain solutions enable interoperability between different blockchains, allowing asset transfers, data sharing, and message passing across networks. Development includes bridges (trusted/ trustless), atomic swaps, layer-0 protocols, and cross-chain messaging layers (e.g., Chainlink CCIP, LayerZero). Focus areas are security (minimizing bridge exploits), speed, cost-efficiency, and decentralization. Cross-chain tech unlocks liquidity, multi-chain dApps, unified DeFi ecosystems, and broader adoption by breaking silos between isolated blockchains."
+            },
+            {
+                "name": "Audits",
+                "desc": "Blockchain audits are comprehensive security reviews of smart contracts, protocols, and infrastructure to identify vulnerabilities before deployment. Audits cover code analysis, logic flaws, gas inefficiencies, reentrancy, overflow/underflow, access control, and economic attacks. Manual review, automated tools, fuzzing, and formal verification are combined for thoroughness. Audits build trust, prevent exploits, protect funds, and are often required for launches, listings, and insurance coverage in DeFi, NFTs, and enterprise blockchain projects."
+            },
+            {
+                "name": "Blockchain Platforms",
+                "desc": "Blockchain platforms provide end-to-end environments for building, deploying, and managing decentralized applications and networks. They include layer-1 chains, enterprise platforms (Hyperledger, Corda), managed services, and development suites with node hosting, explorers, APIs, and monitoring tools. Platforms balance decentralization, scalability, privacy, and ease of use. Businesses leverage them for rapid prototyping, private networks, public dApp deployment, and hybrid solutions that combine performance with security."
+            },
+            {
+                "name": "Crypto Infrastructure",
+                "desc": "Crypto infrastructure includes backend systems supporting wallets, exchanges, custodians, and DeFi protocols—such as node clusters, RPC providers, indexers, secure key management, and monitoring tools. It ensures high availability, low-latency data access, secure custody, and reliable transaction broadcasting. Infrastructure supports scalability, redundancy, and compliance while handling massive on-chain activity. Strong crypto infrastructure enables seamless user experiences, institutional adoption, and ecosystem growth across trading, staking, and asset management."
+            },
+            {
+                "name": "Wallet Solutions",
+                "desc": "Wallet solutions provide secure applications for storing, managing, and transacting cryptocurrencies and digital assets. Development covers non-custodial wallets, multi-chain support, staking/delegation, in-app swaps, NFT viewing, and dApp browsers. Security features include encrypted storage, biometric auth, seed phrase backup, and transaction simulation. Wallets serve as gateways to Web3, DeFi, NFTs, and payments, prioritizing usability, cross-device sync, and protection against phishing and key loss."
+            },
+            {
+                "name": "APIs",
+                "desc": "APIs in blockchain development provide programmatic access to on-chain data, transaction submission, wallet interactions, and network status. This includes RPC endpoints, REST/GraphQL APIs for indexing, oracle feeds, wallet SDKs, and cross-chain messaging. APIs enable dApps, wallets, exchanges, and enterprise systems to read balances, send transactions, query history, and integrate blockchain functionality without running nodes. High-performance, reliable, and secure APIs reduce latency, improve developer experience, and support scalable applications across Web3 ecosystems."
+            },
+            {
+                "name": "MVP Development",
+                "desc": "MVP (Minimum Viable Product) development creates the simplest, functional version of a software product to test ideas quickly with real users. It focuses on core features only, fast delivery, and gathering feedback for future improvements. Teams use agile methods, rapid prototyping, and cost-effective tech stacks to launch early, validate market fit, attract investors, and reduce risk before building full-scale versions. MVPs are widely used by startups, entrepreneurs, and enterprises exploring new digital products or features."
+            },
+            {
+                "name": "Web3 Products",
+                "desc": "Web3 product development builds decentralized, user-owned digital applications using blockchain technology. These products give users control over their data, assets, and identity through wallets, tokens, NFTs, and smart contracts. Common examples include decentralized social networks, play-to-earn games, creator platforms with royalties, and community-governed tools. Web3 products aim to create fairer internet experiences with transparency, no central control, and new ways to earn or own digital value."
+            },
+            {
+                "name": "Enterprise Blockchain",
+                "desc": "Enterprise blockchain creates private or permissioned blockchain networks tailored for large companies and organizations. It focuses on secure data sharing, supply chain tracking, automated contracts, audit trails, and compliance while maintaining privacy and high performance. Unlike public blockchains, enterprise versions restrict access, integrate with existing systems, and meet strict regulatory standards. Industries use it for faster settlements, fraud reduction, transparent records, and trusted collaboration between partners without revealing sensitive information."
+            },
+            {
+                "name": "Custom Software Development",
+                "desc": "Custom software development builds applications specifically designed for a business’s unique needs, processes, and goals — unlike off-the-shelf tools. It covers internal tools, customer portals, automation systems, CRMs, ERPs, and industry-specific platforms. The focus is on perfect fit, scalability, security, and long-term value. Companies choose custom software when generic solutions are too limited, inefficient, or expensive to adapt, allowing better efficiency, competitive advantage, and future-proof growth."
+            },
+            {
+                "name": "Web Development",
+                "desc": "Web development creates websites and web applications that businesses use to attract customers, sell products, manage operations, or deliver services online. It includes responsive design, fast loading, secure logins, e-commerce, dashboards, and integrations with payment systems or CRMs. Modern web development uses technologies that work perfectly on phones, tablets, and computers. Businesses rely on strong websites for brand presence, lead generation, customer support, and digital growth in today’s online-first world."
+            },
+            {
+                "name": "Mobile App Development",
+                "desc": "Mobile app development builds applications for smartphones and tablets (iOS and Android) that help businesses connect with customers, streamline services, or improve internal operations. Apps can include e-commerce, delivery tracking, booking systems, loyalty programs, employee tools, or social features. Development ensures smooth performance, push notifications, offline access, and secure logins. Mobile apps increase customer engagement, improve convenience, boost brand loyalty, and open new revenue channels in a mobile-first world."
+            },
+            {
+                "name": "AI Development",
+                "desc": "AI development builds smart systems that learn from data to automate tasks, make predictions, understand language, recognize images, or generate content. Businesses use AI for chatbots, personalized recommendations, fraud detection, demand forecasting, customer support automation, and process optimization. AI saves time, reduces errors, improves decisions, and creates better customer experiences. Modern AI combines ready-made models with custom training to deliver practical value across industries like retail, finance, healthcare, and marketing."
+            },
+            {
+                "name": "AR/VR Development",
+                "desc": "AR/VR development creates immersive digital experiences using augmented reality (AR — overlays on the real world) and virtual reality (VR — fully digital environments). Applications include training simulations, product visualization, virtual tours, interactive marketing, education tools, and gaming. Development uses game engines like Unity/Unreal for realistic 3D, precise tracking, and comfortable user interaction. Businesses use AR/VR to train employees safely, showcase products in 3D, engage customers creatively, and reduce real-world costs."
+            },
+            {
+                "name": "VR Training Solutions",
+                "desc": "VR training solutions use virtual reality to create realistic, safe, and repeatable learning environments for employees. Workers practice high-risk tasks (surgery, machinery operation, safety drills), soft skills (customer service, leadership), or complex procedures without real-world cost or danger. VR improves retention, reduces training time, allows remote learning, and measures performance through data. Industries like manufacturing, healthcare, aviation, oil & gas, and construction use VR training to enhance safety, lower costs, and accelerate onboarding."
+            },
+            {
+                "name": "Unity Development",
+                "desc": "Unity development uses the Unity engine to build high-quality 2D/3D games, interactive simulations, AR/VR experiences, product configurators, architectural visualizations, and training tools. It supports cross-platform deployment (mobile, PC, consoles, web, XR headsets) with powerful physics, animations, lighting, and asset pipelines. Unity is popular for its ease of use, large asset store, and active community. Businesses use Unity for engaging marketing experiences, employee training, virtual prototypes, and profitable games or simulations."
+            },
+            {
+                "name": "3D Visualization",
+                "desc": "3D visualization turns ideas, products, buildings, or concepts into realistic, interactive digital models and animations. It is used for product demos, architectural walkthroughs, medical imaging, marketing videos, virtual tours, and simulations. Development includes modeling, texturing, lighting, rendering, and interactivity so viewers can rotate, zoom, or explore in real time. Businesses use 3D visualization to showcase products before manufacturing, sell real estate remotely, train staff, or create engaging marketing content that stands out."
+            },
+            {
+                "name": "Digital Twins",
+                "desc": "Digital twins are virtual copies of physical objects, buildings, machines, or processes that update in real time using sensors and data. They allow monitoring, simulation, predictive maintenance, optimization, and testing without touching the real asset. Industries use digital twins for factories, wind turbines, hospitals, cities, vehicles, and infrastructure to reduce downtime, cut costs, improve safety, and plan upgrades. Development combines 3D modeling, IoT integration, AI analytics, and cloud platforms for accurate, live mirroring."
+            },
+            {
+                "name": "Mobile Development",
+                "desc": "Mobile development builds custom applications for smartphones and tablets (iOS and Android) to help businesses reach customers, streamline operations, or empower employees. Apps support e-commerce, delivery tracking, loyalty programs, bookings, internal tools, and notifications. It ensures smooth performance, offline capabilities, secure payments, and intuitive design. Mobile apps improve customer satisfaction, increase engagement, drive sales, and provide data insights in a world where people spend most digital time on phones."
+            },
+            {
+                "name": "Prototyping",
+                "desc": "Prototyping creates quick, interactive mockups or early versions of digital products (apps, websites, AR/VR experiences) to test ideas before full development. It includes wireframes, clickable demos, 3D models, or basic functionality to show look, feel, and flow. Prototypes help gather user feedback, refine designs, validate concepts with stakeholders, and reduce costly changes later. Businesses use prototyping to de-risk projects, speed up decisions, and ensure the final product meets real needs."
+            },
+            {
+                "name": "VR Game Development",
+                "desc": "VR game development creates immersive, interactive games designed for virtual reality headsets, delivering full presence and physical interaction. It includes realistic physics, 360° environments, motion controls, multiplayer modes, and narrative-driven experiences. Games span entertainment, education, fitness, escape rooms, and team-building. Development uses engines like Unity/Unreal with focus on comfort, performance, and engaging gameplay to avoid motion sickness. VR games captivate players, offer unique escapism, and create memorable social or solo experiences."
+            },
+            {
+                "name": "AR Games",
+                "desc": "AR games overlay digital characters, objects, or challenges onto the real world using smartphone cameras. Players interact with the environment — catching creatures, solving puzzles, or battling in their own space. Development uses ARKit (iOS), ARCore (Android), and Unity for tracking, lighting, and performance. Popular for casual fun, education, marketing, and team events, AR games blend reality with play, encouraging movement, exploration, and social interaction in everyday locations."
+            },
+            {
+                "name": "3D Art",
+                "desc": "3D art involves creating digital sculptures, characters, environments, props, and animations for games, films, advertising, product design, AR/VR, and virtual experiences. Artists model, texture, rig, and animate assets using tools like Maya, Blender, ZBrush, and Substance Painter. High-quality 3D art brings realism, style, or fantasy to life — from photoreal products to stylized characters. Businesses use 3D art for marketing visuals, game development, virtual showrooms, film VFX, and immersive storytelling."
+            },
+            {
+                "name": "VR Experiences",
+                "desc": "VR experiences create fully immersive digital worlds or simulations accessed through headsets, transporting users to new places or scenarios. They include virtual tours, storytelling adventures, concerts, art galleries, therapy sessions, team-building events, and brand activations. Development focuses on presence, comfort, interaction, and storytelling using Unity/Unreal for realistic environments and smooth performance. Businesses use VR experiences for marketing, employee engagement, customer entertainment, education, and creating unforgettable moments."
+            },
+            {
+                "name": "AR Installations",
+                "desc": "AR installations blend digital content with physical spaces using smartphones, tablets, or glasses to create interactive exhibits, murals, product displays, or events. Users point their device at a real-world marker or location to see animations, information, characters, or transformations. Common in museums, retail, trade shows, public art, and brand activations. AR installations engage audiences, tell stories, promote products, and turn ordinary spaces into memorable, shareable experiences."
+            },
+            {
+                "name": "Creative Technology",
+                "desc": "Creative technology combines code, design, and innovation to build unique interactive experiences — interactive installations, generative art, immersive events, experimental apps, and tech-driven storytelling. It merges AR/VR, AI, sensors, projection mapping, touch interfaces, and physical computing. Used in advertising, art galleries, concerts, brand activations, museums, and experiential marketing. Creative tech surprises audiences, tells compelling stories, and creates shareable, emotional connections that traditional media cannot achieve."
+            },
+            {
+                "name": "AR/VR Prototyping",
+                "desc": "AR/VR prototyping builds quick, interactive mockups of augmented reality or virtual reality experiences to test concepts before full development. It includes basic 3D scenes, simple interactions, head-tracking demos, or mobile AR overlays. The goal is fast iteration, user feedback, and validation of ideas with low cost and time. Businesses use AR/VR prototyping for product demos, training concepts, marketing tests, spatial app ideas, or game mechanics — helping decide what works before investing in complete builds."
+            },
+            {
+                "name": "Metaverse Solutions",
+                "desc": "Metaverse solutions build persistent virtual worlds where people interact, play, shop, work, or socialize using avatars in shared 3D spaces. They combine VR/AR access, blockchain for ownership (NFTs, land), social features, events, and custom branding. Businesses use metaverse platforms for virtual offices, concerts, product launches, training, e-commerce, and community building — creating new ways to engage customers, host events, and sell digital/physical goods in immersive environments."
+            },
+            {
+                "name": "NFT & Web3",
+                "desc": "NFT & Web3 development combines non-fungible tokens with decentralized web technologies to create digital ownership, creator economies, and user-controlled platforms. It includes NFT minting tools, marketplaces, token-gated communities, decentralized social apps, and blockchain-based memberships. Businesses use it for digital collectibles, loyalty programs, exclusive content access, artist royalties, and fan engagement — giving users true ownership of digital items and fairer reward systems."
+            },
+            {
+                "name": "VR Development",
+                "desc": "VR development builds fully immersive virtual reality applications for headsets, creating simulated environments for entertainment, training, therapy, education, design reviews, and virtual collaboration. It includes realistic 3D worlds, hand-tracking interactions, spatial audio, physics, and multiplayer support. VR development prioritizes comfort (no motion sickness), performance, and presence. Businesses use it for safe skill practice, remote team meetings, product testing, customer experiences, and creating engaging virtual spaces."
+            },
+            {
+                "name": "Simulation Apps",
+                "desc": "Simulation apps recreate real-world processes, environments, or systems in digital form for training, testing, analysis, or entertainment. They include flight simulators, driving trainers, medical procedure practice, disaster response drills, factory line modeling, and physics-based games. Development uses accurate physics, real-time data, 3D environments, and user interactions to mimic reality closely. Businesses use simulation apps to train safely, test designs cheaply, predict outcomes, and reduce real-world risks or costs."
+            },
+            {
+                "name": "AR Visualization",
+                "desc": "AR visualization overlays digital 3D models, data, or information onto the real world through smartphones, tablets, or glasses. It is used for product previews, architectural overlays, maintenance guides, retail try-ons, medical imaging, and educational explanations. Development focuses on accurate tracking, realistic rendering, and intuitive interaction. Businesses use AR visualization to help customers see products in their space, guide technicians on repairs, or make complex concepts easier to understand."
+            },
+            {
+                "name": "3D Modeling",
+                "desc": "3D modeling creates accurate digital representations of objects, characters, environments, or products using specialized software. It serves as the foundation for animation, rendering, printing, AR/VR, games, product design, architecture, and simulations. Models range from low-poly game assets to photoreal product visuals or medical anatomy. Businesses use 3D modeling for prototyping, marketing visuals, manufacturing preparation, virtual showrooms, and immersive experiences — saving time and cost compared to physical builds."
+            },
+            {
+                "name": "E-commerce Development",
+                "desc": "E-commerce development builds online stores and marketplaces where businesses sell products or services directly to customers. It includes product catalogs, shopping carts, secure payments, order management, customer accounts, search/filtering, mobile optimization, and integrations (shipping, inventory, marketing tools). Custom e-commerce platforms support unique features like subscriptions, B2B portals, auctions, or personalized recommendations. Businesses use e-commerce to reach global customers, increase sales, reduce overhead, and gather data for better decisions."
+            },
+            {
+                "name": "Shopify Solutions",
+                "desc": "Shopify solutions customize, extend, and optimize online stores on the Shopify platform. It includes theme development, custom apps, checkout enhancements, payment integrations, inventory tools, SEO, speed optimization, and third-party app connections. Businesses choose Shopify for fast setup, secure hosting, and scalability — then add custom features for unique branding, B2B functionality, subscriptions, marketplaces, or advanced analytics. Shopify solutions help brands launch quickly, sell globally, and grow without heavy backend management."
+            },
+            {
+                "name": "Generative AI",
+                "desc": "Generative AI creates new content — text, images, videos, music, code, or 3D models — from simple prompts or data inputs. It uses models like GPT, Stable Diffusion, DALL·E, or custom fine-tuned versions for chatbots, content creation, product mockups, personalized marketing, design ideation, or code assistance. Businesses use generative AI to speed up creation, reduce costs, personalize experiences, automate writing/design, and spark new ideas — all while maintaining brand voice and quality control."
+            },
+            {
+                "name": "Custom Software",
+                "desc": "Custom software is built specifically for a business's unique needs, processes, and goals — unlike generic off-the-shelf tools. It includes internal tools, customer portals, automation systems, specialized CRMs/ERPs, reporting dashboards, and industry-specific platforms. The focus is on perfect alignment, scalability, security, and long-term value. Businesses choose custom software when standard solutions are too rigid, inefficient, or expensive to adapt, allowing better efficiency, competitive edge, and smooth growth."
+            },
+            {
+                "name": "Custom Software & Web Apps",
+                "desc": "Custom software & web apps development creates tailored digital solutions that run in browsers or as desktop/mobile programs, designed specifically for a business's unique requirements. It combines backend logic, databases, APIs, and modern frontend interfaces for internal tools, customer portals, dashboards, automation platforms, and SaaS-like products. Businesses use this to solve specific problems, improve workflows, engage customers online, and scale operations without being limited by off-the-shelf software."
+            },
+            {
+                "name": "API & Backend Development",
+                "desc": "API & backend development builds the invisible but essential part of software — servers, databases, logic, and APIs that power apps, websites, and integrations. It handles data storage, user authentication, business rules, payments, notifications, and secure communication between systems. Businesses rely on strong backends for reliable performance, scalability, security, and smooth connections to third-party services. Good backend work ensures apps run fast, stay secure, and handle growth without crashing."
+            },
+            {
+                "name": "IT Staff Augmentation",
+                "desc": "IT staff augmentation adds skilled developers, designers, testers, or engineers to your existing team on a temporary or long-term basis. It fills skill gaps, speeds up projects, or handles workload spikes without hiring full-time employees. Businesses use it for short-term needs (e.g., app launch), specialized skills (AI, blockchain), or scaling teams quickly. Augmentation keeps control in-house while gaining access to top talent, often remotely or nearshore, saving time and recruitment costs."
+            },
+            {
+                "name": "Application Testing",
+                "desc": "Application testing ensures software (web, mobile, desktop, or enterprise apps) works correctly, is secure, fast, and user-friendly before launch. It includes functional testing (does it do what it should?), performance/load testing, security/vulnerability checks, usability testing, compatibility across devices/browsers, and automation. Businesses use QA & testing to catch bugs early, prevent bad user experiences, reduce support costs, comply with standards, and deliver reliable products that build trust and retention."
+            },
+            {
+                "name": "DevOps Managed Services",
+                "desc": "DevOps managed services handle the automation, deployment, monitoring, and maintenance of software systems so teams can focus on building features instead of infrastructure. It includes CI/CD pipelines, cloud management, container orchestration (Kubernetes), monitoring/alerting, security patching, backups, and scaling. Businesses use managed DevOps to release updates faster, reduce downtime, improve security, and cut IT overhead — ideal for companies without large in-house operations teams."
+            },
+            {
+                "name": "Cloud Engineering",
+                "desc": "Cloud engineering designs, builds, and manages infrastructure on cloud platforms (AWS, Azure, Google Cloud) for applications, storage, databases, networking, and security. It includes migration from old servers, cloud-native architecture, cost optimization, auto-scaling, disaster recovery, and DevOps integration. Businesses use cloud engineering to reduce hardware costs, scale instantly, improve reliability, enable remote work, and access advanced tools (AI, analytics) without owning data centers."
+            },
+            {
+                "name": "Agile Transformation",
+                "desc": "Agile transformation helps companies shift from slow, rigid project methods (like waterfall) to flexible, fast, customer-focused Agile/Scrum/Kanban practices. It includes team training, process redesign, tool setup (Jira, Azure DevOps), cultural change, and continuous improvement. Benefits include faster delivery, better quality, happier teams, quicker response to changes, and higher customer satisfaction. Businesses use agile transformation to compete in fast-moving markets, reduce waste, and deliver value incrementally."
+            },
+            {
+                "name": "Workflow Automation",
+                "desc": "Workflow automation uses software to automatically handle repetitive business tasks — approvals, notifications, data entry, document routing, reminders, and integrations between tools. It connects apps (email, CRM, accounting, HR systems) so work flows smoothly without manual steps. Businesses use it to save time, reduce errors, speed up processes, improve compliance, and let employees focus on high-value work instead of routine tasks."
+            },
+            {
+                "name": "Web & Mobile Applications",
+                "desc": "Web & mobile applications development builds connected solutions that work across browsers and smartphones — including progressive web apps (PWAs), responsive websites, native iOS/Android apps, and hybrid solutions. It covers e-commerce, productivity tools, customer portals, booking systems, social features, and dashboards. Businesses use web & mobile apps to reach users everywhere, provide seamless experiences, increase engagement, and drive revenue in a multi-device world."
+            },
+            {
+                "name": "SaaS Solutions",
+                "desc": "SaaS (Software as a Service) solutions are cloud-based applications delivered over the internet on a subscription model — users access them via browser or app without installing software locally. Development includes scalable architecture, multi-tenant design, secure user management, billing systems, analytics dashboards, and regular updates. Businesses build or customize SaaS to offer tools like project management, CRM, HR systems, accounting, or industry-specific platforms. SaaS provides recurring revenue, easy scalability, automatic updates, and global access for customers while reducing IT overhead."
+            },
+            {
+                "name": "API & System Integrations",
+                "desc": "API & system integrations connect different software tools, databases, or services so they work together seamlessly — e.g., linking your CRM to email marketing, e-commerce to inventory, or payment gateway to accounting. It includes building custom APIs, using middleware (Zapier, Make), or direct integrations (REST, GraphQL, webhooks). Businesses use integrations to eliminate manual data entry, sync information in real time, automate workflows, and create unified systems that save time and reduce errors."
+            },
+            {
+                "name": "Support & Optimization",
+                "desc": "Support & optimization services keep software, websites, apps, or systems running smoothly after launch. It includes bug fixes, performance tuning (speed/load time), security updates, monitoring, scaling for growth, feature enhancements, and user support. Businesses use ongoing support to maintain reliability, improve user experience, prevent downtime, adapt to new needs, and maximize return on investment from their digital products."
+            }
+        ]
+    },
+    {
+        "name": "IT Services",
+        "icon": "fa-server",
+        "subcategories": [
+            {
+                "name": "Cloud Solutions",
+                "desc": "Cloud solutions move computing resources (servers, storage, databases, software) to remote data centers accessed over the internet, eliminating the need for on-premise hardware. They offer scalability, pay-as-you-go pricing, automatic backups, global access, and built-in security. Businesses use cloud solutions to reduce IT costs, launch faster, handle traffic spikes, enable remote work, and access advanced tools (AI, analytics) without owning infrastructure — ideal for startups, e-commerce, and growing companies."
+            },
+            {
+                "name": "Cloud Computing",
+                "desc": "Cloud computing delivers on-demand computing resources (servers, storage, databases, networking, software) over the internet instead of local hardware. It offers flexibility, scalability, cost savings, and access to advanced services (AI, big data, machine learning). Businesses use cloud computing to run websites, store files, host apps, analyze data, or collaborate remotely — reducing IT overhead, speeding up innovation, and enabling global operations without physical servers."
+            },
+            {
+                "name": "Big Data Analytics",
+                "desc": "Big data analytics processes and analyzes massive volumes of data (structured/unstructured) to uncover patterns, trends, insights, and predictions. It uses tools for data collection, storage, cleaning, visualization, and advanced modeling (machine learning). Businesses use big data analytics for customer behavior understanding, operational optimization, fraud detection, demand forecasting, personalized marketing, and strategic decisions — turning raw data into actionable intelligence for competitive advantage."
+            },
+            {
+                "name": "Automation",
+                "desc": "Automation uses software, scripts, and tools to perform repetitive tasks without human intervention — data processing, workflows, notifications, testing, deployments, or system monitoring. It increases speed, accuracy, consistency, and scalability while reducing costs and errors. Businesses apply automation to IT operations, marketing campaigns, customer support, finance processes, and DevOps — freeing teams for creative or strategic work and enabling 24/7 reliability."
+            },
+            {
+                "name": "Data Analytics",
+                "desc": "Data analytics turns raw data into useful insights through collection, cleaning, analysis, visualization, and reporting. It includes descriptive (what happened), diagnostic (why), predictive (what might happen), and prescriptive (what to do) analytics. Businesses use data analytics to understand customers, optimize operations, forecast trends, measure performance, and make informed decisions — improving efficiency, profitability, and competitiveness across industries."
+            },
+            {
+                "name": "Cloud AI Solutions",
+                "desc": "Cloud AI solutions combine cloud computing with artificial intelligence services — pre-built models, tools, and platforms (machine learning, NLP, computer vision, generative AI) hosted in the cloud. They enable businesses to add AI capabilities (chatbots, predictions, personalization) without building from scratch or managing infrastructure. Cloud AI offers scalability, pay-as-you-go pricing, easy integration, and fast deployment. Businesses use it for customer service, analytics, automation, or innovation — accessing powerful AI without heavy investment."
+            },
+            {
+                "name": "Data Platforms",
+                "desc": "Data platforms provide centralized systems for collecting, storing, processing, analyzing, and sharing data across an organization. They include data warehouses, lakes, pipelines, governance tools, and analytics engines (Snowflake, Databricks, BigQuery). Businesses use data platforms to unify scattered data, enable real-time insights, support AI/ML, ensure compliance, and empower teams with self-service analytics — turning data into a strategic asset for better decisions and growth."
+            },
+            {
+                "name": "Data Science",
+                "desc": "Data science combines statistics, programming, and domain knowledge to extract insights from data through modeling, machine learning, visualization, and experimentation. It solves problems like customer segmentation, churn prediction, pricing optimization, fraud detection, and demand forecasting. Businesses use data science to make evidence-based decisions, uncover hidden opportunities, automate predictions, and gain competitive advantages — turning raw data into strategic intelligence."
+            },
+            {
+                "name": "Data Engineering",
+                "desc": "Data engineering builds and maintains scalable pipelines to collect, process, store, and deliver data reliably. It includes ETL/ELT processes, data modeling, warehousing/lakes, real-time streaming (Kafka, Spark), quality assurance, and infrastructure automation. Businesses use data engineering to handle growing data volumes, ensure accuracy, support analytics/AI, and enable real-time decisions — creating a strong foundation for data-driven operations in e-commerce, finance, healthcare, and more."
+            },
+            {
+                "name": "Machine Learning",
+                "desc": "Machine learning develops algorithms that learn from data to make predictions, classifications, or decisions without explicit programming. It includes supervised/unsupervised models, neural networks, feature engineering, training, evaluation, and deployment (TensorFlow, PyTorch, Scikit-learn). Businesses use machine learning for recommendation systems, fraud detection, predictive maintenance, sentiment analysis, and automation — improving efficiency, personalization, and innovation by leveraging patterns in data."
+            },
+            {
+                "name": "Data Management",
+                "desc": "Data management organizes, stores, protects, and governs data throughout its lifecycle — including collection, quality control, integration, security, compliance, and archiving. It ensures data is accurate, accessible, secure, and compliant (GDPR, CCPA). Businesses use data management to avoid silos, reduce errors, support analytics/AI, meet regulations, and make reliable decisions — treating data as a valuable asset for operations, reporting, and growth."
+            },
+            {
+                "name": "Data Engineering & Analytics",
+                "desc": "Data engineering & analytics builds reliable pipelines to collect, process, store, and analyze large volumes of data efficiently. It includes ETL processes, data modeling, warehousing/lakes, real-time streaming, quality checks, and scalable infrastructure. Analytics transforms processed data into dashboards, reports, and insights for business decisions. Businesses use this to unify data sources, enable self-service insights, support AI/ML, improve forecasting, and drive data-informed strategies across operations, marketing, and finance."
+            },
+            {
+                "name": "API & Integration",
+                "desc": "API & integration connects different software systems, applications, databases, or cloud services so they communicate and share data seamlessly. It includes building/resting APIs, using middleware, webhooks, iPaaS tools, and custom connectors for real-time sync or batch processing. Businesses use API & integration to eliminate manual data transfer, automate workflows, unify operations, improve accuracy, and support digital ecosystems — turning disconnected tools into a smooth, efficient whole."
+            },
+            {
+                "name": "API Development",
+                "desc": "API development builds secure, scalable, and well-documented application programming interfaces (APIs) that allow different software systems to communicate. It includes REST/GraphQL design, authentication, versioning, rate limiting, error handling, and integration with databases or services. Businesses use custom API development for internal tools, partner integrations, mobile apps, third-party access, or microservices — enabling connectivity, automation, and ecosystem growth while maintaining control and performance."
+            },
+            {
+                "name": "DevSecOps",
+                "desc": "DevSecOps integrates security practices into the DevOps pipeline from the start — automating security checks, vulnerability scanning, compliance monitoring, and secure coding throughout development and deployment. It shifts security 'left' to catch issues early, reducing risks and costs. Businesses use DevSecOps to build secure applications faster, meet regulations, protect data, and maintain trust — combining speed of DevOps with strong security without slowing innovation."
+            },
+            {
+                "name": "Cloud Transformation",
+                "desc": "Cloud transformation migrates and modernizes IT infrastructure, applications, data, and processes from on-premise to cloud environments (public, private, hybrid). It includes assessment, strategy, migration planning, refactoring, security, cost optimization, and change management. Businesses use cloud transformation to reduce costs, improve agility, enable scalability, support remote work, adopt new tech (AI, analytics), and drive digital innovation — moving from legacy systems to flexible, future-ready operations."
+            },
+            {
+                "name": "Security",
+                "desc": "Security protects IT systems, data, networks, applications, and users from threats — including firewalls, encryption, access controls, threat detection, vulnerability management, compliance, incident response, and security training. Businesses use security services to prevent breaches, protect sensitive data, meet regulations (GDPR, HIPAA), maintain customer trust, and reduce financial/reputational risks — implementing layered defenses, monitoring, and rapid response to keep operations safe."
+            },
+            {
+                "name": "Maintenance",
+                "desc": "Maintenance keeps IT systems, applications, servers, networks, or cloud environments healthy and operational long-term. It includes regular updates, patch management, performance tuning, monitoring, backups, hardware/software refreshes, and preventive checks. Businesses use maintenance to prevent breakdowns, extend asset life, ensure security, maintain compliance, and avoid expensive emergency repairs — keeping technology reliable, efficient, and aligned with evolving needs."
+            }
+        ]
+    },
+    {
+        "name": "Marketing",
+        "icon": "fa-chart-line",
+        "subcategories": [
+            {
+                "name": "Digital Marketing",
+                "desc": "Digital marketing promotes products, services, or brands through online channels — social media, email, search engines, display ads, content, influencers, and websites. It targets specific audiences, measures results in real time (clicks, conversions, ROI), and allows quick adjustments. Businesses use digital marketing to reach customers where they spend time (phones, computers), build awareness, generate leads, drive sales, and nurture relationships cost-effectively compared to traditional advertising. It’s essential for growth in today’s online-first world."
+            },
+            {
+                "name": "SEO Optimization",
+                "desc": "SEO (Search Engine Optimization) improves a website’s visibility on Google and other search engines so people find you when searching for related products or services. It includes keyword research, on-page optimization (titles, content, speed), technical fixes (mobile-friendliness, site structure), backlinks, and local SEO. Businesses use SEO to attract free, high-intent traffic, build long-term visibility, reduce ad spend, and establish authority — turning searches into customers without paying per click."
+            },
+            {
+                "name": "Marketing focused AR",
+                "desc": "Marketing-focused AR (Augmented Reality) overlays digital content (products, animations, info) onto the real world via smartphones or glasses for interactive campaigns. It includes virtual try-ons, product previews in user’s space, branded filters, AR ads, or experiential activations. Businesses use it to engage audiences, boost shareability, increase conversions, and create memorable brand moments — turning passive viewing into active participation that stands out in crowded digital spaces."
+            },
+            {
+                "name": "Content & Digital Strategy",
+                "desc": "Content & digital strategy plans how to create, distribute, and use content (blogs, videos, social posts, emails, guides) across digital channels to achieve business goals — awareness, leads, sales, loyalty. It defines audience, messaging, formats, channels, calendars, and measurement. Businesses use it to attract the right people, build trust, nurture relationships, support SEO, and drive consistent growth — turning content into a powerful, measurable marketing asset."
+            },
+            {
+                "name": "Digital Strategy",
+                "desc": "Digital strategy plans how a business uses online channels (website, social, email, ads, apps, SEO, content) to achieve goals — growth, sales, brand awareness, customer retention. It defines audience, competitive position, channel mix, budget allocation, timelines, and KPIs. Businesses use digital strategy to align online efforts with business objectives, maximize ROI, adapt to trends, and stay ahead in digital-first markets — turning digital presence into measurable results."
+            },
+            {
+                "name": "Growth-focused solutions",
+                "desc": "Growth-focused solutions are marketing and optimization strategies designed to rapidly increase users, revenue, leads, or market share. They include growth hacking, conversion rate optimization, paid acquisition, viral loops, referral programs, retention tactics, A/B testing, and analytics-driven experiments. Businesses use them to scale quickly, improve ROI on marketing spend, reduce customer acquisition costs, and achieve sustainable growth — often for startups, e-commerce, SaaS, or companies in competitive markets."
+            },
+            {
+                "name": "ECommerce Solutions",
+                "desc": "E-commerce solutions build and optimize online stores to sell products or services directly to customers. They include platforms (Shopify, WooCommerce, custom), product catalogs, carts, payments, shipping, inventory sync, marketing integrations, and mobile optimization. Businesses use e-commerce solutions to reach global buyers, automate sales, reduce overhead, offer 24/7 shopping, and collect data for personalization. Good solutions increase conversions, average order value, repeat purchases, and customer satisfaction."
+            }
+        ]
+    },
+    {
+        "name": "Advertising",
+        "icon": "fa-bullhorn",
+        "subcategories": [
+            {
+                "name": "AR Marketing Experiences",
+                "desc": "AR marketing experiences use augmented reality to overlay digital content onto the real world through smartphones or glasses, creating interactive campaigns that engage users directly. Examples include virtual product try-ons, branded filters, 3D animations triggered by packaging or posters, AR ads, and experiential activations at events. These experiences make ads feel playful and personal, boosting shareability on social media, increasing brand recall, and driving conversions by letting users interact with products in their own environment. Brands use AR marketing to stand out in crowded digital spaces and create viral, memorable moments."
+            },
+            {
+                "name": "Brand Awareness",
+                "desc": "Brand Awareness in advertising creates a consistent visual and emotional identity (logo, colors, typography, messaging, tone) that makes a product, service, or company instantly recognizable and desirable. It builds trust, sets expectations, and differentiates from competitors through ads, packaging, social media, and campaigns. Strong branding turns one-time buyers into loyal fans and allows premium pricing. Businesses use branding to launch new products, refresh images, enter new markets, or create emotional connections that drive long-term advertising success."
+            },
+            {
+                "name": "Creative",
+                "desc": "Creative services focus on ideation and production of original advertising materials—copywriting, art direction, photography, video, and graphic assets. Creative teams translate marketing objectives into compelling stories that capture attention and inspire action. High-impact creative work is essential for campaigns that stand out in a crowded market."
+            },
+            {
+                "name": "Video Production",
+                "desc": "Video Production includes scripting, filming, editing, animation, and post-production for commercials, explainer videos, social media content, and corporate films. Professional video conveys emotion and information far more effectively than text or static images. It is a powerful tool for storytelling and converting viewers across platforms."
+            },
+            {
+                "name": "Public Relations",
+                "desc": "Public Relations (PR) manages a brand’s reputation through earned media coverage, press releases, crisis communication, and influencer outreach. PR professionals build relationships with journalists and shape public perception positively. Unlike advertising, PR focuses on credibility and third-party endorsement to enhance trust and authority."
+            },
+            {
+                "name": "Media Planning & Buying",
+                "desc": "Media Planning & Buying involves researching audiences, selecting the most effective channels (TV, radio, digital, OOH), negotiating rates, and placing ads for optimal reach and frequency. Experts balance budget, timing, and targeting to achieve campaign KPIs. Data-driven planning ensures every advertising dollar delivers measurable impact."
+            }
+        ]
+    },
+    {
+        "name": "Business",
+        "icon": "fa-briefcase",
+        "subcategories": [
+            {
+                "name": "Business Automation",
+                "desc": "Business automation uses software tools and workflows to handle repetitive tasks automatically — such as data entry, approvals, invoicing, reporting, notifications, and integrations between systems. It reduces manual work, minimizes errors, speeds up processes, ensures consistency, and frees employees for higher-value tasks. Businesses adopt automation to increase efficiency, scale operations without adding headcount, improve compliance, and cut costs. Common applications include email sequences, CRM updates, order processing, HR onboarding, and financial reconciliations."
+            },
+            {
+                "name": "Consulting",
+                "desc": "Consulting provides expert advice, strategies, and guidance to help businesses solve problems, improve performance, or achieve goals. Consultants analyze situations, offer recommendations, create plans, and sometimes help implement changes in areas like operations, marketing, finance, technology, or growth. Businesses hire consultants for outside perspective, specialized knowledge, temporary support, or to accelerate progress without building internal teams. Consulting delivers objective insights, best practices, and actionable steps tailored to the company’s needs."
+            },
+            {
+                "name": "Product Strategy",
+                "desc": "Product strategy defines the vision, goals, roadmap, features, and positioning of a product to meet user needs and business objectives. It includes market research, competitive analysis, user personas, prioritization, pricing, go-to-market plans, and iteration based on feedback. Businesses use product strategy to focus development, avoid building unwanted features, align teams, maximize ROI, and create products that win in the market — whether for apps, SaaS, hardware, or services."
+            },
+            {
+                "name": "Strategy",
+                "desc": "Strategy defines a clear path to achieve long-term business goals — setting vision, objectives, priorities, resource allocation, competitive positioning, and action plans. It covers business, growth, marketing, product, operations, or digital strategy. Businesses use strategy to focus efforts, make better decisions, align teams, adapt to changes, and outpace competitors — turning ideas into measurable success with less waste and higher confidence."
+            },
+            {
+                "name": "AI Consulting",
+                "desc": "AI consulting helps businesses understand, adopt, and implement artificial intelligence to solve problems, improve efficiency, or create new value. Consultants assess needs, recommend tools/models (chatbots, predictive analytics, automation), design pilots, guide integration, train teams, and measure ROI. Businesses use AI consulting to explore opportunities (customer service, forecasting, personalization), avoid common pitfalls, and implement AI responsibly without building large internal teams."
+            },
+            {
+                "name": "Business-focused solutions",
+                "desc": "Business-focused solutions are tailored software, processes, or strategies designed to solve specific business problems — improving efficiency, increasing revenue, reducing costs, or enhancing customer experience. They include custom tools, automation, integrations, dashboards, or consulting packages aligned with company goals rather than generic tech. Businesses use these solutions to address pain points directly, achieve measurable ROI, and support growth without unnecessary features or complexity."
+            },
+            {
+                "name": "Product Consulting",
+                "desc": "Product consulting provides expert guidance on building, launching, and growing digital or physical products. Consultants help with market fit, feature prioritization, user research, roadmaps, pricing, go-to-market plans, and iteration based on data. Businesses hire product consultants for objective advice, specialized expertise, temporary leadership, or to accelerate progress — especially for startups, new launches, pivots, or scaling products without full-time senior hires."
+            },
+            {
+                "name": "Digital Consulting",
+                "desc": "Digital consulting helps businesses adopt and optimize digital technologies, channels, and strategies — websites, apps, e-commerce, marketing automation, data analytics, AI tools, cloud migration, or digital transformation. Consultants assess current state, recommend solutions, create roadmaps, and guide implementation. Businesses use digital consulting to go online, improve customer experience, increase efficiency, compete digitally, or modernize operations — gaining expert advice without building large internal digital teams."
+            },
+            {
+                "name": "Business-oriented development approach",
+                "desc": "Business-oriented development approach builds software, products, or digital solutions with primary focus on business goals — revenue, efficiency, customer satisfaction, ROI, scalability, and measurable outcomes — rather than purely technical perfection. It aligns features, timelines, and priorities with business needs, involves stakeholders early, and iterates based on value delivered. Businesses use this approach to ensure development supports growth, reduces waste, and delivers tangible results instead of over-engineering or missing market needs."
+            },
+            {
+                "name": "Startup Consulting",
+                "desc": "Startup consulting provides guidance to early-stage companies on product-market fit, business model, fundraising, team building, go-to-market strategy, growth tactics, and scaling challenges. Consultants offer mentorship, frameworks, introductions, and hands-on support to avoid common pitfalls. Startups use consulting to accelerate progress, raise capital more effectively, validate ideas quickly, and build sustainable foundations — turning ideas into viable, growing businesses with expert support."
+            },
+            {
+                "name": "Digital Transformation",
+                "desc": "Digital transformation reimagines business operations, customer experiences, and models through digital technologies — cloud, AI, automation, data analytics, mobile, and IoT. It involves strategy, culture change, process redesign, tech adoption, and change management. Businesses undertake digital transformation to stay competitive, improve efficiency, create new revenue streams, enhance customer satisfaction, and adapt to fast-changing markets — turning traditional operations into agile, data-driven, customer-centric organizations."
+            },
+            {
+                "name": "Discovery & Consulting",
+                "desc": "Discovery & consulting is the initial phase where experts deeply understand a business’s goals, challenges, users, processes, and market before recommending solutions. It includes workshops, interviews, audits, competitor analysis, opportunity mapping, and high-level roadmaps. Businesses use discovery to clarify needs, validate ideas, reduce risks, align stakeholders, and create a solid foundation for projects — ensuring time and money are invested in the right direction."
+            },
+            {
+                "name": "Technical Consulting",
+                "desc": "Technical consulting provides expert advice on technology choices, architecture, tools, infrastructure, security, scalability, and implementation best practices. Consultants assess current tech stack, recommend solutions (cloud, languages, frameworks, integrations), design systems, and guide teams through challenges. Businesses use technical consulting for digital projects, migrations, optimizations, or complex builds — gaining specialized knowledge without full-time senior hires, avoiding costly mistakes, and accelerating delivery."
+            },
+            {
+                "name": "AI Strategy",
+                "desc": "AI strategy plans how a business can effectively adopt and use artificial intelligence to achieve goals — identifying opportunities, prioritizing use cases (automation, insights, personalization), selecting tools/models, building roadmaps, managing risks (ethics, data privacy), and measuring impact. It aligns AI with business priorities rather than chasing trends. Businesses use AI strategy to gain competitive advantage, improve efficiency, enhance customer experiences, or create new offerings — ensuring responsible, high-ROI AI adoption."
+            },
+            {
+                "name": "AI Implementation",
+                "desc": "AI implementation turns AI strategies into real, working solutions — selecting models/tools, integrating them into systems, training/fine-tuning, deploying (cloud/on-premise), monitoring performance, and iterating based on results. It covers chatbots, predictive analytics, automation, personalization, or computer vision. Businesses use AI implementation to achieve practical value — efficiency gains, better decisions, enhanced customer experiences — while managing risks, data quality, and change management for successful adoption."
+            },
+            {
+                "name": "Business-first engineering mindset",
+                "desc": "Business-first engineering mindset prioritizes business outcomes (revenue, efficiency, user value, ROI) over purely technical excellence when building software or digital products. Engineers focus on solving real problems, delivering fast value, iterating based on feedback, and aligning tech decisions with business goals — avoiding over-engineering or feature creep. Businesses adopt this mindset to ensure development supports growth, reduces waste, delivers measurable results, and stays customer/business-focused throughout the process."
+            }
+        ]
+    }
+]

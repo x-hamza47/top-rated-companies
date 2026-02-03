@@ -1,0 +1,446 @@
+AI-Powered Web Apps
+AI/ML Development
+AI/ML Integration
+API Development
+API Integration
+AR/VR Applications
+ASO
+Agile Coaching
+Agile Development
+Analytics & Reporting
+Analytics Implementation
+Android Development
+App Migration
+App Modernization
+App Testing
+Applicant Tracking
+Architecture Design
+Benefits Administration
+Benefits Coordination
+Blockchain
+Blockchain Apps
+Brand Development
+Brand Strategy
+Branding
+Business Apps
+Business Intelligence
+CMS Development
+CMS Implementation
+CMS Solutions
+Change Management
+Cloud Deployment
+Cloud Integration
+Cloud Migration
+Cloud Platforms
+Cloud Services
+Cloud-Native Apps
+Cloud Solutions
+Code Optimization
+Compensation Analysis
+Compliance Management & Support
+Consulting
+Content Strategy
+Contractor Management
+Conversion Optimization
+Cross-Platform
+Custom App Development
+Custom Software Development
+Custom Web Design
+Custom Web Development
+Custom Web Platforms
+DEI Consulting
+Data Analytics
+Data Analytics Dashboards
+Data Science
+Data Solutions
+Data Visualization
+Database Solutions
+Design Systems
+DevOps Integration
+DevOps Services
+Device Integration
+Device Management
+Digital HR Solutions
+Digital Innovation
+Digital Marketing
+Digital Marketing Integration
+Digital Products
+Digital Strategy
+Digital Transformation
+E-commerce Apps
+E-commerce Development
+E-commerce Solutions
+Embedded Systems
+Employee Benefits
+Employee Handbook
+Employee Onboarding
+Employee Relations
+Enterprise Development
+Enterprise HCM
+Enterprise Mobility
+Enterprise Software
+Enterprise Solutions
+Enterprise Web Applications
+Executive HR Leadership
+Financial Apps
+Financial Management
+Financial Platforms
+Fintech Solutions
+Flutter Development
+Fractional HR Leadership
+Front-End Development
+Full-Stack Development
+Game Development
+Global Employment
+HIPAA Compliance
+HR & Payroll
+HR Administration
+HR BPO
+HR Compliance
+HR Consulting
+HR Management
+HR Outsourcing
+HR Services
+HR Software
+HR Strategy
+HR Technology
+HR Transformation
+HRIS Platform
+Health Solutions
+Healthcare Apps
+Healthcare IT
+Healthcare Portals
+Healthcare Software
+Hybrid Solutions
+IT Consulting
+IT Management
+Interactive Design
+Interactive Experiences
+International Payroll
+Investigation Services
+IoT Development
+IoT Solutions
+Leadership Coaching
+Legacy Modernization
+MVP Development
+Machine Learning Integration
+Magento Solutions
+Maintenance & Support
+Mobile App Development
+Mobile Applications
+Mobile Architecture
+OCR Solutions
+Organizational Development
+PEO Services
+Payroll & Benefits
+Payroll Administration
+Payroll Integration
+Payroll Management
+Payroll Processing
+Payroll Services
+Performance Management
+Performance Optimization
+Policy Development & Review
+Process Optimization
+Product Consulting
+Product Design
+Product Development
+Product Strategy
+Progressive Web Apps
+Prototyping & Design
+QA Testing
+Quality Assurance
+R&D Services
+React Native Apps
+React/Node.js Solutions
+Recruiting Support
+Remote Staffing
+Responsive Design
+Retirement Services
+Risk Management
+SEO Integration
+SEO Optimization
+SEO Services
+SaaS Development
+SaaS Platforms
+SaaS Solutions
+Safety Programs
+Social Media Apps
+Software Consulting
+Software Development
+Software Engineering
+Staff Augmentation
+Startup App Development
+Startup Solutions
+Strategic Planning
+System Integration
+Talent Management
+Team Training
+Tech Stack Selection
+Technical Consulting
+Technical Innovation
+Technical Leadership
+Technical Strategy
+Technical Support
+Telemedicine
+Time & Attendance / Tracking
+Training & Development
+UI/UX Design
+UX Design
+UX Research
+Unified HR Platform
+Wealth Solutions
+Wearable Apps
+Web Application Development
+Web Development
+Web Portals
+Web Solutions
+Website Maintenance
+Website Redesign
+WordPress Development
+Workers' Compensation
+Workforce Analytics
+Workforce Management
+Workforce Optimization
+Workforce Planning
+iOS App Development
+iOS/Android Dev
+
+// Another
+360° Experiences
+360° Video
+3D Content Creation
+3D Modeling
+3D Visualization
+AI Integration
+AI-Powered Rendering
+AR Applications
+AR Development
+AR Experiences
+AR Games
+AR Gaming
+AR Industrial Solutions
+AR Marketing
+AR Mobile Apps
+AR Mobile Solutions
+AR Visualizations
+Architectural VR
+Computer Vision
+Consulting
+Custom AR/VR Apps
+Custom AR/VR Development
+Custom AR/VR Solutions
+Educational XR
+Enterprise Applications
+Enterprise Solutions
+Enterprise VR Training
+Event Solutions
+Game Design
+Game Development
+Gaming Experiences
+Hardware Integration
+Immersive Storytelling
+IoT Integration
+Marketing Campaigns
+Medical XR
+Metaverse Experiences
+Metaverse Platforms
+Mixed Reality
+Mixed Reality Apps
+Mobile AR
+Multiplayer VR
+NFT Integration
+Omniverse Development
+Platform Services
+PlayStation VR Development
+Product Configurators
+Product Design
+Product Visualization
+Real Estate AR
+Remote Assistance
+Research & Development
+Retail AR
+Safety Simulations
+Simulation Training
+Spatial Audio
+Spatial Computing
+Technical Consulting
+Technical Direction
+Technical Strategy
+Technical Support
+Training Platforms
+Training Simulations
+Unity Development
+Unity/Unreal Development
+User Testing
+VR Applications
+VR Content Production
+VR Experiences
+VR Film Production
+VR Game Development
+VR Games
+VR Solutions
+VR Simulations
+Virtual Events
+Virtual Production
+WebAR Solutions
+WebXR Development
+
+
+// clutchs
+Advertising
+Branding
+Direct Marketing
+Public Relations
+Market Research
+Marketing Strategy
+Media Planning & Buying
+Event Marketing
+Other Marketing
+Product Marketing
+Sports Marketing
+Event Management
+Fractional CMO Services
+Digital Strategy
+Social Media Marketing
+Content Marketing
+Email Marketing
+Mobile & App Marketing
+Affiliate Marketing
+Conversion Optimization
+Search Engine Optimization
+Pay Per Click
+Other Digital Marketing
+Ecommerce Marketing
+Blockchain Marketing
+Video Marketing
+SMS Marketing
+Demand Generation Marketing
+Account-Based Marketing
+Performance Marketing
+Web Design
+UX/UI Design
+Architectural Design
+Product Design
+Graphic Design
+Logo
+Print Design
+Packaging Design
+Out of Home Design
+Video Production
+Broadcast Video
+Other Design
+Corporate Photography
+Interior Design
+Lighting Design
+Audio Production
+Commercial Printing
+IT Strategy Consulting
+BI & Big Data Consulting & SI
+Cloud Consulting & SI
+CRM Consulting and SI
+ECM Consulting and SI
+ERP Consulting and SI
+Unified Communications Consulting & SI
+Cybersecurity
+IT Managed Services
+IT Staff Augmentation
+Other IT Consulting and SI
+Custom Software Development
+Web Development
+Mobile App Development
+Wearable App Development
+E-Commerce Development
+AR/VR Development
+IoT Development
+Blockchain
+Application Testing
+Application Management & Support
+Enterprise App Modernization
+Other Application Development
+Robotics Process Automation
+API Development
+DevOps Managed Services
+Microservices Architecture Services
+Low/No Code Development
+AI Development
+AI Consulting
+Generative AI
+AI Agents
+Business Consulting
+Call Center Services
+Back Office Outsourcing
+Finance & Accounting Outsourcing (FAO)
+Transcription
+Translation
+Corporate Training & Coaching
+Document Digitization & Management
+Customer Service Outsourcing
+Sales Outsourcing
+Content Writing Services
+Corporate Relocation
+Language Interpretation
+Compliance Consulting
+Fractional CFO Services
+Environmental Consulting
+Business Continuity Management
+Corporate Travel Management
+Commercial Brokerage Services
+Commercial Property Management
+Commercial Development
+Biohazard Cleanup
+Waste Management
+Building Security Services
+Commercial Financing
+Accounting
+Financial Advising & Planning
+Insurance Services & Brokers
+Digital Asset Management
+Business Valuation Services
+Funding & Investment
+Financial Consulting
+Air Freight
+Contract Manufacturing
+Customs brokerage
+Freight forwarding
+Fulfillment
+Logistics & Supply Chain Consulting
+Ocean Freight
+Rail Freight
+Trucking
+Warehousing & Distribution
+Fabrication
+Supply Chain Management
+Procurement Support
+Manufacturing Consulting
+Corporate Law
+Banking Law
+Finance Law
+Bankruptcy Law
+Insurance Law
+Tax Law
+Media & Entertainment Law
+Intellectual Property Law
+Labor & Employment Law
+Malpractice Law
+Immigration Law
+Internet & Technology Law
+Real Estate Law
+Family Law
+Civil Rights Law
+Litigation Support Services
+Engineering
+Digital Engineering
+Computer Engineering
+Staffing
+Executive Search
+Recruiting
+PEO/Employee Leasing
+HR Outsourcing
+HR Consulting
+Talent Representation
+Recruitment Process Outsourcing
+Benefits Administration
+Employer of Record (EOR) Services
+Content Moderation Services
+Data Annotation Services

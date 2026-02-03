@@ -13,11 +13,11 @@ class FaqSeeder extends Seeder
      */
     public function run(): void
     {
-        $json = file_get_contents(database_path('seeders/data/faqs.json'));
+        $json = file_get_contents(database_path('seeders/data/servicefaqs.json'));
         $servicesFaqs = json_decode($json, true);
 
         foreach ($servicesFaqs as $slug => $faqs) {
-            $service = Service::where('slug', $slug)->first();
+            $service = Service::where('name', $slug)->first();
 
             if ($service) {
                 foreach ($faqs as $faq) {

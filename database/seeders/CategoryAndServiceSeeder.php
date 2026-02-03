@@ -15,7 +15,7 @@ class CategoryAndServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        $json = file_get_contents(database_path('seeders/data/categories.json'));
+        $json = file_get_contents(database_path('seeders/data/services.json'));
         $categories = json_decode($json, true);
 
         foreach ($categories as $cat) {
