@@ -21,7 +21,7 @@
         <div class="company-wrapper flex flex-col gap-4">
             @forelse ($companies as $company)
                 <div
-                    class="company outline-2 outline-gray-500/55 hover:outline-lime-700 rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative">
+                    class="company outline-2 outline-gray-500/55 hover:outline-lime-700 rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative" id="{{ $company->id }}">
                     <button class="text-lime-900 font-semibold px-3 py-2  cursor-pointer absolute top-1 right-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor">

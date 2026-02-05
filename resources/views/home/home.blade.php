@@ -20,11 +20,7 @@
 
 {{-- ! Ready Section --}}
 <div class="section ready-section w-full">
-<pre>
-@foreach ($dev->services as $index => $service)
- {{ $index }} - {{ $service->name }}
-@endforeach
-</pre>
+
         <div class="flex flex-col items-center gap-5">
             <h2 class="text-2xl md:text-4xl  text-white text-center font-semibold">Ready to find your next tech partner?Or
                 list your

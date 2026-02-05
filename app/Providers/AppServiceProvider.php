@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer("*", function($view){
             $categories = Cache::rememberForever('nav_categories', function(){
                 return Category::with(['services' => function ($q) {
-                    $q->where('status', 1)->select('id', 'category_id', 'name', 'slug')->take(7);
+                    $q->where('status', 1)->select('id', 'category_id', 'name', 'slug')->orderBy('id')->take(6);
                 }])->where('status', 1)->get();
             });
 

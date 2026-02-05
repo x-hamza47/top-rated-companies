@@ -27,11 +27,11 @@ class AdminSeeder extends Seeder
         );
 
         User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
+            ['email' => 'amrita@gmail.com'],
             [
                 'firstName' => 'Hamza',
                 'lastName'  => 'Aamir',
-                'password'  => Hash::make('admin123'),
+                'password'  => Hash::make('amrita123'),
                 'role'      => 'admin'
             ]
         );

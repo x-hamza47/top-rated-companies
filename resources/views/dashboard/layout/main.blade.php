@@ -9,7 +9,7 @@
         @include('dashboard.partials.mainHeader')
 
         {{-- ! Content --}}
-        <div class="dashboard-content relative">
+        <div class="dashboard-content relative max-[720px]:pb-20!">
             <div class="dashboard-view ">
                 @include('badgeAlert')
                 @yield('content')

@@ -22,8 +22,8 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    // server: {
-    //     host: "192.168.1.109", // your local IP true if all interfaces
-    //     port: 5173, // default Vite port
-    // },
+    server: {
+        host: "192.168.1.109", // your local IP true if all interfaces
+        port: 5173, // default Vite port
+    },
 });

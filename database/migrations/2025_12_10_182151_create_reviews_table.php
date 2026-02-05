@@ -47,7 +47,7 @@ return new class extends Migration
             $table->text('project_summary')->nullable();
 
             //! Analytics
-            $table->enum('source', ['10firms', 'Google Search', 'Others'])->nullable();
+            $table->enum('source', ['Topfirms', 'Google', 'Others'])->nullable();
             $table->string('reference')->nullable();
             $table->enum('status', ['unlisted', 'verified'])->default('unlisted');
 
