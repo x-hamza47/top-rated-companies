@@ -31,7 +31,7 @@
                     <div class="company-intro max-[840px]:flex-col flex justify-between gap-2 ">
                         <div class="flex md:items-center gap-2 ">
                             <img src="{{ $company->logo }}" alt="{{ $company->name }}"
-                                class="md:w-[85px] md:h-[85px] w-12 h-12 object-cover rounded-md bg-lime-900 p-1">
+                                class="md:w-[50px] md:h-[50px] w-12 h-12 object-cover rounded-md bg-lime-900 p-1">
                             <div class="name flex flex-col ml-1">
                                 <div class="flex sm:gap-2 gap-1  flex-wrap flex-col sm:flex-row">
                                     <h4 class="lg:text-4xl text-2xl font-semibold uppercase ">{{ $company->name }}</h4>

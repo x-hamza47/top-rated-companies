@@ -6628,7 +6628,8 @@
         "social_links": {
             "linkedin": "https://www.linkedin.com/company/chris-translation-service-company"
         }
-    },     {
+    },
+    {
         "name": "Protagonist",
         "location": "Tallinn, Estonia",
         "hourly_rate": "50-99",
@@ -6988,15 +6989,15 @@
         "min_project_size": "50000",
         "employees_range": "1000-9999",
         "about": "Software Mind S.A. is a versatile software development company that excels in providing custom software solutions, including front-end and back-end development across various industries. The company receives overwhelmingly positive feedback, with approximately 100% of reviewers highlighting their excellent project management, cultural fit, and responsiveness to client needs. Clients are particularly impressed with their adaptability, technical expertise, and seamless integration into existing teams.",
-        "tagline": "Custom Software Development Experts",
+        "tagline": "Software Development Experts",
         "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/sm-sygnet_0.png",
         "website": "",
         "services": [
             { "name": "Cybersecurity", "percentage": 15 },
             { "name": "Cloud Consulting & SI", "percentage": 15 },
-            { "name": "Software Development", "percentage": 15 }, 
-            { "name": "Enterprise App Modernization", "percentage": 15 }, 
-            { "name": "Generative AI", "percentage": 15 }, 
+            { "name": "Software Development", "percentage": 15 },
+            { "name": "Enterprise App Modernization", "percentage": 15 },
+            { "name": "Generative AI", "percentage": 15 },
             { "name": "IT Strategy Consulting", "percentage": 15 },
             { "name": "BI & Big Data Consulting & SI", "percentage": 10 }
         ],
@@ -7044,5 +7045,304 @@
         "is_listed": true,
         "founded": 2003,
         "social_links": {}
+    },
+
+    {
+        "name": "Valletta.Software",
+        "location": "San Ġiljan, Malta",
+        "hourly_rate": "50-99",
+        "min_project_size": "25000",
+        "employees_range": "250-999",
+        "about": "Valletta.Software: AI-Powered Software Development specializes in software and AI development with a focus on delivering high-quality solutions across diverse industries. The company consistently receives positive feedback for its transparency, communication, and timely project delivery, with over 90% of reviews highlighting their responsiveness and problem-solving capabilities. Their expertise in AI and commitment to customer satisfaction are frequently commended by clients.",
+        "tagline": "AI-Powered Software Development",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/8ec8fd0528c81802301c7499e5fa6b8b_1537750636645cb4cc0eed.jpg",
+        "website": "https://vallettasoftware.com",
+        "services": [
+            { "name": "AI Agents", "percentage": 25 },
+            { "name": "AI Development", "percentage": 25 },
+            { "name": "IT Staff Augmentation", "percentage": 20 },
+            { "name": "Mobile App Development", "percentage": 15 },
+            { "name": "Web Development", "percentage": 10 },
+            { "name": "DevOps Managed Services", "percentage": 5 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2009,
+        "social_links": {
+            "linkedin": "https://mt.linkedin.com/company/valletta-software"
+        }
+    },
+    {
+        "name": "EffectiveSoft",
+        "location": "San Diego, CA",
+        "hourly_rate": "50-99",
+        "min_project_size": "25000",
+        "employees_range": "250-999",
+        "about": "EffectiveSoft is a custom software development company offering services across various sectors, including healthcare, construction technology, finance, and gaming. The company consistently receives positive feedback, with over 90% of reviewers praising their project management, technical competence, and ability to deliver solutions on time. EffectiveSoft is notably commended for flexibility in handling unique client requirements and maintaining clear communication throughout project engagements.",
+        "tagline": "Fueling disruption",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/d2d5192c1277687de146163ec399aa71.png",
+        "website": "https://www.effectivesoft.com",
+        "services": [
+            { "name": "AI Agents", "percentage": 20 },
+            { "name": "Software Development", "percentage": 15 },
+            { "name": "AI Consulting", "percentage": 10 },
+            { "name": "AI Development", "percentage": 10 },
+            { "name": "Cloud Consulting & SI", "percentage": 10 },
+            { "name": "Generative AI", "percentage": 10 },
+            { "name": "AR/VR Development", "percentage": 5 },
+            { "name": "BI & Big Data Consulting & SI", "percentage": 5 },
+            { "name": "Enterprise App Modernization", "percentage": 5 },
+            { "name": "Mobile App Development", "percentage": 5 },
+            { "name": "Web Design", "percentage": 5 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2003,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/effectivesoft/"
+        }
+    },
+    {
+        "name": "Agix Technologies",
+        "location": "Undisclosed",
+        "hourly_rate": "<25",
+        "min_project_size": "5000",
+        "employees_range": "10-49",
+        "about": "Agix Technologies specializes in AI Agents, including AI-powered voice agents and virtual assistants. Praised for efficient, scalable solutions, high query accuracy (>90%), and workload reduction (40% manual support).",
+        "tagline": "AI Agents & Voice Technologies",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/ea3dc39ca0b2f6b5f17abddec1f0e9a4_1065604967695523f64226c.png",
+        "website": "https://agixtech.com",
+        "services": [
+            { "name": "AI Agents", "percentage": 20 },
+            { "name": "AI Development", "percentage": 20 },
+            { "name": "Data Annotation Services", "percentage": 15 },
+            { "name": "Generative AI", "percentage": 15 },
+            { "name": "AI Consulting", "percentage": 10 },
+            { "name": "BI & Big Data Consulting & SI", "percentage": 10 },
+            { "name": "Robotics Process Automation", "percentage": 10 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2024,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/agixtech"
+        }
+    },
+    {
+        "name": "Wise Monks",
+        "location": "Vilnius, Lithuania",
+        "hourly_rate": "50-99",
+        "min_project_size": "10000",
+        "employees_range": "10-49",
+        "about": "Wise Monks specializes in AI Agents and intelligent automation. 100% positive reviews for enhancing sales efficiency, streamlining processes, empathetic approach, and metrics like 40% reporting time reduction.",
+        "tagline": "AI Agents & Intelligent Automation",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/ea3dc39ca0b2f6b5f17abddec1f0e9a4_363199494690a59a40f629.png",
+        "website": "https://wisemonks.com",
+        "services": [
+            { "name": "AI Agents", "percentage": 35 },
+            { "name": "AI Development", "percentage": 35 },
+            { "name": "Software Development", "percentage": 25 },
+            { "name": "AI Consulting", "percentage": 5 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2008,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/wise-monks"
+        }
+    },
+
+    {
+        "name": "Linnify",
+        "location": "Cluj-Napoca, Romania",
+        "hourly_rate": "100-149",
+        "min_project_size": "25000",
+        "employees_range": "10-49",
+        "about": "Linnify delivers innovative, user-focused software solutions across healthcare, finance, tech. Excels in on-time/budget delivery, technical expertise, collaboration, and strategic alignment (85% positive on expertise).",
+        "tagline": "Innovative Software & AI Solutions",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/2888d7d67b2f229800a4058c2e05f0c8.png",
+        "website": "https://www.linnify.com",
+        "services": [
+            { "name": "AI Agents", "percentage": 50 },
+            { "name": "Software Development", "percentage": 15 },
+            { "name": "AI Development", "percentage": 10 },
+            { "name": "Generative AI", "percentage": 10 },
+            { "name": "Web Development", "percentage": 10 },
+            { "name": "Mobile App Development", "percentage": 5 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2016,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/linnify"
+        }
+    },
+    {
+        "name": "Trigent Software",
+        "location": "Southborough, MA",
+        "hourly_rate": "25-49",
+        "min_project_size": "10000",
+        "employees_range": "1000-9999",
+        "about": "Trigent offers software development, IT services, and AI solutions. Lauded for adaptability, technical expertise, project management, responsiveness, and seamless team integration (100% praise for dedication).",
+        "tagline": "Software Development & AI Services",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/ea3dc39ca0b2f6b5f17abddec1f0e9a4_109670066569575c03d5df6.png",
+        "website": "https://trigent.com",
+        "services": [
+            { "name": "AI Agents", "percentage": 30 },
+            { "name": "Software Development", "percentage": 28 },
+            { "name": "BI & Big Data Consulting & SI", "percentage": 17 },
+            { "name": "IT Staff Augmentation", "percentage": 15 },
+            { "name": "AI Development", "percentage": 10 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 1995,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/trigent-software/"
+        }
+    },
+    {
+        "name": "Spiral Scout",
+        "location": "San Francisco, CA",
+        "hourly_rate": "50-99",
+        "min_project_size": "10000",
+        "employees_range": "50-249",
+        "about": "Spiral Scout is a technology consulting company with expertise in AI Agents, particularly using the temporal.io framework. 100% positive feedback on tailored solutions and successful implementation within tight timelines.",
+        "tagline": "AI Implementation and Agentic Workflow Development",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/1066a1a3c2d14ff5e4a7dc8a4efb8579.png",
+        "website": "",
+        "services": [
+            { "name": "AI Agents", "percentage": 35 },
+            { "name": "AI Development", "percentage": 20 },
+            { "name": "Software Development", "percentage": 15 },
+            { "name": "E-Commerce Development", "percentage": 15 },
+            { "name": "Microservices Architecture Services", "percentage": 10 },
+            { "name": "AI Consulting", "percentage": 5 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2010,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/spiral-scout"
+        }
+    },
+    {
+        "name": "Net at Work LLC",
+        "location": "New York, NY",
+        "hourly_rate": "100-149",
+        "min_project_size": "5000",
+        "employees_range": "250-999",
+        "about": "Net at Work is one of the top IT Managed Services and Security providers in the world. We support small and medium-sized organizations with a focus on simplicity, security and user experience. 100% of reviewers praise technical expertise, reliability, project management, and responsiveness.",
+        "tagline": "Large enough to support all your technology needs, but small enough to care.",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/882a717298f1e1958bb222fbaafc75ef_584570496684998a3477a6.jpg",
+        "website": "",
+        "services": [
+            { "name": "IT Managed Services", "percentage": 65 },
+            { "name": "Cybersecurity", "percentage": 35 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 1996,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/network"
+        }
+    },
+    {
+        "name": "*instinctools",
+        "location": "Stuttgart, Germany",
+        "hourly_rate": "25-49",
+        "min_project_size": "10000",
+        "employees_range": "250-999",
+        "about": "*instinctools is a software development company specializing in custom software, web/mobile development, infrastructure migration, and AI solutions. Overwhelmingly positive feedback (90%+) on timely delivery, flexibility, strong project management, technical expertise, communication, and cultural fit.",
+        "tagline": "Your Reliable Software Development Partner",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/ea3dc39ca0b2f6b5f17abddec1f0e9a4_153931555869657d5f7381c.png",
+        "website": "https://www.instinctools.com/",
+        "services": [
+            { "name": "Software Development", "percentage": 15 },
+            { "name": "Web Development", "percentage": 15 },
+            { "name": "AI Agents", "percentage": 10 },
+            { "name": "AI Consulting", "percentage": 10 },
+            { "name": "AI Development", "percentage": 10 },
+            { "name": "E-Commerce Development", "percentage": 10 },
+            { "name": "Enterprise App Modernization", "percentage": 10 },
+            { "name": "IT Strategy Consulting", "percentage": 10 },
+            { "name": "Mobile App Development", "percentage": 10 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2000,
+        "social_links": {
+            "linkedin": "https://de.linkedin.com/company/instinctools"
+        }
+    },
+    {
+        "name": "TechQuarter LLC",
+        "location": "Cheyenne, WY",
+        "hourly_rate": "50-99",
+        "min_project_size": "100000",
+        "employees_range": "50-249",
+        "about": "TechQuarter specializes in scalable web and mobile apps, testing, integrations, and AI-driven solutions. 100% of reviewers praise professionalism, cultural fit, on-time delivery, clear communication, and adaptability.",
+        "tagline": "Scalable Software & AI Solutions",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/953ad9b89e6133e86645dbf5f853516a.png",
+        "website": "https://techquarter.io/",
+        "services": [
+            { "name": "AI Agents", "percentage": 30 },
+            { "name": "IT Strategy Consulting", "percentage": 30 },
+            { "name": "Software Development", "percentage": 25 },
+            { "name": "AI Consulting", "percentage": 15 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2014,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/techquarter"
+        }
+    },
+    {
+        "name": "Sigli",
+        "location": "Antwerpen, Belgium",
+        "hourly_rate": "50-99",
+        "min_project_size": "50000",
+        "employees_range": "50-249",
+        "about": "Sigli focuses on legacy modernization, .NET development, Azure migrations, and custom software. 95%+ praise professionalism, domain expertise, exceptional project management, meeting deadlines, and performance improvements.",
+        "tagline": "Modernizing Legacy Systems with Excellence",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/c945c900d108d23d81c690802d3d0197.png",
+        "website": "https://www.sigli.com",
+        "services": [
+            { "name": "IT Strategy Consulting", "percentage": 35 },
+            { "name": "Software Development", "percentage": 30 },
+            { "name": "Low/No-Code Development", "percentage": 15 },
+            { "name": "BI & Big Data Consulting & SI", "percentage": 10 },
+            { "name": "IT Staff Augmentation", "percentage": 10 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2015,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/in/romanrimsha"
+        }
+    },
+    {
+        "name": "VLink",
+        "location": "South Windsor, CT",
+        "hourly_rate": "50-99",
+        "min_project_size": "10000",
+        "employees_range": "250-999",
+        "about": "VLink provides competent resources and project solutions in IT services & consulting, with strong focus on AI and custom development. 75% appreciate professionalism and communication; some note opportunities for pricing and communication improvements.",
+        "tagline": "AI & Custom IT Solutions at Scale",
+        "logo": "https://img.shgstatic.com/clutch-static-prod/image/scale/50x50/s3fs-public/logos/e37a6fb444c03c6485555b85739cd0ca.png",
+        "website": "https://vlinkinfo.com",
+        "services": [
+            { "name": "AI Development", "percentage": 50 },
+            { "name": "Software Development", "percentage": 20 },
+            { "name": "Mobile App Development", "percentage": 20 },
+            { "name": "Cybersecurity", "percentage": 10 }
+        ],
+        "verified": true,
+        "is_listed": true,
+        "founded": 2006,
+        "social_links": {
+            "linkedin": "https://www.linkedin.com/company/vlink-inc"
+        }
     }
 ]

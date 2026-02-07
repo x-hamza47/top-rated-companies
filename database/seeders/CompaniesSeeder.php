@@ -44,9 +44,9 @@ class CompaniesSeeder extends Seeder
                 'lastName'      => $faker->lastName,
                 'phone'         => $faker->phoneNumber,
                 'email'         => strtolower(Str::slug($realCompany['name'])) . "@example.com",
-                'password'      => bcrypt('password1234'),
+                'password'      => bcrypt('topFirms_unclaimed97'),
                 'role'          => 'company',
-                'profile_image' => 'https://i.pravatar.cc/150?img=' . rand(1, 70),
+                'profile_image' => null,
                 'created_at'    => now(),
                 'updated_at'    => now(),
             ]);
@@ -327,6 +327,6 @@ class CompaniesSeeder extends Seeder
             }
         }
 
-        $this->command->info('Seeded ' . count($companiesData) . ' real companies with dummy packages, inquiries & reduced reviews.');
+        $this->command->info('Seeded ' . count($companiesData) . 'companies with packages and reviews.');
     }
 }
