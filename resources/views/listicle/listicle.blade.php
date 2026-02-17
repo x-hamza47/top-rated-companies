@@ -158,11 +158,11 @@
 
 
                                             <div
-                                                class="absolute left-0 bottom-5 mt-1 bg-white border border-gray-300 rounded shadow-lg p-2 pointer-events-none opacity-0 peer-hover:opacity-100 peer-active:opacity-100 z-10">
-                                                <span class="text-gray-700 text-sm">
+                                                class="absolute left-0 bottom-5 mt-1 bg-white border border-gray-300 rounded shadow-lg px-3 py-2 pointer-events-none opacity-0 peer-hover:opacity-100 peer-active:opacity-100 z-10">
+                                                <span class="text-gray-700 text-xs">
                                                     @foreach ($remainingServices as $index => $service)
                                                         {{ $service->name }}@if (!$loop->last)
-                                                            •
+                                                            <small class="text-gray-400 text-base mx-1">•</small>
                                                         @endif
                                                     @endforeach
                                                 </span>
