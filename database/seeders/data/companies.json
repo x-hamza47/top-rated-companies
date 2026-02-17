@@ -165,12 +165,12 @@
             { "name": "AI Development", "percentage": 10 },
             { "name": "Mobile App Development", "percentage": 10 },
             { "name": "Cloud Consulting & SI", "percentage": 10 },
-            { "name": "Cloud Consulting & SI", "percentage": 10 },
+            { "name": "CRM Consulting and SI", "percentage": 10 },
             { "name": "E-Commerce Development", "percentage": 10 },
             { "name": "ECM Consulting and SI", "percentage": 10 },
             { "name": "ERP Consulting and SI", "percentage": 10 },
             { "name": "Enterprise App Modernization", "percentage": 10 },
-            { "name": "Mobile App Development", "percentage": 10 },
+
             {
                 "name": "Unified Communications Consulting & SI",
                 "percentage": 10
@@ -2338,8 +2338,7 @@
             { "name": "Branding", "percentage": 10 },
             { "name": "Low/No Code Development", "percentage": 10 },
             { "name": "Mobile App Development", "percentage": 10 },
-            { "name": "Product Design", "percentage": 10 },
-            { "name": "Branding", "percentage": 10 }
+            { "name": "Product Design", "percentage": 10 }
         ],
         "verified": true,
         "is_listed": true,

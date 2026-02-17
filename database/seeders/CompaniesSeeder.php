@@ -37,28 +37,13 @@ class CompaniesSeeder extends Seeder
 
         foreach ($companiesData as $realCompany) {
             // -------------------------------
-            // Create fake User (linked to real company)
-            // -------------------------------
-            $userId = DB::table('users')->insertGetId([
-                'firstName'     => $faker->firstName,
-                'lastName'      => $faker->lastName,
-                'phone'         => $faker->phoneNumber,
-                'email'         => strtolower(Str::slug($realCompany['name'])) . "@example.com",
-                'password'      => bcrypt('topFirms_unclaimed97'),
-                'role'          => 'company',
-                'profile_image' => null,
-                'created_at'    => now(),
-                'updated_at'    => now(),
-            ]);
-
-            // -------------------------------
             // Create Company with real data
             // -------------------------------
             $slug = Str::slug($realCompany['name']);
 
             $companyId = DB::table('companies')->insertGetId([
-                'user_id'    => $userId,
-                'logo'       => $realCompany['logo'] ?? 'https://picsum.photos/360/360?random=' . rand(1, 999),
+                'user_id'    => null,
+                'logo'       => $realCompany['logo'] ?? null,
                 'name'       => $realCompany['name'],
                 'about'      => $realCompany['about'] ?? $faker->paragraph(8),
                 'slug'       => $slug,

@@ -64,6 +64,13 @@ class ServiceController extends Controller
         $companies = $companiesQuery->paginate(10)->withQueryString();
 
 
+        $companies->getCollection()->transform(function($company) use ($service) {
+            $company->services = $company->services
+                ->sortByDesc(fn($s) => $s->id == $service->id ? 1 : 0)
+                ->values();
+            return $company;
+        });
+
         $relatedServices = $service->category
             ->services()
             ->where('id', '!=', $service->id)

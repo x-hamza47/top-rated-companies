@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('/images/site.webmanifest') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>Top Firms - @yield('title', 'Home') </title>
+    <title>@yield('title', "Top Firms Reviewer") </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
