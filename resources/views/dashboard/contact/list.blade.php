@@ -95,7 +95,7 @@
 @endsection
 
 @push('scripts')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         document.querySelectorAll('.delete-message').forEach(form => {
             form.addEventListener('submit', function(e) {

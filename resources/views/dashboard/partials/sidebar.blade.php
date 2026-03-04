@@ -36,23 +36,17 @@
                     </a>
                 @endcan
             </li>
-            <li class="nav-item {{ isActive('insights.*') }}">
-                <a href="{{ route('insights.index') }}" class="nav-link">
-                    <i class="fa-solid fa-lightbulb nav-icon"></i>
-                    <span class="nav-label">Insights</span>
-                </a>
-            </li>
-            <li class="nav-item {{ isActive('packages.*') }}">
-                <a href="{{ route('packages.index') }}" class="nav-link">
-                    <i class="fa-solid fa-box nav-icon"></i>
-                    <span class="nav-label">Package</span>
-                </a>
-            </li>
             @can('admin')
                 <li class="nav-item {{ isActive('contact.*') }}">
                     <a href="{{ route('contact.index') }}" class="nav-link">
                         <i class="fa-solid fa-envelope nav-icon"></i>
                         <span class="nav-label">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ isActive('admin.claims.index') }}">
+                    <a href="{{ route('admin.claims.index') }}" class="nav-link">
+                        <i class="fa-solid fa-file-signature nav-icon"></i>
+                        <span class="nav-label">Claims</span>
                     </a>
                 </li>
             @endcan
@@ -65,6 +59,18 @@
                 </li>
             @endcan
             @canany(['admin', 'company'])
+                <li class="nav-item {{ isActive('insights.*') }}">
+                    <a href="{{ route('insights.index') }}" class="nav-link">
+                        <i class="fa-solid fa-lightbulb nav-icon"></i>
+                        <span class="nav-label">Insights</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ isActive('packages.*') }}">
+                    <a href="{{ route('packages.index') }}" class="nav-link">
+                        <i class="fa-solid fa-box nav-icon"></i>
+                        <span class="nav-label">Package</span>
+                    </a>
+                </li>
                 <li class="nav-item {{ isActive('reviews.*') }}">
                     <a href="{{ route('reviews.index') }}" class="nav-link">
                         <i class="fa-solid fa-star nav-icon"></i>

@@ -56,7 +56,7 @@
                     </span> --}}
                 </div>
                 <div class="flex gap-2 w-full text-base font-semibold flex-wrap justify-center md:justify-start">
-                    <a target="_blank" href="website " class="btn-white flex-1  text-nowrap ">
+                    <a target="_blank" href="" class="btn-white flex-1  text-nowrap ">
                         Visit Website
                     </a>
                     <a href="javascript:void(0)" id="openInquiryModal" class="btn-outlined flex-1 text-nowrap ">
@@ -66,6 +66,13 @@
                         View Packages
                     </a>
                 </div>
+                @if (is_null($company->user_id))
+                <div class="bg-lime-50 text-gray-800 px-4 py-1.5 rounded flex items-center justify-between w-full">
+                    <p>This profile is unclaimed. <i class="fa-solid fa-circle-exclamation"></i></p>
+                    <a href="{{ route('companies.claim.form', $company->id) }}" class="outline px-2 py-1 rounded-md outline-lime-800 hover:bg-lime-800 hover:text-white">claim</a>
+                </div>
+                    
+                @endif
             </div>
         </div>
         <button

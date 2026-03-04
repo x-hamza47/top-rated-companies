@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+// use App\Models\User;
 use Illuminate\Database\Seeder;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             CompaniesSeeder::class,
             AdminSeeder::class,
+            // UserSeeder::class,
         ]);
     }
 }

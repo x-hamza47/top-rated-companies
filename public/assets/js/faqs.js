@@ -1,25 +1,18 @@
 const faqsData = [
     {
-        question: "Lightning-Fast Performance",
-        answer: "Built with speed — minimal load times and optimized rendering.",
+        question: "How to Pick the Perfect Software Development Partner?",
+        answer: "Finding the right development team can transform your project from good to exceptional. This guide highlights what to look for, that is, experience, proven results, and smooth collaboration, so you are able to collaborate with confidence and achieve your goals faster.",
     },
     {
-        question: "Fully Customizable Components",
-        answer: "Easily adjust styles, structure, and behavior to match your project needs.",
+        question: "What are IT Outsourcing Trends You Can’t Ignore in 2026?",
+        answer: "The outsourcing landscape is evolving at lightning speed. From flexible team models to cost-efficient solutions, this article uncovers the latest trends that are helping businesses expand smartly and remain a step ahead of the competition.",
     },
     {
-        question: "Responsive by Default",
-        answer: "Every component is responsive by default — no extra CSS required.",
-    },
-    {
-        question: "Tailwind CSS Powered",
-        answer: "Built using Tailwind utility classes — no extra CSS or frameworks required.",
-    },
-    {
-        question: "Dark Mode Support",
-        answer: "All components come ready with light and dark theme support out of the box.",
+        question: "How to Get the Most Value from Your Software Projects?",
+        answer: "Software is an investment, and every investment should deliver results. This piece shares practical tips to maximize ROI, from setting clear objectives to choosing the right partners, making sure that every project drives real business impact.",
     },
 ];
+
 
 const faqContainer = document.getElementById("faqContainer");
 

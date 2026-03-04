@@ -3,12 +3,11 @@
 @push('styles')
     @vite('resources/css/listicle.css')
 @endpush
-
+@section('title', "$company->name Reviews ($company->reviews_count)")
 @section('content')
     {{-- ! Hero Section --}}
     @include('profile.hero')
 
-    {{-- <pre> {{ print_r($reviews->toArray(), true)  }}</pre> --}}
     {{-- ! Sub-Section --}}
     @include('profile.details')
 

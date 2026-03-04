@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="dashboard-table-container">
-        {{-- <pre> {{ print_r($packages->toArray(), true) }}</pre> --}}
+        {{-- <pre> {{ dd(print_r($packages->toArray(), true)) }}</pre> --}}
         <div class="dashboard-table-header">
             <h3 class="dashboard-table-title">
                 Packages
@@ -72,7 +72,7 @@
                                                 class="sm:text-wrap text-nowrap">{{ $item->name }}</a>
                                         </div>
                                         <div class="col-meta-text "><a class="text-xs text-blue-500 text-nowrap"
-                                                href="mailto:{{ $item->user->email }}">{{ Str::limit($item->user->email, 35) }}</a>
+                                                href="mailto:{{ $item->user?->email }}">{{ Str::limit($item->user?->email, 35) }}</a>
                                         </div>
 
                                     </div>

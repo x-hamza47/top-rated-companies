@@ -1,24 +1,35 @@
 <?php
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Middleware\CompanyOwner;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\Auth\Admin\AdminAuthController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CompanyClaimController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Dashboard\CompanyClaimRequestController;
+use App\Http\Controllers\Dashboard\CompanyController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\InsightsController;
+use App\Http\Controllers\Dashboard\PackageController;
+use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Dashboard\UserController;
-use App\Http\Controllers\Dashboard\CompanyController;
-use App\Http\Controllers\Dashboard\PackageController;
-use App\Http\Controllers\Dashboard\InsightsController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Auth\Admin\AdminAuthController;
+use App\Http\Middleware\CompanyOwner;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
+
+Route::get('/down', function () {
+    Artisan::call('down', [
+        '--render' => 'maintenance',
+        '--secret' => 'MaintenanceAccess#4',
+    ]);
+
+    return 'Application is now in maintenance mode with custom view';
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
@@ -32,7 +43,13 @@ Route::get('insights', [InsightsController::class, 'showInsights'])->name('insig
 Route::get('insight/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
 
 Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
-
+Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
+    ->name('companies.claim.form');
+    // Claim
+Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
+    ->name('companies.claim.form');
+Route::post('/claim-profile/{company}', [CompanyClaimController::class, 'store'])->middleware('auth')
+    ->name('companies.claim.store');
 
 //? Ajax Route
 Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
@@ -76,8 +93,18 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::patch('contact/{contact}/mark-read', [ContactController::class, 'markRead'])->name('contact.markRead');
     Route::patch('/contact/{contact}/resolve', [ContactController::class, 'resolve'])->name('contact.resolve');
 
-    // ?Inquiries
+    Route::middleware(['can:admin'])->group(function() {
+        Route::get('/claims', [CompanyClaimRequestController::class, 'index'])
+            ->name('admin.claims.index');
 
+        Route::post('/claims/{id}/approve', [CompanyClaimRequestController::class, 'approve'])
+            ->name('admin.claims.approve');
+
+        Route::post('/claims/{id}/reject', [CompanyClaimRequestController::class, 'reject'])
+            ->name('admin.claims.reject');
+    });
+
+    // ?Inquiries
     Route::get('/company/inquiries', [InquiryController::class, 'index'])->name('company.inquiries.index')->can('company');
     Route::get('/company/inquiries/{inquiry}', [InquiryController::class, 'show'])->name('company.inquiries.show')->can('company');
     Route::patch('/company/inquiries/{inquiry}/read', [InquiryController::class, 'markRead'])->name('company.inquiries.markRead')->can('company');

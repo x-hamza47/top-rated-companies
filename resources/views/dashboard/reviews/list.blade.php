@@ -55,8 +55,8 @@
                                                 class="sm:text-wrap text-nowrap">{{ $review->reviewer_company }}</a>
                                         </div>
                                         <div class="col-meta-text peer">
-                                            <a href="mailto:{{ $review->company->user->email }}" class="text-blue-500">
-                                                {{ Str::limit($review->company->user->email, 25) }}
+                                            <a href="mailto:{{ $review->company->user?->email }}" class="text-blue-500">
+                                                {{ Str::limit($review->company->user?->email, 25) }}
                                             </a>
                                         </div>
                                     </div>

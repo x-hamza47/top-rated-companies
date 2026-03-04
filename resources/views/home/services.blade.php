@@ -13,7 +13,7 @@
     </div>
     {{-- Info: Cards --}}
     <div
-        class="card-wrapper my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3  justify-items-center items-center relative">
+        class="card-wrapper my-4 lg:gap-x-20 md:gap-x-15 gap-x-5 gap-y-10 [&>div]:hover:border-lime-700 mobile-cards grid grid-cols-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 justify-items-center items-center relative">
         @forelse ($navCategories as $category)
             <div
                 class="card relative rounded-md border-2 border-gray-500/40 flex flex-col sm:px-5 sm:py-4 px-3 py-2 gap-2 shadow-2xl w-full h-full">

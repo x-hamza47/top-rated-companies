@@ -31,7 +31,7 @@
                     <div class="company-intro max-[840px]:flex-col flex justify-between gap-2 text-gray-800">
                         <div class="flex md:items-center gap-2">
                             <img src="{{ $company->logo }}" alt="{{ $company->name }}"
-                                class="md:w-[50px] md:h-[50px] w-12 h-12 object-cover border border-gray-300 rounded-md">
+                                class="md:w-[50px] md:h-[50px] w-12 h-12 object-cover border border-gray-200 rounded-md">
                             <div class="name flex flex-col ml-1">
                                 <div class="flex sm:gap-2 gap-1 flex-wrap flex-col sm:flex-row items-center">
                                     <h4 class="lg:text-2xl text-2xl font-bold uppercase ">{{ $company->name }}</h4>
@@ -54,7 +54,7 @@
                         </div>
                         <div
                             class="flex gap-3 max-[840px]:mt-2 flex-wrap justify-center max-[840px]:pr-0 max-[840px]:pt-0 pr-5 pt-5">
-                            <a href="{{ route('profile.index', $company->slug) }}"
+                            <a href="{{ route('profile.index', $company->slug) }}" target="_blank"
                                 class="text-lime-600 h-fit rounded-md font-semibold border-2 border-lime-600 px-3 py-2 cursor-pointer hover:text-white active:text-white hover:bg-lime-600 active:bg-lime-600 flex-1 text-center text-nowrap text-sm md:text-base">
                                 View Profile
                             </a>
