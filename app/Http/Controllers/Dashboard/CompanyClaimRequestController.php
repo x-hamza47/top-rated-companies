@@ -16,28 +16,35 @@ class CompanyClaimRequestController extends Controller
 
         return view('dashboard.claims.list', compact('claims'));
     }
-    public function approve($id)
-    {
-        $claim = CompanyClaimRequest::with('company')->findOrFail($id);
+  public function approve($id)
+{
+    $claim = CompanyClaimRequest::with('company')->findOrFail($id);
 
-        if ($claim->status !== 'pending') {
-            return response()->json(['error' => 'Already processed'], 400);
+    if ($claim->status !== 'pending') {
+        return response()->json(['error' => 'Already processed'], 400);
+    }
+
+    $company = $claim->company;
+    $user = $claim->user; 
+
+    DB::transaction(function () use ($claim, $company, $user) {
+        
+        $claim->update(['status' => 'approved']);
+        
+        $company->update(['user_id' => $claim->user_id]);
+
+        if ($user->role !== 'company') {
+            $user->update(['role' => 'company']);
         }
 
-        $company = $claim->company;
+        CompanyClaimRequest::where('company_id', $company->id)
+            ->where('id', '!=', $claim->id)
+            ->where('status', 'pending')
+            ->update(['status' => 'rejected']);
+    });
 
-        DB::transaction(function () use ($claim, $company) {
-            $claim->update(['status' => 'approved']);
-            $company->update(['user_id' => $claim->user_id]);
-            
-            CompanyClaimRequest::where('company_id', $company->id)
-                ->where('id', '!=', $claim->id)
-                ->where('status', 'pending')
-                ->update(['status' => 'rejected']);
-        });
-
-        return response()->json(['success' => true]);
-    }
+    return response()->json(['success' => true]);
+}
 
     public function reject($id)
     {

@@ -18,7 +18,6 @@ class ProfileController extends Controller
 
         $reviews = $company->reviews()
             ->with('service.category')
-            ->where('status', 'verified')
             ->latest()
             ->paginate(5);
 

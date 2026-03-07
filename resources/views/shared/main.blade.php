@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="{{ asset('/images/favicon/favicon.ico') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/favicon/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('/images/favicon/site.webmanifest') }}" />
+    {{-- ! Meta Tags --}}
+    @include('shared.meta') 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title', "Top Firms Reviewer") </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"

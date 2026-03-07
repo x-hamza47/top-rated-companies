@@ -80,7 +80,10 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->route('login');
+        $user->sendEmailVerificationNotification();
+
+        return redirect()->route('login')
+            ->with('success', 'Registration successful! Please check your email to verify your account.');
     }
 
     // ! Logout

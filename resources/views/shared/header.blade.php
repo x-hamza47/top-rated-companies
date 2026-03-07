@@ -6,6 +6,7 @@
         </div>
 
         <nav class="hidden xl:flex items-center gap-2 text-gray-700 font-medium flex-1">
+             <a href="{{ route('home.index') }}" class="nav-link">Home</a>
             @foreach ($navCategories as $category)
                 <div class="relative group menu-item">
                     <button class="nav-link">{{ $category->name }}</button>
@@ -66,6 +67,7 @@
         </div>
 
         <nav class="flex flex-col gap-1 px-6 py-6 text-gray-700 font-medium">
+            <a href="{{ route('home.index') }}" class="mobile-link py-2 px-3 rounded hover:bg-lime-50">Home</a>
             @foreach ($navCategories as $category)
                 <div class="mobile-menu-item">
                     <button

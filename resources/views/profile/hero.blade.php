@@ -62,16 +62,19 @@
                     <a href="javascript:void(0)" id="openInquiryModal" class="btn-outlined flex-1 text-nowrap ">
                         Contact
                     </a>
-                    <a target="_blank" href="{{ route('profile.packages', $company->slug) }}" class="btn-outlined flex-1 text-nowrap ">
-                        View Packages
-                    </a>
+                    @if ($company->packages->count() > 0)
+                        <a target="_blank" href="{{ route('profile.packages', $company->slug) }}"
+                            class="btn-outlined flex-1 text-nowrap">
+                            View Packages
+                        </a>
+                    @endif
                 </div>
                 @if (is_null($company->user_id))
-                <div class="bg-lime-50 text-gray-800 px-4 py-1.5 rounded flex items-center justify-between w-full">
-                    <p>This profile is unclaimed. <i class="fa-solid fa-circle-exclamation"></i></p>
-                    <a href="{{ route('companies.claim.form', $company->id) }}" class="outline px-2 py-1 rounded-md outline-lime-800 hover:bg-lime-800 hover:text-white">claim</a>
-                </div>
-                    
+                    <div class="bg-lime-50 text-gray-800 px-4 py-1.5 rounded flex items-center justify-between w-full">
+                        <p>This profile is unclaimed. <i class="fa-solid fa-circle-exclamation"></i></p>
+                        <a href="{{ route('companies.claim.form', $company->id) }}"
+                            class="outline px-2 py-1 rounded-md outline-lime-800 hover:bg-lime-800 hover:text-white">claim</a>
+                    </div>
                 @endif
             </div>
         </div>
@@ -87,7 +90,8 @@
     </div>
 
     <!-- Inquiry Modal -->
-    <div id="inquiryModal" class="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center px-3 hidden z-50">
+    <div id="inquiryModal"
+        class="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center px-3 hidden z-50">
         <div
             class="bg-white rounded-md w-full max-w-3xl sm:px-8 py-8 px-4 mx-auto lg:px-12 mt-20 lg:w-3/5 overflow-auto max-h-[90vh]">
             <div class="w-full">

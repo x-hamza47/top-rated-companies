@@ -16,46 +16,55 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Middleware\CompanyOwner;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
+// Show verification notice
+Route::get('/email/verify', function () {
+    return view('auth.verify-email'); 
+})->middleware('auth')->name('verification.notice');
 
-Route::get('/down', function () {
-    Artisan::call('down', [
-        '--render' => 'maintenance',
-        '--secret' => 'MaintenanceAccess#4',
-    ]);
 
-    return 'Application is now in maintenance mode with custom view';
-});
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill(); 
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
-Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
-Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
-Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
-Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
-Route::get('insights', [InsightsController::class, 'showInsights'])->name('insights.list');
-Route::get('insight/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
 
-Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
-Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
-    ->name('companies.claim.form');
+    Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
+    Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
+    Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
+    Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
+    Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
+    Route::get('insights', [InsightsController::class, 'showInsights'])->name('insights.list');
+    Route::get('insight/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
+
+    Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
+    Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
+        ->name('companies.claim.form');
     // Claim
-Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
-    ->name('companies.claim.form');
-Route::post('/claim-profile/{company}', [CompanyClaimController::class, 'store'])->middleware('auth')
-    ->name('companies.claim.store');
+    Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
+        ->name('companies.claim.form');
+    Route::post('/claim-profile/{company}', [CompanyClaimController::class, 'store'])->middleware('auth')
+        ->name('companies.claim.store');
 
-//? Ajax Route
-Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::get('/register', [AuthController::class, 'registerPage'])->name('register.show');
+    //? Ajax Route
+    Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
+
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::get('/register', [AuthController::class, 'registerPage'])->name('register.show');
 
 //! Admin Authentication
 Route::get('/admin-login', [AdminAuthController::class, 'index'])->name('admin.login.index');
@@ -86,14 +95,13 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get("/", [DashboardController::class, 'index'])->name('dashboard.index');
 
     // ? Contact Routes
-    Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
     Route::get('/messages', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/message/{contact}', [ContactController::class, 'show'])->name('contact.show');
     Route::delete('/message/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
     Route::patch('contact/{contact}/mark-read', [ContactController::class, 'markRead'])->name('contact.markRead');
     Route::patch('/contact/{contact}/resolve', [ContactController::class, 'resolve'])->name('contact.resolve');
 
-    Route::middleware(['can:admin'])->group(function() {
+    Route::middleware(['can:admin'])->group(function () {
         Route::get('/claims', [CompanyClaimRequestController::class, 'index'])
             ->name('admin.claims.index');
 
@@ -123,7 +131,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     // ? Insight Routes
     Route::resource('/insights', InsightsController::class);
-    
+
     // ? Packages Routes
     Route::resource('/packages', PackageController::class);
 
@@ -151,4 +159,3 @@ Route::get('/getSlug', function (Request $request) {
         ]);
     }
 })->name('getSlug');
-

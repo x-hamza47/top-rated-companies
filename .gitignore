@@ -1,6 +1,9 @@
 *.log
 .DS_Store
 .env
+env-secret.txt
+.env.dev
+.env.prod
 .env.backup
 .env.production
 .phpactor.json

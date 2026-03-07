@@ -70,7 +70,8 @@ class CompanyClaimController extends Controller
         ]);
 
         $admins = User::where('role', 'admin')
-            ->where('email', '=', 'hamzaamir72007@gmail.com')
+        
+            ->where('email', '!=', 'amypohwani97@gmail.com')
             ->get();
         Notification::send($admins, new CompanyClaimRequestNotification($claim));
         return redirect()->route('profile.index', $company->slug)
