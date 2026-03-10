@@ -4,6 +4,7 @@
 @endpush
 
 @section('title', "Top $service->name Companies | Top Firms Reviewer")
+@section('meta_description',"Compare top $service->name companies. Read verified reviews, pricing, and services to find the best $service->name partner for your business.")
 
 @section('content')
     {{-- ! Hero Content --}}

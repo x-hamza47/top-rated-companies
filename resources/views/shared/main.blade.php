@@ -11,12 +11,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/favicon/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('/images/favicon/site.webmanifest') }}" />
     {{-- ! Meta Tags --}}
-    @include('shared.meta') 
+    @include('shared.partials.meta') 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>@yield('title', "Top Firms Reviewer") </title>
+    <title>@yield('title', "Top Firms Reviewer - Compare the Best Agencies & Consultants") </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @yield('schema')
     @stack('styles')
     {{-- <style>
         body.loading {

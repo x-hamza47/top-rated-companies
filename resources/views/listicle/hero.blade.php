@@ -15,6 +15,7 @@
               </h3>
           </div>
       </div>
+      
       {{-- ! Hero Section Quick Links --}}
       <div
           class="flex flex-wrap justify-center lg:justify-start gap-x-7 gap-y-2 text-gray-300 font-semibold text-xs sm:text-base">
