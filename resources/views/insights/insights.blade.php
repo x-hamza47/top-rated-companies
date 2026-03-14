@@ -2,7 +2,9 @@
 @push('styles')
     @vite('resources/css/listicle.css')
 @endpush
-{{-- @section('title', $service->name) --}}
+@section('title', 'Insights & Articles — Top Firms Reviewer')
+@section('meta_description', 'Read expert insights and articles about software development, marketing, design, and
+    consulting.')
 
 @section('content')
     {{-- !Hero Section --}}
@@ -23,7 +25,8 @@
     {{-- Info: Insights --}}
     <div class="insights-container py-6 px-3 space-y-8 ">
         @forelse ($insights as $insight)
-            <article class="outline-2 outline-gray-500/55 hover:outline-lime-700 rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300  ">
+            <article
+                class="outline-2 outline-gray-500/55 hover:outline-lime-700 rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300  ">
                 <div class="inline-block bg-lime-100 text-lime-700 text-xs px-3 py-1 rounded-full mb-2">
                     {{ $insight->service->name }}
                 </div>
@@ -52,7 +55,7 @@
         @endforelse
 
         <div class="mt-8">
-            {{ $insights->links() }} 
+            {{ $insights->links() }}
         </div>
 
     </div>

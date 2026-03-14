@@ -2,7 +2,8 @@
 @push('styles')
     @vite('resources/css/auth.css')
 @endpush
-
+@section('title', 'Contact Us — Top Firms Reviewer')
+@section('meta_description', 'Get in touch with Top Firms Reviewer. Send your inquiries or feedback using our contact form.')
 @section('content')
     <section
         class="section w-full flex items-center justify-center gap-4 mt-20 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">

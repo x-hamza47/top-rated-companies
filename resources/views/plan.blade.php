@@ -3,7 +3,8 @@
 @push('styles')
     @vite('resources/css/listicle.css')
 @endpush
-@section('title', 'Packages')
+@section('title', "Packages Offered by $company->name — Services & Pricing | Top Firms Reviewer")
+@section('meta_description', "Explore all verified packages offered by $company->name, including pricing and services. Select a service to view detailed package information.")
 @section('content')
     <div class="section md:pt-32 pt-25 pb-20 flex flex-col justify-between text-white gap-y-5 relative">
         {{-- <pre> {{ print_r($service->toArray(), true) }}</pre> --}}

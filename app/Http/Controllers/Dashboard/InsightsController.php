@@ -52,7 +52,7 @@ class InsightsController extends Controller
             'service_id' => 'required|exists:services,id',
             'title' => 'required|string|max:255',
             'slug' => 'required|string|unique:insights,slug',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:160',
             'article' => 'required|string',
         ]);
 
