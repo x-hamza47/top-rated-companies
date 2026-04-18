@@ -6,15 +6,21 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class StarRating extends Component
+class ServiceTag extends Component
 {
-    public $reviewDisable;
+
+    public $slug;
+    public $icon;
+    public $label;
+
     /**
      * Create a new component instance.
      */
-    public function __construct(public $rating = 0,  public $reviews = 0, public $color = 'green', public $textColor = 'text-green-900', $reviewDisable = false)
+    public function __construct($slug, $icon, $label)
     {
-        
+        $this->slug = $slug;
+        $this->icon = $icon;
+        $this->label = $label;
     }
 
     /**
@@ -22,6 +28,6 @@ class StarRating extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.star-rating');
+        return view('components.service-tag');
     }
 }

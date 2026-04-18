@@ -42,7 +42,7 @@
     <div class="section flex flex-col lg:flex-row gap-x-4 gap-y-5">
         <div
             class="sub-section flex flex-col flex-1 px-4 py-2.5 gap-4 border-2 border-gray-500/20 rounded-md bg-lime-700/10">
-            <h3 class="md:text-3xl text-2xl font-bold text-(--secondary)">Pricing Snapshot</h3>
+            <h2 class="md:text-3xl text-2xl font-bold text-(--secondary)">Pricing Snapshot</h2>
             <div class="tag-wrapper w-full flex flex-wrap justify-center items-center gap-2">
                 <div class="tag flex grow flex-col gap-2 p-3 rounded-md border-2 border-lime-950/70">
                     <small class="md:text-base font-medium text-gray-800/80">Min. Project Size</small>
@@ -81,7 +81,7 @@
                     </span>
                 </div>
             </div>
-            <h4 class="text-xl font-bold">What Client have Said</h4>
+            <h3 class="text-xl font-bold">What Client have Said</h3>
             <p>
                 {{ optional($reviews->sortByDesc('rating')->first())->review }}
             </p>
@@ -89,13 +89,13 @@
         </div>
         <div
             class="sub-section flex flex-col flex-1 px-4 py-2.5 gap-4 border-2 border-gray-500/20 rounded-md bg-lime-700/10">
-            <h3 class="text-xl font-bold text-(--secondary)">Most Common Project Size<span class="service-name"></span></h3>
-            <h4 class="priceRange text-xl font-bold " data-company="{{ $company->id }}">
+            <h4 class="text-xl font-bold text-(--secondary)">Most Common Project Size<span class="service-name"></span></h4>
+            <span class="priceRange text-xl font-bold " data-company="{{ $company->id }}">
                 {{ '$' . number_format($reviews->pluck('project_size')->map(fn($v) => (int) str_replace(['$', ','], '', $v))->min()) }}
                 -
                 {{ '$' . number_format($reviews->pluck('project_size')->map(fn($v) => (int) str_replace(['$', ','], '', $v))->max()) }}
                 <span class="font-semibold">Based on {{ $reviews->count() }} Reviews</span>
-            </h4>
+            </span>
 
             <div class="project-size-wrapper flex gap-2 flex-wrap">
                 <button data-service="all"
@@ -108,7 +108,6 @@
                 @endforeach
 
             </div>
-
         </div>
     </div>
     <a href="{{ route('review.form', $company->slug) }}" class="btn-outline cursor-pointer">Submit Review</a>

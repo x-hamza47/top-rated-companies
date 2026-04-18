@@ -1,6 +1,6 @@
 <div class="section insights">
     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center">
-        Insights & <span class="text-(--primary)">Advice</span>
+        Insights & <span class="text-(--color-primary)">Advice</span>
     </h2>
 
     <div class="swiper insights-swiper">

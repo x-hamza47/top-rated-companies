@@ -112,4 +112,12 @@ var categoryChart = new ApexCharts(
   document.querySelector("#categoryChart"),
   categoryChartoptions
 );
-// categoryChart.render();
+
+// *===================================
+// * INITIALIZATION
+// *===================================
+
+document.addEventListener("DOMContentLoaded", function () {
+    categoryChart.render();
+    progressChart.render();
+});

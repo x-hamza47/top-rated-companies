@@ -5,28 +5,29 @@
             <span class="text-lime-700">Design</span>,
             <span class="text-lime-700">Marketing</span> & Beyond
         </h1>
-        <p class="w-full md:leading-6 leading-5 max-w-[900px] font-semibold text-gray-300 md:text-base text-sm [&>strong]:font-bold">
+        <p
+            class="w-full md:leading-6 leading-5 max-w-[900px] font-semibold text-gray-300 md:text-base text-sm [&>strong]:font-bold">
             At Top Firms Reviewer, we simplify your search for credible, experienced, and dependable companies across
             <strong>development</strong>, <strong>design</strong>, <strong>marketing</strong>, <strong>SEO</strong>,
             <strong>video production</strong>, and other professional services. Explore detailed profiles, read verified
             reviews, and choose your next business partner with confidence and clarity.
         </p>
         {{-- !Search Box --}}
-        <form id="serviceSearchForm" class="md:w-4/5 lg:w-4/5 w-full" action="">
-            <div class="flex items-center  bg-white rounded-md md:h-11 h-9 py-0.5 px-0.5">
+        <form id="serviceSearchForm" class="md:w-4/5 lg:w-4/5 w-full" action="/companies" method="GET">
+            <div class="flex items-center  bg-(--color-background) rounded-md md:h-11 h-9 py-0.5 px-0.5">
                 <div class="flex flex-col flex-1 h-full relative">
                     <div
-                        class="flex flex-1 items-center md:px-3 px-1 gap-2 bg-white border-gray-500/30 h-full rounded-md overflow-hidden">
-                        <input type="text" placeholder="Service you need" id="serviceInput"
-                            class="peer w-full h-full outline-none text-gray-700 placeholder-gray-500 md:text-sm text-xs"
+                        class="flex flex-1 items-center md:px-3 px-1 gap-2 bg-(--color-background) border-gray-500/30 h-full rounded-md overflow-hidden">
+                        <input type="text" placeholder="Service you need" id="serviceInput" name="q"
+                            class="peer w-full h-full outline-none text-(--color-text) placeholder-gray-500 md:text-sm text-xs"
                             autocomplete="off">
-                        <i class="fa-solid fa-chevron-down  text-gray-400 text-[10px] sm:text-base"></i>
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-[10px] sm:text-base"></i>
                         <div id="serviceDropdown"
-                            class="search-dropdown absolute top-full left-0 right-0 mt-1.5 py-2 bg-white border border-gray-500/30 rounded-md shadow max-h-[200px] overflow-y-auto hidden z-40 text-left">
-                            <h5 class="text-xs pb-2 text-gray-900/80 sm:px-4 px-2">Services <small
-                                    class="text-lime-600 float-right">{{ $services->count() }}+</small></h5>
+                            class="search-dropdown absolute top-full left-0 right-0 mt-1.5 py-2 bg-(--color-background) border border-gray-500/30 rounded-md shadow max-h-[200px] overflow-y-auto hidden z-40 text-left">
+                            <p class="text-xs pb-2 text-(--color-text-muted)/80 sm:px-4 px-2">Services <small
+                                    class="text-lime-600 float-right">{{ $services->count() }}+</small></p>
                             @forelse ($services as $service)
-                                <p class="service-item text-sm text-gray-600 py-2 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2 not-last:border-b-2 border-b-gray-500/20"
+                                <p class="service-item text-sm text-(--color-text) py-2 hover:bg-(--color-primary-hover)/80 cursor-pointer sm:px-4 px-2 not-last:border-b-2 border-b-gray-500/20"
                                     data-slug="{{ $service->slug }}">
                                     {{ $service->name }}
                                 </p>
@@ -46,41 +47,15 @@
             </div>
         </form>
         <div class="flex gap-2 md:justify-start justify-center flex-wrap">
-            <a href="{{ route('services.companies', ['serviceSlug' => 'graphic-design']) }}"
-                class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-1 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
-                <i class="fa-solid fa-palette  "></i>
-                <small>Graphic Designs</small>
-            </a>
-            <a href="{{ route('services.companies', ['serviceSlug' => 'web-development']) }}"
-                class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
+            <x-service-tag slug="graphic-design" icon="fa-palette" label="Graphic Designs" />
 
-                <i class="fa-solid fa-code  "></i>
-                <small>Web Development</small>
+            <x-service-tag slug="web-development" icon="fa-code " label="Web Development" />
 
-            </a>
-            <a href="{{ route('services.companies', ['serviceSlug' => 'seo']) }}"
-                class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
+            <x-service-tag slug="seo" icon="fa-chart-line" label="SEO" />
 
+            <x-service-tag slug="video-production" icon="fa-film" label="Video Editing" />
 
-                <i class="fa-solid fa-chart-line  "></i>
-                <small>SEO</small>
-
-            </a>
-            <a href="{{ route('services.companies', ['serviceSlug' => 'video-production']) }}"
-                class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
-
-
-                <i class="fa-solid fa-film  "></i>
-                <small>Video Editing</small>
-            </a>
-            <a href="{{ route('services.companies', ['serviceSlug' => 'web-design']) }}"
-                class="bg-lime-950 text-gray-300 flex justify-center hover:bg-lime-900 items-center gap-2 text-sm px-2.5 py-1.5 font-medium rounded-md cursor-pointer">
-
-
-                <i class="fa-solid fa-paintbrush  "></i>
-                <small>Website Designing</small>
-
-            </a>
+            <x-service-tag slug="web-design" icon="fa-paintbrush" label="Website Designing" />
         </div>
     </div>
     {{-- ! Hero Image --}}

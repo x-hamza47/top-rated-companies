@@ -5,7 +5,7 @@
             <div
                 class="bg-lime-900/20 grid rounded-md overflow-hidden md:grid-cols-3 grid-cols-2 mt-4 divide-x divide-y divide-lime-900/30 md:[&>span:nth-of-type(3n)]:border-r-0 ">
                 <span class="md:px-5 md:py-3 px-2 py-2">
-                    <h6 class="text-lime-950 font-medium text-sm mb-2">Min Project Size</h6>
+                    <p class="text-lime-950 font-medium text-sm mb-2">Min Project Size</p>
                     <span class="flex gap-x-2 items-center">
                         <svg class="md:w-6 md:h-6 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 24 24"
                             clip-rule="evenodd">
@@ -18,7 +18,7 @@
                 </span>
 
                 <span class="md:px-5 md:py-3 px-2 py-2">
-                    <h6 class="text-lime-950 font-medium text-sm mb-2">Hourly rate</h6>
+                    <p class="text-lime-950 font-medium text-sm mb-2">Hourly rate</p>
                     <span class="flex gap-x-2 items-center">
                         <svg class="md:w-6 md:h-6 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 24 24"
                             clip-rule="evenodd">
@@ -29,7 +29,7 @@
                     </span>
                 </span>
                 <span class="md:px-5 md:py-3 px-2 py-2">
-                    <h6 class="text-lime-950 font-medium text-sm mb-2">Employees</h6>
+                    <p class="text-lime-950 font-medium text-sm mb-2">Employees</p>
                     <span class="flex gap-x-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="md:w-6 md:h-6 w-4 h-4" viewBox="0 0 24 24">
                             <path
@@ -40,7 +40,7 @@
                 </span>
 
                 <span class="md:px-5 md:py-3 px-2 py-2">
-                    <h6 class="text-lime-950 font-medium text-sm mb-2">Year founded</h6>
+                    <p class="text-lime-950 font-medium text-sm mb-2">Year founded</p>
                     <span class="flex gap-x-2 items-center">
                         <svg class="md:w-6 md:h-6 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 24 24"
                             clip-rule="evenodd">
@@ -51,7 +51,7 @@
                     </span>
                 </span>
                 <span class="md:px-5 md:py-3 px-2 py-2">
-                    <h6 class="text-lime-950 font-medium text-sm mb-2">Languages</h6>
+                    <p class="text-lime-950 font-medium text-sm mb-2">Languages</p>
                     <span class="flex gap-x-2 items-center">
                         <svg class="md:w-6 md:h-6 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 24 24"
                             clip-rule="evenodd">
@@ -63,7 +63,7 @@
                     </span>
                 </span>
                 <span class="md:px-5 md:py-3 px-2 py-2">
-                    <h6 class="text-lime-950 font-medium text-sm mb-2">Years In Business</h6>
+                    <p class="text-lime-950 font-medium text-sm mb-2">Years In Business</p>
                     <span class="flex gap-x-2 items-center">
                         <i class="fa-regular fa-calendar md:text-2xl text-base"></i>
                         <p class="text-nowrap md:text-2xl text-lg font-semibold">

@@ -79,7 +79,7 @@ $(document).ready(function () {
             const slug = $(this).data("slug");
             $input.val(text);
 
-            $("#serviceSearchForm").attr("action", `/companies/${slug}`);
+            $("#serviceInput").val(slug);
 
             $dropdown.slideUp(150);
         });

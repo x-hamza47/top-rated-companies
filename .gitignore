@@ -5,6 +5,7 @@ env-secret.txt
 .env.dev
 .env.prod
 .env.backup
+.env.test
 .env.production
 .phpactor.json
 .phpunit.result.cache

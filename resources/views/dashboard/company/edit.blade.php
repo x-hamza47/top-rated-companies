@@ -94,7 +94,7 @@
                         + Add Service
                     </button>
                 </div>
-                
+
                 {{-- ! Submit Button --}}
                 <div class="sm:px-6 sm:py-6 px-3 py-3 border-t mt-6">
                     <button type="submit"
@@ -107,29 +107,25 @@
             @include('dashboard.company.partials.serviceSelector')
             {{-- ? Step 3 End --}}
         </form>
-    </div>@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
     </div>
-@endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
-    <script src="{{ asset('dashboard-assets/js/rangeSlider.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.35.4/tagify.min.js"
         integrity="sha512-sKkyJJpMbq+xZRQwXCksuVx5g4JuYQK7c3+65dF3CAx3Gcn67+BPC2PyJkJEugtRRAeDBLPfcsULXbEZ5iqYjg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
-    <script src="{{ asset('dashboard-assets/js/summernote.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('dashboard-assets/js/company-details.js') }}"></script>
+    @vite(['resources/js/dashboard/company-details.js', 'resources/js/dashboard/summernote.js', 'resources/js/dashboard/rangeSlider.js'])
     @php
         $oldLanguages = old('languages', $company->details->languages ?? []);
         if (is_string($oldLanguages)) {

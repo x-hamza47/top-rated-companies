@@ -11,7 +11,7 @@
           <div class="sub-section">
               <h3 class="sm:text-4xl text-2xl  text-lime-600 font-semibold text-nowrap"
                   data-target="{{ $service->companies->count() }}" id="companyCount">
-                  0+ Companies
+                  0 Companies
               </h3>
           </div>
       </div>

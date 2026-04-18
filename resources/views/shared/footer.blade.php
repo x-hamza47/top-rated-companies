@@ -1,46 +1,82 @@
 <footer class="px-6 md:px-16 lg:px-24 xl:px-32 bg-zinc-900 w-full">
-    <div
-        class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
+    <div class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
         <div>
             <img class="w-34 md:w-32" src="{{ asset('images/logo-new.png') }}" alt="logo" />
-            <p class="max-w-[410px] mt-6">B Block, 701 7th Floor, Falaknaz Tower, Wireless Gate, Airport, Karachi.</p>
-        </div>
-        <div class="flex flex-wrap justify-between w-full md:w-[45%] gap-5">
-            <div>
-                <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Quick Links</h3>
-                <ul class="text-sm space-y-1">
-                    <li><a href="#" class="hover:underline transition">Home</a></li>
-                    <li><a href="#" class="hover:underline transition">Best Sellers</a></li>
-                    <li><a href="#" class="hover:underline transition">Offers & Deals</a></li>
-                    <li><a href="{{ route('contact.showForm') }}" class="hover:underline transition">Contact Us</a></li>
-                    <li><a href="#" class="hover:underline transition">FAQs</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">About TopFirms</h3>
-                <ul class="text-sm space-y-1">
-                    <li><a href="#" class="hover:underline transition">Careers</a></li>
-                    <li><a href="#" class="hover:underline transition">News & Press</a></li>
-                    <li><a href="#" class="hover:underline transition">Ranking & Methodlogy</a></li>
-                    <li><a href="#" class="hover:underline transition">FAQ</a></li>
-                </ul>
-            </div>
-            {{-- <div>
-                <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Categories</h3>
-                <ul class="text-sm space-y-1">
-                    <li><a href="#" class="hover:underline transition">Graphic Designing</a></li>
-                    <li><a href="#" class="hover:underline transition">Video Editing</a></li>
-                    <li><a href="#" class="hover:underline transition">Web Development</a></li>
-                    <li><a href="#" class="hover:underline transition">App Development</a></li>
-                </ul>
-            </div> --}}
-        </div>
-    </div>
-    <p class="py-4 text-center text-sm md:text-base text-gray-500/80">
-        Copyright© 2025 TopFirms. All Rights Reserved.
-    </p>
+             <ul class="text-sm space-y-3 mt-6 text-gray-400">
+                <li class="flex items-start gap-3 ">
+                    <i class="fa-solid fa-location-dot mt-1 text-lime-600"></i>
+                    <span>
+                        Business Center Sharjah Publishing City Free Zone, Sharjah, UAE
+                    </span>
+                </li>
 
-    <p class="text-center text-gray-400/70 text-xs py-2">
-        <a href="https://hamzaamir-portfolio.web.app/" target="_blank">Designed & Developed by Hamza</a>
-    </p>
+                <li class="flex items-center gap-3">
+                    <i class="fa-solid fa-phone text-lime-600"></i>
+                    <a href="tel:+971567716432" class="hover:underline">
+                        +971 56 771 6432
+                    </a>
+                </li>
+
+                <li class="flex items-center gap-3">
+                    <i class="fa-solid fa-envelope text-lime-600"></i>
+                    <a href="mailto:info@topfirmsreviewer.com" class="hover:underline">
+                        info@topfirmsreviewer.com
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        {{-- Quick Links --}}
+        <div>
+            <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Quick Links</h3>
+            <ul class="text-sm space-y-2">
+                <li><a href="{{ route('home.index') }}" class="hover:underline">Home</a></li>
+                <li><a href="{{ route('insights.list') }}" class="hover:underline">Blogs</a></li>
+                <li><a href="{{ route('contact.showForm') }}" class="hover:underline">Contact Us</a></li>
+                <li><a href="{{ route('login') }}" class="hover:underline">Login</a></li>
+                <li><a href="{{ route('register.show') }}" class="hover:underline">Register</a></li>
+            </ul>
+        </div>
+
+   
+        <div>
+            <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Top Categories</h3>
+            <ul class="text-sm space-y-2">
+                @foreach($navCategories->take(3) as $category)
+    <h4 class="text-white mt-3">{{ $category->name }}</h4>
+    <ul class="text-sm space-y-1">
+        @foreach($category->services->take(3) as $service)
+            <li>
+                <a href="{{ route('services.companies', $service->slug) }}" class="hover:underline">
+                    {{ $service->name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+@endforeach
+            </ul>
+        </div>
+
+        {{-- Legal --}}
+        <div>
+            <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Legal</h3>
+            <ul class="text-sm space-y-2">
+               <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+<li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+<li><a href="{{ route('cookies') }}">Cookie Policy</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    {{-- Bottom --}}
+    <div class="py-4 text-center text-sm text-gray-500">
+        © {{ date('Y') }} TopFirms. All Rights Reserved.
+    </div>
+
+    <div class="text-center text-xs text-gray-400 pb-4">
+        <a href="https://hamzaamir-portfolio.web.app/" target="_blank" class="hover:underline">
+            Designed & Developed by Hamza
+        </a>
+    </div>
 </footer>

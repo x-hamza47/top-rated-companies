@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="@yield('og_image', asset('images/og.png'))">
 <meta property="og:site_name" content="Top Firms Reviewer">
-{{-- Twitter --}}
+{{-- ? Twitter --}}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="@yield('title', 'Top Firms Reviewer - Compare the Best Agencies & Consultants')">
 <meta name="twitter:description" content="@yield('meta_description', 'Discover credible, experienced, and dependable companies.')">

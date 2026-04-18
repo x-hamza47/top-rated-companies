@@ -7,13 +7,41 @@ use App\Models\Package;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class PackageController extends Controller
 {
+
+    public function packagePage($slug)
+    {
+        $service = Service::where('slug', $slug)->firstOrFail();
+
+        $packages = Package::select(
+            'id',
+            'company_id',
+            'service_id',
+            'small_price'
+        )
+            ->with([
+                'features:id,package_id,feature,type,small_value',
+
+                'company' => function ($q) {
+                    $q->select('id', 'name', 'slug', 'logo', 'verified')
+                        ->with('details:id,company_id,locations')
+                        ->withCount('reviews')
+                        ->withAvg('reviews', 'rating');
+                }
+            ])
+            ->where('service_id', $service->id)
+            ->latest()
+            ->paginate(10);
+
+        return view("packages.list", compact('packages', 'service'));
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -22,7 +50,8 @@ class PackageController extends Controller
         $packageCount = null;
 
         if (Gate::allows('admin')) {
-            $packages = Company::withCount('packages')
+            $packages = Company::has('packages')
+                ->withCount('packages')
                 ->with([
                     'user:id,email',
                     'packages.service'
@@ -210,7 +239,7 @@ class PackageController extends Controller
             abort(403, 'You do not own this package.');
         }
 
-        $package->delete(); 
+        $package->delete();
 
         return redirect()
             ->route('packages.index')

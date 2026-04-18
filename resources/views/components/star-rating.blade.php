@@ -10,7 +10,7 @@
             $textClass = $colorMap[$color] ?? 'text-green-900';
         @endphp
         <div class="flex gap-2 items-center {{ $textClass }}">
-            <h4 class=" font-semibold text-base sm:text-lg {{ $textColor }}">{{ round($rating, 1) }}</h4>
+            <p class=" font-semibold text-base sm:text-lg {{ $textColor }}">{{ round($rating, 1) }}</p>
             {{-- ?? Stars --}}
             <div class="star-wrapper flex gap-0.5">
 
@@ -48,7 +48,13 @@
 
                 {{-- ! Review count --}}
                 @if ($reviews)
-                    <p class="text-xs  text-nowrap font-medium sm:ml-1 h-full {{ $textColor }}">{{ $reviews }} Reviews</p>
+                    <p class="text-xs text-nowrap font-medium sm:ml-1 h-full {{ $textColor }}">
+                        @if (!$reviewDisable)
+                            {{ $reviews }} Reviews
+                        @else
+                            ({{ $reviews }}) 
+                        @endif
+                    </p>
                 @endif
             </div>
         </div>

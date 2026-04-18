@@ -131,93 +131,93 @@ class CompaniesSeeder extends Seeder
             // -------------------------------
             // Packages + Features (dummy, unchanged)
             // -------------------------------
-            // $companyServices = DB::table('company_services')
-            //     ->where('company_id', $companyId)
-            //     ->pluck('service_id')
-            //     ->toArray();
+            $companyServices = DB::table('company_services')
+                ->where('company_id', $companyId)
+                ->pluck('service_id')
+                ->toArray();
 
-            // if (!empty($companyServices)) {
-            //     shuffle($companyServices);
-            //     $maxWithPackages = 5;
-            //     $withPackages = array_slice($companyServices, 0, $maxWithPackages);
+            if (!empty($companyServices)) {
+                shuffle($companyServices);
+                $maxWithPackages = 5;
+                $withPackages = array_slice($companyServices, 0, $maxWithPackages);
 
-            //     foreach ($withPackages as $serviceId) {
-            //         $basePrice = rand(800, 15000);
-            //         $multipliers = ['small' => 1, 'medium' => 1.6, 'large' => 2.4];
+                foreach ($withPackages as $serviceId) {
+                    $basePrice = rand(800, 15000);
+                    $multipliers = ['small' => 1, 'medium' => 1.6, 'large' => 2.4];
 
-            //         $packageId = DB::table('packages')->insertGetId([
-            //             'company_id'   => $companyId,
-            //             'service_id'   => $serviceId,
-            //             'small_price'  => round($basePrice * $multipliers['small']),
-            //             'medium_price' => round($basePrice * $multipliers['medium']),
-            //             'large_price'  => round($basePrice * $multipliers['large']),
-            //             'price_type'   => $faker->randomElement(['total', 'monthly']),
-            //             'description'  => $faker->sentence(),
-            //             'created_at'   => now(),
-            //             'updated_at'   => now(),
-            //         ]);
+                    $packageId = DB::table('packages')->insertGetId([
+                        'company_id'   => $companyId,
+                        'service_id'   => $serviceId,
+                        'small_price'  => round($basePrice * $multipliers['small']),
+                        'medium_price' => round($basePrice * $multipliers['medium']),
+                        'large_price'  => round($basePrice * $multipliers['large']),
+                        'price_type'   => $faker->randomElement(['total', 'monthly']),
+                        'description'  => $faker->sentence(),
+                        'created_at'   => now(),
+                        'updated_at'   => now(),
+                    ]);
 
-            //         // Your fixed features list (unchanged)
-            //         $featuresList = [
-            //             [
-            //                 'feature' => 'Size of the project',
-            //                 'type' => 'text',
-            //                 'small_value' => '3 months for 5 FTE team',
-            //                 'medium_value' => '6+ months for 5 FTE team',
-            //                 'large_value' => '12+ months for 5 FTE team'
-            //             ],
-            //             [
-            //                 'feature' => 'Discovery goals identification and discovery phase schedule preparation',
-            //                 'type' => 'checkbox',
-            //                 'small_value' => false,
-            //                 'medium_value' => true,
-            //                 'large_value' => true
-            //             ],
-            //             [
-            //                 'feature' => 'Domain or industry research and competitor analysis',
-            //                 'type' => 'checkbox',
-            //                 'small_value' => false,
-            //                 'medium_value' => true,
-            //                 'large_value' => true
-            //             ],
-            //             [
-            //                 'feature' => 'Product vision definition',
-            //                 'type' => 'checkbox',
-            //                 'small_value' => true,
-            //                 'medium_value' => true,
-            //                 'large_value' => true
-            //             ],
-            //             [
-            //                 'feature' => 'Stakeholder interviews or surveys (per team involved)',
-            //                 'type' => 'text',
-            //                 'small_value' => 'up to 24 hours',
-            //                 'medium_value' => 'up to 48 hours',
-            //                 'large_value' => 'up to 72 hours'
-            //             ],
-            //             [
-            //                 'feature' => 'User research, empathy mapping and persona creation (per team involved)',
-            //                 'type' => 'text',
-            //                 'small_value' => 'Feature Not Included',
-            //                 'medium_value' => 'up to 16 hours',
-            //                 'large_value' => 'up to 24 hours'
-            //             ],
-            //         ];
+                    // Your fixed features list (unchanged)
+                    $featuresList = [
+                        [
+                            'feature' => 'Size of the project',
+                            'type' => 'text',
+                            'small_value' => '3 months for 5 FTE team',
+                            'medium_value' => '6+ months for 5 FTE team',
+                            'large_value' => '12+ months for 5 FTE team'
+                        ],
+                        [
+                            'feature' => 'Discovery goals identification and discovery phase schedule preparation',
+                            'type' => 'checkbox',
+                            'small_value' => false,
+                            'medium_value' => true,
+                            'large_value' => true
+                        ],
+                        [
+                            'feature' => 'Domain or industry research and competitor analysis',
+                            'type' => 'checkbox',
+                            'small_value' => false,
+                            'medium_value' => true,
+                            'large_value' => true
+                        ],
+                        [
+                            'feature' => 'Product vision definition',
+                            'type' => 'checkbox',
+                            'small_value' => true,
+                            'medium_value' => true,
+                            'large_value' => true
+                        ],
+                        [
+                            'feature' => 'Stakeholder interviews or surveys (per team involved)',
+                            'type' => 'text',
+                            'small_value' => 'up to 24 hours',
+                            'medium_value' => 'up to 48 hours',
+                            'large_value' => 'up to 72 hours'
+                        ],
+                        [
+                            'feature' => 'User research, empathy mapping and persona creation (per team involved)',
+                            'type' => 'text',
+                            'small_value' => 'Feature Not Included',
+                            'medium_value' => 'up to 16 hours',
+                            'large_value' => 'up to 24 hours'
+                        ],
+                    ];
 
 
-            //         foreach ($featuresList as $feature) {
-            //             DB::table('package_features')->insert([
-            //                 'package_id'   => $packageId,
-            //                 'feature'      => $feature['feature'],
-            //                 'type'         => $feature['type'],
-            //                 'small_value'  => $feature['small_value'],
-            //                 'medium_value' => $feature['medium_value'],
-            //                 'large_value'  => $feature['large_value'],
-            //                 'created_at'   => now(),
-            //                 'updated_at'   => now(),
-            //             ]);
-            //         }
-            //     }
-            // }
+                    foreach ($featuresList as $feature) {
+                        DB::table('package_features')->insert([
+                            'package_id'   => $packageId,
+                            'feature'      => $feature['feature'],
+                            'type'         => $feature['type'],
+                            'small_value'  => $feature['small_value'],
+                            'medium_value' => $feature['medium_value'],
+                            'large_value'  => $feature['large_value'],
+                            'created_at'   => now(),
+                            'updated_at'   => now(),
+                        ]);
+                    }
+                }
+            }
 
             // -------------------------------
             // Inquiries (dummy, unchanged)

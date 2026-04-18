@@ -2,7 +2,7 @@
 @push('styles')
     @vite('resources/css/auth.css')
 @endpush
-@section('title', 'Contact Us — Top Firms Reviewer')
+@section('title', 'Contact Us | Top Firms Reviewer')
 @section('meta_description', 'Get in touch with Top Firms Reviewer. Send your inquiries or feedback using our contact form.')
 @section('content')
     <section

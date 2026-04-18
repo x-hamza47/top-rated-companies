@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="robots" content="noindex, nofollow">-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon-96x96.png') }}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('/images/favicon.svg') }}" />
@@ -11,8 +12,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('/images/site.webmanifest') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>TRC - Top Rated Companies</title>
-
+    <title>Submit Your Review for {{ $company->name }} - Top Firms Reviewer</title>
+    <meta name="description"
+        content="Share your experience with {{ $company->name }}. Write a detailed, verified review about their {{ $company->category ?? 'services' }} and help other businesses choose the best agency. Quick & easy submission on Top Firms Reviewer.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,12 +22,12 @@
 
 <body>
     <section
-    class="section w-full flex  items-center justify-center gap-4 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
-    @include('badgeAlert')
+        class="section w-full flex  items-center justify-center gap-4 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
+        @include('badgeAlert')
         <div class="flex items-center w-full max-w-4xl mx-auto lg:px-12 lg:w-3/5 ">
             <form class="flex flex-col gap-5" action="{{ route('reviews.store') }}" method="post">
                 @csrf
-                 <input type="hidden" name="company_slug" value="{{ $company->slug }}">
+                <input type="hidden" name="company_slug" value="{{ $company->slug }}">
                 <div>
                     <h1 class="text-xl text-white sm:text-2xl md:text-3xl  font-bold text-center">
                         Write a Review for <span class="text-lime-700">{{ $company->name }}</span>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="w-full bg-white sm:px-8 py-8 px-4 rounded-md step-1">
                     <h1 class="text-xl sm:text-2xl md:text-3xl text-gray-800 font-bold text-center">
-                      Your Information
+                        Your Information
                     </h1>
                     <p class="my-4 text-gray-600 text-sm sm:text-base text-center">
                         Tell us a bit about yourself. This will help others understand who is sharing this review.
@@ -301,7 +303,7 @@
 
                 <div class="w-full bg-white sm:px-8 py-8 px-4 rounded-md step-3">
                     <h2 class="text-xl sm:text-2xl md:text-3xl text-gray-800 font-bold text-center">
-                      Review Content
+                        Review Content
                     </h2>
                     <p class="my-4 text-gray-600 text-sm sm:text-base text-center">
                         Write a short title for your review and then describe your experience with the company.
@@ -356,7 +358,6 @@
 
 </body>
 <script>
-
     document.querySelectorAll('.alert').forEach(function(alert) {
         setTimeout(() => {
             alert.classList.add('opacity-0', 'transition', 'duration-500');
@@ -373,4 +374,5 @@
         });
     });
 </script>
+
 </html>

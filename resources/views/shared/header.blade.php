@@ -1,18 +1,28 @@
-<header class="w-full border-b-2 border-lime-700 fixed z-9999 bg-white">
-    <div class="max-w-[1920px] mx-auto flex items-center justify-between h-20 px-4 md:px-10">
-
-        <div class="w-20 h-20 shrink-0 mr-7">
+<header class="w-full border-b-2 border-lime-700 fixed z-9999 bg-(--color-background)">
+    <div class="mx-auto flex items-center justify-between h-20 px-4 md:px-10">
+        <div class="w-16 h-16 shrink-0 mr-7">
             <img class="w-full h-full object-contain" src="{{ asset('images/logo-new.png') }}" alt="Logo">
         </div>
+        <nav class="navbar">
+            <a href="{{ route('home.index') }}"
+                class="nav-link flex items-center gap-2 {{ Route::is('home.index') ? 'active' : '' }}">
+                <i class="fa-solid fa-house text-xl nav-icon"></i>
+                <span>Home</span>
+            </a>
 
-        <nav class="hidden xl:flex items-center gap-2 text-gray-700 font-medium flex-1">
-             <a href="{{ route('home.index') }}" class="nav-link">Home</a>
             @foreach ($navCategories as $category)
-                <div class="relative group menu-item">
-                    <button class="nav-link">{{ $category->name }}</button>
+                <div class="relative group menu-item w-max dropdown-container">
+                    <button class="nav-link flex items-center justify-between w-full gap-2">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid {{ $category->icon }} text-xl nav-icon"></i>
+                            <span>{{ $category->name }}</span>
+                        </div>
+
+                        <i
+                            class="fa-solid fa-chevron-down nav-icon text-white text-lg transition-transform duration-300"></i>
+                    </button>
                     @if ($category->services->count())
-                        <div
-                            class="dropdown hidden opacity-0 translate-y-4 transition-all duration-300 absolute left-0 top-full bg-white  shadow-xl rounded-lg w-64">
+                        <div class="menu-dropdown">
                             <ul class="space-y-1">
                                 @foreach ($category->services as $service)
                                     <li><a class="dropdown-link"
@@ -24,87 +34,72 @@
                     @endif
                 </div>
             @endforeach
-            {{-- <a href="{{ route('profile.packages') }}" class="nav-link">Packages</a> --}}
-            <a href="{{ route('insights.list') }}" class="nav-link">Insights</a>
+            <a href="{{ route('insights.list') }}" class="nav-link flex items-center gap-2">
+                <i class="fa-solid fa-blog text-xl nav-icon"></i>
+                <span>Blogs</span>
+            </a>
+            @guest
+                <div class="flex items-center xl:ml-auto justify-between max-xl:px-4 max-xl:w-full"> 
+                    <i class="fa-solid fa-palette nav-icon  xl:hidden!"></i>
+                    <div class="theme-toggle xl:mr-2" id="theme-toggle">
+                        <div class="theme-option active" data-theme="light">
+                            Light
+                        </div>
+                        <div class="theme-option" data-theme="dark">Dark</div>
+                    </div>
+                </div>
+            @endguest
         </nav>
         @auth
-            <div class="hidden xl:flex gap-2">
-                <a class="btn-primary" href="{{ route('dashboard.index') }}">Dashboard</a>
+            <div class="user-menu dropdown">
+                <div class="user-menu-trigger dropdown-toggle">
+                    <div class="user-avatar-small">
+                        <img src="{{ auth()->user()->profile_image
+                            ? (Str::startsWith(auth()->user()->profile_image, 'http')
+                                ? auth()->user()->profile_image
+                                : asset('storage/' . auth()->user()->profile_image))
+                            : asset('images/dummy.jpg') }}"
+                            alt="User Avatar" />
+                    </div>
+                </div>
+                <div class="user-menu-dropdown dropdown-menu">
+                    <a href="{{ route('user.index') }}" class="user-menu-item">
+                        <i class="fa-solid fa-user icon"></i>
+                        <div class="flex flex-col">
+                            <span>Profile</span>
+                            <small class="text-(--color-muted)">{{ auth()->user()->firstName }}
+                                {{ auth()->user()->lastName }}</small>
+                        </div>
+                    </a>
+                    <!-- Theme Toggle inside dropdown -->
+                    <div class="user-menu-item theme-item">
+                        <i class="fa-solid fa-palette icon"></i>
+                        <div class="theme-toggle" id="theme-toggle">
+                            <div class="theme-option active" data-theme="light">
+                                Light
+                            </div>
+                            <div class="theme-option" data-theme="dark">Dark</div>
+                        </div>
+                    </div>
+                    <a href="{{ route('admin.logout') }}" class="user-menu-item">
+                        <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+                        <span>Sign Out</span>
+                    </a>
+                </div>
             </div>
         @endauth
-
         @guest
             <div class="hidden xl:flex gap-2 font-semibold">
-                <a class="btn-primary flex items-center gap-2 " href="{{ route('login') }}"><i class="fa-solid fa-circle-user text-xl text-white"></i> Sign In</a>
-                <a class="btn-outline" href="{{ route('register.show') }}">Join</a>
+                <a class="btn-primary flex items-center gap-2 px-4 py-1 rounded-md" href="{{ route('login') }}">
+                    <i class="fa-solid fa-circle-user text-lg text-white"></i> Sign In</a>
+                <a class="btn-outline-primary px-4 py-1 rounded-md" href="{{ route('register.show') }}">Join</a>
             </div>
         @endguest
 
         <div class="block xl:hidden">
-            <button id="mobile-menu-btn" class="text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+            <button id="mobile-menu-btn" class="text-(--color-text) text-2xl">
+                <i id="menu-icon" class="fa-solid fa-bars"></i>
             </button>
         </div>
-    </div>
-
-
-    {{-- !Mobile Menu --}}
-    <div id="mobile-menu"
-        class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-white shadow-xl transform translate-x-full transition-transform duration-300 xl:hidden z-50 overflow-y-auto">
-        <div class="flex justify-between items-center px-6 py-4 border-b border-lime-700">
-            <div class="w-20 h-20 shrink-0">
-                <img class="w-full h-full object-contain" src="{{ asset('images/logo.png') }}" alt="Logo">
-            </div>
-            <button id="mobile-menu-close" class="text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-
-        <nav class="flex flex-col gap-1 px-6 py-6 text-gray-700 font-medium">
-            <a href="{{ route('home.index') }}" class="mobile-link py-2 px-3 rounded hover:bg-lime-50">Home</a>
-            @foreach ($navCategories as $category)
-                <div class="mobile-menu-item">
-                    <button
-                        class="mobile-drop w-full text-left font-bold flex justify-between items-center py-2 px-3 rounded hover:bg-lime-50">
-                        {{ $category->name }} <span class="transform transition-transform"><svg
-                                class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg></span>
-                    </button>
-                    @if ($category->services->count())
-                        <ul
-                            class="mobile-submenu max-h-0 overflow-hidden transition-all duration-300 flex flex-col pl-4 space-y-2  text-gray-500">
-                            @foreach ($category->services as $service)
-                                <li class="my-2"><a class="mobile-link"
-                                        href="{{ route('services.companies', $service->slug) }}">{{ $service->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-            @endforeach
-          
-
-            <a class="mobile-link py-2 px-3 rounded hover:bg-lime-50">Pricing & Packages</a>
-            <a class="mobile-link py-2 px-3 rounded hover:bg-lime-50">Resources</a>
-        </nav>
-
-        @auth
-            <div class="flex flex-col gap-3 px-6 mt-4 mb-10">
-                <a class="btn-primary" href="{{ route('dashboard.index') }}">Dashboard</a>
-            </div>
-        @endauth
-        @guest
-            <div class="flex justify-center items-center gap-3 px-6 mt-4 mb-10">
-                <a class="btn-primary" href="{{ route('login') }}">Sign In</a>
-                <a class="btn-outline" href="{{ route('register.show') }}">Register</a>
-            </div>
-        @endguest
     </div>
 </header>

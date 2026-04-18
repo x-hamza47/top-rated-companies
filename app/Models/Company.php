@@ -23,8 +23,9 @@ class Company extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function details(){
+
+    public function details()
+    {
         return $this->hasOne(CompanyDetail::class);
     }
 
@@ -46,6 +47,7 @@ class Company extends Model
     }
 
     protected $appends = ['created_at_human'];
+   
     protected function CreatedAtHuman(): Attribute
     {
         return Attribute::make(
@@ -63,5 +65,52 @@ class Company extends Model
                 ? $value
                 : asset('images/dummy.jpg')
         );
+    }
+
+    // INfo: Query Scopes
+
+    public function scopeFilterDetails($query, $filters)
+    {
+        return $query->whereHas('details', function ($q) use ($filters) {
+
+            // ! Location
+            if (!empty($filters['location'])) {
+                $q->where('locations', 'LIKE', "%{$filters['location']}%");
+            }
+
+            // ! Budget
+            if (!empty($filters['budget'])) {
+                $q->where('min_project_size', '<=', (int) $filters['budget']);
+            }
+
+            // ! hourly
+            if (!empty($filters['hourly'])) {
+                // dd($filters['hourly']);
+                $q->where('hourly_rate', $filters['hourly']);
+            }
+        });
+    }
+
+    // ! Services filter
+    public function scopeFilterAdditionalServices($query, $services)
+    {
+        if (empty($services)) return $query;
+
+        return $query->whereHas('services', function ($q) use ($services) {
+            $q->whereIn('name', $services);
+        }, '=', count($services));
+    }
+
+    public function sortServices($serviceId, $priorityServices = [])
+    {
+        $this->services = $this->services
+            ->sortByDesc(function ($s) use ($serviceId, $priorityServices) {
+                if ($s->id == $serviceId) return 3;
+                if (in_array($s->name, $priorityServices)) return 2;
+                return 1;
+            })
+            ->values();
+
+        return $this;
     }
 }

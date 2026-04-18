@@ -5,20 +5,55 @@
     background: linear-gradient(45deg, #0b0f2a, #034b41, #055724);
 }
 
-.btn-outlined{
-    @apply  border-2 border-white rounded-md md:px-4 py-2 md:text-base text-sm px-2 cursor-pointer hover:bg-white hover:text-lime-800 flex items-center justify-center;
+.btn-outlined {
+    @apply border-2 border-white rounded-md md:px-4 py-2 md:text-base text-sm px-2 cursor-pointer hover:bg-white hover:text-lime-800 flex items-center justify-center;
 }
-.btn-white{
-    @apply  text-white bg-(--primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--light-primary) flex items-center justify-center;
+.btn-white {
+    @apply text-white bg-(--primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--light-primary) flex items-center justify-center;
 }
 
-
-.apexcharts-legend.apx-legend-position-right{
+.apexcharts-legend.apx-legend-position-right {
     justify-content: center !important;
 }
-
-.filter-btn{
-   @apply text-gray-700 border text-sm border-gray-800/20 rounded-md flex justify-between items-center px-4 py-2 transition;
+.filter-section .filters {
+    @apply flex gap-x-2;
+}
+@media (max-width: 1280px) {
+    .filter-section .filters {
+        @apply absolute top-0 left-0 bg-(--color-background) px-2 py-4 border-2 border-(--color-border) rounded-md flex-col z-99 w-full gap-y-4;
+        display: none;
+    }
+    .filter-section .filters.active {
+        display: flex;
+    }
+    .filter-section .filters .filter-dropdown {
+        width: 100%;
+        min-width: calc(100vw - 20px);
+        transform:  translateX(-15px);
+    }
+    .filter-section .filters .filter-btn {
+        @apply w-full;
+    }
+    .filter-section {
+       justify-content: space-between;
+    }
+}
+/* Overlay */
+.filter-overlay {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 25;
+    transition: var(--transition);
+}
+.filter-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.filter-btn {
+    @apply text-(--color-text)/70 border text-sm border-(--color-border) rounded-md flex justify-between items-center px-4 py-2 transition;
 }
 
 /* Hide the native checkbox/radio */

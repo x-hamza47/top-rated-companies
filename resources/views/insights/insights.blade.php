@@ -2,9 +2,9 @@
 @push('styles')
     @vite('resources/css/listicle.css')
 @endpush
-@section('title', 'Insights & Articles — Top Firms Reviewer')
-@section('meta_description', 'Read expert insights and articles about software development, marketing, design, and
-    consulting.')
+@section('title', 'Blogs — Top Firms Reviewer')
+
+@section('meta_description', 'Read the latest blogs on software development, marketing, design, and consulting. Discover insights, trends, and expert tips from industry leaders.')
 
 @section('content')
     {{-- !Hero Section --}}

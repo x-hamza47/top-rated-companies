@@ -5,7 +5,7 @@
     background: linear-gradient(45deg, #0b0f2a, #034b41, #055724);
 }
 .card-wrapper .card {
-    @apply max-w-[400px] min-w-[295px];
+    @apply max-w-[390px] min-w-[295px];
 }
 .card-links ul * {
     transition: all 0.2s ease;
@@ -41,8 +41,7 @@
 }
 .works .swiper :where(.swiper-button-prev, .swiper-button-next) {
     color: white;
-    /* padding: 10px; */
-    background: var(--primary);
+    background: var(--color-primary);
     border-radius: 5px;
 
     @apply sm:p-3 p-2 sm:w-10 sm:h-10 w-8 h-8;
@@ -71,9 +70,9 @@
 
 @media screen and (max-width: 768px) {
     .card-wrapper.mobile-cards > .card {
-        min-width: 100px;
+        min-width: 138px;
         justify-content: center;
-        background: white;
+        background: var(--color-background);
 
         .card-title {
             flex-direction: column;
@@ -97,8 +96,8 @@
         top: 50%;
         left: 50%;
         z-index: 999;
-        transform: translate(-50%, -50%) scale(1.15); /* 🔥 Scale animation */
-        background: white;
+        transform: translate(-50%, -50%) scale(1.15); 
+        background: var(--color-background);
         width: 85%;
         height: auto;
         padding: 20px auto;

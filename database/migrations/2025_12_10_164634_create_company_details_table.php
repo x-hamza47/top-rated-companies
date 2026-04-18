@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('company_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
-            $table->string('min_project_size')->nullable();
+            $table->integer('min_project_size')->nullable();
             $table->string('hourly_rate')->nullable();
             $table->string('employees_range')->nullable();
             $table->boolean('is_freelancer')->default(false);

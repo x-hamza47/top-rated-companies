@@ -1,0 +1,121 @@
+/* @import "tailwindcss"; */
+@import "./app.css";
+
+@layer components {
+    .section {
+        @apply w-full max-w-[1920px] md:px-10 sm:px-6 px-3 md:py-12 py-10;
+    }
+}
+header .navbar {
+    @apply flex items-center flex-1 gap-x-2 ;
+}
+
+header .navbar .menu-dropdown {
+    @apply w-64 bg-(--color-surface) rounded-lg shadow-xl absolute top-full left-0 transition-all duration-300 overflow-hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    max-height: 0;
+}
+header .navbar .nav-icon {
+    display: none;
+}
+
+header .navbar .menu-dropdown.active {
+    opacity: 1;
+    transform: translateY(10px);
+    max-height: 500px;
+}
+.nav-link {
+    @apply transition font-semibold text-nowrap hover:bg-(--color-secondary) hover:text-white px-3 py-1 rounded-full text-(--color-text);
+}
+.nav-link.active {
+    @apply bg-(--color-primary) text-white;
+}
+.dropdown-link {
+    @apply block hover:text-white transition cursor-pointer text-nowrap;
+    @apply font-medium hover:bg-(--color-primary)/65 w-full px-4 py-3 border-l-10 border-l-transparent hover:border-l-(--color-primary);
+}
+
+@media (max-width: 1280px) {
+    header .navbar {
+        @apply absolute top-20 right-0 h-dvh sm:w-3/4 w-full max-w-xs 
+        flex-col items-start gap-y-4 px-6 pb-10 pt-7
+        bg-(--color-background) shadow-xl translate-y-0.5 transform-gpu translate-x-[105%] transition-all duration-300 z-9999 overflow-y-auto;
+    }
+    .navbar .nav-link {
+        padding: 10px 12px;
+        width: 100%;
+    }
+    header .navbar .nav-icon {
+        display: block;
+    }
+    header .navbar .dropdown-container {
+        width: 100%;
+    }
+    .navbar .dropdown-container .nav-link {
+        width: 100%;
+        text-align: start;
+        padding: 10px 12px;
+    }
+    header .navbar .menu-dropdown {
+        @apply w-full static translate-y-1 transition-all duration-300 overflow-hidden;
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    header .navbar .menu-dropdown.active {
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0px);
+    }
+
+    header .navbar.active {
+        @apply translate-x-0;
+    }
+}
+
+.ready-section {
+    background: linear-gradient(45deg, #0b0f2a, #034b41, #055724);
+}
+
+.section {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.inp-field input:focus ~ i {
+    @apply text-(--primary);
+}
+.inp-field input ~ .show-icon {
+    @apply absolute top-1/2 right-2;
+}
+.inp-field input ~ i {
+    @apply -translate-y-1/2;
+}
+
+.inp-field .error {
+    @apply flex items-center gap-1 text-red-700 text-sm mt-0.5;
+
+    .error-text {
+        @apply text-red-700;
+    }
+}
+.invalid-input {
+    @apply border-red-700;
+}
+
+.role-card input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    @apply appearance-none outline-2 outline-gray-500 checked:outline-(--primary) rounded-full accent-(--primary) w-4 h-4 checked:bg-white checked:border-(--primary) border-5 border-transparent shadow shadow-red-800;
+}

@@ -83,5 +83,6 @@
 @push('scripts')
     <!-- ! Apexcharts Cdn -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="{{ asset('dashboard-assets/js/charts.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard-assets/js/charts.js') }}"></script> --}}
+    @vite('resources/js/dashboard/chart.js')
 @endpush

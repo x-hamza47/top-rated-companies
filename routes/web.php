@@ -23,12 +23,12 @@ use Illuminate\Support\Str;
 
 // Show verification notice
 Route::get('/email/verify', function () {
-    return view('auth.verify-email'); 
+    return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill(); 
+    $request->fulfill();
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -38,33 +38,39 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
+Route::view('/privacy-policy', 'legal.privacy')->name('privacy');
+Route::view('/terms-conditions', 'legal.terms')->name('terms');
+Route::view('/cookie-policy', 'legal.cookies')->name('cookies');
+
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-    Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
-    Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
-    Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
-    Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
-    Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
-    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-    Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
-    Route::get('insights', [InsightsController::class, 'showInsights'])->name('insights.list');
-    Route::get('insight/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
+Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
+Route::get('/companies', [ServiceController::class, 'search']);
+Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
+Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
+Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
+Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
+Route::get('blogs', [InsightsController::class, 'showInsights'])->name('insights.list');
+Route::get('blogs/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
+Route::get('/services/{slug}/packages', [PackageController::class, 'packagePage']);
 
-    Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
-    Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
-        ->name('companies.claim.form');
-    // Claim
-    Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
-        ->name('companies.claim.form');
-    Route::post('/claim-profile/{company}', [CompanyClaimController::class, 'store'])->middleware('auth')
-        ->name('companies.claim.store');
+Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
+Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
+    ->name('companies.claim.form');
+// Claim
+Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
+    ->name('companies.claim.form');
+Route::post('/claim-profile/{company}', [CompanyClaimController::class, 'store'])->middleware('auth')
+    ->name('companies.claim.store');
 
 
-    //? Ajax Route
-    Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
+//? Ajax Route
+Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
 
-    Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::get('/register', [AuthController::class, 'registerPage'])->name('register.show');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/register', [AuthController::class, 'registerPage'])->name('register.show');
 
 //! Admin Authentication
 Route::get('/admin-login', [AdminAuthController::class, 'index'])->name('admin.login.index');

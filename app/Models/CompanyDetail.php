@@ -47,7 +47,31 @@ class CompanyDetail extends Model
             get: fn() => now()->year - (int) $this->founded
         );
     }
+    protected function formattedHourlyRate(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
 
+                $rate = $this->hourly_rate;
+
+                if (!$rate) return null;
+
+                if (str_contains($rate, '<')) {
+                    return '< ' . str_replace('<', '$', $rate);
+                }
+
+                if (str_contains($rate, '-')) {
+                    return '$' . str_replace('-', ' - $', $rate);
+                }
+
+                if (str_contains($rate, '+')) {
+                    return '$' . $rate;
+                }
+
+                return '$' . $rate;
+            }
+        );
+    }
     protected function totalLanguages(): Attribute
     {
         return Attribute::make(

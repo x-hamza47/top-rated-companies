@@ -3,49 +3,56 @@
     @vite('resources/css/listicle.css')
 @endpush
 
-@section('title', "Top $service->name Companies | Top Firms Reviewer")
-@section('meta_description',"Compare top $service->name companies. Read verified reviews, pricing, and services to find the best $service->name partner for your business.")
-
+@section('title', "Top {$service->name} Companies in " . now()->format('F Y'))
+@section('meta_description',
+    "Compare top $service->name companies. Read verified reviews, pricing, and services to find
+    the best $service->name partner for your business.")
+@section('schema')
+    @include('listicle.schema.listicleSchema')
+@endsection
 @section('content')
-    {{-- ! Hero Content --}}
+    {{-- ! Hero Content --}}?
     @include('listicle.hero')
 
-
     {{-- ! Section Of Agencies --}}
-    <div class=" w-full max-w-[1920px] flex flex-col flex-wrap gap-5 md:p-10 lg:p-12 p-4 sm:p-7">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-800">
-            List of the Best <span class="text-lime-600"> {{ $service->name }} </span> Agencies
+    <div class=" w-full max-w-[1920px] flex flex-col flex-wrap md:p-10 lg:p-12 p-4 sm:p-7">
+        <h2 class="text-3xl sm:text-4xl font-bold text-(--color-text)">
+            List of the Best <span class="text-(--color-primary)"> {{ $service->name }} </span> Agencies
         </h2>
+        <div id="stickyTrigger"></div>
         {{-- ! Quick Search Buttons --}}
-        @include('listicle.filters')
+        <div class="sticky top-20 bg-(--color-background) pt-6 z-999 -mx-4 sm:-mx-7 md:-mx-10 lg:-mx-12 px-4 sm:px-7 md:px-10 lg:px-12 "
+            id="stickyFilters">
+            @include('listicle.filters')
+        </div>
         {{-- ?? List Of Agencies --}}
-        <div class="company-wrapper flex flex-col gap-4">
+        <div class="company-wrapper flex flex-col gap-4 mt-2">
             @forelse ($companies as $company)
-                <div class="company outline-2 outline-gray-500/55 hover:outline-lime-700 rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative"
+                <div class="company outline-2 outline-gray-500/55 hover:outline-(--color-primary) rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative"
                     id="{{ $company->id }}">
-                    <button class="text-lime-900 font-semibold px-3 py-2  cursor-pointer absolute top-1 right-0">
+                    <button class="text-(--color-primary) font-semibold px-3 py-2  cursor-pointer absolute top-1 right-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path d="M16 2v17.582l-4-3.512-4 3.512v-17.582h8zm2-2h-12v24l6-5.269 6 5.269v-24z" />
                         </svg>
                     </button>
-                    <div class="company-intro max-[840px]:flex-col flex justify-between gap-2 text-gray-800">
-                        <div class="flex md:items-center gap-2">
+                    <div class="company-intro max-[840px]:flex-col flex justify-between gap-2 text-(--color-text)">
+                        <div class="flex items-start md:items-center gap-2">
                             <img src="{{ $company->logo }}" alt="{{ $company->name }}"
-                                class="md:w-[50px] md:h-[50px] w-12 h-12 object-cover border border-gray-200 rounded-md">
+                                class="md:w-[50px] md:h-[50px] w-12 h-12 object-cover border border-(--color-border) rounded-md">
                             <div class="name flex flex-col ml-1">
-                                <div class="flex sm:gap-2 gap-1 flex-wrap flex-col sm:flex-row items-center">
-                                    <h4 class="lg:text-2xl text-2xl font-bold uppercase ">{{ $company->name }}</h4>
+                                <div class="flex sm:gap-2 gap-1 flex-wrap flex-col sm:flex-row">
+                                    <p class="lg:text-2xl text-xl font-bold uppercase ">{{ $company->name }}</p>
                                     @if ($company->verified)
                                         <span
-                                            class="flex gap-2 items-center flex-wrap bg-lime-200/80 md:px-3 h-fit py-1 px-2 rounded-full">
-                                            <svg class="md:w-4.5 md:h-4.5 w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                            class="flex sm:gap-1.5 gap-1 items-center flex-wrap bg-lime-200/80 md:px-2.5 h-fit sm:py-1 py-0.5 px-2 rounded-full w-max md:self-center">
+                                            <svg class="md:w-4 md:h-4 w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                                     d="M21.007 8.27C22.194 9.125 23 10.45 23 12c0 1.55-.806 2.876-1.993 3.73.24 1.442-.134 2.958-1.227 4.05-1.095 1.095-2.61 1.459-4.046 1.225C14.883 22.196 13.546 23 12 23c-1.55 0-2.878-.807-3.731-1.996-1.438.235-2.954-.128-4.05-1.224-1.095-1.095-1.459-2.611-1.217-4.05C1.816 14.877 1 13.551 1 12s.816-2.878 2.002-3.73c-.242-1.439.122-2.955 1.218-4.05 1.093-1.094 2.61-1.467 4.057-1.227C9.125 1.804 10.453 1 12 1c1.545 0 2.88.803 3.732 1.993 1.442-.24 2.956.135 4.048 1.227 1.093 1.092 1.468 2.608 1.227 4.05Zm-4.426-.084a1 1 0 0 1 .233 1.395l-5 7a1 1 0 0 1-1.521.126l-3-3a1 1 0 0 1 1.414-1.414l2.165 2.165 4.314-6.04a1 1 0 0 1 1.395-.232Z"
-                                                    class="fill-lime-600" />
+                                                    class="fill-(--color-primary)" />
                                             </svg>
-                                            <h5 class="text-xs font-semibold text-lime-800 ">Premier Verified</h5>
+                                            <p class="text-xs font-semibold text-(--color-primary)">Verified</p>
                                         </span>
                                     @endif
                                 </div>
@@ -56,14 +63,15 @@
                         <div
                             class="flex gap-3 max-[840px]:mt-2 flex-wrap justify-center max-[840px]:pr-0 max-[840px]:pt-0 pr-5 pt-5">
                             <a href="{{ route('profile.index', $company->slug) }}" target="_blank"
-                                class="text-lime-600 h-fit rounded-md font-semibold border-2 border-lime-600 px-3 py-2 cursor-pointer hover:text-white active:text-white hover:bg-lime-600 active:bg-lime-600 flex-1 text-center text-nowrap text-sm md:text-base">
+                                class="text-(--color-primary) h-fit rounded-md font-semibold border-2 border-(--color-primary) px-3 py-2 cursor-pointer hover:text-white active:text-white hover:bg-(--color-primary) active:bg-(--color-primary) flex-1 text-center text-nowrap text-sm md:text-base">
                                 View Profile
                             </a>
-                            <a href="{{ $company->details->website }}" target="_blank"
-                                class="text-lime-800 h-fit rounded-md font-semibold border-2 border-lime-400 bg-lime-400 px-3 py-2 cursor-pointer hover:bg-white active:bg-white hover:text-lime-400 active:text-lime-400 flex-1 text-center text-nowrap text-sm md:text-base">
-                                Visit Website
-                            </a>
-
+                            @if (filled($company->details->website))
+                                <a href="{{ $company->details->website }}" target="_blank"
+                                    class="text-lime-800 h-fit rounded-md font-semibold border-2 border-lime-400 bg-lime-400 px-3 py-2 cursor-pointer hover:bg-(--color-background) active:bg-(--color-primary) hover:text-(--color-primary-hover) active:text-(--color-primary-hover) flex-1 text-center text-nowrap text-sm md:text-base">
+                                    Visit Website
+                                </a>
+                            @endif
                         </div>
 
                     </div>
@@ -73,7 +81,7 @@
                     {{-- ! Column 1 --}}
                     <div
                         class="company-detail grid lg:grid-cols-[.28fr_.5fr_1fr] grid-cols-1 gap-x-7 gap-y-7 text-sm md:text-base md:px-0 mt-5">
-                        <div class="flex flex-col gap-4 text-sm flex-1 lg:ml-5 text-gray-700">
+                        <div class="flex flex-col gap-4 text-sm flex-1 lg:ml-5 text-(--color-text)">
                             <span class="flex items-center gap-2">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                     stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill-rule="evenodd"
@@ -84,22 +92,21 @@
                                 <p class="text-nowrap text-sm">${{ $company->details->min_project_size }}+</p>
                             </span>
                             <span class="flex items-center gap-2 ">
-                                {{-- <i class="fa-regular fa-clock text-xl"></i> --}}
-                                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"
                                     stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" fill-rule="evenodd"
                                     clip-rule="evenodd">
                                     <path
                                         d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 11h6v1h-7v-9h1v8z" />
                                 </svg>
-                                <p class="text-nowrap ">${{ str_replace('-', ' - $', $company->details->hourly_rate) }}
+                                <p class="text-nowrap ">{{ $company->details->formattedHourlyRate }}
                                     / hr</p>
                             </span>
 
                             <span class="flex items-center gap-2">
                                 @if ($company->details->is_freelancer)
-                                    <i class="fas fa-user-tie text-gray-700"></i>
+                                    <i class="fas fa-user-tie text-(--color-text)"></i>
                                 @else
-                                    <i class="fas fa-users text-gray-700"></i>
+                                    <i class="fas fa-users text-(--color-text)"></i>
                                 @endif
 
                                 <p class="text-nowrap">
@@ -119,7 +126,7 @@
                         {{-- ! Column 2 --}}
                         <div class="flex flex-col gap-4 text-sm flex-1 lg:ml-5">
                             <div class="flex flex-col gap-2 w-full">
-                                <small class="uppercase text-gray-500 font-semibold">Services Provided</small>
+                                <small class="uppercase text-(--color-text-muted) font-semibold">Services Provided</small>
                                 {{-- * Bar --}}
                                 <div class="w-full h-2 md:h-3 rounded-lg overflow-hidden flex">
                                     @php
@@ -142,7 +149,7 @@
                                     @endforeach
                                 </div>
 
-                                <div class="flex flex-col gap-2 mt-2 text-gray-700">
+                                <div class="flex flex-col gap-2 mt-2 text-(--color-text)">
                                     @foreach ($company->services->take($showLimit) as $index => $service)
                                         <div class="flex items-center gap-2">
                                             <span class="w-4 h-4 rounded {{ $colors[$index % count($colors)] }}"></span>
@@ -159,11 +166,11 @@
 
 
                                             <div
-                                                class="absolute left-0 bottom-5 mt-1 bg-white border border-gray-300 rounded shadow-lg px-3 py-2 pointer-events-none opacity-0 peer-hover:opacity-100 peer-active:opacity-100 z-10">
-                                                <span class="text-gray-700 text-xs">
+                                                class="absolute left-0 bottom-5 mt-1 bg-(--color-surface) border border-(--color-border) rounded shadow-lg px-3 py-2 pointer-events-none opacity-0 peer-hover:opacity-100 peer-active:opacity-100 z-10">
+                                                <span class="text-(--color-text) text-xs">
                                                     @foreach ($remainingServices as $index => $service)
                                                         {{ $service->name }}@if (!$loop->last)
-                                                            <small class="text-gray-400 text-base mx-1">•</small>
+                                                            <small class="text-(--color-muted) text-base mx-1">•</small>
                                                         @endif
                                                     @endforeach
                                                 </span>
@@ -174,7 +181,7 @@
                             </div>
                         </div>
                         {{-- ! Column 3 --}}
-                        <div class="text-sm text-gray-700">
+                        <div class="text-sm text-(--color-text)">
                             <p class="break-word lg:line-clamp-6 md:line-clamp-5 line-clamp-3">{!! $company->about !!}
                             </p>
                         </div>
@@ -195,14 +202,13 @@
         {{-- ? Ready Section --}}
         <div class="section ready-section w-full">
             <div class="flex flex-col items-center gap-5">
-                <h2 class="text-2xl md:text-4xl  text-white text-center font-semibold">Have a question or want to get in touch?
+                <h2 class="text-2xl md:text-4xl text-white text-center font-semibold">Have a question or want to get in touch?
                 </h2>
                 <div class="flex gap-2">
                     <a href="{{ route('contact.showForm') }}"
-                        class="font-semibold text-white bg-(--primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--light-primary)">
+                        class="font-semibold text-white bg-(--color-primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--color-primary-hover)">
                         Contact Us
                     </a>
-
                 </div>
             </div>
         </div>
@@ -211,7 +217,7 @@
         {{-- ! Faqs --}}
         <div class="section  flex flex-col gap-4 ">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center">
-                Frequently asked <span class="text-(--primary)">Questions</span>
+                Frequently asked <span class="text-(--color-primary)">Questions</span>
             </h2>
 
             <div class="flex flex-col items-center text-center px-4 py-2 ">
@@ -219,16 +225,16 @@
                     @foreach ($serviceFaqs as $faq)
                         <div class="faq-item flex flex-col items-start w-full" data-index="{{ $loop->index }}">
                             <div
-                                class="faq-header flex items-center justify-between w-full cursor-pointer bg-linear-to-r from-lime-50 to-white border border-lime-200 p-4 rounded transition-all">
-                                <h2 class="text-sm">{{ $faq->question }}</h2>
+                                class="faq-header flex items-center justify-between w-full cursor-pointer bg-linear-to-r from-(--color-primary-50) to-(--color-background) border border-lime-200 p-4 rounded transition-all">
+                                <h3 class="text-sm">{{ $faq->question }}</h3>
                                 <svg class="faq-icon transition-all duration-500 ease-in-out" width="18" height="18"
                                     viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="m4.5 7.2 3.793 3.793a1 1 0 0 0 1.414 0L13.5 7.2" stroke="#1D293D"
+                                    <path d="m4.5 7.2 3.793 3.793a1 1 0 0 0 1.414 0L13.5 7.2" stroke="currentColor"
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <p
-                                class="faq-answer text-sm text-slate-500 px-4 overflow-hidden max-h-0 opacity-0 -translate-y-2 transition-all duration-500 ease-in-out">
+                                class="faq-answer text-sm text-(--color-text)/70 px-4 overflow-hidden max-h-0 opacity-0 -translate-y-2 transition-all duration-500 ease-in-out">
                                 {{ $faq->answer }}
                             </p>
                         </div>
@@ -243,104 +249,5 @@
     @endsection
 
     @push('scripts')
-        @vite('resources/js/faqs.js')
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-
-                $('.filter-btn').on('click', function(e) {
-                    e.stopPropagation();
-                    const $dropdown = $(this).next('.filter-dropdown');
-                    $dropdown.toggleClass('hidden');
-                    $('.filter-dropdown').not($dropdown).addClass('hidden');
-                });
-
-                $(document).on('click', function(e) {
-                    if (!$(e.target).closest('.filter-dropdown, .filter-btn').length) {
-                        $('.filter-dropdown').addClass('hidden');
-                    }
-                });
-
-                $('.service-search').on('input', function() {
-                    const val = $(this).val().toLowerCase().trim();
-                    const $labels = $(this).closest('.filter-dropdown').find('label.service-option');
-                    $labels.each(function() {
-                        const text = $(this).data('label')?.toLowerCase() || '';
-                        $(this).toggle(text.includes(val));
-                    });
-                });
-
-                $(document).on('click', '.remove-chip', function() {
-                    const $chip = $(this).closest('.filter-chip');
-                    const name = $chip.find('.remove-chip').data('name');
-                    const value = $chip.find('.remove-chip').data('value');
-
-
-                    $chip.fadeOut(150, function() {
-                        $(this).remove();
-                        updateMoreLink();
-                    });
-
-                    const selector =
-                        `input[name="${name}[]"][value="${value}"], input[name="${name}"][value="${value}"]`;
-                    $(selector).prop('checked', false);
-
-                    $chip.closest('form').submit();
-                });
-
-                function updateMoreLink() {
-                    const $extra = $('.extra-chip');
-                    const $toggle = $('#toggle-chips');
-
-                    if ($extra.length === 0) {
-                        $toggle.remove();
-                        return;
-                    }
-
-                    if ($extra.is(':visible')) {
-                        $toggle.text('Show Less');
-                    } else {
-                        $toggle.text(`+${$extra.length} more`);
-                    }
-                }
-
-                // Toggle extra chips
-                $(document).on('click', '#toggle-chips', function() {
-                    const $extra = $('.extra-chip');
-                    if ($extra.is(':visible')) {
-                        $extra.addClass('hidden');
-                        $(this).text(`+${$extra.length} more`);
-                    } else {
-                        $extra.removeClass('hidden');
-                        $(this).text('Show Less');
-                    }
-                });
-
-                // Initialize more link state
-                updateMoreLink();
-            });
-        </script>
-        <script>
-            // ! Counter Animation
-            const element = document.getElementById('companyCount');
-            const target = +element.getAttribute('data-target');
-            const duration = 3000;
-            let start = null;
-
-            function easeOutQuad(t) {
-                return t * (2 - t);
-            }
-
-            function animateCount(timestamp) {
-                if (!start) start = timestamp;
-                const progress = (timestamp - start) / duration;
-                const easedProgress = easeOutQuad(Math.min(progress, 1));
-                element.innerText = Math.ceil(easedProgress * target) + '+ Companies';
-                if (progress < 1) {
-                    requestAnimationFrame(animateCount);
-                }
-            }
-
-            requestAnimationFrame(animateCount);
-        </script>
+        @vite(['resources/js/listicle.js'])
     @endpush

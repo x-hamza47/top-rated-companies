@@ -17,7 +17,7 @@
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/dashboard-css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/dashboard-css/app.css', 'resources/js/dashboard/script.js'])
     @stack('styles')
 </head>
 

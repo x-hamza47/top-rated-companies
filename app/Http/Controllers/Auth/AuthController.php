@@ -53,10 +53,10 @@ class AuthController extends Controller
 
         $request->validate([
             'role' => 'required|in:user,company',
-            'firstName' => 'required|string|max:50',
-            'lastName' => 'required|string|max:50',
+            'firstName' => ['required','regex:/^[a-zA-Z\s]+$/','max:50'],
+            'lastName' => ['required','regex:/^[a-zA-Z\s]+$/','max:50'],
             'email' => 'required|email|unique:users,email',
-            'phone' => 'nullable|string|max:20',
+            'phone' => ['nullable','regex:/^\+?[1-9]\d{7,14}$/'],
             'password' => 'required|string|min:6|confirmed',
         ]);
 
