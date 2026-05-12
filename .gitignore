@@ -4,6 +4,7 @@
 env-secret.txt
 .env.dev
 .env.prod
+.env.encrypted
 .env.backup
 .env.test
 .env.production
