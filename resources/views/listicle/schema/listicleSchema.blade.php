@@ -24,6 +24,7 @@
 
     {
         "@type": "ItemList",
+        "@id": "https://topfirmsreviewer.com/companies/{{ $service->slug }}#itemlist"
         "name": "Top {{ $service->name }} Companies",
         "numberOfItems": {{ $companies->count() }},
         "itemListElement": [
@@ -48,6 +49,22 @@
             }@if(!$loop->last),@endif
             @endforeach
         ]
+    },
+     {
+      "@type": "FAQPage",
+      "@id": "https://topfirmsreviewer.com/companies/{{ $service->slug }}#faq",
+      "mainEntity": [
+        @foreach ($serviceFaqs as $faq)
+        {
+          "@type": "Question",
+          "name": "{{ $faq->question }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ strip_tags($faq->answer) }}"
+          }
+        }@if(!$loop->last),@endif
+        @endforeach
+      ]
     }
 
   ]

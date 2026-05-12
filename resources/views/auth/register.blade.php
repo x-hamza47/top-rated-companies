@@ -6,12 +6,12 @@
 @section('content')
     <section
         class="section w-full flex  items-center justify-center gap-4 mt-20 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
-        <div class="flex items-center w-full max-w-3xl sm:px-8 py-8 px-4 mx-auto lg:px-12 lg:w-3/5 bg-white rounded-md">
+        <div class="flex items-center w-full max-w-3xl sm:px-8 py-8 px-4 mx-auto lg:px-12 lg:w-3/5 bg-(--color-background) rounded-md">
             <div class="w-full">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl text-gray-800 font-bold text-center">
-                    Join <span class="text-lime-700">TopFirms</span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl text-(--color-text) font-bold text-center">
+                    Join <span class="text-(--color-primary)">TopFirms</span>
                 </h1>
-                <p class="my-4 text-gray-600 text-sm sm:text-base text-center">
+                <p class="my-4 text-(--color-muted) text-sm sm:text-base text-center">
                     Create your account to connect with the right opportunities. Start as a company to showcase your
                     services or as an individual to find the perfect talent.
                 </p>
@@ -20,9 +20,9 @@
                     @csrf
                     <div class="flex flex-col sm:flex-row gap-6 justify-center mt-8 peer">
                         <label
-                            class="role-card cursor-pointer flex-1 h-max px-4 py-4 border-2 border-gray-300 rounded-xl text-center transition duration-300 relative  has-checked:border-lime-700 has-checked:[&>div>i]:text-lime-700 min-w-28">
+                            class="role-card cursor-pointer flex-1 h-max px-4 py-4 border-2 border-(--color-border) rounded-xl text-center transition duration-300 relative  has-checked:border-lime-700 has-checked:[&>div>i]:text-lime-700 min-w-28">
                             <div class="flex flex-col items-center">
-                                <i class="fa-solid fa-building text-3xl text-gray-800 mb-3"></i>
+                                <i class="fa-solid fa-building text-3xl text-(--color-text-muted) mb-3"></i>
                                 <span class="font-semibold text-base">Start a Business</span>
                                 <span class="text-gray-500 text-sm mt-2">Showcase your company and connect with
                                     clients.</span>
@@ -32,9 +32,9 @@
                         </label>
 
                         <label
-                            class="role-card cursor-pointer flex-1 h-max px-4 py-4 border-2 border-gray-300 rounded-xl text-center  transition duration-300 relative has-checked:border-lime-700 has-checked:[&>div>i]:text-lime-700">
+                            class="role-card cursor-pointer flex-1 h-max px-4 py-4 border-2 border-(--color-border) rounded-xl text-center  transition duration-300 relative has-checked:border-lime-700 has-checked:[&>div>i]:text-lime-700">
                             <div class="flex flex-col items-center">
-                                <i class="fa-solid fa-user text-3xl text-gray-800 mb-3"></i>
+                                <i class="fa-solid fa-user text-3xl text-(--color-text-muted) mb-3"></i>
                                 <span class="font-semibold text-lg">Hire for Projects</span>
                                 <span class="text-gray-500 text-sm mt-2">Find the right talent or get hired by top
                                     companies.
@@ -151,11 +151,11 @@
                     </div>
 
                     <button type="submit"
-                        class="bg-(--secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block">Sign
+                        class="bg-(--color-secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--color-primary-hover) font-semibold peer-has-not-checked:hidden peer-has-checked:block">Sign
                         Up</button>
                     <div class="register-link text-center mt-2">
                         <p class="font-semibold">Already have an account?<a href="{{ route('login') }}"
-                                class="text-(--secondary) hover:text-(--primary) font-medium">
+                                class="text-(--color-secondary) hover:text-(--color-primary) font-medium">
                                 Log In</a></p>
                     </div>
 

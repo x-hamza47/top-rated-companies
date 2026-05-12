@@ -368,7 +368,7 @@
             });
         });
     </script>
-@endpush
+@endpush 
 
 @push('styles')
     @vite('resources/css/dashboard-css/form.css')

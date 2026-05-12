@@ -226,7 +226,7 @@
                         <div class="faq-item flex flex-col items-start w-full" data-index="{{ $loop->index }}">
                             <div
                                 class="faq-header flex items-center justify-between w-full cursor-pointer bg-linear-to-r from-(--color-primary-50) to-(--color-background) border border-lime-200 p-4 rounded transition-all">
-                                <h3 class="text-sm">{{ $faq->question }}</h3>
+                                <p class="text-sm">{{ $faq->question }}</p>
                                 <svg class="faq-icon transition-all duration-500 ease-in-out" width="18" height="18"
                                     viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m4.5 7.2 3.793 3.793a1 1 0 0 0 1.414 0L13.5 7.2" stroke="currentColor"
