@@ -24,7 +24,7 @@
 
     {
         "@type": "ItemList",
-        "@id": "https://topfirmsreviewer.com/companies/{{ $service->slug }}#itemlist"
+        "@id": "https://topfirmsreviewer.com/companies/{{ $service->slug }}#itemlist",
         "name": "Top {{ $service->name }} Companies",
         "numberOfItems": {{ $companies->count() }},
         "itemListElement": [
@@ -40,7 +40,7 @@
                 "priceRange": "{{ $company->details->hourly_rate ?? '' }}",
                 "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "{{ $company->reviews_avg_rating ?? 0 }}",
+                "ratingValue": {{ round($company->reviews_avg_rating, 1) ?? 0 }},
                 "reviewCount": "{{ $company->reviews_count ?? 0 }}",
                 "bestRating": 5,
                 "worstRating": 1

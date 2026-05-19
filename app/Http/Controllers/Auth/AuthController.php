@@ -97,7 +97,7 @@ class AuthController extends Controller
     }
 
     // =========================
-    // Forgot Password (Laravel)
+    // Forgot Password 
     // =========================
 
     public function sendResetLink(Request $request)

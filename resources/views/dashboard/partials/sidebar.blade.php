@@ -78,6 +78,15 @@
                     </a>
                 </li>
             @endcanany
+
+            @can('admin')
+                 <li class="nav-item {{ isActive('authors.*') }}">
+                    <a href="{{ route('authors.index') }}" class="nav-link">
+                        <i class="fa-solid fa-user-pen nav-icon"></i>
+                        <span class="nav-label">Authors</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
 
         {{-- Info: Secondary Links --}}

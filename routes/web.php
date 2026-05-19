@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Admin\AdminAuthController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CompanyClaimController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Dashboard\CompanyClaimRequestController;
@@ -26,17 +27,17 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
+
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
+
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
 
 Route::view('/privacy-policy', 'legal.privacy')->name('privacy');
 Route::view('/terms-conditions', 'legal.terms')->name('terms');
@@ -65,21 +66,20 @@ Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create']
 Route::post('/claim-profile/{company}', [CompanyClaimController::class, 'store'])->middleware('auth')
     ->name('companies.claim.store');
 
-
-//? Ajax Route
+// ? Ajax Route
 Route::get('/profile/{company}/project-sizes', [ProfileController::class, 'projectSizes']);
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::get('/register', [AuthController::class, 'registerPage'])->name('register.show');
 
-//! Admin Authentication
+// ! Admin Authentication
 Route::get('/admin-login', [AdminAuthController::class, 'index'])->name('admin.login.index');
 Route::post('/admin-login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::get('/admin-logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 // !Others Authentication
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login')->middleware("throttle:5,1");
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login')->middleware('throttle:5,1');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 Route::get('/forgot-password', function () {
@@ -95,10 +95,9 @@ Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])
     ->name('password.update');
 
-
 // Info: Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get("/", [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
     // ? Contact Routes
     Route::get('/messages', [ContactController::class, 'index'])->name('contact.index');
@@ -127,7 +126,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         ->name('company.inquiries.update');
 
     // ? Companies Crud Routes
-    Route::get("/companies", [CompanyController::class, 'index'])->name('companies.index');
+    Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
     Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store');
     Route::post('/companies/logo/{company}', [CompanyController::class, 'uploadLogo'])->name('companies.updateLogo');
     Route::get('/companies/edit/{company}', [CompanyController::class, 'edit'])->name('companies.edit')->middleware(CompanyOwner::class);
@@ -136,6 +135,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         ->name('companies.destroy')->middleware('can:admin');
 
     // ? Insight Routes
+    // Inside your dashboard route group, alongside insights.index/create/store etc.
+    Route::post('insights/upload-image', [InsightsController::class, 'uploadImage'])->name('insights.upload-image');
+    Route::delete('insights/temp-image', [InsightsController::class, 'deleteTempImage'])->name('insights.temp-image.delete');
     Route::resource('/insights', InsightsController::class);
 
     // ? Packages Routes
@@ -143,22 +145,22 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     // ? Review Routes
     Route::resource('/reviews', ReviewController::class);
-
+    Route::resource('authors', AuthorController::class)
+    ->except(['show']);
 
     // ? Profile Routes
-    Route::get("/user-profile", [UserController::class, 'index'])->name('user.index');
-    Route::put("/change-password", [UserController::class, 'changePassword'])->name('user.change.password');
+    Route::get('/user-profile', [UserController::class, 'index'])->name('user.index');
+    Route::put('/change-password', [UserController::class, 'changePassword'])->name('user.change.password');
     Route::post('/user-profile/image', [UserController::class, 'uploadProfile'])->name('user.profile.image.update');
     Route::put('/user-profile/update', [UserController::class, 'update'])->name('user.profile.update');
 });
 
-
-
 // Hack: Generate Slug
 Route::get('/getSlug', function (Request $request) {
     $slug = '';
-    if (!empty($request->name)) {
+    if (! empty($request->name)) {
         $slug = Str::slug($request->name);
+
         return response()->json([
             'status' => true,
             'slug' => $slug,

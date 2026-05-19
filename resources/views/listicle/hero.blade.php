@@ -2,7 +2,7 @@
       <div class="flex flex-col lg:flex-row items-center lg:items-start gap-y-4">
           <div class="flex flex-col items-center lg:items-start gap-4 lg:text-start text-center flex-1">
               <h1 class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full  max-w-[900px] ">
-                  Top <span class="text-lime-600"> {{ $service->name }} </span> Companies
+                  Top <span class="text-(--color-primary)"> {{ $service->name }} </span> Companies
               </h1>
               <p class="md:leading-6 leading-5  font-semibold text-gray-300 md:text-base text-sm  max-w-[900px] ">
                   {{ $service->description ?? 'Explore top companies providing ' . $service->name . ' services.' }}

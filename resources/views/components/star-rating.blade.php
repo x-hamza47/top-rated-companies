@@ -52,7 +52,7 @@
                         @if (!$reviewDisable)
                             {{ $reviews }} Reviews
                         @else
-                            ({{ $reviews }}) 
+                            ({{ $reviews }})
                         @endif
                     </p>
                 @endif

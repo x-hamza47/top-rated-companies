@@ -6,7 +6,7 @@
 @endpush
 
 @section('schema')
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@@context": "https://schema.org",
   "@@type": "WebSite",
@@ -19,7 +19,7 @@
   }
 }
 </script>
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@@context": "https://schema.org",
   "@@type": "FAQPage",

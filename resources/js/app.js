@@ -1,5 +1,5 @@
 import "./bootstrap";
-import { initDropdowns, initTheme, initThemeToggle } from "./shared";
+import { initDropdowns, initTheme, initThemeToggle } from "./modules/shared";
 
 // *===================================
 // * INITIALIZATION

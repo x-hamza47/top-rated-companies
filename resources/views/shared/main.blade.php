@@ -240,7 +240,7 @@
 <body class="flex flex-col items-center">
 
     @include('shared.header')
-    @yield('content')
+        @yield('content')
     @include('shared.footer')
     {{-- <div id="loader">
 

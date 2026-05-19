@@ -9,11 +9,33 @@
     @apply border-2 border-white rounded-md md:px-4 py-2 md:text-base text-sm px-2 cursor-pointer hover:bg-white hover:text-lime-800 flex items-center justify-center;
 }
 .btn-white {
-    @apply text-white bg-(--primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--light-primary) flex items-center justify-center;
+    @apply text-white bg-(--color-primary) rounded-md md:px-4 py-2 md:text-base text-sm px-2  cursor-pointer hover:bg-(--color-primary-hover) flex items-center justify-center;
 }
 
 .apexcharts-legend.apx-legend-position-right {
     justify-content: center !important;
+}
+.project-size-wrapper button.active {
+    background-color: var(--color-secondary);
+    color: white;
+}
+.apexcharts-title-text {
+    color: var(--color-text) !important;
+    fill: var(--color-text) !important;
+}
+.apexcharts-legend-text{
+    color: var(--color-text) !important;
+    margin-left: 4px !important;
+    padding-left: 0 !important;
+    font-weight: 600 !important;
+}
+
+.detail-bx{
+    @apply flex flex-col items-center justify-between;
+
+    i{
+        @apply  text-(--color-primary) lg:text-4xl md:text-3xl text-xl;
+    }
 }
 .filter-section .filters {
     @apply flex gap-x-2;

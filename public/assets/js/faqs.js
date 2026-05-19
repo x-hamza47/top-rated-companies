@@ -1,5 +1,3 @@
-import { initFaqAccordion } from "./modules/shared";
-
 const faqsData = [
     {
         question: "How to Pick the Perfect Software Development Partner?",
@@ -15,13 +13,14 @@ const faqsData = [
     },
 ];
 
+
 const faqContainer = document.getElementById("faqContainer");
 
 faqContainer.innerHTML = faqsData
     .map(
         (faq, index) => `
                 <div class="faq-item flex flex-col items-start w-full" data-index="${index}">
-                    <div class="faq-header flex items-center justify-between w-full cursor-pointer bg-linear-to-r from-(--color-primary-50) to-(--color-background) border border-lime-200 p-4 rounded transition-all">
+                    <div class="faq-header flex items-center justify-between w-full cursor-pointer bg-linear-to-r from-lime-50 to-white border border-lime-200 p-4 rounded transition-all">
                         <p class="text-sm">${faq.question}</p>
                         <svg
                             class="faq-icon transition-all duration-500 ease-in-out"
@@ -33,20 +32,48 @@ faqContainer.innerHTML = faqsData
                         >
                             <path
                                 d="m4.5 7.2 3.793 3.793a1 1 0 0 0 1.414 0L13.5 7.2"
-                                stroke="currentColor"
+                                stroke="#1D293D"
                                 stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             />
                         </svg>
                     </div>
-                    <p class="faq-answer text-sm text-(--color-text)/70 px-4 overflow-hidden max-h-0 opacity-0 -translate-y-2 transition-all duration-500 ease-in-out">
+                    <p class="faq-answer text-sm text-slate-500 px-4 overflow-hidden max-h-0 opacity-0 -translate-y-2 transition-all duration-500 ease-in-out">
                         ${faq.answer}
                     </p>
                 </div>
-    `,
+    `
     )
     .join("");
 
 let openIndex = null;
-initFaqAccordion();
+
+document.querySelectorAll(".faq-header").forEach((header, index) => {
+    header.addEventListener("click", () => {
+        const allAnswers = document.querySelectorAll(".faq-answer");
+        const allIcons = document.querySelectorAll(".faq-icon");
+
+        allAnswers.forEach((el, i) => {
+            if (i === index) {
+                const isOpen = el.classList.contains("opacity-100");
+                el.classList.toggle("opacity-100", !isOpen);
+                el.classList.toggle("max-h-[300px]", !isOpen);
+                el.classList.toggle("translate-y-0", !isOpen);
+                el.classList.toggle("pt-4", !isOpen);
+                el.classList.toggle("max-h-0", isOpen);
+                el.classList.toggle("-translate-y-2", isOpen);
+                allIcons[i].classList.toggle("rotate-180", !isOpen);
+            } else {
+                el.classList.remove(
+                    "opacity-100",
+                    "max-h-[300px]",
+                    "translate-y-0",
+                    "pt-4"
+                );
+                el.classList.add("max-h-0", "-translate-y-2");
+                allIcons[i].classList.remove("rotate-180");
+            }
+        });
+    });
+});

@@ -14,11 +14,24 @@ return new class extends Migration
         Schema::create('insights', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('author_id')->constrained('authors')->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description');
-            $table->longText('article');
+
+            $table->text('excerpt')->nullable(); 
+
+            $table->string('thumbnail')->nullable();
+
+            $table->timestamp('published_at')->nullable();
+
+            $table->integer('read_time')->nullable();
+
+            $table->longText('content_json')->nullable();
+
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

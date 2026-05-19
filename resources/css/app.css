@@ -12,7 +12,9 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
-
+html {
+    scroll-behavior: smooth;
+}
 :root {
     --color-background: #ffffff;
     --color-text: #1e293b;
@@ -80,12 +82,8 @@
     --color-border: #2d2d2d;
 }
 
-* {
-    transition: 0.3s all;
-}
-
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     height: 10px;
 }
 
@@ -302,4 +300,14 @@ dropdown-toggle {
 .theme-option.active {
     background: var(--color-primary);
     color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-background) inset !important;
+    -webkit-text-fill-color: var(--color-text) !important;
+    transition: background-color 9999s ease-in-out 0s;
 }

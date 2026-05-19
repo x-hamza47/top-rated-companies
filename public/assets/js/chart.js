@@ -1,11 +1,35 @@
+
 document.addEventListener("DOMContentLoaded", function () {
+
     const labels = window.chartData.labels;
     const data = window.chartData.data;
 
     const options = {
         chart: {
-            type: "pie",
-            height: '100%',
+            type: "donut",
+            height: "100%",
+            animations: {
+                enabled: true,
+                easing: "easeinout",
+                speed: 1500,
+                animateGradually: {
+                    enabled: false,
+                },
+                dynamicAnimation: {
+                    enabled: false,
+                },
+            },
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: "45%",
+                },
+                expandOnClick: false,
+            },
+        },
+        stroke: {
+            width: 1,
         },
         title: {
             text: "Services Distribution", // Chart title
@@ -15,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
             style: {
                 fontSize: "18px",
                 fontWeight: "bold",
-                color: "oklch(27.4% 0.072 132.109)",
             },
         },
         labels: labels,
@@ -23,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         colors: generateColors(data.length),
         legend: {
             position: "right",
-            offsetX: 20,
+            offsetX: 10,
             offsetY: 0,
             markers: {
                 width: 12,

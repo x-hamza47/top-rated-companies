@@ -34,7 +34,7 @@
                     @endif
                 </div>
             @endforeach
-            <a href="{{ route('insights.list') }}" class="nav-link flex items-center gap-2">
+            <a href="{{ route('insights.list') }}" class="nav-link flex items-center gap-2 {{ Route::is('insights.list') ? 'active' : '' }}">
                 <i class="fa-solid fa-blog text-xl nav-icon"></i>
                 <span>Blogs</span>
             </a>

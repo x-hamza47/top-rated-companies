@@ -9,7 +9,7 @@
 
         <div class="flex flex-col bg-(--color-background) px-8 py-7 rounded-md">
             <h1 class="text-2xl sm:text-3xl md:text-4xl  lg:text-5xl text-(--color-text) font-bold text-center">
-                TRC <span class="text-lime-700">Login</span>
+                TFR <span class="text-lime-700">Login</span>
             </h1>
             <p class="my-4 text-(--color-text-muted) text-sm sm:text-base text-center">
                 Login to manage your account, track activities, and get things done easily.

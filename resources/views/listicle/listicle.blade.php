@@ -11,6 +11,7 @@
     @include('listicle.schema.listicleSchema')
 @endsection
 @section('content')
+
     {{-- ! Hero Content --}}?
     @include('listicle.hero')
 
@@ -28,7 +29,7 @@
         {{-- ?? List Of Agencies --}}
         <div class="company-wrapper flex flex-col gap-4 mt-2">
             @forelse ($companies as $company)
-                <div class="company outline-2 outline-gray-500/55 hover:outline-(--color-primary) rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative"
+                <div class="company outline-2 bg-(--color-surface) outline-gray-500/55 hover:outline-(--color-primary) rounded-md px-3 py-3 md:px-3.5 md:py-3.5 lg:px-6 lg:py-5 hover:scale-[1.01] hover:outline-grap-800 hover:shadow-2xl transition-all duration-300 relative"
                     id="{{ $company->id }}">
                     <button class="text-(--color-primary) font-semibold px-3 py-2  cursor-pointer absolute top-1 right-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -56,6 +57,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                
                                 {{-- hack: Ratings Component --}}
                                 <x-star-rating :rating="$company->reviews_avg_rating" :reviews="$company->reviews_count" />
                             </div>
@@ -63,7 +65,7 @@
                         <div
                             class="flex gap-3 max-[840px]:mt-2 flex-wrap justify-center max-[840px]:pr-0 max-[840px]:pt-0 pr-5 pt-5">
                             <a href="{{ route('profile.index', $company->slug) }}" target="_blank"
-                                class="text-(--color-primary) h-fit rounded-md font-semibold border-2 border-(--color-primary) px-3 py-2 cursor-pointer hover:text-white active:text-white hover:bg-(--color-primary) active:bg-(--color-primary) flex-1 text-center text-nowrap text-sm md:text-base">
+                                class="text-(--color-primary) h-fit rounded-md font-semibold border-2 border-(--color-primary) px-3 py-2 cursor-pointer hover:text-white active:text-white hover:bg-(--color-primary) active:bg-(--color-primary) flex-1 text-center text-nowrap text-sm md:text-base"> 
                                 View Profile
                             </a>
                             @if (filled($company->details->website))

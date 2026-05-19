@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             [
                 'firstName' => 'Hamza',
                 'lastName'  => 'Aamir',
-                'password'  => Hash::make('hamza123'),
+                'password'  => Hash::make('hamza65724$topfirms'),
                 'role'      => 'admin'
             ]
         );
@@ -46,3 +46,7 @@ class AdminSeeder extends Seeder
         );
     }
 }
+// composer install --no-dev --optimize-autoloader
+// php artisan migrate --force
+// php artisan config:cache
+// php artisan view:cache

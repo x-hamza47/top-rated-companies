@@ -3,7 +3,6 @@
 
 @section('content')
     <div class="dashboard-table-container">
-        {{-- <pre> {{ print_r($insights->toArray(), true) }}</pre> --}}
         <div class="dashboard-table-header">
             <h3 class="dashboard-table-title">Insights & Articles</h3>
             <a href="{{ route('insights.create') }}" class="btn btn-secondary">Add New</a>
@@ -24,50 +23,63 @@
             <tbody>
                 @forelse ($insights as $insight)
                     <tr class="text-sm">
+
+                        {{-- Title --}}
                         <td class="w-max">
                             <div class="table-title-cell max-w-max">
-
                                 <div class="col-info relative">
                                     <div class="col-title-text">
-                                        <a href="#"
-                                            class="sm:text-wrap text-nowrap">{{ Str::limit($insight->title, 30) }}</a>
+                                        <a href="{{ route('insights.showInsight', $insight->slug) }}"
+                                            class="sm:text-wrap text-nowrap" target="_blank">
+                                            {{ Str::limit($insight->title, 30) }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </td>
+
+                        {{-- Service --}}
                         <td>
                             <span class="status-badge success">
                                 {{ $insight->service?->name ?? 'N/A' }}
                             </span>
                         </td>
+
+                        {{-- Author (admin only) --}}
                         @can('admin')
                             <td>
                                 <div class="flex items-center gap-2">
                                     <div class="col-icon">
-                                        <img src="{{ $insight->user->profile_image ? (!Str::startsWith($insight->user->profile_image, 'http') ? asset('storage/' . $insight->user->profile_image) : $insight->user->profile_image) : asset('images/dummy.jpg') }}"
+                                        <img src="{{ $insight->author?->profile_image
+                                            ? (!Str::startsWith($insight->author->profile_image, 'http')
+                                                ? asset('storage/' . $insight->author->profile_image)
+                                                : $insight->author->profile_image)
+                                            : asset('images/dummy.jpg') }}"
                                             alt="" class="w-full h-full rounded-full">
                                     </div>
                                     <span class="flex flex-col">
-                                        {{ $insight->user->firstName }}{{ $insight->user->lastName }}
-
-                                        <a class="text-xs text-blue-500 text-nowrap"
-                                            href="mailto:{{ $insight->user->email }}">{{ Str::limit($insight->user->email, 25) }}</a>
-
+                                        {{ $insight->author?->name ?? 'N/A' }}
+                                        <span class="text-xs text-gray-400">{{ $insight->author?->designation }}</span>
                                     </span>
                                 </div>
                             </td>
                         @endcan
+
+                        {{-- Description --}}
                         <td>
-                            {{ Str::limit($insight->description, 40) }}
+                            {{ Str::limit($insight->excerpt, 40) }}
                         </td>
+                        {{-- Published --}}
                         <td>
                             @php
                                 $diffInDays = $insight->created_at->diffInDays(now());
                             @endphp
-
-                            {{ $diffInDays < 7 ? $insight->created_at->diffForHumans(['parts' => 2, 'short' => true]) : $insight->created_at->format('d M Y') }}
+                            {{ $diffInDays < 7
+                                ? $insight->created_at->diffForHumans(['parts' => 2, 'short' => true])
+                                : $insight->created_at->format('d M Y') }}
                         </td>
 
+                        {{-- Actions --}}
                         <td>
                             <div class="flex">
                                 <a href="{{ route('insights.edit', $insight->id) }}"
@@ -85,18 +97,19 @@
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
-
                             </div>
                         </td>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="text-center py-4">No Insight found.</td>
-                    </tr>
-                @endforelse
 
+                    </tr>
+                @empty
+                    <td colspan="{{ auth()->user()->can('admin') ? 6 : 5 }}" class="text-center py-4">
+                        No Insight found.
+                    </td>
+                @endforelse
             </tbody>
         </table>
     </div>
+
     <div class="mt-4">
         {{ $insights->onEachSide(2)->links() }}
     </div>
@@ -117,9 +130,7 @@
                     cancelButtonColor: '#3085d6',
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
+                    if (result.isConfirmed) form.submit();
                 });
             });
         });

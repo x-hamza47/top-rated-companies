@@ -1,4 +1,4 @@
-import { initFaqAccordion } from "./shared";
+import { initFaqAccordion } from "./modules/shared";
 
 $(document).ready(function () {
     initFaqAccordion();

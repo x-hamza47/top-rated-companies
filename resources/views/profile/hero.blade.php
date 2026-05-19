@@ -9,14 +9,14 @@
                     <h1 class="text-3xl sm:text-3xl md:text-4xl  font-bold">{{ $company->name }}</h1>
                     @if ($company->verified)
                         <span
-                            class="flex gap-2 items-center flex-wrap bg-white md:px-3 md:py-1.5 px-2 py-1 rounded-full">
-                            <svg class="md:w-5 md:h-5 w-4.5 h-4.5" viewBox="0 0 24 24" fill="none"
+                            class="flex sm:gap-1.5 gap-1 items-center flex-wrap bg-lime-200/90 md:px-2.5 h-fit sm:py-1 py-0.5 px-2 rounded-full w-max md:self-center">
+                            <svg class="md:w-4 md:h-4 w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M21.007 8.27C22.194 9.125 23 10.45 23 12c0 1.55-.806 2.876-1.993 3.73.24 1.442-.134 2.958-1.227 4.05-1.095 1.095-2.61 1.459-4.046 1.225C14.883 22.196 13.546 23 12 23c-1.55 0-2.878-.807-3.731-1.996-1.438.235-2.954-.128-4.05-1.224-1.095-1.095-1.459-2.611-1.217-4.05C1.816 14.877 1 13.551 1 12s.816-2.878 2.002-3.73c-.242-1.439.122-2.955 1.218-4.05 1.093-1.094 2.61-1.467 4.057-1.227C9.125 1.804 10.453 1 12 1c1.545 0 2.88.803 3.732 1.993 1.442-.24 2.956.135 4.048 1.227 1.093 1.092 1.468 2.608 1.227 4.05Zm-4.426-.084a1 1 0 0 1 .233 1.395l-5 7a1 1 0 0 1-1.521.126l-3-3a1 1 0 0 1 1.414-1.414l2.165 2.165 4.314-6.04a1 1 0 0 1 1.395-.232Z"
-                                    class="fill-lime-600" />
+                                    class="fill-(--color-primary)" />
                             </svg>
-                            <p class="text-xs sm:text-sm font-bold text-lime-800 ">Premier Verified</p>
+                            <p class="text-xs font-semibold text-(--color-primary)">Verified</p>
                         </span>
                     @endif
                 </div>
@@ -34,32 +34,14 @@
                             <address class="text-sm">{{ $company->details->locations }}</address>
                         </span>
                     </div>
-
-                    {{-- <span class="flex items-center flex-wrap gap-2">
-     
-                        <div class="flex flex-wrap justify-center -space-x-3">
-                            <img class="size-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200"
-                                alt="userImage1" />
-                            <img class="size-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200"
-                                alt="userImage2" />
-                            <img class="size-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
-                                alt="userImage3" />
-                        </div>
-                        <a href="#">
-                            <small>
-                                567+ Network Connections
-                            </small>
-                        </a>
-                    </span> --}}
                 </div>
                 <div class="flex gap-2 w-full text-base font-semibold flex-wrap justify-center md:justify-start">
-                    <a target="_blank" href="" class="btn-white flex-1  text-nowrap ">
-                        Visit Website
-                    </a>
-                    <a href="javascript:void(0)" id="openInquiryModal" class="btn-outlined flex-1 text-nowrap ">
+                    @if (filled($company->details->website))
+                        <a target="_blank" href="" class="btn-white flex-1  text-nowrap ">
+                            Visit Website
+                        </a>
+                    @endif
+                    <a href="javascript:void(0)" id="openInquiryModal" class="btn btn-outlined flex-1 text-nowrap ">
                         Contact
                     </a>
                     @if ($company->packages->count() > 0)
@@ -80,7 +62,6 @@
         </div>
         <button
             class="absolute top-25 md:right-10 right-5 rounded-md font-medium flex items-center gap-2 text-white cursor-pointer">
-            {{-- <i class="fa-solid fa-bookmark"></i> --}}
             <i class="fa-regular fa-bookmark text-2xl text-lime-600"
                 onclick="this.classList.contains('fa-regular') 
             ? (this.classList.replace('fa-regular', 'fa-solid')) 
@@ -211,5 +192,3 @@
             </div>
         </div>
     </div>
-
-    

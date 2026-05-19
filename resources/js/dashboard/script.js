@@ -1,4 +1,5 @@
-import { initDropdowns, initTheme, initThemeToggle } from "../shared";
+import '../bootstrap';
+import { initDropdowns, initTheme, initThemeToggle } from "../modules/shared";
 
 const dashboardSidebar = document.getElementById("dashboardSidebar");
 const dashboardSidebarOverlay = document.getElementById(

@@ -11,6 +11,7 @@ export default defineConfig({
                 "resources/css/home.css",
                 "resources/css/auth.css",
                 "resources/css/listicle.css",
+                "resources/css/editor.css",
                 "resources/css/dashboard-css/app.css",
                 "resources/css/dashboard-css/form.css",
 
@@ -19,13 +20,15 @@ export default defineConfig({
                 "resources/js/home.js",
                 "resources/js/faqs.js",
                 "resources/js/listicle.js",
+                "resources/js/dashboard/summernote.js",
+                "resources/js/dashboard/script.js",
+                "resources/js/dashboard/chart.js",
+                "resources/js/dashboard/company-details.js",
+                "resources/js/dashboard/rangeSlider.js",
             ],
             refresh: true,
         }),
         tailwindcss(),
     ],
-    // server: {
-    //     // host: "192.168.1.109", // your local IP true if all interfaces
-    //     // port: 5173, // default Vite port
-    // },
+ 
 });
