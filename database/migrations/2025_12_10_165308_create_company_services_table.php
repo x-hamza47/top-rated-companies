@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
+            // todo: add desc
             $table->integer('expertise_percentage')->nullable();
             $table->timestamps();
         });

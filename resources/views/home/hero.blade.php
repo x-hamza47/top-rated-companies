@@ -13,34 +13,53 @@
             reviews, and choose your next business partner with confidence and clarity.
         </p>
         {{-- !Search Box --}}
+        {{-- !Search Box --}}
         <form id="serviceSearchForm" class="md:w-4/5 lg:w-4/5 w-full" action="/companies" method="GET">
-            <div class="flex items-center  bg-(--color-background) rounded-md md:h-11 h-9 py-0.5 px-0.5">
+            <div class="flex items-center bg-(--color-background) rounded-md md:h-11 h-9 py-0.5 px-0.5">
                 <div class="flex flex-col flex-1 h-full relative">
                     <div
                         class="flex flex-1 items-center md:px-3 px-1 gap-2 bg-(--color-background) border-gray-500/30 h-full rounded-md overflow-hidden">
-                        <input type="text" placeholder="Service you need" id="serviceInput" name="q"
+                        <input type="text" placeholder="Search companies, services, insights..." id="serviceInput"
+                            name="q"
                             class="peer w-full h-full outline-none text-(--color-text) placeholder-gray-500 md:text-sm text-xs"
                             autocomplete="off">
-                        <i class="fa-solid fa-chevron-down text-gray-400 text-[10px] sm:text-base"></i>
+
+                        {{-- Live Search Dropdown --}}
                         <div id="serviceDropdown"
-                            class="search-dropdown absolute top-full left-0 right-0 mt-1.5 py-2 bg-(--color-background) border border-gray-500/30 rounded-md shadow max-h-[200px] overflow-y-auto hidden z-40 text-left">
-                            <p class="text-xs pb-2 text-(--color-text-muted)/80 sm:px-4 px-2">Services <small
-                                    class="text-lime-600 float-right">{{ $services->count() }}+</small></p>
-                            @forelse ($services as $service)
-                                <p class="service-item text-sm text-(--color-text) py-2 hover:bg-(--color-primary-hover)/80 cursor-pointer sm:px-4 px-2 not-last:border-b-2 border-b-gray-500/20"
-                                    data-slug="{{ $service->slug }}">
-                                    {{ $service->name }}
-                                </p>
-                            @empty
-                                <p
-                                    class="text-sm text-gray-600 py-1 hover:bg-lime-200/80 cursor-pointer sm:px-4 px-2 text-nowrap">
-                                    No service found.
-                                </p>
-                            @endforelse
+                            class="search-dropdown absolute top-full left-0 right-0 mt-1.5 py-2 bg-(--color-background) border border-gray-500/30 rounded-md shadow max-h-[400px] overflow-y-auto hidden z-40 text-left">
+
+                            {{-- Loading state --}}
+                            <div id="searchLoading"
+                                class="hidden px-4 py-3 text-sm text-gray-400 flex items-center gap-2">
+                                <i class="fa-solid fa-spinner animate-spin text-xs"></i> Searching...
+                            </div>
+
+                            {{-- Results injected here --}}
+                            <div id="searchResults"></div>
+
+                            {{-- Empty state --}}
+                            <div id="searchEmpty" class="hidden px-4 py-3 text-sm text-gray-500">
+                                No results found for your search.
+                            </div>
+
+                            {{-- Placeholder shown on focus before typing --}}
+                            {{-- Quick service suggestions shown on focus --}}
+                            <div id="searchPlaceholder" class="hidden">
+                                <p class="text-xs text-gray-400/80 px-4 pt-2 pb-1 uppercase tracking-wider">Popular
+                                    Services</p>
+                                @foreach ($services as $service)
+                                    <a href="/companies/{{ $service->slug }}"
+                                        class="flex items-center gap-3 px-4 py-2 hover:bg-(--color-primary-hover)/80 border-b border-gray-500/20">
+                                        <i
+                                            class="fa-solid fa-tag text-lime-600 text-xs w-7 text-center shrink-0"></i>
+                                        <p class="text-sm text-(--color-text)">{{ $service->name }}</p>
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button
+                <button type="submit"
                     class="bg-lime-700 md:px-3 px-2 hover:bg-lime-600 rounded-md text-sm md:text-lg h-full scale-x-[-1] flex items-center cursor-pointer active:shadow-[inset_0_0_20px_rgba(0,0,0,0.3)]">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>

@@ -241,8 +241,8 @@
                                     @if ($related->author)
                                         <div class="flex items-center gap-2 normal-case tracking-normal">
                                             <div class="w-6 h-6 rounded-full overflow-hidden shrink-0">
-                                                @if ($related->author->profile_image)
-                                                    <img src="{{ asset('storage/' . $related->author->profile_image) }}"
+                                                @if ($related->author->image)
+                                                    <img src="{{ asset('storage/' . $related->author->image) }}"
                                                         class="w-full h-full object-cover"
                                                         alt="{{ $related->author->name }}">
                                                 @else
@@ -313,15 +313,16 @@
 
                 links.forEach((l, i) => l.classList.toggle('active', i === current));
 
-                links[current]?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest'
-                });
+                const activeLink = links[current];
+                if (activeLink) {
+                    activeLink.closest('#toc-list')?.scrollTo({
+                        top: activeLink.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
             };
 
-            window.addEventListener('scroll', onScroll, {
-                passive: true
-            });
+            window.addEventListener('scroll', onScroll, { passive: true });
             onScroll();
         })();
     </script>

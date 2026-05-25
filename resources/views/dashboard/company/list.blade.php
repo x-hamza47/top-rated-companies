@@ -15,7 +15,7 @@
     <div class="dashboard-table-container">
         {{-- <pre> {{ print_r($companies->toArray(), true) }}</pre> --}}
         <div class="dashboard-table-header">
-            <h3 class="dashboard-table-title">Companies & Details</h3>
+            <h3 class="dashboard-table-title">Companies & Details</h3>    
             {{-- <a href="#" class="btn btn-secondary">Add New</a> --}}
         </div>
         <table class="dashboard-table">

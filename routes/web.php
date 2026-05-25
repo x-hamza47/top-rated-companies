@@ -46,7 +46,8 @@ Route::view('/cookie-policy', 'legal.cookies')->name('cookies');
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
-Route::get('/companies', [ServiceController::class, 'search']);
+Route::get('/search', [ServiceController::class, 'search'])->name('search');
+Route::get('/search/live', [ServiceController::class, 'liveSearch'])->name('search.live');
 Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
 Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
 Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');

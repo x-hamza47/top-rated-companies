@@ -8,10 +8,9 @@ use App\Models\Service;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $services = Service::where('status', 1)->get(['id', 'name', 'slug']);
-        // $dev = Category::where('name', 'Marketing')->with('services:id,category_id,name')->first();
-        
+    public function index()
+    {
+        $services = Service::where('status', 1)->limit(6)->get(['id', 'name', 'slug']);
         return view('home.home', compact('services'));
     }
 

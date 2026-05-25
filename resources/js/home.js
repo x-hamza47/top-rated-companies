@@ -46,61 +46,156 @@ $(document).ready(function () {
     });
 
     // ! Hero Section js
-    function searchableDropdown(inputId, dropdownId, itemClass) {
-        const $input = $(inputId);
-        const $dropdown = $(dropdownId);
-        const $items = $dropdown.find(itemClass);
-        const $form = $("#serviceSearchForm");
+        const input = document.getElementById("serviceInput");
+        const dropdown = document.getElementById("serviceDropdown");
+        const results = document.getElementById("searchResults");
+        const loading = document.getElementById("searchLoading");
+        const empty = document.getElementById("searchEmpty");
+        const placeholder = document.getElementById("searchPlaceholder");
+        let debounceTimer = null;
 
-        $input.on("focus", function () {
-            $(".search-dropdown").not($dropdown).hide();
-            $dropdown.stop(true, true).slideDown(150);
+        input.addEventListener("focus", () => {
+            if (input.value.trim().length < 2) {
+                dropdown.classList.remove("hidden");
+                placeholder.classList.remove("hidden");
+                results.innerHTML = "";
+                empty.classList.add("hidden");
+                loading.classList.add("hidden");
+            }
+        });
+        document.addEventListener("click", (e) => {
+            if (!dropdown.contains(e.target) && e.target !== input) {
+                dropdown.classList.add("hidden");
+            }
         });
 
-        $input.on("keyup", function () {
-            const value = $(this).val().toLowerCase();
-            let visible = 0;
+        input.addEventListener("input", function () {
+            const q = this.value.trim();
+            clearTimeout(debounceTimer);
 
-            $items.each(function () {
-                const text = $(this).text().toLowerCase();
-                if (text.includes(value)) {
-                    $(this).show();
-                    visible++;
-                } else {
-                    $(this).hide();
+            if (q.length < 2) {
+                results.innerHTML = "";
+                loading.classList.add("hidden");
+                empty.classList.add("hidden");
+                placeholder.classList.remove("hidden");
+                dropdown.classList.remove("hidden");
+                return;
+            }
+
+            placeholder.classList.add("hidden");
+            loading.classList.remove("hidden");
+            empty.classList.add("hidden");
+            results.innerHTML = "";
+            dropdown.classList.remove("hidden");
+
+            debounceTimer = setTimeout(() => {
+                fetch(`/search/live?q=${encodeURIComponent(q)}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        loading.classList.add("hidden");
+                        renderResults(data, q);
+                    })
+                    .catch(() => {
+                        loading.classList.add("hidden");
+                        empty.classList.remove("hidden");
+                    });
+            }, 300);
+        });
+
+        document
+            .getElementById("serviceSearchForm")
+            .addEventListener("submit", (e) => {
+                const q = input.value.trim();
+                if (q.length < 2) {
+                    e.preventDefault();
+                    return;
                 }
             });
 
-            visible ? $dropdown.show() : $dropdown.hide();
-        });
+        function renderResults(data, q) {
+            const { companies, services, insights } = data;
+            const hasResults =
+                companies.length || services.length || insights.length;
 
-        $items.on("click", function () {
-            const text = $(this).text().trim();
-            const slug = $(this).data("slug");
-            $input.val(text);
-
-            $("#serviceInput").val(slug);
-
-            $dropdown.slideUp(150);
-        });
-
-        $form.on("submit", function (e) {
-            const value = $input.val().trim();
-            if (value === "") {
-                e.preventDefault();
-                alert("Please select a service.");
-                $input.focus();
+            if (!hasResults) {
+                empty.classList.remove("hidden");
+                return;
             }
-        });
-    }
 
-    searchableDropdown("#serviceInput", "#serviceDropdown", ".service-item");
+            let html = "";
 
-    $(document).on("click", function (e) {
-        if (!$(e.target).closest("input, .search-dropdown").length) {
-            $(".search-dropdown").slideUp(150);
+            // --- Services FIRST ---
+            if (services.length) {
+                html += `<p class="text-xs text-gray-400/80 px-4 pt-2 pb-1 uppercase tracking-wider">Services</p>`;
+                services.forEach((s) => {
+                    html += `
+            <a href="/companies/${escapeHtml(s.slug)}"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-(--color-primary-hover)/80 border-b border-gray-500/20">
+                <i class="fa-solid fa-tag text-lime-600 text-xs w-7 text-center shrink-0"></i>
+                <p class="text-sm text-(--color-text)">${highlight(s.name, q)}</p>
+            </a>`;
+                });
+            }
+
+            // --- Companies SECOND ---
+            if (companies.length) {
+                html += `<p class="text-xs text-gray-400/80 px-4 pt-3 pb-1 uppercase tracking-wider">Companies</p>`;
+                companies.forEach((c) => {
+                    const logo = c.logo_url
+                        ? `<img src="${escapeHtml(c.logo_url)}" class="w-7 h-7 rounded-full object-cover shrink-0" alt="${escapeHtml(c.name ?? "")}"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                        : "";
+                    const avatar = `<div class="w-7 h-7 rounded-full bg-lime-700/30 flex items-center justify-center text-lime-500 text-xs font-bold shrink-0 ${c.logo_url ? "hidden" : ""}">${escapeHtml((c.name ?? "?")[0].toUpperCase())}</div>`;
+
+                    html += `
+            <a href="/profile/${escapeHtml(c.slug)}"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-(--color-primary-hover)/80 border-b border-gray-500/20">
+                ${logo}${avatar}
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm text-(--color-text) truncate font-medium">${highlight(c.name, q)}</p>
+                    ${c.tagline ? `<p class="text-xs text-gray-400 truncate">${highlight(c.tagline, q)}</p>` : ""}
+                </div>
+                <i class="fa-solid fa-arrow-right text-lime-600 text-xs"></i>
+            </a>`;
+                });
+            }
+
+            // --- Insights LAST ---
+            if (insights.length) {
+                html += `<p class="text-xs text-gray-400/80 px-4 pt-3 pb-1 uppercase tracking-wider">Insights / Blogs</p>`;
+                insights.forEach((i) => {
+                    html += `
+            <a href="/blogs/${escapeHtml(i.slug)}"
+                class="flex items-center gap-3 px-4 py-2 hover:bg-(--color-primary-hover)/80 cursor-pointer">
+                <i class="fa-solid fa-newspaper text-lime-600 text-xs w-7 text-center shrink-0"></i>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm text-(--color-text) truncate">${highlight(i.title, q)}</p>
+                    ${i.excerpt ? `<p class="text-xs text-gray-400 truncate">${escapeHtml(i.excerpt)}</p>` : ""}
+                </div>
+            </a>`;
+                });
+            }
+
+            results.innerHTML = html;
         }
-    });
+
+        function highlight(text, query) {
+            if (!text) return "";
+            const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            return escapeHtml(text).replace(
+                new RegExp(`(${escaped})`, "gi"),
+                '<mark class="bg-amber-700/30 text-(--color-secondary) rounded px-0.5">$1</mark>',
+            );
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
 
     // ! Service Section js
     const cards = document.querySelectorAll(".mobile-cards .card");

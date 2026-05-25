@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Filters\CompanyFilters;
 use App\Http\Requests\CompanyFilterRequest;
+use App\Models\Company;
+use App\Models\Insight;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -126,8 +129,67 @@ class ServiceController extends Controller
     }
     public function search(Request $request)
     {
-        $serviceSlug = $request->q;
+        $query = $request->q;
 
-        return redirect("/companies/$serviceSlug");
+        if (!$query || strlen($query) < 2) {
+            return redirect('/companies');
+        }
+
+        return redirect("/companies?q=" . urlencode($query));
+    }
+
+    public function liveSearch(Request $request)
+    {
+        $query = $request->q;
+
+        if (!$query || strlen($query) < 2) {
+            return response()->json([
+                'services'  => [],
+                'companies' => [],
+                'insights'  => [],
+            ]);
+        }
+
+        $services = Service::where(function ($q) use ($query) {
+            $q->where('name', 'like', "%{$query}%");
+        })
+            ->where('status', 1)
+            ->select('id', 'name', 'slug')
+            ->limit(5)
+            ->get();
+
+        $companies = Company::where(function ($q) use ($query) {
+            $q->where('name', 'like', "%{$query}%")
+                ->orWhere('tagline', 'like', "%{$query}%");
+        })
+            ->where('is_listed', true)
+            ->select('id', 'name', 'slug', 'tagline', 'logo')
+            ->limit(5)
+            ->get()
+            ->map(function ($company) {
+                $company->logo_url = $company->logo
+                    ? (Str::startsWith($company->logo, 'http')
+                        ? $company->logo
+                        : asset('storage/' . $company->logo))
+                    : null;
+                return $company;
+            });
+
+        // Insights
+        $insights = Insight::where(function ($q) use ($query) {
+            $q->where('title', 'like', "%{$query}%");
+                // ->orWhere('excerpt', 'like', "%{$query}%");
+        })
+            ->where('is_published', true)
+            ->select('title', 'slug', 'excerpt')
+            ->latest('published_at')
+            ->limit(4)
+            ->get();
+
+        return response()->json([
+            'services'  => $services,  
+            'companies' => $companies,
+            'insights'  => $insights,
+        ]);
     }
 }

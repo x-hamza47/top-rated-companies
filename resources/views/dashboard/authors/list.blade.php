@@ -24,19 +24,23 @@
 
                         {{-- Author Info --}}
                         <td>
-                            <div class="flex items-center gap-3">
-                                @if ($author->image)
-                                    <img src="{{ asset('storage/' . $author->image) }}"
-                                        alt="{{ $author->name }}"
-                                        class="w-9 h-9 rounded-full object-cover shrink-0">
-                                @else
-                                    <div class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                                        <i class="fas fa-user text-gray-400 text-sm"></i>
+                            <div class="table-title-cell max-w-max">
+                                <div class="col-icon">
+                                    @if ($author->image)
+                                        <img src="{{ asset('storage/' . $author->image) }}" alt="{{ $author->name }}"
+                                            class="w-full h-full rounded-full object-cover">
+                                    @else
+                                        <div
+                                            class="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
+                                            <i class="fas fa-user text-gray-400 text-sm"></i>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-info">
+                                    <div class="col-title-text">
+                                        <a href="#" class="sm:text-wrap text-nowrap">{{ $author->name }}</a>
                                     </div>
-                                @endif
-                                <div class="flex flex-col">
-                                    <span class="font-semibold text-gray-800">{{ $author->name }}</span>
-                                    <span class="text-xs text-gray-400">{{ $author->slug }}</span>
+                                    <div class="col-meta-text">{{ $author->slug }}</div>
                                 </div>
                             </div>
                         </td>
@@ -104,7 +108,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.querySelectorAll('.delete-author-form').forEach(form => {
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?',
