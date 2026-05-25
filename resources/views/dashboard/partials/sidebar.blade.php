@@ -80,10 +80,18 @@
             @endcanany
 
             @can('admin')
-                 <li class="nav-item {{ isActive('authors.*') }}">
+                <li class="nav-item {{ isActive('authors.*') }}">
                     <a href="{{ route('authors.index') }}" class="nav-link">
                         <i class="fa-solid fa-user-pen nav-icon"></i>
                         <span class="nav-label">Authors</span>
+                    </a>
+                </li>
+            @endcan
+            @can('dev')
+                <li class="nav-item {{ isActive('dev.*') }}">
+                    <a href="{{ route('dev.users') }}" class="nav-link">
+                        <i class="fa-solid fa-users-gear nav-icon"></i>
+                        <span class="nav-label">All Users</span>
                     </a>
                 </li>
             @endcan

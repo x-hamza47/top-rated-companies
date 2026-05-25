@@ -15,14 +15,22 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-
+        User::firstOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'firstName' => 'Hamza',
+                'lastName' => 'Aamir',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin'
+            ]
+        );
         User::firstOrCreate(
             ['email' => 'hamzaamir72007@gmail.com'],
             [
                 'firstName' => 'Hamza',
-                'lastName'  => 'Aamir',
-                'password'  => Hash::make('hamza65724$topfirms'),
-                'role'      => 'admin'
+                'lastName' => 'Aamir',
+                'password' => Hash::make('hamza65724$topfirms'),
+                'role' => 'admin'
             ]
         );
 
@@ -30,19 +38,19 @@ class AdminSeeder extends Seeder
             ['email' => 'amrita@gmail.com'],
             [
                 'firstName' => 'Amrita',
-                'lastName'  => 'Admin',
-                'password'  => Hash::make('amrita123'),
-                'role'      => 'admin'
+                'lastName' => 'Admin',
+                'password' => Hash::make('amrita123'),
+                'role' => 'admin'
             ]
         );
         User::firstOrCreate(
             ['email' => 'syedzainulabidinali@gmail.com'],
             [
                 'firstName' => 'Zain',
-                'lastName'  => 'Ali',
-                'password'  => Hash::make('zain123'),
-                'role'      => 'admin'
-            ]
+                'lastName' => 'Ali',
+                'password' => Hash::make('zain123'),
+                'role' => 'admin'
+            ],
         );
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\InsightsController;
 use App\Http\Controllers\Dashboard\PackageController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dev\DevController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ProfileController;
@@ -46,14 +47,15 @@ Route::view('/cookie-policy', 'legal.cookies')->name('cookies');
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/companies/{serviceSlug}', [ServiceController::class, 'index'])->name('services.companies');
-Route::get('/search', [ServiceController::class, 'search'])->name('search');
-Route::get('/search/live', [ServiceController::class, 'liveSearch'])->name('search.live');
+Route::get('/companies', [ServiceController::class, 'search']);
 Route::get('/profile/{companySlug}', [ProfileController::class, 'index'])->name('profile.index')->middleware('TrackVisit');
 Route::get('/profile/{companySlug}/packages', [ProfileController::class, 'packages'])->name('profile.packages');
 Route::get('/review/{companySlug}', [ReviewController::class, 'showForm'])->name('review.form');
 Route::get('/contact', [ContactController::class, 'showContactForm'])->name('contact.showForm');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
+Route::get('/search', [ServiceController::class, 'search'])->name('search');
+Route::get('/search/live', [ServiceController::class, 'liveSearch'])->name('search.live');
 Route::get('blogs', [InsightsController::class, 'showInsights'])->name('insights.list');
 Route::get('blogs/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
 Route::get('/services/{slug}/packages', [PackageController::class, 'packagePage']);
@@ -128,12 +130,16 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     // ? Companies Crud Routes
     Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
-    Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store');
+    // Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store');
     Route::post('/companies/logo/{company}', [CompanyController::class, 'uploadLogo'])->name('companies.updateLogo');
-    Route::get('/companies/edit/{company}', [CompanyController::class, 'edit'])->name('companies.edit')->middleware(CompanyOwner::class);
-    Route::put('/companies/update/{id?}', [CompanyController::class, 'updateOrCreate'])->name('companies.update');
+    Route::get('/companies/edit/{company?}', [CompanyController::class, 'editOrCreate'])->name('companies.edit')->middleware(CompanyOwner::class);
+    Route::match(['POST', 'PUT'], '/companies/update/{id?}', [CompanyController::class, 'updateOrCreate'])->name('companies.update');
     Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])
         ->name('companies.destroy')->middleware('can:admin');
+    Route::patch('companies/{company}/toggle-listed', [CompanyController::class, 'toggleListed'])
+        ->name('companies.toggleListed');
+    Route::patch('companies/{company}/toggle-verified', [CompanyController::class, 'toggleVerified'])
+        ->name('companies.toggleVerified');
 
     // ? Insight Routes
     // Inside your dashboard route group, alongside insights.index/create/store etc.
@@ -147,13 +153,19 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     // ? Review Routes
     Route::resource('/reviews', ReviewController::class);
     Route::resource('authors', AuthorController::class)
-    ->except(['show']);
+        ->except(['show']);
 
     // ? Profile Routes
     Route::get('/user-profile', [UserController::class, 'index'])->name('user.index');
     Route::put('/change-password', [UserController::class, 'changePassword'])->name('user.change.password');
     Route::post('/user-profile/image', [UserController::class, 'uploadProfile'])->name('user.profile.image.update');
     Route::put('/user-profile/update', [UserController::class, 'update'])->name('user.profile.update');
+
+    // ! Dev Routes
+    Route::middleware(['dev'])->group(function () {
+        Route::get('/dev/users', [DevController::class, 'index'])->name('dev.users');
+        Route::post('/dev/users/{id}/force-logout', [DevController::class, 'forceLogout'])->name('dev.users.force-logout');
+    });
 });
 
 // Hack: Generate Slug

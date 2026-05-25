@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\HideDevScope;
 use App\Notifications\ResetPasswordNotification;
 use App\Notifications\VerifyEmailQueued;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -26,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
-        'profile_image'
+        'profile_image',
     ];
 
     /**
@@ -41,8 +43,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmailQueued());
+        $this->notify(new VerifyEmailQueued);
     }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -66,9 +69,34 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Company::class);
     }
 
-    
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new HideDevScope);
+
+        static::deleting(function (User $user) {
+            if ($user->getRawOriginal('role') === 'dev') {
+                throw new \Exception('Developer account cannot be deleted.');
+            }
+        });
+        static::updating(function (User $user) {
+            if ($user->getRawOriginal('role') === 'dev') {
+                throw new \Exception('Developer account cannot be modified.');
+            }
+        });
+    }
+
+    public function isOnline(): bool
+    {
+        return Cache::has('user_last_seen_'.$this->id);
+    }
+
+    public function lastSeen()
+    {
+        return Cache::get('last_seen_at_'.$this->id);
     }
 }

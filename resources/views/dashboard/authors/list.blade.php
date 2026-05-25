@@ -27,11 +27,11 @@
                             <div class="table-title-cell max-w-max">
                                 <div class="col-icon">
                                     @if ($author->image)
-                                        <img src="{{ asset('storage/' . $author->image) }}" alt="{{ $author->name }}"
+                                        <img src="{{ asset('storage/' . $author->image) }}"
+                                            alt="{{ $author->name }}"
                                             class="w-full h-full rounded-full object-cover">
                                     @else
-                                        <div
-                                            class="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
+                                        <div class="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
                                             <i class="fas fa-user text-gray-400 text-sm"></i>
                                         </div>
                                     @endif
@@ -108,7 +108,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.querySelectorAll('.delete-author-form').forEach(form => {
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?',

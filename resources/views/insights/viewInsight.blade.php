@@ -11,6 +11,7 @@
 
         <div class="max-w-7xl mx-auto flex gap-6">
 
+            {{-- ── LEFT: TABLE OF CONTENTS ──────────────────────────────── --}}
             @if ($toc->count())
                 <aside class="w-[30%] hidden lg:block">
                     <div class="sticky top-28 bg-(--color-surface) rounded-xl shadow-md p-6 border border-(--color-border)">
@@ -39,6 +40,7 @@
 
             <article class="flex-1 min-w-0 mt-20">
 
+                {{-- ── HERO CARD ─────────────────────────────────────────── --}}
                 <div class="bg-(--color-surface) rounded-xl overflow-hidden shadow-xl">
 
                     @if ($insight->thumbnail_url)
@@ -58,8 +60,8 @@
                             @if ($insight->author)
                                 <div class="flex items-center gap-2">
                                     <div class="w-10 h-10 rounded-full overflow-hidden shrink-0">
-                                        @if ($insight->author->profile_image)
-                                            <img src="{{ asset('storage/' . $insight->author->profile_image) }}"
+                                        @if ($insight->author->image)
+                                            <img src="{{ asset('storage/' . $insight->author->image) }}"
                                                 alt="{{ $insight->author->name }}" class="w-full h-full object-cover">
                                         @else
                                             <div class="w-full h-full flex items-center justify-center font-bold text-white text-base"
@@ -115,18 +117,18 @@
                     </div>
                 </div>
 
-                {{--  EDITORJS CONTENT  --}}
+                {{-- ── EDITORJS CONTENT ──────────────────────────────────── --}}
                 <div class="bg-(--color-surface) rounded-xl shadow-xl mt-8 p-8 md:p-10">
                     <x-editorjs-renderer :blocks="$contentJson['blocks'] ?? []" />
 
-                    {{--  AUTHOR BOX  --}}
+                    {{-- ── AUTHOR BOX ────────────────────────────────────── --}}
                     @if ($insight->author)
                         <section class="mt-12 pt-8 border-t border-(--color-border)">
                             <div class="flex flex-col md:flex-row gap-6 items-start">
 
                                 <div class="w-20 h-20 rounded-full overflow-hidden shrink-0">
-                                    @if ($insight->author->profile_image)
-                                        <img src="{{ asset('storage/' . $insight->author->profile_image) }}"
+                                    @if ($insight->author->image)
+                                        <img src="{{ asset('storage/' . $insight->author->image) }}"
                                             class="w-full h-full object-cover" alt="{{ $insight->author->name }}">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center font-bold text-white text-2xl"
@@ -154,7 +156,7 @@
                                     </p>
 
                                     @if ($insight->author->bio)
-                                        <p class="text-base text-gray-600 leading-relaxed">
+                                        <p class="text-base text-(--color-text) leading-relaxed">
                                             {{ $insight->author->bio }}
                                         </p>
                                     @endif
@@ -182,7 +184,7 @@
                     @endif
                 </div>
 
-                {{-- BACK LINK  --}}
+                {{-- ── BACK LINK ─────────────────────────────────────────── --}}
                 <div class="mt-8">
                     <a href="{{ route('insights.list') }}"
                         class="inline-flex items-center gap-2 text-sm font-bold text-(--color-primary) hover:text-(--color-secondary) transition">
@@ -197,7 +199,7 @@
 
     </section>
 
-    {{-- RELATED INSIGHTS  --}}
+    {{-- ── RELATED INSIGHTS ────────────────────────────────────────────── --}}
     @if ($relatedInsights->count())
         <section class="w-full mt-14 bg-(--color-background) py-8 md:py-10 md:px-12 sm:px-6 px-4">
 
@@ -213,7 +215,7 @@
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($relatedInsights as $related)
                         <article
-                            class="outline-2 outline-gray-500/55 hover:outline-(--color-primary) bg-white rounded-md overflow-hidden hover:scale-[1.01] hover:shadow-2xl transition-all duration-300">
+                            class="outline-2 outline-gray-500/55 hover:outline-(--color-primary) bg-(--color-surface) rounded-md overflow-hidden hover:scale-[1.01] hover:shadow-2xl transition-all duration-300">
 
                             {{-- Thumbnail --}}
                             <a href="{{ route('insights.showInsight', $related->slug) }}" class="block overflow-hidden">
@@ -242,7 +244,7 @@
                                         <div class="flex items-center gap-2 normal-case tracking-normal">
                                             <div class="w-6 h-6 rounded-full overflow-hidden shrink-0">
                                                 @if ($related->author->image)
-                                                    <img src="{{ asset('storage/' . $related->author->image) }}"
+                                                    <img src="{{ asset('storage/' . $related->author->profile_image) }}"
                                                         class="w-full h-full object-cover"
                                                         alt="{{ $related->author->name }}">
                                                 @else
@@ -308,7 +310,7 @@
             const onScroll = () => {
                 let current = 0;
                 anchors.forEach((el, i) => {
-                    if (el && el.getBoundingClientRect().top <= 120) current = i;
+                    if (el && el.getBoundingClientRect().top <= 170) current = i;
                 });
 
                 links.forEach((l, i) => l.classList.toggle('active', i === current));
@@ -316,7 +318,7 @@
                 const activeLink = links[current];
                 if (activeLink) {
                     activeLink.closest('#toc-list')?.scrollTo({
-                        top: activeLink.offsetTop - 60,
+                        top: activeLink.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }

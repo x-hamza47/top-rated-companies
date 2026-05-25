@@ -32,47 +32,57 @@ class CompanyRequest extends FormRequest
             'about' => 'required|string',
 
             // ! Company details table
-            'min_project_size' => 'required|numeric|min:0|max:250000',
-            'hourly_rate' => 'required|string|in:<25,20-50,50-99,100-149,150-199,200-300,300+',
-            'employees_range' => 'nullable|string|in:2-9,10-49,50-249,250-999,1000-9999,10000+|prohibited_if:is_freelancer,true',
-            'is_freelancer' => 'nullable|boolean|prohibited_if:employees_range,filled',
+            'min_project_size' => 'required|in:' . implode(',', array_keys(config('company.project_sizes'))),
+            'hourly_rate' => 'required|in:' . implode(',', array_keys(config('company.hourly_rates'))),
+            'employees_range' => 'nullable|required_without:is_freelancer|in:' . implode(',', config('company.employee_ranges')) . '|prohibited_if:is_freelancer,1',
+            'is_freelancer' => 'nullable|boolean|required_without:employees_range',
             'founded' => 'required|digits:4|integer|min:1800|max:' . date('Y'),
             'languages' => 'required|array|min:1|max:15',
             'languages.*' => 'required|string|max:50',
             'website' => 'nullable|url',
-            'social_links' => 'required|array|min:1|max:4',
+            'social_links' => 'required|array',
             'social_links.facebook' => 'nullable|url',
             'social_links.instagram' => 'nullable|url',
             'social_links.linkedin' => 'nullable|url',
             'social_links.twitter' => 'nullable|url',
 
-            // ! Services Expertise
+            // ! Services
             'services' => 'required|array|min:1|max:15',
-            'services.*' => 'integer',
+            'services.*.expertise_percentage' => 'nullable|integer|min:0|max:100',
+            'services.*.description' => 'nullable|string|max:1000',
         ];
     }
-
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
+            $social = array_filter($this->input('social_links', []));
+            if (empty($social)) {
+                $validator->errors()->add('social_links', 'At least one social link is required.');
+            }
             $services = $this->input('services', []);
 
             if (empty($services)) {
                 $validator->errors()->add('services', 'At least one service is required.');
+                return;
             }
 
-            foreach ($services as $id => $percent) {
+            $total = 0;
+            foreach ($services as $id => $data) {
                 if (!\App\Models\Service::where('id', $id)->exists()) {
                     $validator->errors()->add('services', "Selected service with ID {$id} does not exist.");
                 }
+
+                $percent = is_array($data) ? ($data['expertise_percentage'] ?? 0) : $data;
+
                 if (!is_numeric($percent) || $percent < 0 || $percent > 100) {
                     $validator->errors()->add('services', "Expertise for service ID {$id} must be between 0 and 100.");
                 }
+
+                $total += (int) $percent;
             }
 
-            $total = array_sum($services);
             if ($total !== 100) {
-                $validator->errors()->add('services', "Total expertise must be exactly 100%");
+                $validator->errors()->add('services', "Total expertise must be exactly 100%.");
             }
         });
     }
@@ -91,7 +101,7 @@ class CompanyRequest extends FormRequest
                 $languages = $decoded;
             }
         } elseif (is_array($languagesInput)) {
-            $languages = $languagesInput; 
+            $languages = $languagesInput;
         }
 
         $languages = array_filter($languages, function ($item) {
@@ -111,73 +121,53 @@ class CompanyRequest extends FormRequest
     public function messages(): array
     {
         return [
-            // Companies table
             'name.required' => 'Company name is required.',
-            'name.string' => 'Company name must be a valid string.',
             'name.max' => 'Company name cannot exceed 255 characters.',
             'name.unique' => 'This company name is already taken.',
 
             'slug.required' => 'Company slug is required.',
-            'slug.string' => 'Slug must be a valid string.',
             'slug.max' => 'Slug cannot exceed 255 characters.',
             'slug.unique' => 'This slug is already in use.',
 
             'tagline.required' => 'Tagline is required.',
-            'tagline.string' => 'Tagline must be a valid string.',
             'tagline.max' => 'Tagline cannot exceed 255 characters.',
 
             'about.required' => 'About section is required.',
-            'about.string' => 'About section must be text.',
 
-            // Company details
             'min_project_size.required' => 'Minimum project size is required.',
-            'min_project_size.numeric' => 'Minimum project size must be a number.',
-            'min_project_size.min' => 'Minimum project size cannot be negative.',
-            'min_project_size.max' => 'Minimum project size cannot exceed 250,000.',
+            'min_project_size.in' => 'Please select a valid project size.',
 
             'hourly_rate.required' => 'Hourly rate range is required.',
-            'hourly_rate.string'   => 'Hourly rate must be a valid range.',
-            'hourly_rate.in'       => 'Please select a valid hourly rate range.',
+            'hourly_rate.in' => 'Please select a valid hourly rate range.',
 
-            'employees_range.required_without' => 'Please select an employee range unless you are a freelancer.',
-            'employees_range.string' => 'Employee range must be valid.',
+            'employees_range.required_without' => 'Please select an employee range or mark yourself as a freelancer.',
             'employees_range.in' => 'Please select a valid employee range.',
-            'is_freelancer.boolean' => 'Freelancer field must be true or false.',
             'employees_range.prohibited_if' => 'You cannot select an employee range if you are a freelancer.',
-            'is_freelancer.prohibited_if' => 'You cannot select freelancer if you already chose an employee range.',
+            'is_freelancer.required_without' => 'Please select an employee range or mark yourself as a freelancer.',
+            'is_freelancer.boolean' => 'Freelancer field must be true or false.',
 
             'founded.required' => 'Founded year is required.',
             'founded.digits' => 'Founded year must be 4 digits.',
-            'founded.integer' => 'Founded year must be a number.',
             'founded.min' => 'Founded year cannot be before 1800.',
             'founded.max' => 'Founded year cannot be in the future.',
 
             'languages.required' => 'At least one language is required.',
-            'languages.array' => 'Languages must be an array.',
             'languages.min' => 'At least one language is required.',
             'languages.max' => 'You can select a maximum of 15 languages.',
-            'languages.*.required' => 'Each language is required.',
             'languages.*.string' => 'Each language must be a valid string.',
             'languages.*.max' => 'Each language cannot exceed 50 characters.',
 
             'website.url' => 'Website must be a valid URL.',
 
-            'social_links.required' => 'Social links are required.',
-            'social_links.array' => 'Social links must be an array.',
-            'social_links.min' => 'At least one social link is required.',
-            'social_links.max' => 'You can add a maximum of 4 social links.',
+            'social_links.required' => 'At least one social link is required.',
             'social_links.facebook.url' => 'Facebook link must be a valid URL.',
             'social_links.instagram.url' => 'Instagram link must be a valid URL.',
             'social_links.linkedin.url' => 'LinkedIn link must be a valid URL.',
             'social_links.twitter.url' => 'Twitter link must be a valid URL.',
 
-            // Services
             'services.required' => 'Please select at least one service.',
-            'services.array' => 'Services must be an array.',
             'services.min' => 'Please select at least one service.',
             'services.max' => 'You can select a maximum of 15 services.',
-            'services.*.integer' => 'Each service must be a valid number.',
-            'services.*.exists' => 'Selected service does not exist.',
         ];
     }
 }

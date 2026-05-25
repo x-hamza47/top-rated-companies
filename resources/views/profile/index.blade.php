@@ -5,8 +5,7 @@
 @endpush
 
 @section('title', "$company->name Reviews ($company->reviews_count), Pricing, Services & Ratings | Top Firms Reviewer")
-@section('meta_description',
-    "Read $company->reviews_count verified reviews of $company->name. Explore ratings, pricing,
+@section('meta_description', "Read $company->reviews_count verified reviews of $company->name. Explore ratings, pricing,
     services, and company details on Top Firms Reviewer.")
 @section('og_image', $company->logo ?? asset('images/og.png'))
 @section('schema')

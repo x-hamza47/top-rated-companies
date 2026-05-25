@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Company extends Model
 {
@@ -46,27 +47,31 @@ class Company extends Model
         return $this->hasMany(Package::class);
     }
 
+    public function visitSummaries()
+{
+    return $this->hasMany(CompanyVisitSummary::class);
+}
+
     protected $appends = ['created_at_human'];
-   
+
     protected function CreatedAtHuman(): Attribute
     {
         return Attribute::make(
             get: fn($value) => $this->created_at
-                ? ($this->created_at->diffInDays() > 7
-                    ? $this->created_at->format('M d, Y')
-                    : $this->created_at->diffForHumans())
-                : null
+            ? ($this->created_at->diffInDays() > 7
+                ? $this->created_at->format('M d, Y')
+                : $this->created_at->diffForHumans())
+            : null
         );
     }
     protected function logo(): Attribute
     {
         return Attribute::make(
             get: fn($value) => $value
-                ? $value
-                : asset('images/dummy.jpg')
+            ? (Str::startsWith($value, 'http') ? $value : asset('storage/' . $value))
+            : asset('images/dummy.jpg')
         );
     }
-
     // INfo: Query Scopes
 
     public function scopeFilterDetails($query, $filters)
@@ -94,7 +99,8 @@ class Company extends Model
     // ! Services filter
     public function scopeFilterAdditionalServices($query, $services)
     {
-        if (empty($services)) return $query;
+        if (empty($services))
+            return $query;
 
         return $query->whereHas('services', function ($q) use ($services) {
             $q->whereIn('name', $services);
@@ -105,8 +111,10 @@ class Company extends Model
     {
         $this->services = $this->services
             ->sortByDesc(function ($s) use ($serviceId, $priorityServices) {
-                if ($s->id == $serviceId) return 3;
-                if (in_array($s->name, $priorityServices)) return 2;
+                if ($s->id == $serviceId)
+                    return 3;
+                if (in_array($s->name, $priorityServices))
+                    return 2;
                 return 1;
             })
             ->values();

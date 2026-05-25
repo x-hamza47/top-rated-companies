@@ -60,9 +60,7 @@ class AuthorController extends Controller
             ->with('success', 'Author created successfully.');
     }
  
-    /**
-     * Show the form for editing the specified author.
-     */
+  
     public function edit(Author $author)
     {
         return view('dashboard.authors.create-update', compact('author'));
@@ -103,9 +101,7 @@ class AuthorController extends Controller
             ->with('success', 'Author updated successfully.');
     }
  
-    /**
-     * Remove the specified author from storage.
-     */
+
     public function destroy(Author $author)
     {
         if ($author->image && Storage::disk('public')->exists($author->image)) {
@@ -119,9 +115,7 @@ class AuthorController extends Controller
             ->with('success', 'Author deleted successfully.');
     }
  
-    /**
-     * Save avatar image as WebP, cropped to square.
-     */
+
     private function saveAvatar($file): string
     {
         $filename  = Str::uuid() . '.webp';

@@ -29,30 +29,34 @@
             <h3 class="dashboard-form-title">Edit Company Details</h3>
             <a href="{{ route('companies.index') }}" class="btn btn-secondary">Go Back</a>
         </div>
-        <form action="{{ route('companies.updateLogo', $company->id) }}"
-            class="flex items-start px-6 py-4 gap-4 bg-(--color-background)" enctype="multipart/form-data" method="POST">
+        <form class="flex flex-col gap-10" action="{{ route('companies.update', $company->id ?? null) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
-            {{-- ! Logo  --}}
-            <div>
-                <div class="image profile-wrapper">
-                    <img src="{{ $company?->logo ? (!Str::startsWith($company->logo, 'http') ? asset('storage/' . $company->logo) : $company->logo) : asset('images/dummy.jpg') }}"
-                        id="preview" class="profile-image" alt="Profile" />
-                    <label for="fileInput" class="edit-icon" title="Upload Pic">
-                        <i class="fa-solid fa-pencil"></i>
-                    </label>
-                </div>
-                <input type="file" id="fileInput" accept="image/*" name="logo" />
-            </div>
+            @if ($company->id)
+                @method('PUT')
+            @endif
 
-            <button
-                class="btn btn-primary cursor-pointer text-white  text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold">Update
-                Logo</button>
-        </form>
-        <form class="flex flex-col gap-10" action="{{ route('companies.update', $company->id) }}" method="post">
-            @csrf
-            @method('PUT')
-            {{-- ! Step 1 --}}
-            @include('dashboard.company.partials.step1')
+            {{-- Logo Upload --}}
+            <div>
+
+
+                <div class="flex items-start px-6 py-4 gap-4 bg-(--color-background)">
+                    <div class="image profile-wrapper">
+                        <img src="{{ $company->logo
+                            ? (Str::startsWith($company->logo, 'http')
+                                ? $company->logo
+                                : asset('storage/' . $company->logo))
+                            : asset('images/dummy.jpg') }}"
+                            id="preview" class="profile-image" alt="Profile" />
+                        <label for="fileInput" class="edit-icon" title="Upload Pic">
+                            <i class="fa-solid fa-pencil"></i>
+                        </label>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" name="logo" />
+                </div>
+                {{-- ! Step 1 --}}
+                @include('dashboard.company.partials.step1')
+            </div>
             {{-- ? Step 1 End --}}
             {{-- ! Step 2 --}}
             @include('dashboard.company.partials.step2')
@@ -64,33 +68,77 @@
                     Total Expertise: <span id="total-expertise" class="text-(--color-primary) font-bold">0</span>
                 </div>
                 @error('services')
-                    <div class="bg-red-500 text-white px-4 py-3 rounded-md mb-4 flex items-start gap-2 fixed top-20 right-3.5">
+                    <div class="bg-red-500 text-white px-4 py-3 rounded-md mb-4 flex items-start gap-2 fixed top-20 right-3.5"
+                        onclick="setTimeout(() => this.remove(), 3000)">
                         <i class="fa-solid fa-circle-exclamation error-icon"></i>
                         <p class="text-sm">{{ $message }}</p>
 
                     </div>
                 @enderror
 
+                @php
+                    $oldServices = old('services');
+                @endphp
                 <div class="flex flex-wrap justify-center gap-4 my-5" id="serviceTags">
-                    @foreach ($company->services as $index => $service)
-                        <div class="service-tag sm:px-4 sm:py-2 px-2 py-1 bg-(--color-surface) rounded-xl cursor-pointer flex items-center justify-center outline outline-transparent hover:outline-(--color-primary) hover:scale-[1.01] transition "
-                            data-id="{{ $service->id }}" data-name="{{ $service->name }}"
-                            data-percent="{{ $service->pivot->expertise_percentage ?? 0 }}">
-                            {{ $service->name }} — <span
-                                class="tag-percent ml-1 {{ $colors[$index % count($colors)] }}">{{ $service->pivot->expertise_percentage ?? 0 }}%</span>
-                            <button type="button"
-                                class="remove-service text-(--color-error) text-[8px] sm:text-xs bg-(--color-error-100) hover:bg-(--color-error) hover:text-(--color-text) active:text-(--color-text) transition sm:w-8 sm:h-8 w-5 h-5 rounded-full flex items-center justify-center font-bold cursor-pointer ml-4">
-                                <i class="fa-solid fa-x"></i>
-                            </button>
 
-                            <input type="hidden" name="services[{{ $service->id }}]"
-                                value="{{ $service->pivot->expertise_percentage }}" class="service-input">
-                        </div>
-                    @endforeach
+
+                    @if ($oldServices)
+                        {{-- Restore from old() after validation failure --}}
+                        @foreach ($oldServices as $serviceId => $serviceData)
+                            @php
+                                $svc = $allServices->firstWhere('id', $serviceId);
+                                $pivot_percent = $serviceData['expertise_percentage'] ?? 0;
+                                $pivot_desc = $serviceData['description'] ?? '';
+                                $index = $loop->index;
+                            @endphp
+                            @if ($svc)
+                                <div class="service-tag sm:px-4 sm:py-2 px-2 py-1 bg-(--color-surface) rounded-xl cursor-pointer flex items-center justify-center outline outline-transparent hover:outline-(--color-primary) hover:scale-[1.01] transition"
+                                    data-id="{{ $svc->id }}" data-name="{{ $svc->name }}"
+                                    data-percent="{{ $pivot_percent }}" data-description="{{ $pivot_desc }}">
+
+                                    {{ $svc->name }} — <span
+                                        class="tag-percent ml-1 {{ $colors[$index % count($colors)] }}">{{ $pivot_percent }}%</span>
+
+                                    <button type="button"
+                                        class="remove-service text-(--color-error) text-[8px] sm:text-xs bg-(--color-error-100) hover:bg-(--color-error) hover:text-(--color-text) active:text-(--color-text) transition sm:w-8 sm:h-8 w-5 h-5 rounded-full flex items-center justify-center font-bold cursor-pointer ml-4">
+                                        <i class="fa-solid fa-x"></i>
+                                    </button>
+
+                                    <input type="hidden" name="services[{{ $svc->id }}][expertise_percentage]"
+                                        value="{{ $pivot_percent }}" class="service-input-percent">
+                                    <input type="hidden" name="services[{{ $svc->id }}][description]"
+                                        value="{{ $pivot_desc }}" class="service-input-description">
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        {{-- Normal load from DB --}}
+                        @foreach ($company->services as $index => $service)
+                            <div class="service-tag sm:px-4 sm:py-2 px-2 py-1 bg-(--color-surface) rounded-xl cursor-pointer flex items-center justify-center outline outline-transparent hover:outline-(--color-primary) hover:scale-[1.01] transition"
+                                data-id="{{ $service->id }}" data-name="{{ $service->name }}"
+                                data-percent="{{ $service->pivot->expertise_percentage ?? 0 }}"
+                                data-description="{{ $service->pivot->description ?? '' }}">
+
+                                {{ $service->name }} — <span
+                                    class="tag-percent ml-1 {{ $colors[$index % count($colors)] }}">{{ $service->pivot->expertise_percentage ?? 0 }}%</span>
+
+                                <button type="button"
+                                    class="remove-service text-(--color-error) text-[8px] sm:text-xs bg-(--color-error-100) hover:bg-(--color-error) hover:text-(--color-text) active:text-(--color-text) transition sm:w-8 sm:h-8 w-5 h-5 rounded-full flex items-center justify-center font-bold cursor-pointer ml-4">
+                                    <i class="fa-solid fa-x"></i>
+                                </button>
+
+                                <input type="hidden" name="services[{{ $service->id }}][expertise_percentage]"
+                                    value="{{ $service->pivot->expertise_percentage }}" class="service-input-percent">
+                                <input type="hidden" name="services[{{ $service->id }}][description]"
+                                    value="{{ $service->pivot->description }}" class="service-input-description">
+                            </div>
+                        @endforeach
+                    @endif
+
                 </div>
                 <div class="text-center mt-6 px-5">
                     <button type="button" id="addServiceBtn"
-                        class="bg-(--color-primary) text-white px-5 py-2 rounded-lg font-semibold hover:bg-(--color-secondary)">
+                        class="btn btn-outline-primary">
                         + Add Service
                     </button>
                 </div>
@@ -98,17 +146,18 @@
                 {{-- ! Submit Button --}}
                 <div class="sm:px-6 sm:py-6 px-3 py-3 border-t mt-6">
                     <button type="submit"
-                        class="bg-(--color-secondary) cursor-pointer px-5 text-white text-center rounded-md py-2 hover:bg-(--color-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block">Save
-                        Changes</button>
-                    <a href="">Cancel</a>
+                        class="btn btn-primary">
+                        {{ $company->id ? 'Save Changes' : 'Create Company' }}</button>
+                    <a href="{{ route('companies.index') }}" class="btn btn-secondary">Cancel</a>
                 </div>
             </div>
             {{-- ! Service Selector --}}
             @include('dashboard.company.partials.serviceSelector')
             {{-- ? Step 3 End --}}
         </form>
+
     </div>
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -116,7 +165,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif --}}
 @endsection
 
 @push('scripts')

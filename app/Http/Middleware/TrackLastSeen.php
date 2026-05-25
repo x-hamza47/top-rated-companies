@@ -5,9 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
-class CompanyOwner
+class TrackLastSeen
 {
     /**
      * Handle an incoming request.
@@ -16,21 +17,10 @@ class CompanyOwner
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-
-        if ($user->can('admin')) {
-            return $next($request);
-        }
-
-        if ($user->can('company')) {
-            $company = $request->route('company');
-
-            if (!$company) {
-                return $next($request);
-            }
-
-            if ($company->user_id !== $user->id) {
-                return redirect()->back()->with('error', 'You are not authorized to access that page.');
+        if (Auth::check()) {
+            if (Auth::user()->role === 'admin') {
+                $key = 'user_last_seen_'.Auth::id();
+                Cache::put($key, now(), now()->addMinutes(5));
             }
         }
 

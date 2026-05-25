@@ -50,7 +50,7 @@
                 @if ($reviews)
                     <p class="text-xs text-nowrap font-medium sm:ml-1 h-full {{ $textColor }}">
                         @if (!$reviewDisable)
-                            {{ $reviews }} Reviews
+                            {{ $reviews }} {{ Str::plural('Review', $reviews) }}
                         @else
                             ({{ $reviews }})
                         @endif

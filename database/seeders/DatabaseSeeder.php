@@ -24,12 +24,14 @@ class DatabaseSeeder extends Seeder
         //     ContactUsSeeder::class,
         //     InsightSeeder::class,
         //     FaqSeeder::class,
+        // DevProtectionSeeder::class
         // ]);
         $this->call([
             CategoryAndServiceSeeder::class,
             FaqSeeder::class,
             CompaniesSeeder::class,
             AdminSeeder::class,
+            DevProtectionSeeder::class
             // UserSeeder::class,
         ]);
     }
