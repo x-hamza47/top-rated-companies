@@ -73,6 +73,7 @@
                     <th>Employees</th>
                     <th>Verified</th>
                     <th>Location</th>
+                    <th>Joined Date</th>
                     <th class="text-center!">Status</th>
                     <th class="text-center!">Action</th>
                 </tr>
@@ -127,6 +128,9 @@
 
                         </td>
                         <td>{{ $company->details?->locations }}</td>
+                        <td>
+                            {{ $company->created_at->format('d M Y') }}
+                        </td>
 
                         {{-- IS LISTED TOGGLE --}}
                         <td class="text-center">
@@ -167,6 +171,7 @@
                 @endforelse
             </tbody>
         </table>
+
     </div>
 
     <div class="mt-4">

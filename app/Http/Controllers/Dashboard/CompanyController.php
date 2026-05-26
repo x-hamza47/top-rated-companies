@@ -87,6 +87,7 @@ class CompanyController extends Controller
 
     public function updateOrCreate(CompanyRequest $request, ?int $id = null)
     {
+        dd(Gate::allows('admin'), Gate::allows('company'), Auth::user()->role);
         $user = Auth::user();
 
         if (Gate::allows('admin')) {
@@ -155,7 +156,7 @@ class CompanyController extends Controller
             }
         });
 
-        return redirect()->back()->with('success', 'Company saved successfully.');
+        return redirect()->route('companies.index')->with('success', 'Company saved successfully.');
     }
 
     public function uploadLogo(Request $request, Company $company)

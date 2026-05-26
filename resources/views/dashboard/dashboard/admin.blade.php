@@ -126,7 +126,7 @@
         <div class="chart-card">
             <div class="chart-card-header">
                 <h3 class="chart-card-title">Traffic by Hour</h3>
-                <p class="chart-card-subtitle">All time — peak hours across platform</p>
+                <p class="chart-card-subtitle">All time - peak hours across platform</p>
             </div>
             <div class="chart-container" style="overflow: hidden;">
                 <div id="hoursChart"></div>

@@ -50,6 +50,7 @@
                     <th>Phone</th>
                     <th>Role</th>
                     <th>Status</th>
+                    <th>Session</th>
                     <th>Joined</th>
                     <th class="text-center!">Action</th>
                 </tr>
@@ -104,15 +105,69 @@
                         {{-- Online Status --}}
                         <td>
                             @if ($user->isOnline())
-                                <span class="status-badge success  gap-1">
+                                <span class="status-badge success gap-1">
                                     <span class="w-2 h-2 rounded-full bg-green-400 inline-block animate-pulse"></span>
                                     Online
                                 </span>
                             @else
-                                <span class="status-badge danger  gap-1">
+                                <span class="status-badge danger gap-1">
                                     <span class="w-2 h-2 rounded-full bg-red-400 inline-block"></span>
                                     {{ $user->lastSeen() ? $user->lastSeen()->diffForHumans() : 'Never' }}
                                 </span>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($user->session_info)
+                                @foreach ($user->session_info as $session)
+                                    <div
+                                        class="text-xs flex flex-col gap-0.5 mb-1.5 pb-1.5 {{ !$loop->last ? 'border-b border-(--color-border)' : '' }}">
+                                        @if (!empty($session['last_known']))
+                                            <div class="pl-2 border-l-2 border-yellow-500 flex flex-col gap-0.5 opacity-70">
+                                                <span class="italic text-(--color-text-muted)">
+                                                    <i class="fas fa-clock-rotate-left mr-1"></i>
+                                                    Last seen from
+                                                </span>
+                                                <span class="text-(--color-text-muted)">
+                                                    <i class="fas fa-location-dot mr-1"></i>
+                                                    @php $loc = $session['location']; @endphp
+                                                    @if (!empty($loc['lat']))
+                                                        <a href="https://www.google.com/maps?q={{ $loc['lat'] }},{{ $loc['lon'] }}"
+                                                            target="_blank"
+                                                            class="hover:underline hover:text-blue-400 transition">
+                                                            {{ $loc['label'] }}
+                                                        </a>
+                                                    @else
+                                                        {{ $loc['label'] ?? 'Unknown' }}
+                                                    @endif
+                                                </span>
+                                            </div>
+                                        @else
+                                            <div class="pl-2 border-l-2 border-green-500 flex flex-col gap-0.5">
+                                                <span class="text-(--color-text-muted)">
+                                                    <i
+                                                        class="fas {{ $session['is_mobile'] ? 'fa-mobile-screen' : 'fa-desktop' }} mr-1"></i>
+                                                    {{ $session['platform'] }} · {{ $session['browser'] }}
+                                                </span>
+                                                <span class="text-(--color-text-muted)">
+                                                    <i class="fas fa-location-dot mr-1"></i>
+                                                    @php $loc = $session['location']; @endphp
+                                                    @if (!empty($loc['lat']))
+                                                        <a href="https://www.google.com/maps?q={{ $loc['lat'] }},{{ $loc['lon'] }}"
+                                                            target="_blank"
+                                                            class="hover:underline hover:text-blue-400 transition">
+                                                            {{ $loc['label'] }}
+                                                        </a>
+                                                    @else
+                                                        {{ $loc['label'] ?? 'Unknown' }}
+                                                    @endif
+                                                </span>
+                                                <span class="font-mono opacity-50 text-[10px]">{{ $session['ip'] }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @else
+                                <span class="text-(--color-text-muted) text-xs">—</span>
                             @endif
                         </td>
                         {{-- Joined --}}

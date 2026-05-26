@@ -431,7 +431,7 @@
                 @case('warning')
                     @php
                         $title = $block['data']['title'] ?? '';
-                        $message = $block['data']['message'] ?? '';
+                        $message = html_entity_decode($block['data']['message'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
                         $lower = strtolower($title);
 
                         if (str_contains($lower, 'pro tip') || str_contains($lower, 'tip')) {
@@ -479,7 +479,7 @@
                                 <strong class="ejs-warning__title"
                                     style="color:{{ $tc }}">{{ $title }}</strong>
                             @endif
-                            <p style="color:{{ $mc }}">{{ $message }}</p>
+                            <p style="color:{{ $mc }}">{!! $message !!}</p>
                         </div>
                     </div>
                 @break

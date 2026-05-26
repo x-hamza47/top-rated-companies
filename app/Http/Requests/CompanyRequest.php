@@ -12,7 +12,7 @@ class CompanyRequest extends FormRequest
     public function authorize(): bool
     {
         $user = Auth::user();
-        return $user && ($user->role === "admin" || $user->role === "company");
+        return $user && in_array($user->role, ['admin', 'dev', 'company']);
     }
 
     /**

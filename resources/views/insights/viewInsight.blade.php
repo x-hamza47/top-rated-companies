@@ -4,6 +4,8 @@
 @endpush
 @section('title', $insight->title . ' | Top Firms Reviewer')
 @section('meta_description', $insight->meta_description ?? '')
+@section('og_image', $insight->thumbnail_url ?? asset('images/og.png'))
+@section('og_type', 'article')
 
 @section('content')
 

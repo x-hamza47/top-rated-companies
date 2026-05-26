@@ -5,9 +5,12 @@
 <meta property="og:title" content="@yield('title', 'Top Firms Reviewer - Compare the Best Agencies & Consultants')">
 <meta property="og:description" content="@yield('meta_description', 'Discover credible, experienced, and dependable companies.')">
 <meta property="og:url" content="{{ config('app.url') . request()->getRequestUri() }}">
-<meta property="og:type" content="website">
+<meta property="og:type"
+    content="@yield('og_type', 'website')">
 <meta property="og:image" content="@yield('og_image', asset('images/og.png'))">
 <meta property="og:site_name" content="Top Firms Reviewer">
+<meta property="og:image:width"  content="1200" />
+<meta property="og:image:height" content="630" />
 {{-- ? Twitter --}}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="@yield('title', 'Top Firms Reviewer - Compare the Best Agencies & Consultants')">
