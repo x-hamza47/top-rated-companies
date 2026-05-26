@@ -2,7 +2,11 @@
 {{-- Info: Css File --}}
 @push('styles')
     @vite('resources/css/home.css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    </noscript>
 @endpush
 
 @section('schema')
@@ -85,6 +89,6 @@
     @include('home.faqs')
 @endsection
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
     @vite(['resources/js/home.js', 'resources/js/faqs.js'])
 @endpush

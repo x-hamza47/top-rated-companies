@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "./app.css";
 
 .section:nth-of-type(1),
 .ready-section {
@@ -10,9 +10,6 @@
 .card-links ul * {
     transition: all 0.2s ease;
 }
-/* .works-wrapper .card{
-    @apply max-w-64 min-w-64;
-} */
 
 .works .swiper {
     @apply md:px-5 md:py-10 py-5 px-2;

@@ -1,7 +1,7 @@
 <header class="w-full border-b-2 border-lime-700 fixed z-9999 bg-(--color-background)">
     <div class="mx-auto flex items-center justify-between h-20 px-4 md:px-10">
         <div class="w-16 h-16 shrink-0 mr-7">
-            <img class="w-full h-full object-contain" src="{{ asset('images/logo-new.png') }}" alt="Logo">
+            <img class="w-full h-full object-contain" src="{{ asset('images/logo-new.webp') }}" alt="Logo">
         </div>
         <nav class="navbar">
             <a href="{{ route('home.index') }}"

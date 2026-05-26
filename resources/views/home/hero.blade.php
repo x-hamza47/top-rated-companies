@@ -13,7 +13,6 @@
             reviews, and choose your next business partner with confidence and clarity.
         </p>
         {{-- !Search Box --}}
-        {{-- !Search Box --}}
         <form id="serviceSearchForm" class="md:w-4/5 lg:w-4/5 w-full" action="/companies" method="GET">
             <div class="flex items-center bg-(--color-background) rounded-md md:h-11 h-9 py-0.5 px-0.5">
                 <div class="flex flex-col flex-1 h-full relative">
@@ -34,24 +33,19 @@
                                 <i class="fa-solid fa-spinner animate-spin text-xs"></i> Searching...
                             </div>
 
-                            {{-- Results injected here --}}
                             <div id="searchResults"></div>
 
-                            {{-- Empty state --}}
                             <div id="searchEmpty" class="hidden px-4 py-3 text-sm text-gray-500">
                                 No results found for your search.
                             </div>
 
-                            {{-- Placeholder shown on focus before typing --}}
-                            {{-- Quick service suggestions shown on focus --}}
                             <div id="searchPlaceholder" class="hidden">
                                 <p class="text-xs text-gray-400/80 px-4 pt-2 pb-1 uppercase tracking-wider">Popular
                                     Services</p>
                                 @foreach ($services as $service)
                                     <a href="/companies/{{ $service->slug }}"
                                         class="flex items-center gap-3 px-4 py-2 hover:bg-(--color-primary-hover)/80 border-b border-gray-500/20">
-                                        <i
-                                            class="fa-solid fa-tag text-lime-600 text-xs w-7 text-center shrink-0"></i>
+                                        <i class="fa-solid fa-tag text-lime-600 text-xs w-7 text-center shrink-0"></i>
                                         <p class="text-sm text-(--color-text)">{{ $service->name }}</p>
                                     </a>
                                 @endforeach
@@ -78,9 +72,19 @@
         </div>
     </div>
     {{-- ! Hero Image --}}
-    <div class="flex-2/5 min-w-[200px] max-w-[500px] ">
-        <img src="{{ asset('images/illustration.png') }}"
-            alt="Software development, marketing, and consulting illustration"
-            class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)] hover:drop-shadow-transparent hover:scale-[0.99]">
+    <div class="flex-2/5 min-w-[200px] max-w-[500px]">
+
+        <picture>
+
+            <source srcset="{{ asset('images/illustration-750.avif') }}" type="image/avif">
+
+            <source srcset="{{ asset('images/illustration.webp') }}" type="image/webp">
+
+            <img src="{{ asset('images/illustration.webp') }}" width="750" height="750" loading="eager"
+                decoding="async" alt="Software development, marketing, and consulting illustration"
+                class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)] hover:drop-shadow-transparent hover:scale-[0.99]">
+
+        </picture>
+
     </div>
 </div>

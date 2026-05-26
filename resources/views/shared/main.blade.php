@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Top Firms Reviewer - Compare the Best Agencies & Consultants') </title>
-    <!--<meta name="robots" content="noindex, nofollow">-->
     <meta name="ahrefs-site-verification" content="3771ffa768fd01a7c4b768b5f6b3571bd95f4cab07f50a9aabf9ce622f3e6971">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="{{ asset('/images/favicon/favicon-96x96.png') }}" sizes="96x96" />
@@ -15,10 +14,15 @@
     <link rel="manifest" href="{{ asset('/images/favicon/site.webmanifest') }}" />
     {{-- ! Meta Tags --}}
     @include('shared.partials.meta')
+    <link rel="preload" as="image" href="{{ asset('images/illustration-750.avif') }}" type="image/avif">
     @vite(['resources/css/frontend.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            crossorigin="anonymous">
+    </noscript>
     @yield('schema')
     @stack('styles')
     {{-- <style>
@@ -240,7 +244,7 @@
 <body class="flex flex-col items-center">
 
     @include('shared.header')
-        @yield('content')
+    @yield('content')
     @include('shared.footer')
     {{-- <div id="loader">
 
@@ -283,7 +287,7 @@ window.addEventListener("load", function() {
     document.body.classList.remove("loading");
 });
 </script> --}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
 @stack('scripts')
 {{-- ! Page Js --}}
 

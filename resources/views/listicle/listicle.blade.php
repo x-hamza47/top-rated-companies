@@ -185,7 +185,7 @@
                         {{-- ! Column 3 --}}
                         <div class="text-sm text-(--color-text)">
                             <p class="break-word lg:line-clamp-6 md:line-clamp-5 line-clamp-3"> 
-                                {{ $company->pivot->description ?: $company->tagline }}
+                                {{ strip_tags($company->pivot->description ?: $company->about) }}
                             </p>
                         </div>
                     </div>

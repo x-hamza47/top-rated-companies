@@ -258,9 +258,9 @@
     @endpush
 
     @push('scripts')
-        <script src="{{ asset('assets/js/projectSize.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <script src="{{ asset('assets/js/chart.js') }}"></script>
+        <script src="{{ asset('assets/js/projectSize.js') }}" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
+        <script src="{{ asset('assets/js/chart.js') }}" defer></script>
         <script>
             window.chartData = {
                 labels: @json($company->services->pluck('name')->toArray()),
