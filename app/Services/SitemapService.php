@@ -19,12 +19,36 @@ class SitemapService
 
     public function generate()
     {
+        $this->generateStaticPages();
         $this->generateProfiles();
         $this->generateServices();
         $this->generateInsights();
         $this->generateIndex();
     }
 
+    private function generateStaticPages()
+    {
+        $sitemap = Sitemap::create();
+
+        $pages = [
+            '/' => 1.0,
+            '/contact' => 0.7,
+            '/privacy-policy' => 0.3,
+            '/terms-conditions' => 0.3,
+            '/cookie-policy' => 0.3,
+            '/blogs' => 0.8,
+        ];
+        foreach ($pages as $url => $priority) {
+            $sitemap->add(
+                Url::create(FacadesURL::to($url))
+                    ->setLastModificationDate(now())
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                    ->setPriority($priority)
+            );
+        }
+
+        $sitemap->writeToFile(public_path("sitemap-static.xml"));
+    }
     private function generateProfiles()
     {
         $page = 1;

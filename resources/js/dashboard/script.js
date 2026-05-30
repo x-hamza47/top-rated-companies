@@ -1,5 +1,6 @@
-import '../bootstrap';
+import "../bootstrap";
 import { initDropdowns, initTheme, initThemeToggle } from "../modules/shared";
+import { initInsightEditor } from "./insight-editor";
 
 const dashboardSidebar = document.getElementById("dashboardSidebar");
 const dashboardSidebarOverlay = document.getElementById(
@@ -19,6 +20,10 @@ let sidebarCollapsed = false;
 // *===================================
 
 document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("editorjs")) {
+        initInsightEditor(window.__insightEditorConfig);
+    }
+
     initSidebar();
     initDropdowns();
     initTheme();

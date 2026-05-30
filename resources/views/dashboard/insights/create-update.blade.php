@@ -85,20 +85,18 @@
                         @enderror
                     </div>
 
-                   {{-- Slug--}}
+                    {{-- Slug --}}
                     @can('admin')
-                  
-                            <div>
-                                <label class="text-xs font-black uppercase text-gray-400 block mb-1">Slug</label>
-                                <input type="text" name="slug"
-                                    value="{{ old('slug', $insight->slug ?? '') }}"
-                                    placeholder="post-slug"
-                                    class="rounded-md w-full border text-sm placeholder:text-(--color-text-muted) border-(--color-border) focus:border-(--color-primary) outline-none p-3 font-mono @error('slug') invalid-input @enderror">
-                                @error('slug')
-                                    <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
-                                @enderror
-                                <p class="text-[10px] text-gray-400 mt-1">Leave blank to auto-generate from title.</p>
-                            </div>
+                        <div>
+                            <label class="text-xs font-black uppercase text-gray-400 block mb-1">Slug</label>
+                            <input type="text" name="slug" value="{{ old('slug', $insight->slug ?? '') }}"
+                                placeholder="post-slug"
+                                class="rounded-md w-full border text-sm placeholder:text-(--color-text-muted) border-(--color-border) focus:border-(--color-primary) outline-none p-3 font-mono @error('slug') invalid-input @enderror">
+                            @error('slug')
+                                <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                            @enderror
+                            <p class="text-[10px] text-gray-400 mt-1">Leave blank to auto-generate from title.</p>
+                        </div>
                     @endcan
 
                     {{-- Excerpt --}}
@@ -209,183 +207,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
 
     <script>
-        const existingData = @json(old('content_json') ? json_decode(old('content_json')) : $insight->content_json ?? null);
-
-        const uploadedImages = new Set();
-
-        const editor = new EditorJS({
-            holder: 'editorjs',
-            placeholder: 'Start writing your post...',
-            tools: {
-                header: {
-                    class: Header,
-                    config: {
-                        levels: [2, 3, 4],
-                        defaultLevel: 2
-                    }
-                },
-                list: {
-                    class: EditorjsList,
-                    inlineToolbar: true
-                },
-                quote: Quote,
-                code: CodeTool,
-                delimiter: Delimiter,
-                raw: RawTool,
-                warning: {
-                    class: Warning,
-                    inlineToolbar: true,
-                    config: {
-                        titlePlaceholder: 'Title',
-                        messagePlaceholder: 'Message'
-                    }
-                },
-                table: {
-                    class: Table,
-                    inlineToolbar: true,
-                    config: {
-                        rows: 2,
-                        cols: 2,
-                        withHeading: true
-                    }
-                },
-                inlineCode: {
-                    class: InlineCode
-                },
-                image: {
-                    class: ImageTool,
-                    config: {
-                        endpoints: {
-                            byFile: '{{ route('insights.upload-image') }}'
-                        },
-                        additionalRequestHeaders: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                        }
-                    }
-                }
-            },
-            data: existingData ?? undefined
-        });
-
-        const originalOpen = XMLHttpRequest.prototype.open;
-        const originalSend = XMLHttpRequest.prototype.send;
-
-        XMLHttpRequest.prototype.open = function(method, url, ...rest) {
-            this._url = url;
-            return originalOpen.call(this, method, url, ...rest);
+        window.__insightEditorConfig = {
+            uploadImageRoute: '{{ route('insights.upload-image') }}',
+            deleteTempImageRoute: '{{ route('insights.temp-image.delete') }}',
+            getSlugRoute: '{{ route('getSlug') }}',
+            existingData: @json(old('content_json') ? json_decode(old('content_json')) : $insight->content_json ?? null),
+            isAdmin: @json(auth()->user()?->can('admin')),
         };
-
-        XMLHttpRequest.prototype.send = function(...args) {
-            this.addEventListener('load', function() {
-                try {
-                    if (this._url && this._url.includes('upload-image')) {
-                        const data = JSON.parse(this.responseText);
-                        if (data.success && data.file?.filename) {
-                            uploadedImages.add(data.file.filename);
-                        }
-                    }
-                } catch (e) {}
-            });
-            return originalSend.apply(this, args);
-        };
-
-        async function syncImageCleanup() {
-            const data = await editor.save();
-            const usedImages = new Set();
-            data.blocks.forEach(block => {
-                if (block.type === 'image') {
-                    const url = block.data?.file?.url;
-                    if (url) usedImages.add(url.split('/').pop());
-                }
-            });
-
-            const toDelete = [...uploadedImages].filter(f => !usedImages.has(f));
-
-            for (const filename of toDelete) {
-                try {
-                    await axios.delete('{{ route('insights.temp-image.delete') }}', {
-                        data: {
-                            filename
-                        }
-                    });
-                } catch (err) {
-                    console.error('Delete failed:', err);
-                }
-                uploadedImages.delete(filename);
-            }
-        }
-
-        async function submitPost() {
-            try {
-                const output = await editor.save();
-                const title = document.querySelector('input[name="title"]').value.trim();
-                const errors = [];
-
-                if (!title) errors.push('Post title is required.');
-                if (!output.blocks || output.blocks.length === 0) errors.push('Post content cannot be empty.');
-
-                if (errors.length > 0) {
-                    await Swal.fire({
-                        icon: 'warning',
-                        title: 'Hold on!',
-                        html: errors.map(e => `<p class="text-sm text-gray-600">${e}</p>`).join(''),
-                        confirmButtonText: 'Got it',
-                        confirmButtonColor: '#010521',
-                    });
-                    return;
-                }
-
-                document.getElementById('content_json').value = JSON.stringify(output);
-                await syncImageCleanup();
-                document.getElementById('post-form').submit();
-
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Something went wrong',
-                    text: 'Failed to save editor content. Please try again.',
-                    confirmButtonColor: '#010521',
-                });
-            }
-        }
-
-        const thumbInput = document.getElementById('thumbnail');
-        const thumbPreview = document.getElementById('thumb-preview');
-        const thumbLabel = document.getElementById('thumb-label');
-
-        thumbInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (!file) return;
-            thumbLabel.textContent = file.name;
-            const reader = new FileReader();
-            reader.onload = e => {
-                thumbPreview.src = e.target.result;
-                thumbPreview.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
-        });
-
-        @can('admin')
-        document.querySelector('input[name="title"]').addEventListener('change', function () {
-            const name = this.value.trim();
-            const slugInput = document.querySelector('input[name="slug"]');
-            if (!name || !slugInput) return;
- 
-            document.querySelector('button[type=button]').disabled = true;
- 
-            fetch('{{ route('getSlug') }}?name=' + encodeURIComponent(name))
-                .then(res => res.json())
-                .then(response => {
-                    document.querySelector('button[type=button]').disabled = false;
-                    if (response.status === true) {
-                        slugInput.value = response.slug;
-                    }
-                })
-                .catch(() => {
-                    document.querySelector('button[type=button]').disabled = false;
-                });
-        });
-        @endcan
     </script>
 @endpush
 

@@ -26,6 +26,7 @@ export default defineConfig({
                 "resources/js/dashboard/company-chart.js",
                 "resources/js/dashboard/company-details.js",
                 "resources/js/dashboard/rangeSlider.js",
+                // "resources/js/dashboard/editor/editor-tools.js",
             ],
             refresh: true,
         }),

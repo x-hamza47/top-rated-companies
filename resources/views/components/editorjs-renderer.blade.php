@@ -487,6 +487,85 @@
                 @case('raw')
                     {!! $block['data']['html'] ?? '' !!}
                 @break
+
+                @case('companies')
+                    <div class="ejs-companies">
+                        @foreach ($block['data']['items'] ?? [] as $i => $company)
+                            <div class="ejs-company-card">
+
+                                {{-- Header: rank + rating --}}
+                                <div class="ejs-company-card__header">
+                                    <span class="ejs-company-card__rank">#{{ $i + 1 }}</span>
+                                    @if (!empty($company['rating']))
+                                        <span class="ejs-company-card__rating">
+                                            <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+                                                <path
+                                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                            </svg>
+                                            {{ $company['rating'] }}
+                                        </span>
+                                    @endif
+                                </div>
+
+                                {{-- Body --}}
+                                <div class="ejs-company-card__body">
+                                    <p class="ejs-company-card__name">{{ $company['name'] ?? '' }}</p>
+
+                                    <ul class="ejs-company-card__meta">
+                                        @if (!empty($company['employees']))
+                                            <li>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.75" width="14" height="14" aria-hidden="true">
+                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                                    <circle cx="9" cy="7" r="4" />
+                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                                                </svg>
+                                                <span class="ejs-company-card__label">Employees</span>
+                                                <span class="ejs-company-card__value">{{ $company['employees'] }}</span>
+                                            </li>
+                                        @endif
+                                        @if (!empty($company['hourlyRate']))
+                                            <li>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.75" width="14" height="14" aria-hidden="true">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M12 6v6l4 2" />
+                                                </svg>
+                                                <span class="ejs-company-card__label">Hourly rate</span>
+                                                <span class="ejs-company-card__value">{{ $company['hourlyRate'] }}</span>
+                                            </li>
+                                        @endif
+                                        @if (!empty($company['projectRange']))
+                                            <li>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.75" width="14" height="14" aria-hidden="true">
+                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                                    <polyline points="14 2 14 8 20 8" />
+                                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                                </svg>
+                                                <span class="ejs-company-card__label">Project min</span>
+                                                <span class="ejs-company-card__value">{{ $company['projectRange'] }}</span>
+                                            </li>
+                                        @endif
+                                    </ul>
+
+                                    @if (!empty($company['url']))
+                                        <a href="{{ $company['url'] }}" target="_blank" rel="noopener"
+                                            class="ejs-company-card__btn ejs-company-card__btn--{{ $i === 0 ? 'primary' : 'outline' }}">
+                                            View profile
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                                width="13" height="13" aria-hidden="true">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </a>
+                                    @endif
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+                @break
             @endswitch
     @endforeach
 </div>
@@ -517,6 +596,137 @@
 
     @push('styles')
         <style>
+            /* ── COMPANIES ── */
+            .ejs-content .ejs-companies {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 14px;
+                margin: 2rem 0;
+            }
+
+            .ejs-content .ejs-company-card {
+                background: var(--color-background);
+                border: 1px solid var(--color-border);
+                border-radius: 14px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .ejs-content .ejs-company-card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-md);
+            }
+
+            .ejs-content .ejs-company-card__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 14px;
+                background: var(--color-surface);
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .ejs-content .ejs-company-card__rank {
+                font-size: 11px;
+                font-weight: 700;
+                color: var(--color-text-muted);
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+
+            .ejs-content .ejs-company-card__rating {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 12px;
+                font-weight: 600;
+                color: #92400e;
+                background: #fef3c7;
+                border-radius: 6px;
+                padding: 2px 8px;
+            }
+
+            .ejs-content .ejs-company-card__body {
+                padding: 14px;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            .ejs-content .ejs-company-card__name {
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--color-text);
+                margin: 0 0 12px;
+                line-height: 1.3;
+            }
+
+            .ejs-content .ejs-company-card__meta {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 14px;
+                display: flex;
+                flex-direction: column;
+                gap: 7px;
+                flex: 1;
+            }
+
+            .ejs-content .ejs-company-card__meta li {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .ejs-content .ejs-company-card__meta svg {
+                color: var(--color-text-muted);
+                flex-shrink: 0;
+            }
+
+            .ejs-content .ejs-company-card__label {
+                font-size: 12px;
+                color: var(--color-text-secondary);
+                flex: 1;
+            }
+
+            .ejs-content .ejs-company-card__value {
+                font-size: 12px;
+                font-weight: 600;
+                color: var(--color-text);
+            }
+
+            .ejs-content .ejs-company-card__btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                width: 100%;
+                padding: 8px 0;
+                border-radius: 8px;
+                font-size: 12px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: opacity 0.2s ease;
+                box-sizing: border-box;
+            }
+
+            .ejs-content .ejs-company-card__btn:hover {
+                opacity: 0.85;
+            }
+
+            .ejs-content .ejs-company-card__btn--primary {
+                background: var(--color-primary);
+                color: #fff;
+                border: none;
+            }
+
+            .ejs-content .ejs-company-card__btn--outline {
+                background: transparent;
+                color: var(--color-primary);
+                border: 1px solid var(--color-primary);
+            }
+
             .ejs-content {
                 font-size: 1.0625rem;
                 line-height: 1.9;
