@@ -14,8 +14,9 @@
     <link rel="manifest" href="{{ asset('/images/favicon/site.webmanifest') }}" />
     {{-- ! Meta Tags --}}
     @include('shared.partials.meta')
-    <link rel="preload" as="image" href="{{ asset('images/illustration-750.avif') }}" type="image/avif">
+    <link rel="preload" as="image" href="{{ asset('images/illustration-750.avif') }}" type="image/avif" fetchpriority="high">
     @vite(['resources/css/frontend.css', 'resources/js/app.js'])
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'">
@@ -287,7 +288,7 @@ window.addEventListener("load", function() {
     document.body.classList.remove("loading");
 });
 </script> --}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
 @stack('scripts')
 {{-- ! Page Js --}}
 

@@ -1,8 +1,9 @@
 <footer class="px-6 md:px-16 lg:px-24 xl:px-32 bg-zinc-900 w-full">
-    <div class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
+    <div
+        class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
         <div>
-            <img class="w-34 md:w-32" src="{{ asset('images/logo-new.png') }}" alt="logo" />
-             <ul class="text-sm space-y-3 mt-6 text-gray-400">
+            <img class="w-34 md:w-32" src="{{ asset('images/logo-new.webp') }}" alt="logo" width="128" height="40"/>
+            <ul class="text-sm space-y-3 mt-6 text-gray-400">
                 <li class="flex items-start gap-3 ">
                     <i class="fa-solid fa-location-dot mt-1 text-lime-600"></i>
                     <span>
@@ -28,7 +29,7 @@
 
         {{-- Quick Links --}}
         <div>
-            <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Quick Links</h3>
+            <h3 class="font-semibold text-base text-(--color-primary-hover) md:mb-5 mb-2">Quick Links</h3>
             <ul class="text-sm space-y-2">
                 <li><a href="{{ route('home.index') }}" class="hover:underline">Home</a></li>
                 <li><a href="{{ route('insights.list') }}" class="hover:underline">Blogs</a></li>
@@ -38,32 +39,32 @@
             </ul>
         </div>
 
-   
+
         <div>
-            <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Top Categories</h3>
+            <h3 class="font-semibold text-base text-(--color-primary-hover) md:mb-5 mb-2">Top Categories</h3>
             <ul class="text-sm space-y-2">
-                @foreach($navCategories->take(3) as $category)
-    <h4 class="text-white mt-3">{{ $category->name }}</h4>
-    <ul class="text-sm space-y-1">
-        @foreach($category->services->take(3) as $service)
-            <li>
-                <a href="{{ route('services.companies', $service->slug) }}" class="hover:underline">
-                    {{ $service->name }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-@endforeach
+                @foreach ($navCategories->take(3) as $category)
+                    <h4 class="text-white mt-3">{{ $category->name }}</h4>
+                    <ul class="text-sm space-y-1">
+                        @foreach ($category->services->take(3) as $service)
+                            <li>
+                                <a href="{{ route('services.companies', $service->slug) }}" class="hover:underline">
+                                    {{ $service->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endforeach
             </ul>
         </div>
 
         {{-- Legal --}}
         <div>
-            <h3 class="font-semibold text-base text-lime-900 md:mb-5 mb-2">Legal</h3>
+            <h3 class="font-semibold text-base text-(--color-primary-hover) md:mb-5 mb-2">Legal</h3>
             <ul class="text-sm space-y-2">
-               <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-<li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
-<li><a href="{{ route('cookies') }}">Cookie Policy</a></li>
+                <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+                <li><a href="{{ route('cookies') }}">Cookie Policy</a></li>
             </ul>
         </div>
 

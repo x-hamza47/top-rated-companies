@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('insights', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
-            $table->foreignId('author_id')->constrained('authors')->onDelete('cascade');
+            $table->foreignId('author_id')->nullable()->constrained('authors')->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
 

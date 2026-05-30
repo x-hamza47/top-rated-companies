@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit"
+                <button type="submit" aria-label="Search"
                     class="bg-lime-700 md:px-3 px-2 hover:bg-lime-600 rounded-md text-sm md:text-lg h-full scale-x-[-1] flex items-center cursor-pointer active:shadow-[inset_0_0_20px_rgba(0,0,0,0.3)]">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -81,7 +81,7 @@
             <source srcset="{{ asset('images/illustration.webp') }}" type="image/webp">
 
             <img src="{{ asset('images/illustration.webp') }}" width="750" height="750" loading="eager"
-                decoding="async" alt="Software development, marketing, and consulting illustration"
+                decoding="async" fetchpriority="high" alt="Software development, marketing, and consulting illustration"
                 class="w-full h-full drop-shadow-[0_50px_20px_rgba(0,0,0,1)] hover:drop-shadow-transparent hover:scale-[0.99]">
 
         </picture>

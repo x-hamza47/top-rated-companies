@@ -97,7 +97,7 @@
         @endguest
 
         <div class="block xl:hidden">
-            <button id="mobile-menu-btn" class="text-(--color-text) text-2xl">
+            <button id="mobile-menu-btn" class="text-(--color-text) text-2xl" aria-label="Open mobile menu">
                 <i id="menu-icon" class="fa-solid fa-bars"></i>
             </button>
         </div>
