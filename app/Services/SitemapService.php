@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Company;
+use App\Models\Insight;
 use App\Models\Service;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL as FacadesURL;
@@ -20,6 +21,7 @@ class SitemapService
     {
         $this->generateProfiles();
         $this->generateServices();
+        $this->generateInsights();
         $this->generateIndex();
     }
 
@@ -27,7 +29,7 @@ class SitemapService
     {
         $page = 1;
         Company::select('id', 'slug', 'updated_at')
-            ->chunk($this->limit, function ($companies) use ($page) {
+            ->chunk($this->limit, function ($companies) use (&$page) {
                 $sitemap = Sitemap::create();
 
                 foreach ($companies as $company) {
@@ -48,7 +50,7 @@ class SitemapService
         $page = 1;
         Service::where('status', 1)
             ->select('slug', 'updated_at')
-            ->chunk($this->limit, function ($services) use ($page) {
+            ->chunk($this->limit, function ($services) use (&$page) {
                 $sitemap = Sitemap::create();
 
                 foreach ($services as $service) {
@@ -64,8 +66,30 @@ class SitemapService
                 $page++;
             });
     }
+    private function generateInsights()
+    {
+        $page = 1;
+        Insight::where('is_published', true)
+            ->select('slug', 'updated_at')
+            ->chunk($this->limit, function ($insights) use (&$page) {
+                $sitemap = Sitemap::create();
 
-    private function generateIndex() {
+                foreach ($insights as $insight) {
+                    $sitemap->add(
+                        Url::create(FacadesURL::to("/blogs/{$insight->slug}"))
+                            ->setLastModificationDate($insight->updated_at ?? now())
+                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                            ->setPriority(0.75)
+                    );
+                }
+
+                $sitemap->writeToFile(public_path("sitemap-blog-{$page}.xml"));
+                $page++;
+            });
+    }
+
+    private function generateIndex()
+    {
         $index = SitemapIndex::create();
 
         $files = glob(public_path('sitemap-*.xml'));
@@ -83,7 +107,7 @@ class SitemapService
 
             if (file_exists($filePath) && ($mtime = filemtime($filePath)) !== false) {
                 $sitemapTag->setLastModificationDate(Carbon::createFromTimestamp($mtime));
-            } 
+            }
 
             $index->add($sitemapTag);
         }

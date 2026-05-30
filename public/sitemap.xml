@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
-        <loc>https://topfirmsreviewer.com/sitemap-directory-1.xml</loc>
-            <lastmod>2026-03-07T17:40:14+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/sitemap-directory-1.xml</loc>
+            <lastmod>2026-05-30T08:06:35+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>https://topfirmsreviewer.com/sitemap-profile-1.xml</loc>
-            <lastmod>2026-03-07T17:40:14+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/sitemap-insights-1.xml</loc>
+            <lastmod>2026-05-30T08:06:35+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>http://127.0.0.1:8000/sitemap-profile-1.xml</loc>
+            <lastmod>2026-05-30T08:06:35+00:00</lastmod>
     </sitemap>
 </sitemapindex>
