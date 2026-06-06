@@ -2,7 +2,8 @@
     <div
         class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500">
         <div>
-            <img class="w-34 md:w-32" src="{{ asset('images/logo-new.webp') }}" alt="logo" width="128" height="40"/>
+            <img class="w-34 md:w-32" src="{{ asset('images/logo-new.webp') }}" alt="logo" width="128"
+                height="40" />
             <ul class="text-sm space-y-3 mt-6 text-gray-400">
                 <li class="flex items-start gap-3 ">
                     <i class="fa-solid fa-location-dot mt-1 text-lime-600"></i>
@@ -25,6 +26,24 @@
                     </a>
                 </li>
             </ul>
+            <div class="flex items-center gap-3 mt-6">
+                <a href="https://www.facebook.com/profile.php?id=61590606452636" target="_blank" rel="noopener noreferrer"
+                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-zinc-800 text-gray-400 hover:bg-lime-600 hover:text-white transition-colors duration-200">
+                    <i class="fa-brands fa-facebook-f text-xs sm:text-base"></i>
+                </a>
+                {{-- <a href="#" target="_blank" rel="noopener noreferrer"
+                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-zinc-800 text-gray-400 hover:bg-lime-600 hover:text-white transition-colors duration-200">
+                    <i class="fa-brands fa-x-twitter text-xs sm:text-base"></i>
+                </a> --}}
+                <a href="https://www.linkedin.com/company/top-firms-reviewer/" target="_blank" rel="noopener noreferrer"
+                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-zinc-800 text-gray-400 hover:bg-lime-600 hover:text-white transition-colors duration-200">
+                    <i class="fa-brands fa-linkedin-in text-xs sm:text-base"></i>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-zinc-800 text-gray-400 hover:bg-lime-600 hover:text-white transition-colors duration-200">
+                    <i class="fa-brands fa-instagram text-xs sm:text-base"></i>
+                </a>
+            </div>
         </div>
 
         {{-- Quick Links --}}

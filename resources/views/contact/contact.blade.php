@@ -5,133 +5,162 @@
 @section('title', 'Contact Us | Top Firms Reviewer')
 @section('meta_description', 'Get in touch with Top Firms Reviewer. Send your inquiries or feedback using our contact form.')
 @section('content')
-    <section
-        class="section w-full flex items-center justify-center gap-4 mt-20 bg-[linear-gradient(45deg,#0b0f2a,#034b41,#055724)] ">
-            @include('badgeAlert')
-        <div class="flex items-center w-full max-w-3xl sm:px-8 py-8 px-4 mx-auto lg:px-12 lg:w-3/5 bg-white rounded-md">
-            <div class="w-full">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl text-gray-800 font-bold text-center">
-                    Contact <span class="text-lime-700">TopFirms</span>
-                </h1>
-                <p class="my-4 text-gray-600 text-sm sm:text-base text-center">
-                    Have a question or feedback? Send us a message and our team will get back to you as soon as possible.
-                </p>
 
-                <form class="flex flex-col" action="{{ route('contact.store') }}" method="POST">
-                    @csrf
-                    <div class="grid sm:grid-cols-2 gap-4 my-5  transition-all duration-500 ease-in-out">
 
-                        <div>
-                            <div class="inp-field w-full">
-                                <label class="block mb-2 text-sm text-gray-600">First Name</label>
-                                <span class="relative h-11">
-                                    <input type="text" name="fname" placeholder="John"
-                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('fname') invalid-input @enderror"
-                                        value="{{ old('fname') }}">
-                                    <i class="fa-solid fa-user absolute left-3 top-3 text-gray-400"></i>
-                                </span>
-                                @error('fname')
-                                    <span class="error">
-                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
-                                        <p class="error-text">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div>
-                            <div class="inp-field w-full">
-                                <label class="block mb-2 text-sm text-gray-600">Last Name</label>
-                                <span class="relative h-11">
-                                    <input type="text" name="lname" placeholder="Doe"
-                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('lname') invalid-input @enderror"
-                                        value="{{ old('lname') }}">
-                                    <i class="fa-solid fa-user absolute left-3 top-3 text-gray-400"></i>
-                                </span>
-                                @error('lname')
-                                    <span class="error">
-                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
-                                        <p class="error-text">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+<section class="contact-section w-full">
+    @include('badgeAlert')
+    <div class="contact-grid">
 
-                        <div>
-                            <div class="inp-field w-full">
-                                <label class="block mb-2 text-sm text-gray-600">Email</label>
-                                <span class="relative h-11">
-                                    <input type="email" name="email" placeholder="example@example.com"
-                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('email') invalid-input @enderror"
-                                        value="{{ old('email') }}">
-                                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400"></i>
-                                </span>
-                                @error('email')
-                                    <span class="error">
-                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
-                                        <p class="error-text">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div>
-                            <div class="inp-field w-full ">
-                                <label class="block mb-2 text-sm text-gray-600 ">Phone</label>
-                                <span class="relative">
-                                    <input type="tel" name="phone" placeholder="+92 300 1234567"
-                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('phone') invalid-input @enderror"
-                                        value="{{ old('phone') }}">
-                                    <i class="fa-solid fa-phone absolute left-3 top-3 text-gray-400"></i>
-                                </span>
-                                @error('phone')
-                                    <span class="error">
-                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
-                                        <p class="error-text">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+        {{-- Left Panel --}}
+        <div class="contact-left">
+            <div>
+                <h2>Let's <span>Talk</span><br>With Us</h2>
+                <p>Have a question or feedback? We'd love to hear from you. Our team typically responds within 24 hours.</p>
 
-                        <div class="sm:col-span-2">
-                            <div class="inp-field w-full">
-                                <label class="block mb-2 text-sm text-gray-600">Subject</label>
-                                <span class="relative h-11">
-                                    <input type="text" name="subject" placeholder="Subject"
-                                        class="rounded-md w-full h-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 pl-10 pr-9 py-2 @error('subject') invalid-input @enderror"
-                                        value="{{ old('subject') }}">
-                                    <i class="fa-solid fa-tag absolute left-3 top-3 text-gray-400"></i>
-                                </span>
-                                @error('subject')
-                                    <span class="error">
-                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
-                                        <p class="error-text">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="sm:col-span-2">
-                            <div class="inp-field w-full">
-                                <label class="block mb-2 text-sm text-gray-600">Message</label>
-                                <textarea name="message" rows="5" placeholder="Write your message..."
-                                    class="rounded-md w-full border-2 border-gray-400/40 focus:border-(--primary) outline-none placeholder:text-gray-400 p-3 @error('message') invalid-input @enderror">{{ old('message') }}</textarea>
-                                @error('message')
-                                    <span class="error">
-                                        <i class="fa-solid fa-circle-exclamation error-icon"></i>
-                                        <p class="error-text">{{ $message }}</p>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-text">
+                        <span>Address</span>
+                        <p>Business Center Sharjah Publishing City<br>Free Zone, Sharjah, UAE</p>
                     </div>
+                </div>
 
-                    <button type="submit"
-                        class="bg-(--secondary) cursor-pointer text-white w-full text-center rounded-md py-2 hover:bg-(--light-primary) font-semibold peer-has-not-checked:hidden peer-has-checked:block">
-                        Send Message
-                    </button>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <span>Phone</span>
+                        <a href="tel:+971567716432">+971 56 771 6432</a>
+                    </div>
+                </div>
 
-                </form>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-text">
+                        <span>Email</span>
+                        <a href="mailto:info@topfirmsreviewer.com">info@topfirmsreviewer.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-row">
+                <a href="https://www.facebook.com/people/Top-Firms-Reviewer/61590606452636/" class="social-btn" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-btn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-btn" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
-    </section>
+
+        {{-- Right Panel --}}
+        <div class="contact-right">
+            <h3>Send a Message</h3>
+            <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+
+            <form action="{{ route('contact.store') }}" method="POST">
+                @csrf
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <div class="inp-wrap">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="fname" placeholder="John"
+                                class="@error('fname') invalid-input @enderror"
+                                value="{{ old('fname') }}">
+                        </div>
+                        @error('fname')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <div class="inp-wrap">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="lname" placeholder="Doe"
+                                class="@error('lname') invalid-input @enderror"
+                                value="{{ old('lname') }}">
+                        </div>
+                        @error('lname')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <div class="inp-wrap">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" name="email" placeholder="example@example.com"
+                                class="@error('email') invalid-input @enderror"
+                                value="{{ old('email') }}">
+                        </div>
+                        @error('email')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <div class="inp-wrap">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" name="phone" placeholder="+92 300 1234567"
+                                class="@error('phone') invalid-input @enderror"
+                                value="{{ old('phone') }}">
+                        </div>
+                        @error('phone')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Subject</label>
+                        <div class="inp-wrap">
+                            <i class="fa-solid fa-tag"></i>
+                            <input type="text" name="subject" placeholder="How can we help?"
+                                class="@error('subject') invalid-input @enderror"
+                                value="{{ old('subject') }}">
+                        </div>
+                        @error('subject')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Message</label>
+                        <div class="inp-wrap textarea-wrap">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <textarea name="message" rows="4" placeholder="Write your message..."
+                                class="@error('message') invalid-input @enderror">{{ old('message') }}</textarea>
+                        </div>
+                        @error('message')
+                            <span class="error">
+                                <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                                <p class="error-text">{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>
 @endsection
