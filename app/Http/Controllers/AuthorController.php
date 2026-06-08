@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Insight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -10,16 +11,16 @@ use Intervention\Image\Laravel\Facades\Image;
 
 class AuthorController extends Controller
 {
-       /**
+    /**
      * Display a listing of authors.
      */
     public function index()
     {
         $authors = Author::latest()->paginate(15);
- 
+
         return view('dashboard.authors.list', compact('authors'));
     }
- 
+
     /**
      * Show the form for creating a new author.
      */
@@ -27,64 +28,63 @@ class AuthorController extends Controller
     {
         return view('dashboard.authors.create-update');
     }
- 
+
     /**
      * Store a newly created author in storage.
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'         => 'required|string|max:255',
-            'slug'         => 'required|string|max:255|unique:authors,slug',
-            'designation'  => 'nullable|string|max:255',
-            'company'      => 'nullable|string|max:255',
-            'bio'          => 'nullable|string|max:300',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:authors,slug',
+            'designation' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'bio' => 'nullable|string|max:300',
             'linkedin_url' => 'nullable|url|max:255',
-            'twitter_url'  => 'nullable|url|max:255',
-            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'is_active'    => 'nullable|boolean',
+            'twitter_url' => 'nullable|url|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'is_active' => 'nullable|boolean',
         ]);
- 
+
         $validated['is_active'] = $request->boolean('is_active');
- 
+
         if ($request->hasFile('image')) {
             $validated['image'] = $this->saveAvatar($request->file('image'));
         } else {
             unset($validated['image']);
         }
- 
+
         Author::create($validated);
- 
+
         return redirect()
             ->route('authors.index')
             ->with('success', 'Author created successfully.');
     }
- 
-  
+
     public function edit(Author $author)
     {
         return view('dashboard.authors.create-update', compact('author'));
     }
- 
+
     /**
      * Update the specified author in storage.
      */
     public function update(Request $request, Author $author)
     {
         $validated = $request->validate([
-            'name'         => 'required|string|max:255',
-            'slug'         => 'required|string|max:255|unique:authors,slug,' . $author->id,
-            'designation'  => 'nullable|string|max:255',
-            'company'      => 'nullable|string|max:255',
-            'bio'          => 'nullable|string|max:300',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:authors,slug,'.$author->id,
+            'designation' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'bio' => 'nullable|string|max:300',
             'linkedin_url' => 'nullable|url|max:255',
-            'twitter_url'  => 'nullable|url|max:255',
-            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-            'is_active'    => 'nullable|boolean',
+            'twitter_url' => 'nullable|url|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'is_active' => 'nullable|boolean',
         ]);
- 
+
         $validated['is_active'] = $request->boolean('is_active');
- 
+
         if ($request->hasFile('image')) {
             if ($author->image && Storage::disk('public')->exists($author->image)) {
                 Storage::disk('public')->delete($author->image);
@@ -93,46 +93,67 @@ class AuthorController extends Controller
         } else {
             unset($validated['image']);
         }
- 
+
         $author->update($validated);
- 
+
         return redirect()
             ->route('authors.index')
             ->with('success', 'Author updated successfully.');
     }
- 
 
     public function destroy(Author $author)
     {
         if ($author->image && Storage::disk('public')->exists($author->image)) {
             Storage::disk('public')->delete($author->image);
         }
- 
+
         $author->delete();
- 
+
         return redirect()
             ->route('authors.index')
             ->with('success', 'Author deleted successfully.');
     }
- 
 
     private function saveAvatar($file): string
     {
-        $filename  = Str::uuid() . '.webp';
+        $filename = Str::uuid().'.webp';
         $directory = 'authors';
-        $path      = $directory . '/' . $filename;
- 
+        $path = $directory.'/'.$filename;
+
         if (! Storage::disk('public')->exists($directory)) {
             Storage::disk('public')->makeDirectory($directory, 0755, true);
         }
- 
+
         $webpImage = Image::read($file)
             ->cover(400, 400)
             ->toWebp(80)
             ->toFilePointer();
- 
+
         Storage::disk('public')->put($path, $webpImage);
- 
+
         return $path;
+    }
+
+    public function showAuthor(string $slug)
+    {
+        $author = Author::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $insights = $author->insights()
+            ->with('service')
+            ->where('is_published', true)
+            ->latest('published_at')
+            ->paginate(9);
+
+        // Other authors' published insights, excluding this author's own
+        $moreInsights = Insight::with(['service', 'author'])
+            ->where('is_published', true)
+            ->where('author_id', '!=', $author->id)
+            ->latest('published_at')
+            ->take(6)
+            ->get();
+
+        return view('authors.author', compact('author', 'insights', 'moreInsights'));
     }
 }

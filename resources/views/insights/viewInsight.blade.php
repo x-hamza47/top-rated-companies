@@ -7,7 +7,7 @@
 @section('og_image', $insight->thumbnail_url ?? asset('images/og.png'))
 @section('og_type', 'article')
 @section('schema')
-<script type="application/ld+json">
+    <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -175,10 +175,11 @@
                                         {{ $insight->author->name }}
                                     </h3>
 
-                                    <p class="text-xs text-(--color-text-muted) mt-1 mb-4">
+                                    <a href="{{ route('authors.show', $insight->author->slug) }}"
+                                        class="inline-block text-xs text-(--color-text-muted) mt-1 mb-4 hover:text-(--color-primary) transition">
                                         Browse all articles
                                         ({{ $insight->author->insights()->where('is_published', true)->count() }})
-                                    </p>
+                                    </a>
 
                                     @if ($insight->author->bio)
                                         <p class="text-base text-(--color-text) leading-relaxed">
@@ -347,7 +348,9 @@
                 }
             };
 
-            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('scroll', onScroll, {
+                passive: true
+            });
             onScroll();
         })();
     </script>

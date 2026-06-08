@@ -120,9 +120,10 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <span class="text-(--color-muted) font-medium">
-                                                    {{ $insight->author->name }}
-                                                </span>
+                                                <a href="{{ route('authors.show', $insight->author->slug) }}"
+                                                    class="font-medium hover:text-(--color-primary) transition">
+                                                    By {{ $insight->author->name }}
+                                                </a>
                                             </div>
                                         @endif
                                     </div>

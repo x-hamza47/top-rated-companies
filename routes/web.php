@@ -59,6 +59,7 @@ Route::get('/search/live', [ServiceController::class, 'liveSearch'])->name('sear
 Route::get('blogs', [InsightsController::class, 'showInsights'])->name('insights.list');
 Route::get('blogs/{insightSlug}', [InsightsController::class, 'showInsight'])->name('insights.showInsight');
 Route::get('/services/{slug}/packages', [PackageController::class, 'packagePage']);
+Route::get('/authors/{slug}', [AuthorController::class, 'showAuthor'])->name('authors.show');
 
 Route::get('/company/{company}/service/{service}/packages', [ProfileController::class, 'getServicePackages']);
 Route::get('/claim-profile/{company}', [CompanyClaimController::class, 'create'])->middleware('auth')
