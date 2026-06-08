@@ -6,6 +6,32 @@
 @section('meta_description', $insight->meta_description ?? '')
 @section('og_image', $insight->thumbnail_url ?? asset('images/og.png'))
 @section('og_type', 'article')
+@section('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ $insight->title }}",
+  "description": "{{ $insight->excerpt ?? $insight->meta_description }}",
+  "url": "{{ route('insights.showInsight', $insight->slug) }}",
+  "datePublished": "{{ $insight->created_at->toIso8601String() }}",
+  "dateModified": "{{ $insight->updated_at->toIso8601String() }}",
+  @if ($insight->thumbnail_url)
+  "image": "{{ $insight->thumbnail_url }}",
+  @endif
+  @if ($insight->author)
+  "author": {
+    "@type": "Person",
+    "name": "{{ $insight->author->name }}"
+  },
+  @endif
+  "publisher": {
+    "@type": "Organization",
+    "name": "Top Firms Reviewer"
+  }
+}
+</script>
+@endsection
 
 @section('content')
 
@@ -13,7 +39,6 @@
 
         <div class="max-w-7xl mx-auto flex gap-6">
 
-            {{-- ── LEFT: TABLE OF CONTENTS ──────────────────────────────── --}}
             @if ($toc->count())
                 <aside class="w-[30%] hidden lg:block">
                     <div class="sticky top-28 bg-(--color-surface) rounded-xl shadow-md p-6 border border-(--color-border)">
@@ -119,11 +144,9 @@
                     </div>
                 </div>
 
-                {{-- ── EDITORJS CONTENT ──────────────────────────────────── --}}
                 <div class="bg-(--color-surface) rounded-xl shadow-xl mt-8 p-8 md:p-10">
                     <x-editorjs-renderer :blocks="$contentJson['blocks'] ?? []" />
 
-                    {{-- ── AUTHOR BOX ────────────────────────────────────── --}}
                     @if ($insight->author)
                         <section class="mt-12 pt-8 border-t border-(--color-border)">
                             <div class="flex flex-col md:flex-row gap-6 items-start">
@@ -186,7 +209,6 @@
                     @endif
                 </div>
 
-                {{-- ── BACK LINK ─────────────────────────────────────────── --}}
                 <div class="mt-8">
                     <a href="{{ route('insights.list') }}"
                         class="inline-flex items-center gap-2 text-sm font-bold text-(--color-primary) hover:text-(--color-secondary) transition">
@@ -201,7 +223,6 @@
 
     </section>
 
-    {{-- ── RELATED INSIGHTS ────────────────────────────────────────────── --}}
     @if ($relatedInsights->count())
         <section class="w-full mt-14 bg-(--color-background) py-8 md:py-10 md:px-12 sm:px-6 px-4">
 
