@@ -37,7 +37,7 @@ class AuthorController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:authors,slug',
-            'designation' => 'nullable|string|max:255',
+            'designation' => 'nullable|string|max:1000',
             'company' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:300',
             'linkedin_url' => 'nullable|url|max:255',
@@ -74,7 +74,7 @@ class AuthorController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:authors,slug,'.$author->id,
-            'designation' => 'nullable|string|max:255',
+            'designation' => 'nullable|string|max:1000',
             'company' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:300',
             'linkedin_url' => 'nullable|url|max:255',

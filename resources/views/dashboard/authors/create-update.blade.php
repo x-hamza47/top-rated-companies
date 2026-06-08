@@ -76,7 +76,7 @@
                         <label class="text-xs font-black uppercase text-gray-400 block mb-1">Bio</label>
                         <textarea name="bio" rows="4"
                             placeholder="Short bio (max 300 chars)..."
-                            maxlength="300"
+                            
                             class="rounded-md w-full border text-sm placeholder:text-(--color-text-muted) border-(--color-border) focus:border-(--color-primary) outline-none p-3 resize-none @error('bio') invalid-input @enderror">{{ old('bio', $author->bio ?? '') }}</textarea>
                         @error('bio')
                             <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
