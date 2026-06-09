@@ -290,6 +290,108 @@
                 @break
 
                 {{-- ════════════════════════════════════════════════════════
+     CTA BLOCK
+     ════════════════════════════════════════════════════════
+     $block['data']['title']       — main heading text
+     $block['data']['subtitle']    — optional supporting text
+     $block['data']['buttonText']  — primary button label
+     $block['data']['buttonUrl']   — primary button URL
+     $block['data']['button2Text'] — optional second button label
+     $block['data']['button2Url']  — optional second button URL
+     $block['data']['style']       — "primary" | "gradient" | "minimal"
+ 
+     Styles:
+       primary  → dark bg (stone-900) matching the site's ready-section
+       gradient → brand color gradient bg
+       minimal  → white bg with border, brand-colored heading
+══════════════════════════════════════════════════════════ --}}
+                @case('cta')
+                    @php
+                        $ctaTitle = $block['data']['title'] ?? '';
+                        $ctaSub = $block['data']['subtitle'] ?? '';
+                        $btn1Text = $block['data']['buttonText'] ?? '';
+                        $btn1Url = $block['data']['buttonUrl'] ?? '#';
+                        $btn2Text = $block['data']['button2Text'] ?? '';
+                        $btn2Url = $block['data']['button2Url'] ?? '#';
+                        $ctaStyle = $block['data']['style'] ?? 'primary';
+                    @endphp
+
+                    @if ($ctaStyle === 'primary')
+                        {{-- ── Dark / "ready-section" style ── --}}
+                        <div class="ejs-cta ejs-cta--primary">
+                            <div class="ejs-cta__inner">
+                                @if ($ctaTitle)
+                                    <h2 class="ejs-cta__title">{!! $ctaTitle !!}</h2>
+                                @endif
+                                @if ($ctaSub)
+                                    <p class="ejs-cta__sub">{!! $ctaSub !!}</p>
+                                @endif
+                                <div class="ejs-cta__buttons">
+                                    @if ($btn1Text)
+                                        <a href="{{ $btn1Url }}" class="ejs-cta__btn ejs-cta__btn--solid">
+                                            {{ $btn1Text }}
+                                        </a>
+                                    @endif
+                                    @if ($btn2Text)
+                                        <a href="{{ $btn2Url }}" class="ejs-cta__btn ejs-cta__btn--outline">
+                                            {{ $btn2Text }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @elseif($ctaStyle === 'gradient')
+                        {{-- ── Brand gradient style ── --}}
+                        <div class="ejs-cta ejs-cta--gradient">
+                            <div class="ejs-cta__inner">
+                                @if ($ctaTitle)
+                                    <h2 class="ejs-cta__title">{!! $ctaTitle !!}</h2>
+                                @endif
+                                @if ($ctaSub)
+                                    <p class="ejs-cta__sub">{!! $ctaSub !!}</p>
+                                @endif
+                                <div class="ejs-cta__buttons">
+                                    @if ($btn1Text)
+                                        <a href="{{ $btn1Url }}" class="ejs-cta__btn ejs-cta__btn--white">
+                                            {{ $btn1Text }}
+                                        </a>
+                                    @endif
+                                    @if ($btn2Text)
+                                        <a href="{{ $btn2Url }}" class="ejs-cta__btn ejs-cta__btn--outline-white">
+                                            {{ $btn2Text }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        {{-- ── Minimal / border style ── --}}
+                        <div class="ejs-cta ejs-cta--minimal">
+                            <div class="ejs-cta__inner">
+                                @if ($ctaTitle)
+                                    <h2 class="ejs-cta__title ejs-cta__title--dark">{!! $ctaTitle !!}</h2>
+                                @endif
+                                @if ($ctaSub)
+                                    <p class="ejs-cta__sub ejs-cta__sub--dark">{!! $ctaSub !!}</p>
+                                @endif
+                                <div class="ejs-cta__buttons">
+                                    @if ($btn1Text)
+                                        <a href="{{ $btn1Url }}" class="ejs-cta__btn ejs-cta__btn--brand">
+                                            {{ $btn1Text }}
+                                        </a>
+                                    @endif
+                                    @if ($btn2Text)
+                                        <a href="{{ $btn2Url }}" class="ejs-cta__btn ejs-cta__btn--outline-brand">
+                                            {{ $btn2Text }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @break
+
+                {{-- ════════════════════════════════════════════════════════
                  CODE
                  ════════════════════════════════════════════════════════
                  $block['data']['code'] — raw code string (plain text)
@@ -496,6 +598,7 @@
                                 {{-- Header: rank + rating --}}
                                 <div class="ejs-company-card__header">
                                     <span class="ejs-company-card__rank">#{{ $i + 1 }}</span>
+                                    <p class="ejs-company-card__name">{{ $company['name'] ?? '' }}</p>
                                     @if (!empty($company['rating']))
                                         <span class="ejs-company-card__rating">
                                             <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
@@ -509,7 +612,6 @@
 
                                 {{-- Body --}}
                                 <div class="ejs-company-card__body">
-                                    <p class="ejs-company-card__name">{{ $company['name'] ?? '' }}</p>
 
                                     <ul class="ejs-company-card__meta">
                                         @if (!empty($company['employees']))
@@ -624,14 +726,14 @@
                 align-items: center;
                 justify-content: space-between;
                 padding: 10px 14px;
-                background: var(--color-surface);
+                background: var(--color-secondary);
                 border-bottom: 1px solid var(--color-border);
             }
 
             .ejs-content .ejs-company-card__rank {
                 font-size: 11px;
                 font-weight: 700;
-                color: var(--color-text-muted);
+                color: var(--color-muted);
                 letter-spacing: 0.05em;
                 text-transform: uppercase;
             }
@@ -642,8 +744,8 @@
                 gap: 4px;
                 font-size: 12px;
                 font-weight: 600;
-                color: #92400e;
-                background: #fef3c7;
+                color: #eee068;
+                background: #272624;
                 border-radius: 6px;
                 padding: 2px 8px;
             }
@@ -658,8 +760,7 @@
             .ejs-content .ejs-company-card__name {
                 font-size: 15px;
                 font-weight: 700;
-                color: var(--color-text);
-                margin: 0 0 12px;
+                color: white;
                 line-height: 1.3;
             }
 
@@ -1229,6 +1330,167 @@
                 margin: 0;
                 font-size: 0.9rem;
                 line-height: 1.6;
+            }
+
+            .ejs-content .ejs-cta {
+                margin: 2.5rem 0;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            /* PRIMARY — dark stone bg matching your ready-section */
+            .ejs-content .ejs-cta--primary {
+                background: #1c1917;
+                /* stone-900 */
+            }
+
+            /* GRADIENT — brand color */
+            .ejs-content .ejs-cta--gradient {
+                background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary, #2d5a00) 100%);
+            }
+
+            /* MINIMAL — white with brand border */
+            .ejs-content .ejs-cta--minimal {
+                background: var(--color-background);
+                border: 2px solid var(--color-primary);
+            }
+
+            .ejs-content .ejs-cta__inner {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.1rem;
+                padding: 3rem 2rem;
+                text-align: center;
+            }
+
+            .ejs-content .ejs-cta__title {
+                font-size: clamp(1.35rem, 3vw, 1.9rem);
+                font-weight: 700;
+                color: #fff;
+                line-height: 1.3;
+                margin: 0;
+            }
+
+            .ejs-content .ejs-cta__title--dark {
+                color: var(--color-text);
+            }
+
+            .ejs-content .ejs-cta__sub {
+                font-size: 1rem;
+                color: rgba(255, 255, 255, 0.75);
+                margin: 0;
+                max-width: 520px;
+                line-height: 1.7;
+            }
+
+            .ejs-content .ejs-cta__sub--dark {
+                color: var(--color-text-secondary);
+            }
+
+            .ejs-content .ejs-cta__buttons {
+                display: flex;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+
+            .ejs-content .ejs-cta__btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.9rem;
+                font-weight: 600;
+                padding: 0.6rem 1.4rem;
+                border-radius: 8px;
+                text-decoration: none;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+
+            /* solid green — primary btn on dark bg */
+            .ejs-content .ejs-cta__btn--solid {
+                background: var(--color-primary);
+                color: #fff;
+                border: 2px solid transparent;
+            }
+
+            .ejs-content .ejs-cta__btn--solid:hover {
+                opacity: 0.88;
+            }
+
+            /* white outline — secondary btn on dark bg */
+            .ejs-content .ejs-cta__btn--outline {
+                background: transparent;
+                color: #fff;
+                border: 2px solid #fff;
+            }
+
+            .ejs-content .ejs-cta__btn--outline:hover {
+                background: #fff;
+                color: #1c1917;
+            }
+
+            /* white filled — primary btn on gradient bg */
+            .ejs-content .ejs-cta__btn--white {
+                background: #fff;
+                color: var(--color-primary);
+                border: 2px solid transparent;
+            }
+
+            .ejs-content .ejs-cta__btn--white:hover {
+                opacity: 0.9;
+            }
+
+            /* white outline — secondary btn on gradient bg */
+            .ejs-content .ejs-cta__btn--outline-white {
+                background: transparent;
+                color: #fff;
+                border: 2px solid rgba(255, 255, 255, 0.7);
+            }
+
+            .ejs-content .ejs-cta__btn--outline-white:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            /* brand filled — primary btn on minimal style */
+            .ejs-content .ejs-cta__btn--brand {
+                background: var(--color-primary);
+                color: #fff;
+                border: 2px solid transparent;
+            }
+
+            .ejs-content .ejs-cta__btn--brand:hover {
+                opacity: 0.88;
+            }
+
+            /* brand outline — secondary btn on minimal style */
+            .ejs-content .ejs-cta__btn--outline-brand {
+                background: transparent;
+                color: var(--color-primary);
+                border: 2px solid var(--color-primary);
+            }
+
+            .ejs-content .ejs-cta__btn--outline-brand:hover {
+                background: var(--color-primary);
+                color: #fff;
+            }
+
+            @media (max-width: 640px) {
+                .ejs-content .ejs-cta__inner {
+                    padding: 2rem 1.25rem;
+                }
+
+                .ejs-content .ejs-cta__buttons {
+                    flex-direction: column;
+                    width: 100%;
+                }
+
+                .ejs-content .ejs-cta__btn {
+                    width: 100%;
+                }
             }
         </style>
     @endpush

@@ -100,7 +100,6 @@
                                 <div class="p-6">
 
                                     {{-- Meta row --}}
-                                    {{-- Meta row --}}
                                     <div
                                         class="flex items-center justify-between text-xs uppercase tracking-widest text-(--color-text-muted) mb-3">
                                         <time datetime="{{ $insight->created_at->toDateString() }}">
@@ -109,8 +108,8 @@
                                         @if ($insight->author)
                                             <div class="flex items-center gap-2 normal-case tracking-normal">
                                                 <div class="w-6 h-6 rounded-full overflow-hidden shrink-0">
-                                                    @if ($insight->author->profile_image)
-                                                        <img src="{{ asset('storage/' . $insight->author->profile_image) }}"
+                                                    @if ($insight->author->image)
+                                                        <img src="{{ asset('storage/' . $insight->author->image) }}"
                                                             class="w-full h-full object-cover"
                                                             alt="{{ $insight->author->name }}">
                                                     @else
