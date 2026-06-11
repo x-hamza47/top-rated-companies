@@ -6,6 +6,39 @@
 @section('meta_description', $author->bio ?? 'Articles and insights by ' . $author->name)
 @section('og_image', $author->image ? asset('storage/' . $author->image) : asset('images/og.png'))
 @section('og_type', 'profile')
+@push('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "{{ $author->name }}",
+  "url": "{{ route('authors.show', $author->slug) }}",
+  @if ($author->image)
+  "image": "{{ asset('storage/' . $author->image) }}",
+  @endif
+  @if ($author->linkedin_url || $author->twitter_url)
+  "sameAs": [
+    @php $sameAs = array_filter([$author->linkedin_url, $author->twitter_url]); @endphp
+    @foreach ($sameAs as $i => $url)
+      "{{ $url }}"{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ],
+  @endif
+  @if ($author->designation)
+  "jobTitle": "{{ $author->designation }}",
+  @endif
+  @if ($author->company)
+  "worksFor": {
+    "@type": "Organization",
+    "name": "{{ $author->company }}"
+  },
+  @endif
+  @if ($author->bio)
+  "description": "{{ Str::limit(strip_tags($author->bio), 200) }}"
+  @endif
+}
+</script>
+@endpush
 
 @section('content')
 

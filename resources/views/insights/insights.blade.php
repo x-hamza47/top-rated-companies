@@ -7,6 +7,80 @@
     'Read the latest blogs on software development, marketing, design, and consulting. Discover
     insights, trends, and expert tips from industry leaders.')
 
+@section('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": ["Blog", "CollectionPage"],
+
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ route('insights.list') }}"
+  },
+
+  "name": "Insights & Stories | Top Firms Reviewer",
+  "description": "Read the latest blogs on software development, marketing, design, and consulting. Discover insights, trends, and expert tips from industry leaders.",
+  "url": "{{ route('insights.list') }}",
+  "inLanguage": "en-US",
+
+  "publisher": {
+    "@type": "Organization",
+    "name": "Top Firms Reviewer",
+    "url": "{{ url('/') }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('images/logo.png') }}",
+      "width": 200,
+      "height": 60
+    }
+  },
+
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ url('/') }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Insights",
+        "item": "{{ route('insights.list') }}"
+      }
+    ]
+  },
+
+  "blogPost": [
+    @foreach ($insights as $i => $insight)
+    {
+      "@type": "BlogPosting",
+      "headline": "{{ $insight->title }}",
+      "url": "{{ route('insights.showInsight', $insight->slug) }}",
+      "datePublished": "{{ $insight->created_at->toIso8601String() }}",
+      "dateModified": "{{ $insight->updated_at->toIso8601String() }}"
+      @if ($insight->thumbnail_url)
+      ,"image": "{{ $insight->thumbnail_url }}"
+      @endif
+      @if ($insight->excerpt)
+      ,"description": "{{ $insight->excerpt }}"
+      @endif
+      @if ($insight->author)
+      ,"author": {
+        "@type": "Person",
+        "name": "{{ $insight->author->name }}",
+        "url": "{{ route('authors.show', $insight->author->slug) }}"
+      }
+      @endif
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+
+}
+</script>
+@endsection
 @section('content')
 
     {{-- ── HERO ──────────────────────────────────────────────────────── --}}

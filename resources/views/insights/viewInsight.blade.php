@@ -7,28 +7,32 @@
 @section('og_image', $insight->thumbnail_url ?? asset('images/og.png'))
 @section('og_type', 'article')
 @section('schema')
-    <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "{{ $insight->title }}",
-  "description": "{{ $insight->excerpt ?? $insight->meta_description }}",
-  "url": "{{ route('insights.showInsight', $insight->slug) }}",
-  "datePublished": "{{ $insight->created_at->toIso8601String() }}",
-  "dateModified": "{{ $insight->updated_at->toIso8601String() }}",
-  @if ($insight->thumbnail_url)
-  "image": "{{ $insight->thumbnail_url }}",
-  @endif
-  @if ($insight->author)
-  "author": {
-    "@type": "Person",
-    "name": "{{ $insight->author->name }}"
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ route('insights.showInsight', $insight->slug) }}"
   },
-  @endif
-  "publisher": {
-    "@type": "Organization",
-    "name": "Top Firms Reviewer"
+  "headline": "{{ $insight->title }}",
+  "image": "{{ $insight->thumbnail_url }}"
+  @if ($insight->author)
+  ,"author": {
+    "@type": "Person",
+    "name": "{{ $insight->author->name }}",
+    "url": "{{ route('authors.show', $insight->author->slug) }}"
   }
+  @endif
+  ,"publisher": {
+    "@type": "Organization",
+    "name": "Top Firms Reviewer",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('images/logo.png') }}"
+    }
+  }
+  ,"datePublished": "{{ $insight->created_at->toIso8601String() }}"
 }
 </script>
 @endsection
